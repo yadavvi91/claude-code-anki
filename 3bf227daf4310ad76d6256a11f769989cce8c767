@@ -1,0 +1,37 @@
+src/components/NavSidebar.jsx
+  68098c85b7fbaece 4-5,7-10,13-14,24,34,44,60,87,116-118
+src/main.jsx
+  68098c85b7fbaece 8-18,22,25,27-28,30-67
+src/components/BeginDivider.jsx
+  68098c85b7fbaece 3-4,9-12,14-15,20,31,35,42-43,48-50,52,56-58,60,68,70,72,79-81,84
+src/components/Hero.jsx
+  68098c85b7fbaece 1,5-6,9-18,23-32,35-39,41-42,46-47,69,72-75,77-78,80,82-84,86-90,92-104,106-113,117,125-126,150
+src/components/ModuleOverview.jsx
+  68098c85b7fbaece 1-136
+src/components/IntroSections.jsx
+  68098c85b7fbaece 4-7,9-10,12,14,17,20,23-25,29-31,37-38,47-52,57,60,63-66,69-76,85-90
+src/components/MethodBand.jsx
+  68098c85b7fbaece 5-8,19,23-24,46-47,60,67-70,72,76-78,84-87,102,108,113,115,123-127,132-135,139-140,142-143,146-147,149
+src/App.jsx
+  68098c85b7fbaece 6,19-28,30-34,41,46,48-49,52,54-55
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.17",
+  "base_commit_sha": "3bf227daf4310ad76d6256a11f769989cce8c767",
+  "prompts": {
+    "68098c85b7fbaece": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "36c2fc92-8520-4531-b2b6-87112da3000e",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Vishal Yadav <yadavvi91@gmail.com>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 457,
+      "overriden_lines": 0
+    }
+  }
+}
