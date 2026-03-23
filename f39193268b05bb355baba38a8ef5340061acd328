@@ -1,0 +1,25 @@
+kitty-specs/claude-copilot-learn/spec.md
+  68098c85b7fbaece 1-21
+kitty-specs/claude-copilot-learn/plan.md
+  68098c85b7fbaece 1-24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.17",
+  "base_commit_sha": "f39193268b05bb355baba38a8ef5340061acd328",
+  "prompts": {
+    "68098c85b7fbaece": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "36c2fc92-8520-4531-b2b6-87112da3000e",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Vishal Yadav <yadavvi91@gmail.com>",
+      "messages": [],
+      "total_additions": 1105,
+      "total_deletions": 1685,
+      "accepted_lines": 974,
+      "overriden_lines": 1
+    }
+  }
+}
