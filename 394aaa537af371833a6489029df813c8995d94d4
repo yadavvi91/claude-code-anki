@@ -1,0 +1,27 @@
+src/data/cardSets.js
+  68098c85b7fbaece 1-2,4,6-9,11-248,251-254,257-260,262,265-271,274-280,283-289,291-321,323-324
+src/components/MCQCard.jsx
+  68098c85b7fbaece 5,29,49,52-65,72,75-82,90-91,96,98,100,102,105-106,125-126,135,137,186-187,196-197,199,204-211,213-223,242-243,249-251,253,264-266,274,282-285,287,299-302,308-310,314-316,320-322,327,330
+src/theme.js
+  68098c85b7fbaece 4-17,19,21-26,29-32
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.17",
+  "base_commit_sha": "394aaa537af371833a6489029df813c8995d94d4",
+  "prompts": {
+    "68098c85b7fbaece": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "36c2fc92-8520-4531-b2b6-87112da3000e",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Vishal Yadav <yadavvi91@gmail.com>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 882,
+      "overriden_lines": 0
+    }
+  }
+}
