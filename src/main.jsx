@@ -1,0 +1,71 @@
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import App from './App'
+import ScrollToTop from './components/ScrollToTop'
+import Lesson01 from './pages/lessons/Lesson01'
+
+// Lesson pages will be lazy-loaded as they're built
+// For now, placeholder component for unbuilt lessons
+function ComingSoon() {
+  return (
+    <div style={{ padding: '4rem 2rem', textAlign: 'center', fontFamily: "'Inter', sans-serif" }}>
+      <h1 style={{ fontSize: '2rem', color: '#2d3148', marginBottom: '1rem' }}>Coming Soon</h1>
+      <p style={{ color: '#6b7280' }}>This lesson is under development.</p>
+      <a href="/" style={{ color: '#6366f1', marginTop: '1rem', display: 'inline-block' }}>← Back to Home</a>
+    </div>
+  )
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <BrowserRouter basename="/claude-code-anki/">
+      <ScrollToTop />
+      <Routes>
+        {/* Home */}
+        <Route path="/" element={<App />} />
+
+        {/* Module 1: Claude Code Fundamentals */}
+        <Route path="/claude-code/architecture" element={<Lesson01 />} />
+        <Route path="/claude-code/planning" element={<ComingSoon />} />
+        <Route path="/claude-code/mcp-github" element={<ComingSoon />} />
+
+        {/* Interlude 1 */}
+        <Route path="/interlude/1" element={<ComingSoon />} />
+
+        {/* Module 2: MCP Fundamentals */}
+        <Route path="/mcp/architecture" element={<ComingSoon />} />
+        <Route path="/mcp/resources-prompts" element={<ComingSoon />} />
+
+        {/* Module 3: MCP Advanced */}
+        <Route path="/mcp-advanced/sampling" element={<ComingSoon />} />
+        <Route path="/mcp-advanced/transports" element={<ComingSoon />} />
+
+        {/* Interlude 2 */}
+        <Route path="/interlude/2" element={<ComingSoon />} />
+
+        {/* Module 4: Agent Skills */}
+        <Route path="/skills/anatomy" element={<ComingSoon />} />
+        <Route path="/skills/distribution" element={<ComingSoon />} />
+
+        {/* Module 5: Subagents */}
+        <Route path="/subagents/mechanics" element={<ComingSoon />} />
+        <Route path="/subagents/design" element={<ComingSoon />} />
+
+        {/* Interlude 3 */}
+        <Route path="/interlude/3" element={<ComingSoon />} />
+
+        {/* Module 6: GitHub Copilot */}
+        <Route path="/copilot/core-modes" element={<ComingSoon />} />
+        <Route path="/copilot/customization" element={<ComingSoon />} />
+        <Route path="/copilot/cloud-agents" element={<ComingSoon />} />
+
+        {/* Review */}
+        <Route path="/review" element={<ComingSoon />} />
+
+        {/* Catch-all */}
+        <Route path="*" element={<ComingSoon />} />
+      </Routes>
+    </BrowserRouter>
+  </React.StrictMode>
+)
