@@ -1,0 +1,29 @@
+public/404.html
+  68098c85b7fbaece 5,10
+vite.config.js
+  68098c85b7fbaece 6
+index.html
+  68098c85b7fbaece 2,6-7,14,21,27-28,30
+package.json
+  68098c85b7fbaece 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.17",
+  "base_commit_sha": "8c0b9bbeacc2c615785047962c1df3bfa0306093",
+  "prompts": {
+    "68098c85b7fbaece": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "36c2fc92-8520-4531-b2b6-87112da3000e",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Vishal Yadav <yadavvi91@gmail.com>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 894,
+      "overriden_lines": 0
+    }
+  }
+}
