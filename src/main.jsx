@@ -14,6 +14,9 @@ import Lesson08 from './pages/lessons/Lesson08'
 import Lesson09 from './pages/lessons/Lesson09'
 import Lesson10 from './pages/lessons/Lesson10'
 import Lesson11 from './pages/lessons/Lesson11'
+import Interlude01 from './pages/interludes/Interlude01'
+import Interlude02 from './pages/interludes/Interlude02'
+import Interlude03 from './pages/interludes/Interlude03'
 
 // Placeholder component for unbuilt lessons
 function ComingSoon() {
@@ -40,7 +43,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/claude-code/mcp-github" element={<Lesson03 />} />
 
         {/* Interlude 1 */}
-        <Route path="/interlude/1" element={<ComingSoon />} />
+        <Route path="/interlude/1" element={<Interlude01 />} />
 
         {/* Module 2: MCP Fundamentals */}
         <Route path="/mcp/architecture" element={<Lesson04 />} />
@@ -51,7 +54,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/mcp-advanced/transports" element={<Lesson07 />} />
 
         {/* Interlude 2 */}
-        <Route path="/interlude/2" element={<ComingSoon />} />
+        <Route path="/interlude/2" element={<Interlude02 />} />
 
         {/* Module 4: Agent Skills */}
         <Route path="/skills/anatomy" element={<Lesson08 />} />
@@ -62,7 +65,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/subagents/design" element={<Lesson11 />} />
 
         {/* Interlude 3 */}
-        <Route path="/interlude/3" element={<ComingSoon />} />
+        <Route path="/interlude/3" element={<Interlude03 />} />
 
         {/* Module 6: GitHub Copilot */}
         <Route path="/copilot/core-modes" element={<ComingSoon />} />
