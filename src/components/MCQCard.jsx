@@ -1,13 +1,30 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { T } from '../theme'
+
+// Shuffle array using Fisher-Yates (seeded by card id for stability)
+function shuffleOptions(options, cardId) {
+  const arr = options.map((opt, i) => ({ ...opt, _origIdx: i }))
+  // Simple seed from card id
+  let seed = 0
+  for (let i = 0; i < (cardId || '').length; i++) seed = ((seed << 5) - seed + cardId.charCodeAt(i)) | 0
+  function rand() { seed = (seed * 16807 + 0) % 2147483647; return (seed & 0x7fffffff) / 2147483647 }
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]]
+  }
+  return arr
+}
 
 // States: 'unanswered' | 'answered'
 export default function MCQCard({ card, color = T.color.accent }) {
-  const [selected, setSelected] = useState(null) // index of chosen option
+  const [selected, setSelected] = useState(null) // index in shuffled array
   const [rating, setRating]     = useState(null) // 'got' | 'unsure' | 'missed'
 
+  // Shuffle options once per card (deterministic by card id)
+  const shuffled = useMemo(() => shuffleOptions(card.options, card.id), [card.id, card.options])
+
   const answered = selected !== null
-  const chosenOption = answered ? card.options[selected] : null
+  const chosenOption = answered ? shuffled[selected] : null
 
   // Left border color
   let borderColor = color
@@ -83,7 +100,7 @@ export default function MCQCard({ card, color = T.color.accent }) {
 
       {/* Options */}
       <div style={styles.optionList}>
-        {card.options.map((opt, idx) => {
+        {shuffled.map((opt, idx) => {
           const isSelected = selected === idx
           const showResult = answered && isSelected
 
