@@ -1,5 +1,6 @@
 import { modules } from '../../data/cardSets'
 import MCQCard from '../../components/MCQCard'
+import MCQSection from '../../components/MCQSection'
 import Reveal from '../../components/Reveal'
 import LessonNav from '../../components/LessonNav'
 import NavSidebar from '../../components/NavSidebar'
@@ -48,7 +49,14 @@ export default function Lesson09() {
         ]} /></Reveal>
         <Reveal><p style={styles.prose}>The key distinction: skills add <strong>knowledge</strong> to the current context. Subagents run in a <strong>separate, isolated</strong> context. Hooks fire on <strong>events</strong>. CLAUDE.md is <strong>always on</strong>. MCP servers provide <strong>external tools</strong>.</p></Reveal>
         <Reveal><TipCallout variant="warning">Subagents do <strong>NOT</strong> automatically inherit skills. Built-in agents (Explorer, Plan, Verify) can't access skills at all. Custom agents need skills listed in their frontmatter: <code style={styles.code}>skills: accessibility-audit, performance-check</code></TipCallout></Reveal>
-        {s1.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>)}
+
+          <MCQSection color={colors[0]} count={s1.length}>
+
+
+            {s1.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>)}
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
 
@@ -69,7 +77,14 @@ export default function Lesson09() {
           ['Runtime failure', 'Check dependencies, script permissions (chmod +x), forward slashes in paths'],
         ]} /></Reveal>
         <Reveal><TipCallout variant="tip">Run <code style={styles.code}>claude --debug</code> to see loading errors. Also use the skills validator tool to catch structural problems before debugging.</TipCallout></Reveal>
-        {s2.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>)}
+
+          <MCQSection color={colors[s1.length]} count={s2.length}>
+
+
+            {s2.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>)}
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
         <Reveal id="summary"><div style={styles.endSection}><div style={styles.endLabel}>End of Lesson 9</div>

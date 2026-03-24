@@ -1,5 +1,6 @@
 import { modules } from '../../data/cardSets'
 import MCQCard from '../../components/MCQCard'
+import MCQSection from '../../components/MCQSection'
 import Reveal from '../../components/Reveal'
 import LessonNav from '../../components/LessonNav'
 import NavSidebar from '../../components/NavSidebar'
@@ -112,9 +113,24 @@ export default function Lesson04() {
           <img src={`${base}296689_000168s.jpg`} alt="Transport agnostic design — STDIO, HTTP, WebSockets" style={styles.img} />
         </Reveal>
 
-        {s1.map((card, i) => (
-          <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>
-        ))}
+
+          <MCQSection color={colors[0]} count={s1.length}>
+
+
+
+            {s1.map((card, i) => (
+
+
+
+              <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>
+
+
+
+            ))}
+
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
 
@@ -163,9 +179,24 @@ export default function Lesson04() {
           </TipCallout>
         </Reveal>
 
-        {s2.map((card, i) => (
-          <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>
-        ))}
+
+          <MCQSection color={colors[s1.length]} count={s2.length}>
+
+
+
+            {s2.map((card, i) => (
+
+
+
+              <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>
+
+
+
+            ))}
+
+
+
+          </MCQSection>
 
         <Reveal>
           <img src={`${base}296690_000111s.jpg`} alt="MCP client-server communication summary" style={styles.img} />
@@ -233,9 +264,24 @@ def read_document(
           <img src={`${base}296697_000079s.jpg`} alt="Tool decorator generating JSON schema from Python type hints" style={styles.img} />
         </Reveal>
 
-        {s3.map((card, i) => (
-          <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + i]} /></Reveal>
-        ))}
+
+          <MCQSection color={colors[s1.length + s2.length]} count={s3.length}>
+
+
+
+            {s3.map((card, i) => (
+
+
+
+              <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + i]} /></Reveal>
+
+
+
+            ))}
+
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
 
@@ -278,9 +324,24 @@ def read_document(
           Claude requests.
         </p></Reveal>
 
-        {s4.map((card, i) => (
-          <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + s3.length + i]} /></Reveal>
-        ))}
+
+          <MCQSection color={colors[s1.length + s2.length + s3.length]} count={s4.length}>
+
+
+
+            {s4.map((card, i) => (
+
+
+
+              <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + s3.length + i]} /></Reveal>
+
+
+
+            ))}
+
+
+
+          </MCQSection>
 
         {/* ── END ── */}
         <div style={styles.divider}>· · ·</div>

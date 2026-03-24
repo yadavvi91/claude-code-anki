@@ -1,5 +1,6 @@
 import { modules } from '../../data/cardSets'
 import MCQCard from '../../components/MCQCard'
+import MCQSection from '../../components/MCQSection'
 import Reveal from '../../components/Reveal'
 import LessonNav from '../../components/LessonNav'
 import NavSidebar from '../../components/NavSidebar'
@@ -139,9 +140,24 @@ def fetch_doc(doc_id: str) -> str:
           <img src={`${base}296699_000175s.jpg`} alt="MIME type handling in MCP resources — JSON vs plain text" style={styles.img} />
         </Reveal>
 
-        {s1.map((card, i) => (
-          <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>
-        ))}
+
+          <MCQSection color={colors[0]} count={s1.length}>
+
+
+
+            {s1.map((card, i) => (
+
+
+
+              <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>
+
+
+
+            ))}
+
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
 
@@ -209,9 +225,24 @@ def format_document(
           </TipCallout>
         </Reveal>
 
-        {s2.map((card, i) => (
-          <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>
-        ))}
+
+          <MCQSection color={colors[s1.length]} count={s2.length}>
+
+
+
+            {s2.map((card, i) => (
+
+
+
+              <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>
+
+
+
+            ))}
+
+
+
+          </MCQSection>
 
         <Reveal>
           <img src={`${base}296692_000134s.jpg`} alt="Prompts in the client — list_prompts and get_prompt calls" style={styles.img} />
@@ -268,9 +299,24 @@ def format_document(
           </TipCallout>
         </Reveal>
 
-        {s3.map((card, i) => (
-          <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + i]} /></Reveal>
-        ))}
+
+          <MCQSection color={colors[s1.length + s2.length]} count={s3.length}>
+
+
+
+            {s3.map((card, i) => (
+
+
+
+              <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + i]} /></Reveal>
+
+
+
+            ))}
+
+
+
+          </MCQSection>
 
         <Reveal>
           <img src={`${base}296696_000167s.jpg`} alt="Implementing the MCP client — connecting tools, resources, and prompts" style={styles.img} />

@@ -1,5 +1,6 @@
 import { modules } from '../../data/cardSets'
 import MCQCard from '../../components/MCQCard'
+import MCQSection from '../../components/MCQSection'
 import Reveal from '../../components/Reveal'
 import LessonNav from '../../components/LessonNav'
 import NavSidebar from '../../components/NavSidebar'
@@ -42,7 +43,14 @@ export default function Lesson11() {
         <Reveal><p style={styles.prose}>Defining a <strong>structured output format</strong> is called "the single most important improvement." Without it, subagents struggle to decide when enough research is done. A template (Summary → Critical Issues → Major Issues → Recommendations → Obstacles) creates natural stopping points.</p></Reveal>
         <Reveal><p style={styles.prose}>Always include an <strong>"Obstacles Encountered"</strong> section. When a subagent discovers workarounds, the main thread needs to know — otherwise it wastes time and tokens rediscovering the same solutions. Surface: setup issues, workarounds, commands needing special flags, dependency problems.</p></Reveal>
         <Reveal><p style={styles.prose}>Finally, <strong>limit tool access</strong> to only what the subagent needs. A research agent: Glob, Grep, Read only. A code reviewer: add Bash for git diff, but NOT Edit/Write. A styling agent: Edit and Write because its job is to change code.</p></Reveal>
-        {s1.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>)}
+
+          <MCQSection color={colors[0]} count={s1.length}>
+
+
+            {s1.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>)}
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
 
@@ -61,7 +69,14 @@ export default function Lesson11() {
         </Reveal>
         <Reveal><p style={styles.prose}>Code reviews deserve special mention: Claude reviews more effectively when code is presented as written by <em>someone else</em>. If the main thread built the feature, asking it to review produces weak feedback — it has trouble seeing its own work critically. A reviewer subagent has fresh eyes.</p></Reveal>
         <Reveal><TipCallout variant="warning"><strong>Test runner subagents performed worst</strong> among all configurations in testing. When tests fail, you need the full output. A subagent returning "tests failed" forces creating debug scripts for details that were visible in direct output.</TipCallout></Reveal>
-        {s2.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>)}
+
+          <MCQSection color={colors[s1.length]} count={s2.length}>
+
+
+            {s2.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>)}
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
         <Reveal id="summary"><div style={styles.endSection}><div style={styles.endLabel}>End of Lesson 11</div>

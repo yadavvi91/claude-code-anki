@@ -1,5 +1,6 @@
 import { modules } from '../../data/cardSets'
 import MCQCard from '../../components/MCQCard'
+import MCQSection from '../../components/MCQSection'
 import Reveal from '../../components/Reveal'
 import LessonNav from '../../components/LessonNav'
 import NavSidebar from '../../components/NavSidebar'
@@ -58,7 +59,14 @@ All API routes must:
 - Log requests with the structured logger`} /></Reveal>
         <Reveal><p style={styles.prose}>Copilot also reads <strong>AGENTS.md</strong> and <strong>CLAUDE.md</strong> for cross-tool compatibility. Priority order: path-specific instructions (highest) → <code style={styles.code}>.github/copilot-instructions.md</code> → AGENTS.md/CLAUDE.md (lowest).</p></Reveal>
         <Reveal><TipCallout variant="tip">If your team uses both Copilot and Claude Code, put shared rules in <strong>CLAUDE.md</strong> (both tools read it) and Copilot-specific rules in <strong>.github/copilot-instructions.md</strong>.</TipCallout></Reveal>
-        {s1.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>)}
+
+          <MCQSection color={colors[0]} count={s1.length}>
+
+
+            {s1.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>)}
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
 
@@ -82,7 +90,14 @@ You are a code reviewer. For each change:
 5. Approval Status: Ready to merge or needs changes`} /></Reveal>
         <Reveal><p style={styles.prose}>The four tool aliases are: <strong>execute</strong> (terminal commands), <strong>read</strong> (file reading), <strong>edit</strong> (file modification), and <strong>search</strong> (codebase search). Only listed tools are available to the agent.</p></Reveal>
         <Reveal><p style={styles.prose}>Invoke a custom agent by typing <code style={styles.code}>@agent-name</code> in the chat panel. The format is nearly identical to Claude Code's <code style={styles.code}>.claude/agents/*.md</code> — same concept, different directory.</p></Reveal>
-        {s2.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>)}
+
+          <MCQSection color={colors[s1.length]} count={s2.length}>
+
+
+            {s2.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>)}
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
 
@@ -99,7 +114,14 @@ Create a React component called \${input:componentName} that:
 - Includes a unit test file
 - Uses the current selection as reference: \${selection}`} /></Reveal>
         <Reveal><p style={styles.prose}>Create them interactively with <code style={styles.code}>/create-skill</code> and <code style={styles.code}>/create-prompt</code> in Copilot chat, or write the markdown files directly.</p></Reveal>
-        {s3.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + i]} /></Reveal>)}
+
+          <MCQSection color={colors[s1.length + s2.length]} count={s3.length}>
+
+
+            {s3.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + i]} /></Reveal>)}
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
 
@@ -121,7 +143,14 @@ Create a React component called \${input:componentName} that:
 }`} /></Reveal>
         <Reveal><p style={styles.prose}>VS Code 1.112+ added <strong>sandboxing</strong> for MCP servers — processes run in isolated environments to limit system access. Each server is limited to a maximum of <strong>128 tools</strong> to prevent context window bloat.</p></Reveal>
         <Reveal><TipCallout variant="warning">Keep MCP servers focused. The 128-tool limit exists because every tool definition consumes context window tokens. A server with 100+ tools will leave less room for your actual conversation.</TipCallout></Reveal>
-        {s4.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + s3.length + i]} /></Reveal>)}
+
+          <MCQSection color={colors[s1.length + s2.length + s3.length]} count={s4.length}>
+
+
+            {s4.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + s3.length + i]} /></Reveal>)}
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
         <Reveal id="summary"><div style={styles.endSection}><div style={styles.endLabel}>End of Lesson 13</div>

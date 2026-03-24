@@ -1,5 +1,6 @@
 import { modules } from '../../data/cardSets'
 import MCQCard from '../../components/MCQCard'
+import MCQSection from '../../components/MCQSection'
 import Reveal from '../../components/Reveal'
 import LessonNav from '../../components/LessonNav'
 import NavSidebar from '../../components/NavSidebar'
@@ -48,7 +49,14 @@ export default function Lesson08() {
           ['Slash commands', 'On invocation', 'User types /command', 'Explicit workflows'],
         ]} /></Reveal>
         <Reveal><p style={styles.prose}>Skills live in two places: <code style={styles.code}>~/.claude/skills</code> for personal skills that follow you across all projects, and <code style={styles.code}>.claude/skills</code> inside a repo for project skills shared with anyone who clones it.</p></Reveal>
-        {s1.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>)}
+
+          <MCQSection color={colors[0]} count={s1.length}>
+
+
+            {s1.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>)}
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
 
@@ -76,7 +84,14 @@ When writing a PR description:
         <Reveal><p style={styles.prose}>For complex skills, use <strong>progressive disclosure</strong>: keep <code style={styles.code}>SKILL.md</code> under 500 lines with essentials, and put detailed references in separate files (<code style={styles.code}>scripts/</code>, <code style={styles.code}>references/</code>, <code style={styles.code}>assets/</code>). Claude reads them only when the specific topic comes up.</p></Reveal>
         <Reveal><TipCallout variant="tip">Tell Claude to <strong>run</strong> scripts, not <strong>read</strong> them. Running only puts the output into context (small). Reading puts the entire source code (large, wasteful).</TipCallout></Reveal>
         <Reveal><p style={styles.prose}>Optional frontmatter: <code style={styles.code}>allowed-tools</code> restricts which tools Claude can use (e.g., read-only for security-sensitive workflows), and <code style={styles.code}>model</code> specifies which Claude model to use.</p></Reveal>
-        {s2.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>)}
+
+          <MCQSection color={colors[s1.length]} count={s2.length}>
+
+
+            {s2.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>)}
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
         <Reveal id="summary"><div style={styles.endSection}><div style={styles.endLabel}>End of Lesson 8</div>

@@ -1,5 +1,6 @@
 import { modules } from '../../data/cardSets'
 import MCQCard from '../../components/MCQCard'
+import MCQSection from '../../components/MCQSection'
 import Reveal from '../../components/Reveal'
 import LessonNav from '../../components/LessonNav'
 import NavSidebar from '../../components/NavSidebar'
@@ -118,8 +119,6 @@ export default function Lesson01() {
           />
         </Reveal>
 
-        <Reveal><MCQCard card={s1[0]} color={colors[0]} /></Reveal>
-
         <Reveal>
           <img src={`${base}303235_000278s.jpg`} alt="Tool Use — how models use plain text directions to read files, write files, and make requests" style={styles.img} />
         </Reveal>
@@ -130,16 +129,12 @@ export default function Lesson01() {
           paths sorted by modification time. It's fast, focused, and works at any codebase scale.
         </p></Reveal>
 
-        <Reveal><MCQCard card={s1[1]} color={colors[1]} /></Reveal>
-
         <Reveal><p style={styles.prose}>
           For searching <em>inside</em> files — finding function usages, tracking down imports,
           locating error messages — the <code style={styles.code}>Grep</code> tool is the right choice.
           Built on ripgrep, it supports full regex syntax, file type filtering
           (e.g., <code style={styles.code}>type: "js"</code>), and context lines around matches.
         </p></Reveal>
-
-        <Reveal><MCQCard card={s1[2]} color={colors[2]} /></Reveal>
 
         <Reveal>
           <img src={`${base}303242_000094s.jpg`} alt="Course demo — browsing an npm package page as part of a Claude Code workflow" style={styles.img} />
@@ -152,8 +147,6 @@ export default function Lesson01() {
           autonomously chain multiple searches, reads, and analyses. But for a targeted search on a
           known file or class, Grep and Glob are faster.
         </p></Reveal>
-
-        <Reveal><MCQCard card={s1[3]} color={colors[3]} /></Reveal>
 
         <Reveal><p style={styles.prose}>
           The distinction between <code style={styles.code}>Edit</code> and <code style={styles.code}>Write</code> is
@@ -168,7 +161,10 @@ export default function Lesson01() {
           </TipCallout>
         </Reveal>
 
-        <Reveal><MCQCard card={s1[4]} color={colors[4]} /></Reveal>
+
+        <MCQSection color={colors[0]} count={s1.length}>
+          {s1.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>)}
+        </MCQSection>
 
         <Reveal>
           <img src={`${base}303242_000157s.jpg`} alt="VS Code with Claude Code terminal — Welcome screen and file analysis prompt" style={styles.img} />
@@ -193,8 +189,6 @@ export default function Lesson01() {
           when needed, but the default is to err on the side of safety.
         </p></Reveal>
 
-        <Reveal><MCQCard card={s2[0]} color={colors[5]} /></Reveal>
-
         <Reveal>
           <img src={`${base}303235_000278s.jpg`} alt="Tool Use — models receive plain text directions and respond with tool requests like ReadFile" style={styles.img} />
         </Reveal>
@@ -206,8 +200,6 @@ export default function Lesson01() {
           buried in a Bash call is harder to spot and review. This principle extends across all tools:
           make the agent's actions visible and easy to approve.
         </p></Reveal>
-
-        <Reveal><MCQCard card={s2[1]} color={colors[6]} /></Reveal>
 
         <Reveal><p style={styles.prose}>
           One of Claude Code's most powerful patterns is <strong>parallel tool calls</strong>. When
@@ -230,8 +222,6 @@ Read("src/theme.js")    // wait...
 Grep("handleSubmit")    // wait...`}
           />
         </Reveal>
-
-        <Reveal><MCQCard card={s2[2]} color={colors[7]} /></Reveal>
 
         <Reveal>
           <img src={`${base}303242_000240s.jpg`} alt="Claude Code running Playwright MCP to build and style a card component in the browser" style={styles.img} />
@@ -261,8 +251,6 @@ Grep("handleSubmit")    // wait...`}
           />
         </Reveal>
 
-        <Reveal><MCQCard card={s2[3]} color={colors[8]} /></Reveal>
-
         <Reveal><p style={styles.prose}>
           Before Claude Code edits any file, it must read it first. This is a hard requirement
           of the <code style={styles.code}>Edit</code> tool — not a suggestion. The reason is
@@ -270,7 +258,9 @@ Grep("handleSubmit")    // wait...`}
           first ensures Claude understands the existing code before proposing modifications.
         </p></Reveal>
 
-        <Reveal><MCQCard card={s2[4]} color={colors[9]} /></Reveal>
+        <MCQSection color={colors[s1.length]} count={s2.length}>
+          {s2.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>)}
+        </MCQSection>
 
         <Reveal><div style={styles.divider}>◆</div></Reveal>
 
@@ -286,8 +276,6 @@ Grep("handleSubmit")    // wait...`}
           affect shared systems, or could be destructive require confirmation. The cost of pausing to
           confirm is low; the cost of an unwanted force-push is very high.
         </p></Reveal>
-
-        <Reveal><MCQCard card={s3[0]} color={colors[10]} /></Reveal>
 
         <Reveal>
           <img src={`${base}303242_000379s.jpg`} alt="Course demo — DynamoDB, Lambda, and S3 architecture that Claude Code can read from Terraform files" style={styles.img} />
@@ -309,16 +297,12 @@ Grep("handleSubmit")    // wait...`}
           </TipCallout>
         </Reveal>
 
-        <Reveal><MCQCard card={s3[1]} color={colors[11]} /></Reveal>
-
         <Reveal><p style={styles.prose}>
           Some files should never be committed without explicit user confirmation. Files like{' '}
           <code style={styles.code}>.env</code>, <code style={styles.code}>credentials.json</code>,
           or anything that might contain API keys, tokens, or passwords. Claude Code will warn you
           before staging these files.
         </p></Reveal>
-
-        <Reveal><MCQCard card={s3[2]} color={colors[12]} /></Reveal>
 
         <Reveal><p style={styles.prose}>
           When Claude Code encounters unfamiliar files or unexpected state in the working directory,
@@ -328,8 +312,6 @@ Grep("handleSubmit")    // wait...`}
           investigate what process holds it rather than deleting it.
         </p></Reveal>
 
-        <Reveal><MCQCard card={s3[3]} color={colors[13]} /></Reveal>
-
         <Reveal><p style={styles.prose}>
           When staging files for a commit, Claude Code prefers naming specific files over using{' '}
           <code style={styles.code}>git add -A</code> or <code style={styles.code}>git add .</code>.
@@ -338,7 +320,9 @@ Grep("handleSubmit")    // wait...`}
           prevents costly mistakes.
         </p></Reveal>
 
-        <Reveal><MCQCard card={s3[4]} color={colors[14]} /></Reveal>
+        <MCQSection color={colors[s1.length + s2.length]} count={s3.length}>
+          {s3.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + i]} /></Reveal>)}
+        </MCQSection>
 
         <Reveal><div style={styles.divider}>◆</div></Reveal>
 
@@ -359,8 +343,6 @@ Grep("handleSubmit")    // wait...`}
           If a dedicated tool can do the job, use it instead.
         </p></Reveal>
 
-        <Reveal><MCQCard card={s4[0]} color={colors[15]} /></Reveal>
-
         <Reveal>
           <img src={`${base}303242_000448s.jpg`} alt="GitHub pull request diff — Claude Code reviewing changed files in a PR" style={styles.img} />
         </Reveal>
@@ -374,16 +356,12 @@ Grep("handleSubmit")    // wait...`}
           a non-interactive shell.
         </p></Reveal>
 
-        <Reveal><MCQCard card={s4[1]} color={colors[16]} /></Reveal>
-
         <Reveal><p style={styles.prose}>
           Every Bash command runs with a timeout. The default is 2 minutes (120,000ms). For
           long-running operations — large builds, complex test suites, data migrations — you
           can specify a longer timeout up to 10 minutes (600,000ms). Commands can also be run
           in the background for truly long operations.
         </p></Reveal>
-
-        <Reveal><MCQCard card={s4[2]} color={colors[17]} /></Reveal>
 
         <Reveal><p style={styles.prose}>
           When chaining commands, the choice of operator matters. Use <code style={styles.code}>&&</code> when
@@ -406,7 +384,9 @@ git log --oneline | head -5`}
           />
         </Reveal>
 
-        <Reveal><MCQCard card={s4[3]} color={colors[18]} /></Reveal>
+        <MCQSection color={colors[s1.length + s2.length + s3.length]} count={s4.length}>
+          {s4.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + s3.length + i]} /></Reveal>)}
+        </MCQSection>
 
         <Reveal>
           <img src={`${base}303242_000183s.jpg`} alt="React Component Generator — a UI built with Claude Code for creating components with AI assistance" style={styles.img} />

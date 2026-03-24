@@ -1,5 +1,6 @@
 import { modules } from '../../data/cardSets'
 import MCQCard from '../../components/MCQCard'
+import MCQSection from '../../components/MCQSection'
 import Reveal from '../../components/Reveal'
 import LessonNav from '../../components/LessonNav'
 import NavSidebar from '../../components/NavSidebar'
@@ -112,9 +113,24 @@ result = await ctx.session.create_message(
           <img src={`${base}296288_000150s.jpg`} alt="Course slide — Sampling section title" style={styles.img} />
         </Reveal>
 
-        {s1.map((card, i) => (
-          <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>
-        ))}
+
+          <MCQSection color={colors[0]} count={s1.length}>
+
+
+
+            {s1.map((card, i) => (
+
+
+
+              <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>
+
+
+
+            ))}
+
+
+
+          </MCQSection>
 
         <Reveal>
           <img src={`${base}296288_000210s.jpg`} alt="Course slide — Sampling section title" style={styles.img} />
@@ -162,9 +178,24 @@ result = await ctx.session.create_message(
           </TipCallout>
         </Reveal>
 
-        {s2.map((card, i) => (
-          <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>
-        ))}
+
+          <MCQSection color={colors[s1.length]} count={s2.length}>
+
+
+
+            {s2.map((card, i) => (
+
+
+
+              <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>
+
+
+
+            ))}
+
+
+
+          </MCQSection>
 
         <Reveal>
           <img src={`${base}296284_000125s.jpg`} alt="Course slide — Logging and progress notifications section title" style={styles.img} />
@@ -210,9 +241,24 @@ result = await ctx.session.create_message(
           </TipCallout>
         </Reveal>
 
-        {s3.map((card, i) => (
-          <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + i]} /></Reveal>
-        ))}
+
+          <MCQSection color={colors[s1.length + s2.length]} count={s3.length}>
+
+
+
+            {s3.map((card, i) => (
+
+
+
+              <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + i]} /></Reveal>
+
+
+
+            ))}
+
+
+
+          </MCQSection>
 
         <Reveal>
           <img src={`${base}296289_000320s.jpg`} alt="Course slide — Roots section title" style={styles.img} />

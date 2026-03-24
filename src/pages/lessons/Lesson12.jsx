@@ -1,5 +1,6 @@
 import { modules } from '../../data/cardSets'
 import MCQCard from '../../components/MCQCard'
+import MCQSection from '../../components/MCQSection'
 import Reveal from '../../components/Reveal'
 import LessonNav from '../../components/LessonNav'
 import NavSidebar from '../../components/NavSidebar'
@@ -48,7 +49,14 @@ export default function Lesson12() {
           ['Autopilot', 'All tool calls proceed without asking'],
         ]} /></Reveal>
         <Reveal><TipCallout variant="tip">Start with <strong>Default</strong> permissions to understand what the agent does, then move to Bypass or Autopilot once you trust the workflow.</TipCallout></Reveal>
-        {s1.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>)}
+
+          <MCQSection color={colors[0]} count={s1.length}>
+
+
+            {s1.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>)}
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
 
@@ -61,7 +69,14 @@ export default function Lesson12() {
           ['Self-correct on errors', 'Yes', 'No'],
           ['User directs each change', 'Optional', 'Always'],
         ]} /></Reveal>
-        {s2.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>)}
+
+          <MCQSection color={colors[s1.length]} count={s2.length}>
+
+
+            {s2.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>)}
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
 
@@ -69,7 +84,14 @@ export default function Lesson12() {
         <Reveal><p style={styles.prose}>Ask mode is <strong>strictly read-only</strong>. It can explore your codebase, explain how things work, trace call chains, and answer questions — but it <em>never</em> modifies files or runs commands. Zero risk of accidental changes.</p></Reveal>
         <Reveal><p style={styles.prose}>Use it when you're onboarding onto a new codebase, trying to understand an unfamiliar module, or just need an explanation without any side effects. Think of it as having an expert code reader on demand.</p></Reveal>
         <Reveal><TipCallout variant="tip">Ask mode is especially useful when joining a new team. You can ask "How does the payment flow work?" and get an explanation synthesized from across the codebase — much faster than reading files one by one.</TipCallout></Reveal>
-        {s3.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + i]} /></Reveal>)}
+
+          <MCQSection color={colors[s1.length + s2.length]} count={s3.length}>
+
+
+            {s3.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + i]} /></Reveal>)}
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
 
@@ -82,7 +104,14 @@ export default function Lesson12() {
           ['Scaffold new project', 'Agent', 'Needs file creation + terminal commands'],
         ]} /></Reveal>
         <Reveal><p style={styles.prose}>Copilot's Agent mode and Claude Code's agentic mode share the same fundamental architecture — an LLM-driven loop with tool calls. The difference is in the interface: Copilot runs inside VS Code with GUI diffs, while Claude Code runs in any terminal.</p></Reveal>
-        {s4.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + s3.length + i]} /></Reveal>)}
+
+          <MCQSection color={colors[s1.length + s2.length + s3.length]} count={s4.length}>
+
+
+            {s4.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + s3.length + i]} /></Reveal>)}
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
         <Reveal id="summary"><div style={styles.endSection}><div style={styles.endLabel}>End of Lesson 12</div>

@@ -1,5 +1,6 @@
 import { modules } from '../../data/cardSets'
 import MCQCard from '../../components/MCQCard'
+import MCQSection from '../../components/MCQSection'
 import Reveal from '../../components/Reveal'
 import LessonNav from '../../components/LessonNav'
 import NavSidebar from '../../components/NavSidebar'
@@ -119,10 +120,19 @@ export default function Lesson02() {
           />
         </Reveal>
 
-        {/* S1 cards */}
-        {s1.map((card, i) => (
-          <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>
-        ))}
+          <MCQSection color={colors[0]} count={s1.length}>
+
+
+            {s1.map((card, i) => (
+
+
+              <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>
+
+
+            ))}
+
+
+          </MCQSection>
 
         <Reveal>
           <img src={`${base}303241_000094s.jpg`} alt="Running /init — Claude Code analyzes the codebase structure and reads README.md" style={styles.img} />
@@ -206,10 +216,19 @@ export default function Lesson02() {
           <img src={`${base}303236_000149s.jpg`} alt="Thinking modes — from Think to Ultrathink, progressively deeper reasoning for harder problems" style={styles.img} />
         </Reveal>
 
-        {/* S2 cards */}
-        {s2.map((card, i) => (
-          <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>
-        ))}
+          <MCQSection color={colors[s1.length]} count={s2.length}>
+
+
+            {s2.map((card, i) => (
+
+
+              <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>
+
+
+            ))}
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
 
@@ -254,10 +273,19 @@ export default function Lesson02() {
           </TipCallout>
         </Reveal>
 
-        {/* S3 cards */}
-        {s3.map((card, i) => (
-          <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + i]} /></Reveal>
-        ))}
+          <MCQSection color={colors[s1.length + s2.length]} count={s3.length}>
+
+
+            {s3.map((card, i) => (
+
+
+              <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + i]} /></Reveal>
+
+
+            ))}
+
+
+          </MCQSection>
 
         <Reveal>
           <img src={`${base}303237_000195s.jpg`} alt="Using /clear in Claude Code to reset conversation context" style={styles.img} />
@@ -321,10 +349,19 @@ Coverage:
           </TipCallout>
         </Reveal>
 
-        {/* S4 cards */}
-        {s4.map((card, i) => (
-          <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + s3.length + i]} /></Reveal>
-        ))}
+          <MCQSection color={colors[s1.length + s2.length + s3.length]} count={s4.length}>
+
+
+            {s4.map((card, i) => (
+
+
+              <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + s3.length + i]} /></Reveal>
+
+
+            ))}
+
+
+          </MCQSection>
 
         <Reveal>
           <img src={`${base}303236_000207s.jpg`} alt="Claude Code completing a task — successfully implementing an enhanced tool with implementation details" style={styles.img} />

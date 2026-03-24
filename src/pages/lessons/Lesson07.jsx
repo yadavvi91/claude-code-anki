@@ -1,5 +1,6 @@
 import { modules } from '../../data/cardSets'
 import MCQCard from '../../components/MCQCard'
+import MCQSection from '../../components/MCQSection'
 import Reveal from '../../components/Reveal'
 import LessonNav from '../../components/LessonNav'
 import NavSidebar from '../../components/NavSidebar'
@@ -124,9 +125,24 @@ export default function Lesson07() {
           <img src={`${base}296291_000180s.jpg`} alt="MCP Transports — client-server communication with JSON messages" style={styles.img} />
         </Reveal>
 
-        {s1.map((card, i) => (
-          <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>
-        ))}
+
+          <MCQSection color={colors[0]} count={s1.length}>
+
+
+
+            {s1.map((card, i) => (
+
+
+
+              <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>
+
+
+
+            ))}
+
+
+
+          </MCQSection>
 
         <Reveal>
           <img src={`${base}296290_000315s.jpg`} alt="Course plan — Messages Format, STDIO Transport, and StreamableHTTP Transport topics" style={styles.img} />
@@ -197,9 +213,24 @@ export default function Lesson07() {
           </TipCallout>
         </Reveal>
 
-        {s2.map((card, i) => (
-          <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>
-        ))}
+
+          <MCQSection color={colors[s1.length]} count={s2.length}>
+
+
+
+            {s2.map((card, i) => (
+
+
+
+              <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>
+
+
+
+            ))}
+
+
+
+          </MCQSection>
 
         <Reveal>
           <img src={`${base}296286_000350s.jpg`} alt="StreamableHTTP configuration — stateless vs stateful transport modes" style={styles.img} />

@@ -1,5 +1,6 @@
 import { modules } from '../../data/cardSets'
 import MCQCard from '../../components/MCQCard'
+import MCQSection from '../../components/MCQSection'
 import Reveal from '../../components/Reveal'
 import LessonNav from '../../components/LessonNav'
 import NavSidebar from '../../components/NavSidebar'
@@ -50,7 +51,14 @@ export default function Lesson14() {
         <Reveal><p style={styles.prose}>Background agents use <strong>git worktrees</strong> — lightweight separate working directories on different branches that share the same repo. You keep editing on your branch while the background agent works independently on its own.</p></Reveal>
         <Reveal><p style={styles.prose}>Cloud agents need a <strong><code style={styles.code}>copilot-setup-steps.yml</code></strong> file — a GitHub Actions workflow that tells the cloud environment how to set up dependencies, build the project, and prepare for the agent's work.</p></Reveal>
         <Reveal><TipCallout variant="tip">Use <code style={styles.code}>/delegate</code> to spawn a sub-agent for a subtask while the main agent continues working. This is Copilot's equivalent of Claude Code's subagent system.</TipCallout></Reveal>
-        {s1.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>)}
+
+          <MCQSection color={colors[0]} count={s1.length}>
+
+
+            {s1.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>)}
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
 
@@ -73,7 +81,14 @@ export default function Lesson14() {
 }`} /></Reveal>
         <Reveal><p style={styles.prose}>The <strong><code style={styles.code}>preToolUse</code></strong> hook is uniquely powerful: it can <strong>block a tool from executing</strong>. Use this to enforce policies — prevent writes to protected directories, block dangerous commands, or require approval for certain operations.</p></Reveal>
         <Reveal><p style={styles.prose}>Hooks communicate via <strong>JSON on stdin/stdout</strong>. They receive event context as a JSON payload on stdin and return a JSON response on stdout. A timeout config prevents hung hooks from blocking the agent indefinitely.</p></Reveal>
-        {s2.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>)}
+
+          <MCQSection color={colors[s1.length]} count={s2.length}>
+
+
+            {s2.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>)}
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
 
@@ -88,7 +103,14 @@ export default function Lesson14() {
         ]} /></Reveal>
         <Reveal><p style={styles.prose}>The key philosophical difference: Copilot centralizes configuration in <strong><code style={styles.code}>.github/</code></strong> (leveraging the existing GitHub ecosystem), while Claude Code uses <strong><code style={styles.code}>.claude/</code></strong> and <strong><code style={styles.code}>CLAUDE.md</code></strong> (self-contained, tool-specific).</p></Reveal>
         <Reveal><TipCallout variant="tip">If your team uses both tools, put shared coding standards in <strong>CLAUDE.md</strong> (both tools read it) and tool-specific config in their respective directories.</TipCallout></Reveal>
-        {s3.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + i]} /></Reveal>)}
+
+          <MCQSection color={colors[s1.length + s2.length]} count={s3.length}>
+
+
+            {s3.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + i]} /></Reveal>)}
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
 
@@ -102,7 +124,14 @@ export default function Lesson14() {
           ['/troubleshoot', 'Diagnoses Copilot configuration and setup issues'],
         ]} /></Reveal>
         <Reveal><p style={styles.prose}>Browser debugging is particularly impactful: Agent mode can now observe runtime errors from your web app and self-correct — closing the loop between "the code looks right" and "the code actually works in the browser."</p></Reveal>
-        {s4.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + s3.length + i]} /></Reveal>)}
+
+          <MCQSection color={colors[s1.length + s2.length + s3.length]} count={s4.length}>
+
+
+            {s4.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + s3.length + i]} /></Reveal>)}
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
         <Reveal id="summary"><div style={styles.endSection}><div style={styles.endLabel}>End of Lesson 14</div>

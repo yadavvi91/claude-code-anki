@@ -1,5 +1,6 @@
 import { modules } from '../../data/cardSets'
 import MCQCard from '../../components/MCQCard'
+import MCQSection from '../../components/MCQSection'
 import Reveal from '../../components/Reveal'
 import LessonNav from '../../components/LessonNav'
 import NavSidebar from '../../components/NavSidebar'
@@ -47,7 +48,14 @@ export default function Lesson10() {
           ['Explore', 'Fast searching and navigation of codebases'],
           ['Plan', 'Research and analysis before presenting a plan (plan mode)'],
         ]} /></Reveal>
-        {s1.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>)}
+
+          <MCQSection color={colors[0]} count={s1.length}>
+
+
+            {s1.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>)}
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
 
@@ -78,7 +86,14 @@ You are a code reviewer. For each change:
         </Reveal>
         <Reveal><p style={styles.prose}>The YAML frontmatter defines the agent's identity: <code style={styles.code}>name</code> for identification, <code style={styles.code}>description</code> for triggering, <code style={styles.code}>tools</code> for access control, <code style={styles.code}>model</code> (haiku/sonnet/opus/inherit), and <code style={styles.code}>color</code> for UI identification. The markdown body below the frontmatter is the system prompt.</p></Reveal>
         <Reveal><TipCallout variant="tip">Include <strong>"proactively"</strong> in the description to make Claude suggest using the subagent automatically. Add example conversations for more specific triggering.</TipCallout></Reveal>
-        {s2.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>)}
+
+          <MCQSection color={colors[s1.length]} count={s2.length}>
+
+
+            {s2.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>)}
+
+
+          </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
         <Reveal id="summary"><div style={styles.endSection}><div style={styles.endLabel}>End of Lesson 10</div>

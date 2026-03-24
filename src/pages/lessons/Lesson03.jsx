@@ -1,5 +1,6 @@
 import { modules } from '../../data/cardSets'
 import MCQCard from '../../components/MCQCard'
+import MCQSection from '../../components/MCQSection'
 import Reveal from '../../components/Reveal'
 import LessonNav from '../../components/LessonNav'
 import NavSidebar from '../../components/NavSidebar'
@@ -127,10 +128,19 @@ export default function Lesson03() {
           </TipCallout>
         </Reveal>
 
-        {/* S1 cards */}
-        {s1.map((card, i) => (
-          <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>
-        ))}
+          <MCQSection color={colors[0]} count={s1.length}>
+
+
+            {s1.map((card, i) => (
+
+
+              <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>
+
+
+            ))}
+
+
+          </MCQSection>
 
         <Reveal>
           <img src={`${base}303239_000128s.jpg`} alt="MCP server permissions and settings configuration" style={styles.img} />
@@ -195,10 +205,19 @@ allowed_tools: "Bash(npm:*),Bash(sqlite3:*),
           </TipCallout>
         </Reveal>
 
-        {/* S2 cards */}
-        {s2.map((card, i) => (
-          <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>
-        ))}
+          <MCQSection color={colors[s1.length]} count={s2.length}>
+
+
+            {s2.map((card, i) => (
+
+
+              <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>
+
+
+            ))}
+
+
+          </MCQSection>
 
         <Reveal>
           <img src={`${base}303240_000148s.jpg`} alt="Git output showing Claude Code creating workflow files and a pull request" style={styles.img} />
@@ -277,10 +296,19 @@ main();`}
           />
         </Reveal>
 
-        {/* S3 cards */}
-        {s3.map((card, i) => (
-          <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + i]} /></Reveal>
-        ))}
+          <MCQSection color={colors[s1.length + s2.length]} count={s3.length}>
+
+
+            {s3.map((card, i) => (
+
+
+              <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + i]} /></Reveal>
+
+
+            ))}
+
+
+          </MCQSection>
 
         <Reveal>
           <img src={`${base}312002_000039s.jpg`} alt="VS Code showing a .env file with API keys — the kind of sensitive data hooks can protect" style={styles.img} />
@@ -379,10 +407,19 @@ for await (const message of query({
           and a setup script that replaces them with actual paths.
         </p></Reveal>
 
-        {/* S4 cards */}
-        {s4.map((card, i) => (
-          <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + s3.length + i]} /></Reveal>
-        ))}
+          <MCQSection color={colors[s1.length + s2.length + s3.length]} count={s4.length}>
+
+
+            {s4.map((card, i) => (
+
+
+              <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + s3.length + i]} /></Reveal>
+
+
+            ))}
+
+
+          </MCQSection>
 
         {/* ── END ── */}
         <div style={styles.divider}>· · ·</div>
