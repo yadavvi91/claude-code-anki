@@ -189,7 +189,7 @@ allowed_tools: "Bash(npm:*),Bash(sqlite3:*),
         </Reveal>
 
         <Reveal>
-          <img src={`${base}312000_000116s.jpg`} alt="Hook lifecycle with PreToolUse and PostToolUse events" style={styles.img} />
+          <img src={`${base}312000_000108s.jpg`} alt="Hook lifecycle with PreToolUse and PostToolUse events" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>

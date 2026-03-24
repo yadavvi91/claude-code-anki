@@ -24,7 +24,7 @@ export default function ModuleOverview() {
         return (
           <div key={m.id} style={{ ...styles.card, borderTopColor: m.color }}>
             <span style={{ ...styles.moduleNum, color: m.color }}>Module {i + 1}</span>
-            <h3 style={styles.title}>{m.title}</h3>
+            <Link to={`/${firstLesson.slug}`} style={{ textDecoration: 'none' }}><h3 style={styles.title}>{m.title}</h3></Link>
             <div style={styles.lessons}>
               {m.lessons.map(l => (
                 <Link key={l.id} to={`/${l.slug}`} style={{ ...styles.lessonLink, color: l.cardSets.length > 0 ? T.color.ink3 : T.color.ink4 }}>

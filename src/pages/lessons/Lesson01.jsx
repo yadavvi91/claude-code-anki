@@ -77,7 +77,7 @@ export default function Lesson01() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}303235_000146s.jpg`} alt="Claude Code multi-tool architecture overview" style={styles.img} />
+          <img src={`${base}303235_000106s.jpg`} alt="Claude Code multi-tool architecture overview" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -163,7 +163,7 @@ export default function Lesson01() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}303242_000237s.jpg`} alt="Claude Code sandbox and context architecture" style={styles.img} />
+          <img src={`${base}303242_000240s.jpg`} alt="Claude Code sandbox and context architecture" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -317,7 +317,7 @@ Grep("handleSubmit")    // wait...`}
         </Reveal>
 
         <Reveal>
-          <img src={`${base}303242_000619s.jpg`} alt="Bash tool usage and system command patterns" style={styles.img} />
+          <img src={`${base}303242_000448s.jpg`} alt="Bash tool usage and system command patterns" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>

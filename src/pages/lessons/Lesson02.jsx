@@ -72,7 +72,7 @@ export default function Lesson02() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}303241_000134s.jpg`} alt="CLAUDE.md context management overview" style={styles.img} />
+          <img src={`${base}303241_000129s.jpg`} alt="CLAUDE.md context management overview" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -139,7 +139,7 @@ export default function Lesson02() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}303236_000122s.jpg`} alt="Planning mode and thinking modes comparison" style={styles.img} />
+          <img src={`${base}303236_000113s.jpg`} alt="Planning mode and thinking modes comparison" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -240,7 +240,7 @@ export default function Lesson02() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}303237_000218s.jpg`} alt="Custom slash commands in the .claude/commands directory" style={styles.img} />
+          <img src={`${base}303237_000195s.jpg`} alt="Custom slash commands in the .claude/commands directory" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
