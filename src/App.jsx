@@ -1,7 +1,6 @@
 import Hero from './components/Hero'
 import { ProblemSection, InsightSection } from './components/IntroSections'
 import MethodBand from './components/MethodBand'
-import BeginDivider from './components/BeginDivider'
 import NavSidebar from './components/NavSidebar'
 import ModuleOverview from './components/ModuleOverview'
 import { T } from './theme'
@@ -15,13 +14,6 @@ export default function App() {
       <div id="problem"><ProblemSection /></div>
       <div id="insight"><InsightSection /></div>
       <div id="method"><MethodBand /></div>
-
-      <BeginDivider
-        lessonNumber=""
-        title="Start Learning"
-        subtitle="Choose a module to begin"
-        concepts={['Claude Code', 'MCP', 'Agent Skills', 'Subagents', 'GitHub Copilot']}
-      />
 
       <section id="modules">
         <ModuleOverview />

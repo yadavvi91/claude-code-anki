@@ -56,7 +56,7 @@ export default function MethodBand() {
 const s = {
   band: {
     width: '100%',
-    padding: '5rem 2rem',
+    padding: '3rem 2rem',
     background: T.color.codeBg,
   },
   inner: {

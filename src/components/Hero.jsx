@@ -58,7 +58,7 @@ export default function Hero() {
 
 const s = {
   hero: {
-    minHeight: '100vh',
+    minHeight: '60vh',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -66,7 +66,7 @@ const s = {
     textAlign: 'center',
     padding: '4rem 2rem',
     position: 'relative',
-    background: `linear-gradient(135deg, ${T.color.codeBg} 0%, #1a1040 50%, #0f172a 100%)`,
+    background: `linear-gradient(135deg, #111318 0%, #15171e 50%, #0f1117 100%)`,
     overflow: 'hidden',
   },
   terminal: {
@@ -74,8 +74,8 @@ const s = {
     borderRadius: '10px',
     overflow: 'hidden',
     marginBottom: '2.5rem',
-    border: '1px solid rgba(99,102,241,0.2)',
-    boxShadow: '0 0 60px rgba(99,102,241,0.1)',
+    border: '1px solid rgba(255,255,255,0.08)',
+    boxShadow: '0 0 40px rgba(0,0,0,0.3)',
   },
   termBar: {
     display: 'flex',
@@ -110,7 +110,7 @@ const s = {
     color: '#fff',
     letterSpacing: '-0.02em',
     marginBottom: '1rem',
-    textShadow: '0 0 60px rgba(99,102,241,0.3)',
+    textShadow: '0 0 40px rgba(255,255,255,0.06)',
   },
   tagline: {
     fontFamily: T.font.label,
@@ -123,7 +123,7 @@ const s = {
   sub: {
     fontFamily: T.font.prose,
     fontSize: 'clamp(1rem, 2vw, 1.15rem)',
-    color: 'rgba(139,92,246,0.5)',
+    color: 'rgba(255,255,255,0.35)',
     fontStyle: 'italic',
     maxWidth: '520px',
   },
@@ -147,6 +147,6 @@ const s = {
   scrollArrow: {
     width: '1px',
     height: '30px',
-    background: 'linear-gradient(to bottom, rgba(99,102,241,0.4), transparent)',
+    background: 'linear-gradient(to bottom, rgba(255,255,255,0.15), transparent)',
   },
 }

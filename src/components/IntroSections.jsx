@@ -4,7 +4,7 @@ import { T } from '../theme'
 const prose  = { fontFamily: T.font.prose, fontSize: '1.05rem', lineHeight: 1.85, color: T.color.ink3, marginBottom: '1.2rem', maxWidth: '65ch' }
 const label  = { fontFamily: T.font.label, fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', color: T.color.accent, marginBottom: '1rem' }
 const h2     = { fontFamily: T.font.heading, fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', fontWeight: 600, color: T.color.ink2, lineHeight: 1.25, marginBottom: '1.5rem' }
-const section = { padding: '5rem 2rem', maxWidth: '900px', margin: '0 auto' }
+const section = { padding: '3rem 2rem', maxWidth: '900px', margin: '0 auto' }
 const pullQuote = {
   padding: '2rem 2.5rem', borderLeft: `4px solid ${T.color.accent}`,
   margin: '2.5rem 0', background: T.color.bg2, borderRadius: '0 8px 8px 0',
