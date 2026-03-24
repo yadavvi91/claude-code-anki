@@ -14,6 +14,9 @@ import Lesson08 from './pages/lessons/Lesson08'
 import Lesson09 from './pages/lessons/Lesson09'
 import Lesson10 from './pages/lessons/Lesson10'
 import Lesson11 from './pages/lessons/Lesson11'
+import Lesson12 from './pages/lessons/Lesson12'
+import Lesson13 from './pages/lessons/Lesson13'
+import Lesson14 from './pages/lessons/Lesson14'
 import Interlude01 from './pages/interludes/Interlude01'
 import Interlude02 from './pages/interludes/Interlude02'
 import Interlude03 from './pages/interludes/Interlude03'
@@ -69,9 +72,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/interlude/3" element={<Interlude03 />} />
 
         {/* Module 6: GitHub Copilot */}
-        <Route path="/copilot/core-modes" element={<ComingSoon />} />
-        <Route path="/copilot/customization" element={<ComingSoon />} />
-        <Route path="/copilot/cloud-agents" element={<ComingSoon />} />
+        <Route path="/copilot/core-modes" element={<Lesson12 />} />
+        <Route path="/copilot/customization" element={<Lesson13 />} />
+        <Route path="/copilot/cloud-agents" element={<Lesson14 />} />
 
         {/* Review */}
         <Route path="/review" element={<Review />} />
