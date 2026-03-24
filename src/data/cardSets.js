@@ -1475,8 +1475,146 @@ export const modules = [
     title: 'Agent Skills',
     color: '#f59e0b',
     lessons: [
-      { id: 'skills-l8', title: 'Skill Anatomy', slug: 'skills/anatomy', cardSets: [] },
-      { id: 'skills-l9', title: 'Distribution & Troubleshooting', slug: 'skills/distribution', cardSets: [] },
+      {
+        id: 'skills-l8',
+        title: 'Skill Anatomy',
+        slug: 'skills/anatomy',
+        cardSets: [
+          {
+            id: 'skills-l8-s1',
+            title: 'Set 1 — What Are Skills?',
+            cards: [
+              { id: 'skills-l8-s1-q1', question: 'What is a "skill" in Claude Code?', codeBlock: null, options: [
+                { label: 'A folder with a SKILL.md file containing instructions that Claude discovers and uses for specific tasks', correct: true, feedback: 'Correct. Skills are folders of markdown instructions with YAML frontmatter (name + description). Claude matches them to requests via semantic matching.' },
+                { label: 'A built-in Claude Code feature', correct: false, feedback: 'Skills are user-created, not built-in. They live in SKILL.md files you author.' },
+                { label: 'A Python script that extends Claude', correct: false, feedback: 'Skills are markdown files with instructions, not scripts.' },
+                { label: 'An MCP server plugin', correct: false, feedback: 'Skills and MCP servers are different features. Skills add knowledge; MCP servers add tools.' },
+              ]},
+              { id: 'skills-l8-s1-q2', question: 'How does Claude decide which skill to activate?', codeBlock: null, options: [
+                { label: 'Semantic matching — Claude compares your request against all skill descriptions and activates matching ones', correct: true, feedback: 'Correct. Only the name and description are loaded initially. The full content loads only when a match is found and confirmed.' },
+                { label: 'You must type the skill name explicitly', correct: false, feedback: 'That\'s slash commands. Skills activate automatically via semantic matching on the description.' },
+                { label: 'All skills load into every conversation', correct: false, feedback: 'That\'s CLAUDE.md. Skills load on demand when matched, keeping the context window clean.' },
+                { label: 'Skills run on a schedule', correct: false, feedback: 'Skills are request-driven, not schedule-driven.' },
+              ]},
+              { id: 'skills-l8-s1-q3', question: 'Where can personal skills be stored vs project skills?', codeBlock: null, options: [
+                { label: 'Personal: `~/.claude/skills` (follows you across projects). Project: `.claude/skills` (committed to repo, shared with team)', correct: true, feedback: 'Correct. Personal skills are in your home directory. Project skills are in the repo and shared via version control.' },
+                { label: 'Both go in the project directory', correct: false, feedback: 'Personal skills go in ~/.claude/skills so they follow you across all projects.' },
+                { label: 'Skills can only be project-level', correct: false, feedback: 'Skills can be personal (~/.claude/skills) or project-level (.claude/skills).' },
+                { label: 'They\'re stored in the cloud', correct: false, feedback: 'Skills are local files — either in your home directory or project directory.' },
+              ]},
+              { id: 'skills-l8-s1-q4', question: 'How do skills differ from CLAUDE.md?', codeBlock: null, options: [
+                { label: 'CLAUDE.md loads into every conversation (always-on). Skills load on demand only when matched to a request', correct: true, feedback: 'Correct. CLAUDE.md is for always-applicable rules. Skills are for task-specific expertise that would clutter every conversation.' },
+                { label: 'They\'re the same thing', correct: false, feedback: 'CLAUDE.md is always-on context. Skills are on-demand, activated by semantic matching.' },
+                { label: 'Skills replace CLAUDE.md', correct: false, feedback: 'They complement each other. CLAUDE.md for always-on rules, skills for task-specific knowledge.' },
+                { label: 'CLAUDE.md is for code, skills are for documentation', correct: false, feedback: 'The distinction is always-on (CLAUDE.md) vs on-demand (skills), not content type.' },
+              ]},
+              { id: 'skills-l8-s1-q5', question: 'How do skills differ from slash commands?', codeBlock: null, options: [
+                { label: 'Slash commands require explicit user invocation. Skills activate automatically when Claude recognizes the relevant situation', correct: true, feedback: 'Correct. You type `/command` explicitly. Skills are discovered and activated by Claude based on semantic matching.' },
+                { label: 'They work the same way', correct: false, feedback: 'Slash commands are explicit (/command). Skills are automatic via semantic matching.' },
+                { label: 'Skills are faster', correct: false, feedback: 'The difference is invocation: explicit (commands) vs automatic (skills).' },
+                { label: 'Slash commands can do more', correct: false, feedback: 'The difference is how they\'re triggered, not capability.' },
+              ]},
+            ]
+          },
+          {
+            id: 'skills-l8-s2',
+            title: 'Set 2 — Creating & Configuring Skills',
+            cards: [
+              { id: 'skills-l8-s2-q1', question: 'What are the required fields in SKILL.md frontmatter?', codeBlock: '---\nname: pr-description\ndescription: Writes pull request descriptions.\n---', options: [
+                { label: '`name` (lowercase, hyphens, max 64 chars) and `description` (max 1024 chars, used for semantic matching)', correct: true, feedback: 'Correct. Name identifies the skill. Description is the most important field — Claude uses it to decide when to activate the skill.' },
+                { label: 'Only `name` is required', correct: false, feedback: 'Both name and description are required. The description is critical for matching.' },
+                { label: '`name`, `description`, and `version`', correct: false, feedback: 'Version is not a frontmatter field. The required fields are name and description.' },
+                { label: '`name`, `description`, and `allowed-tools`', correct: false, feedback: 'allowed-tools is optional. Only name and description are required.' },
+              ]},
+              { id: 'skills-l8-s2-q2', question: 'What is the skill priority hierarchy when names conflict?', codeBlock: null, options: [
+                { label: 'Enterprise > Personal > Project > Plugins', correct: true, feedback: 'Correct. Enterprise (managed settings) has highest priority. Use descriptive names like `frontend-review` instead of just `review` to avoid conflicts.' },
+                { label: 'Project > Personal > Enterprise', correct: false, feedback: 'Enterprise has the highest priority, not project.' },
+                { label: 'All skills have equal priority', correct: false, feedback: 'There\'s a clear hierarchy: Enterprise > Personal > Project > Plugins.' },
+                { label: 'Most recently created wins', correct: false, feedback: 'Priority is based on source level, not creation time.' },
+              ]},
+              { id: 'skills-l8-s2-q3', question: 'What does the `allowed-tools` frontmatter field do?', codeBlock: 'allowed-tools: Read, Grep, Glob, Bash', options: [
+                { label: 'Restricts which tools Claude can use when the skill is active — useful for read-only or security-sensitive workflows', correct: true, feedback: 'Correct. If omitted, the skill doesn\'t restrict anything. When set, Claude can only use the listed tools without asking permission.' },
+                { label: 'It lists tools the skill needs installed', correct: false, feedback: 'It restricts available tools, not lists dependencies.' },
+                { label: 'It\'s required for all skills', correct: false, feedback: 'It\'s optional. If omitted, Claude uses its normal permission model.' },
+                { label: 'It adds new tools to Claude', correct: false, feedback: 'It restricts tools, not adds them. It\'s a guardrail.' },
+              ]},
+              { id: 'skills-l8-s2-q4', question: 'What is "progressive disclosure" in multi-file skills?', codeBlock: null, options: [
+                { label: 'Keep SKILL.md under 500 lines with essentials, put detailed references in separate files Claude reads only when needed', correct: true, feedback: 'Correct. Use directories like scripts/, references/, assets/. Link from SKILL.md with instructions about when to load each file.' },
+                { label: 'Slowly revealing information to the user', correct: false, feedback: 'In skills context, it means splitting content so Claude loads detailed references only when the specific topic comes up.' },
+                { label: 'A way to version skills', correct: false, feedback: 'Progressive disclosure is about splitting skill content across files to manage context size.' },
+                { label: 'Showing skills one at a time', correct: false, feedback: 'It\'s about organizing skill content: essentials in SKILL.md, details in separate files loaded on demand.' },
+              ]},
+              { id: 'skills-l8-s2-q5', question: 'Why should you tell Claude to RUN scripts in a skill directory rather than READ them?', codeBlock: null, options: [
+                { label: 'Running a script only puts its output into context (small). Reading puts the entire source code into context (large, wasteful)', correct: true, feedback: 'Correct. Scripts\' output consumes tokens, not the source code. This is more token-efficient for data transformations and validation tasks.' },
+                { label: 'Claude can\'t read scripts', correct: false, feedback: 'Claude can read scripts, but it wastes context. Running them is more token-efficient.' },
+                { label: 'Scripts run faster than they read', correct: false, feedback: 'The benefit is token efficiency, not speed.' },
+                { label: 'Security reasons', correct: false, feedback: 'The primary reason is context/token efficiency.' },
+              ]},
+            ]
+          },
+        ]
+      },
+      {
+        id: 'skills-l9',
+        title: 'Distribution & Troubleshooting',
+        slug: 'skills/distribution',
+        cardSets: [
+          {
+            id: 'skills-l9-s1',
+            title: 'Set 1 — Skills vs Other Features',
+            cards: [
+              { id: 'skills-l9-s1-q1', question: 'When should you use CLAUDE.md vs a skill?', codeBlock: null, options: [
+                { label: 'CLAUDE.md for always-applicable project standards. Skills for task-specific expertise that\'s only relevant sometimes', correct: true, feedback: 'Correct. "Never modify the database schema" → CLAUDE.md. "How to write a PR description" → skill.' },
+                { label: 'Always use skills instead of CLAUDE.md', correct: false, feedback: 'CLAUDE.md is better for rules that apply to EVERY conversation. Skills are for on-demand expertise.' },
+                { label: 'Always use CLAUDE.md instead of skills', correct: false, feedback: 'Detailed procedures that only apply sometimes would clutter CLAUDE.md. Use skills for those.' },
+                { label: 'They serve the same purpose', correct: false, feedback: 'Different loading behavior: CLAUDE.md always loads; skills load on demand.' },
+              ]},
+              { id: 'skills-l9-s1-q2', question: 'What is the difference between skills and hooks?', codeBlock: null, options: [
+                { label: 'Hooks are event-driven (fire on saves, tool calls). Skills are request-driven (activate based on what you ask)', correct: true, feedback: 'Correct. Hook: "run linter every time Claude saves a file." Skill: "knowledge about how to write PR descriptions."' },
+                { label: 'They\'re the same thing', correct: false, feedback: 'Hooks fire on events (file saves, tool calls). Skills activate based on request matching.' },
+                { label: 'Skills replace hooks', correct: false, feedback: 'They serve different purposes: hooks for automated side effects, skills for knowledge.' },
+                { label: 'Hooks are more powerful', correct: false, feedback: 'They\'re different, not ranked. Hooks = event-driven automation, skills = request-driven knowledge.' },
+              ]},
+              { id: 'skills-l9-s1-q3', question: 'Do subagents automatically inherit your skills?', codeBlock: null, options: [
+                { label: 'No — subagents start with a fresh context. Built-in agents can\'t access skills at all. Custom agents need skills explicitly listed in frontmatter', correct: true, feedback: 'Correct. Add `skills: accessibility-audit, performance-check` to custom agent frontmatter. Skills load at subagent start, not on demand.' },
+                { label: 'Yes — all skills are inherited', correct: false, feedback: 'Subagents do NOT inherit skills. You must explicitly list them in custom agent frontmatter.' },
+                { label: 'Only personal skills are inherited', correct: false, feedback: 'No skills are inherited. Custom agents must explicitly list needed skills.' },
+                { label: 'Skills don\'t work with subagents', correct: false, feedback: 'Custom subagents CAN use skills, but only when explicitly listed in their frontmatter `skills` field.' },
+              ]},
+            ]
+          },
+          {
+            id: 'skills-l9-s2',
+            title: 'Set 2 — Sharing & Troubleshooting',
+            cards: [
+              { id: 'skills-l9-s2-q1', question: 'What are the three ways to distribute skills?', codeBlock: null, options: [
+                { label: 'Repository commits (.claude/skills), plugin marketplaces, and enterprise managed settings', correct: true, feedback: 'Correct. Repo commits are simplest (git pull updates). Plugins are for community sharing. Enterprise settings enforce organization-wide standards with highest priority.' },
+                { label: 'Only via git repositories', correct: false, feedback: 'Git repos are one method. Plugins and enterprise managed settings are also supported.' },
+                { label: 'Email, download, and copy-paste', correct: false, feedback: 'The official channels are repo commits, marketplaces, and enterprise managed settings.' },
+                { label: 'There\'s no way to share skills', correct: false, feedback: 'Skills can be shared via repo commits, plugins, or enterprise settings.' },
+              ]},
+              { id: 'skills-l9-s2-q2', question: 'Your skill doesn\'t trigger when you expect it to. What\'s the most likely cause?', codeBlock: null, options: [
+                { label: 'The description doesn\'t match how you\'re phrasing requests — add more trigger phrases and keywords', correct: true, feedback: 'Correct. Claude uses semantic matching on the description. If it doesn\'t trigger, the description needs keywords matching your actual phrasing.' },
+                { label: 'The skill file is corrupted', correct: false, feedback: 'It\'s almost always the description. Add trigger phrases matching how you actually ask for things.' },
+                { label: 'Claude Code needs to be updated', correct: false, feedback: 'Trigger issues are description problems, not version issues.' },
+                { label: 'The skill folder is in the wrong location', correct: false, feedback: 'That would prevent loading entirely. Trigger issues are about the description text.' },
+              ]},
+              { id: 'skills-l9-s2-q3', question: 'SKILL.md must follow specific naming rules. What are they?', codeBlock: null, options: [
+                { label: 'File must be exactly `SKILL.md` (all-caps SKILL, lowercase md), inside a named directory — NOT at the skills root level', correct: true, feedback: 'Correct. The file name is case-sensitive. Run `claude --debug` to see loading errors if something\'s wrong.' },
+                { label: 'Any filename ending in .md works', correct: false, feedback: 'The file must be exactly SKILL.md — no variations.' },
+                { label: 'It can be at the skills root level', correct: false, feedback: 'SKILL.md must be inside a named directory, not at the root.' },
+                { label: 'The name is case-insensitive', correct: false, feedback: 'SKILL must be all-caps. The .md must be lowercase.' },
+              ]},
+              { id: 'skills-l9-s2-q4', question: 'Two skills with similar descriptions are conflicting. How do you fix it?', codeBlock: null, options: [
+                { label: 'Make the descriptions more distinct and specific — being specific prevents conflicts with similar-sounding skills', correct: true, feedback: 'Correct. If "code review" and "security review" overlap, make each description clearly specify its domain and trigger scenarios.' },
+                { label: 'Delete one of the skills', correct: false, feedback: 'You can keep both — just make their descriptions more distinct.' },
+                { label: 'Give them the same name', correct: false, feedback: 'Same name would cause priority conflicts. Make descriptions distinct instead.' },
+                { label: 'Increase the priority of one', correct: false, feedback: 'Priority is based on source (enterprise/personal/project), not configurable per-skill. Fix the descriptions.' },
+              ]},
+            ]
+          },
+        ]
+      },
     ]
   },
   {
@@ -1484,8 +1622,146 @@ export const modules = [
     title: 'Subagents',
     color: '#14b8a6',
     lessons: [
-      { id: 'sub-l10', title: 'Subagent Mechanics', slug: 'subagents/mechanics', cardSets: [] },
-      { id: 'sub-l11', title: 'Effective Design', slug: 'subagents/design', cardSets: [] },
+      {
+        id: 'sub-l10',
+        title: 'Subagent Mechanics',
+        slug: 'subagents/mechanics',
+        cardSets: [
+          {
+            id: 'sub-l10-s1',
+            title: 'Set 1 — What Are Subagents?',
+            cards: [
+              { id: 'sub-l10-s1-q1', question: 'What is a subagent in Claude Code?', codeBlock: null, options: [
+                { label: 'A specialized assistant running in its own isolated context window — it does work independently and returns only a summary', correct: true, feedback: 'Correct. Intermediate steps (file reads, searches) stay isolated. Only the summary comes back to the main conversation. The subagent context is then discarded.' },
+                { label: 'A second instance of Claude running on a different machine', correct: false, feedback: 'Subagents run locally in a separate context window, not on different machines.' },
+                { label: 'A plugin that adds features to Claude', correct: false, feedback: 'That\'s MCP servers. Subagents are isolated execution contexts for delegating tasks.' },
+                { label: 'A way to save conversations', correct: false, feedback: 'Subagent contexts are discarded after completion. They\'re for delegation, not persistence.' },
+              ]},
+              { id: 'sub-l10-s1-q2', question: 'What problem do subagents solve?', codeBlock: null, options: [
+                { label: 'The context window is finite — every tool call and file read fills it up. Subagents spin up separate context windows to keep the main one clean', correct: true, feedback: 'Correct. Without subagents, exploratory work clutters the main context. Subagents isolate intermediate work and return only concise results.' },
+                { label: 'They make Claude faster', correct: false, feedback: 'The benefit is context management, not speed. They keep the main context clean.' },
+                { label: 'They provide internet access', correct: false, feedback: 'Internet access is a tool capability, not a subagent feature.' },
+                { label: 'They allow multiple users', correct: false, feedback: 'Subagents are about context isolation, not multi-user support.' },
+              ]},
+              { id: 'sub-l10-s1-q3', question: 'What are the three built-in subagent types?', codeBlock: null, options: [
+                { label: 'General purpose (multi-step tasks), Explore (fast codebase search), and Plan (research before presenting a plan)', correct: true, feedback: 'Correct. General purpose handles exploration + action. Explore is for fast navigation. Plan is used in plan mode for analysis.' },
+                { label: 'Read, Write, and Execute', correct: false, feedback: 'Those are tool categories. The built-in subagents are General purpose, Explore, and Plan.' },
+                { label: 'Researcher, Coder, and Reviewer', correct: false, feedback: 'Those could be custom subagents. The built-in ones are General purpose, Explore, and Plan.' },
+                { label: 'There are no built-in subagents', correct: false, feedback: 'Claude Code has three built-in subagents: General purpose, Explore, and Plan.' },
+              ]},
+              { id: 'sub-l10-s1-q4', question: 'What does a subagent receive when launched?', codeBlock: null, options: [
+                { label: 'A custom system prompt from your config file AND a task description written by the parent agent based on your request', correct: true, feedback: 'Correct. The system prompt defines the subagent\'s role. The task description is written by the main agent based on what you asked for.' },
+                { label: 'The entire main conversation history', correct: false, feedback: 'Subagents do NOT get conversation history. They receive a system prompt and a task — that\'s it.' },
+                { label: 'Only the user\'s last message', correct: false, feedback: 'They get a system prompt + a task description written by the parent agent, not the raw user message.' },
+                { label: 'A copy of all project files', correct: false, feedback: 'They get a system prompt and task description. They can read files using their tools, but don\'t get files upfront.' },
+              ]},
+            ]
+          },
+          {
+            id: 'sub-l10-s2',
+            title: 'Set 2 — Creating Subagents',
+            cards: [
+              { id: 'sub-l10-s2-q1', question: 'How do you create a custom subagent?', codeBlock: null, options: [
+                { label: 'Use the `/agents` slash command, or create a markdown file in `.claude/agents/` with YAML frontmatter', correct: true, feedback: 'Correct. The /agents command opens a management interface. Config files go in .claude/agents/your-agent-name.md.' },
+                { label: 'Install a plugin', correct: false, feedback: 'Subagents are defined as markdown files in .claude/agents/, not plugins.' },
+                { label: 'Edit CLAUDE.md', correct: false, feedback: 'CLAUDE.md is for project context. Subagents are separate .md files in .claude/agents/.' },
+                { label: 'Call an API endpoint', correct: false, feedback: 'Subagents are configured via local markdown files, not API calls.' },
+              ]},
+              { id: 'sub-l10-s2-q2', question: 'What are the YAML frontmatter fields for a custom subagent?', codeBlock: 'name: code-reviewer\ndescription: Reviews code changes...\ntools: Bash, Glob, Grep, Read\nmodel: opus\ncolor: blue', options: [
+                { label: '`name`, `description`, `tools`, `model` (haiku/sonnet/opus/inherit), and `color`', correct: true, feedback: 'Correct. The body of the markdown (below frontmatter) is the system prompt with the subagent\'s instructions.' },
+                { label: 'Only `name` is required', correct: false, feedback: 'Name and description are both important. Tools, model, and color are optional but recommended.' },
+                { label: 'Same fields as SKILL.md', correct: false, feedback: 'Subagents have different fields: tools, model, color. Skills have allowed-tools but no model/color.' },
+                { label: 'Fields are defined in JSON', correct: false, feedback: 'Subagent config uses YAML frontmatter in a markdown file, not JSON.' },
+              ]},
+              { id: 'sub-l10-s2-q3', question: 'How do you make Claude use a subagent automatically (proactively)?', codeBlock: null, options: [
+                { label: 'Include the word "proactively" in the description field — you can also add example conversations for specific triggers', correct: true, feedback: 'Correct. Example: `description: Proactively suggest running this agent after major code changes...`' },
+                { label: 'Set `auto: true` in frontmatter', correct: false, feedback: 'There\'s no auto field. Include "proactively" in the description text.' },
+                { label: 'It always runs automatically', correct: false, feedback: 'By default, Claude decides based on the description. Adding "proactively" encourages automatic delegation.' },
+                { label: 'You must always invoke it manually', correct: false, feedback: 'With "proactively" in the description, Claude will suggest using it without being asked.' },
+              ]},
+              { id: 'sub-l10-s2-q4', question: 'What are the two scope options for subagents?', codeBlock: null, options: [
+                { label: 'Project-level (current project only) or user-level (shared across all projects)', correct: true, feedback: 'Correct. Project-level agents are specific to one repo. User-level agents follow you everywhere.' },
+                { label: 'Public and private', correct: false, feedback: 'The scopes are project-level and user-level, not public/private.' },
+                { label: 'Global only', correct: false, feedback: 'There are two scopes: project-level and user-level.' },
+                { label: 'Read-only and read-write', correct: false, feedback: 'Those are tool access levels, not scope options. Scopes are project vs user.' },
+              ]},
+            ]
+          },
+        ]
+      },
+      {
+        id: 'sub-l11',
+        title: 'Effective Design',
+        slug: 'subagents/design',
+        cardSets: [
+          {
+            id: 'sub-l11-s1',
+            title: 'Set 1 — Design Patterns',
+            cards: [
+              { id: 'sub-l11-s1-q1', question: 'Why is defining a structured output format called "the single most important improvement" for subagents?', codeBlock: null, options: [
+                { label: 'It creates natural stopping points so the subagent knows when it\'s done, and prevents it from running too long', correct: true, feedback: 'Correct. Without a defined output, subagents struggle to decide when enough research is done. A structured format (Summary, Critical Issues, Recommendations, etc.) tells it exactly what to produce.' },
+                { label: 'It makes the output prettier', correct: false, feedback: 'The benefit is functional: stopping criteria and preventing runaway exploration, not aesthetics.' },
+                { label: 'It\'s required by the API', correct: false, feedback: 'It\'s a best practice, not a requirement. But without it, subagents run inefficiently.' },
+                { label: 'It reduces token usage', correct: false, feedback: 'The primary benefit is stopping criteria and completeness, though it may help with token usage indirectly.' },
+              ]},
+              { id: 'sub-l11-s1-q2', question: 'Why should subagent output templates include an "Obstacles Encountered" section?', codeBlock: null, options: [
+                { label: 'Without it, the main thread rediscovers the same workarounds the subagent already found — wasting time and tokens', correct: true, feedback: 'Correct. Obstacles include: setup issues, workarounds discovered, commands needing special flags, dependency problems.' },
+                { label: 'For debugging purposes only', correct: false, feedback: 'It\'s about efficiency — preventing the main thread from repeating the subagent\'s discoveries.' },
+                { label: 'It\'s required by Claude Code', correct: false, feedback: 'It\'s a best practice. Without it, valuable discoveries get lost when the subagent context is discarded.' },
+                { label: 'To make logs more complete', correct: false, feedback: 'The purpose is preventing redundant work in the main thread, not logging.' },
+              ]},
+              { id: 'sub-l11-s1-q3', question: 'How does the subagent description field serve a dual role?', codeBlock: null, options: [
+                { label: 'It controls WHEN a subagent triggers AND shapes the input prompt the main agent writes when launching it', correct: true, feedback: 'Correct. A specific description (e.g., "tell the agent precisely which files to review") makes the main agent write much more specific task prompts.' },
+                { label: 'It defines the name and the system prompt', correct: false, feedback: 'Name is separate. The dual role is: (1) triggering criteria and (2) shaping the input prompt.' },
+                { label: 'It works for both the user and Claude', correct: false, feedback: 'The dual role is technical: controlling trigger timing AND influencing task prompt quality.' },
+                { label: 'It serves as documentation and configuration', correct: false, feedback: 'The dual role is: controlling when to launch AND shaping how the task is described to the subagent.' },
+              ]},
+              { id: 'sub-l11-s1-q4', question: 'What tool access should a research/read-only subagent have?', codeBlock: null, options: [
+                { label: 'Only Glob, Grep, and Read — cannot accidentally modify files', correct: true, feedback: 'Correct. A code reviewer adds Bash (for git diff) but NOT Edit/Write. A styling agent gets Edit/Write because its job is to change code.' },
+                { label: 'All tools', correct: false, feedback: 'Limiting tools prevents unintended side effects and makes each subagent\'s role clearer.' },
+                { label: 'No tools at all', correct: false, feedback: 'A research subagent needs read tools (Glob, Grep, Read) to explore the codebase.' },
+                { label: 'Only Bash', correct: false, feedback: 'Glob, Grep, and Read are more appropriate for research. Bash is for commands like git diff.' },
+              ]},
+            ]
+          },
+          {
+            id: 'sub-l11-s2',
+            title: 'Set 2 — When to Use (and Avoid) Subagents',
+            cards: [
+              { id: 'sub-l11-s2-q1', question: 'What is the core decision criterion for using a subagent?', codeBlock: null, options: [
+                { label: '"Does the intermediate work matter?" If no (just need the result), delegate. If yes (need to see the journey), keep in main thread', correct: true, feedback: 'Correct. Subagents shine when you need the result, not the play-by-play of how it was found.' },
+                { label: 'Whether the task is complex', correct: false, feedback: 'Complexity isn\'t the criterion. It\'s whether you need to see the intermediate steps.' },
+                { label: 'Whether it involves code changes', correct: false, feedback: 'Code changes can happen in main thread or subagent. The question is whether intermediate work matters.' },
+                { label: 'Always use subagents for better performance', correct: false, feedback: 'Subagents have overhead. Only use when intermediate work would clutter the main context.' },
+              ]},
+              { id: 'sub-l11-s2-q2', question: 'Why are code reviews an ideal subagent use case?', codeBlock: null, options: [
+                { label: 'Claude reviews more effectively when code is presented as written by someone else — the reviewer subagent has no history of creating the code', correct: true, feedback: 'Correct. If the main thread built the feature, it has trouble seeing its own work critically. A reviewer subagent has fresh eyes with no creation bias.' },
+                { label: 'Because reviews are always simple', correct: false, feedback: 'Reviews can be complex. The key benefit is the fresh perspective — no bias from having written the code.' },
+                { label: 'Because reviews don\'t need tools', correct: false, feedback: 'Review subagents need Bash (git diff), Glob, Grep, Read. The benefit is fresh perspective.' },
+                { label: 'To save time', correct: false, feedback: 'The main benefit is review quality — a separate context with no creation bias gives more honest feedback.' },
+              ]},
+              { id: 'sub-l11-s2-q3', question: 'Which of these is an anti-pattern for subagents?', codeBlock: null, options: [
+                { label: 'Sequential pipelines where each step depends on discoveries from the previous step — information gets lost in handoffs', correct: true, feedback: 'Correct. Pipelines only work when tasks are truly independent. Other anti-patterns: "expert" personas (Claude already has the knowledge) and test runners (hide output you need).' },
+                { label: 'Research tasks', correct: false, feedback: 'Research is the classic ideal use case for subagents.' },
+                { label: 'Code reviews', correct: false, feedback: 'Code reviews are ideal — subagents provide fresh perspective.' },
+                { label: 'Tasks needing custom system prompts', correct: false, feedback: 'Custom prompts are a great reason to use subagents (e.g., copywriting, styling).' },
+              ]},
+              { id: 'sub-l11-s2-q4', question: 'Why are "expert" subagents (e.g., "you are a Python expert") considered an anti-pattern?', codeBlock: null, options: [
+                { label: 'Claude already has that knowledge — nothing an "expert" subagent can do that the main thread can\'t do directly', correct: true, feedback: 'Correct. Claiming expertise adds no value. Use subagents for context isolation and fresh perspective, not fake expertise labels.' },
+                { label: 'They cost more tokens', correct: false, feedback: 'The issue isn\'t cost — it\'s that they add zero value. Claude already knows Python, Kubernetes, etc.' },
+                { label: 'They\'re not supported', correct: false, feedback: 'They work technically. They\'re just pointless — Claude already has expert knowledge.' },
+                { label: 'They\'re too slow', correct: false, feedback: 'Speed isn\'t the issue. They simply don\'t add capabilities the main thread doesn\'t already have.' },
+              ]},
+              { id: 'sub-l11-s2-q5', question: 'Why did test runner subagents perform worst among all configurations in testing?', codeBlock: null, options: [
+                { label: 'They hide test output you need for debugging — returning "tests failed" forces creating additional debug scripts for details that were directly visible', correct: true, feedback: 'Correct. Test output is exactly the kind of intermediate work that DOES matter. Keep testing in the main thread.' },
+                { label: 'Tests are too slow for subagents', correct: false, feedback: 'Speed isn\'t the issue. The problem is losing visibility into test output needed for debugging.' },
+                { label: 'Subagents can\'t run tests', correct: false, feedback: 'They can run tests. The problem is the results are summarized, hiding details needed for diagnosis.' },
+                { label: 'It was a bug in the testing setup', correct: false, feedback: 'It\'s a fundamental design problem: test output is intermediate work that matters to the developer.' },
+              ]},
+            ]
+          },
+        ]
+      },
     ]
   },
   {

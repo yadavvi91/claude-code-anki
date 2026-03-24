@@ -10,6 +10,10 @@ import Lesson04 from './pages/lessons/Lesson04'
 import Lesson05 from './pages/lessons/Lesson05'
 import Lesson06 from './pages/lessons/Lesson06'
 import Lesson07 from './pages/lessons/Lesson07'
+import Lesson08 from './pages/lessons/Lesson08'
+import Lesson09 from './pages/lessons/Lesson09'
+import Lesson10 from './pages/lessons/Lesson10'
+import Lesson11 from './pages/lessons/Lesson11'
 
 // Placeholder component for unbuilt lessons
 function ComingSoon() {
@@ -50,12 +54,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/interlude/2" element={<ComingSoon />} />
 
         {/* Module 4: Agent Skills */}
-        <Route path="/skills/anatomy" element={<ComingSoon />} />
-        <Route path="/skills/distribution" element={<ComingSoon />} />
+        <Route path="/skills/anatomy" element={<Lesson08 />} />
+        <Route path="/skills/distribution" element={<Lesson09 />} />
 
         {/* Module 5: Subagents */}
-        <Route path="/subagents/mechanics" element={<ComingSoon />} />
-        <Route path="/subagents/design" element={<ComingSoon />} />
+        <Route path="/subagents/mechanics" element={<Lesson10 />} />
+        <Route path="/subagents/design" element={<Lesson11 />} />
 
         {/* Interlude 3 */}
         <Route path="/interlude/3" element={<ComingSoon />} />
