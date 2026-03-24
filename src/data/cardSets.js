@@ -1204,8 +1204,270 @@ export const modules = [
     title: 'MCP Advanced',
     color: '#ec4899',
     lessons: [
-      { id: 'mcp-l6', title: 'Sampling, Progress & Security', slug: 'mcp-advanced/sampling', cardSets: [] },
-      { id: 'mcp-l7', title: 'Transports & Production', slug: 'mcp-advanced/transports', cardSets: [] },
+      {
+        id: 'mcp-l6',
+        title: 'Sampling, Progress & Security',
+        slug: 'mcp-advanced/sampling',
+        cardSets: [
+          {
+            id: 'mcp-l6-s1',
+            title: 'Set 1 — Sampling',
+            cards: [
+              {
+                id: 'mcp-l6-s1-q1',
+                question: 'What is "sampling" in MCP?',
+                codeBlock: null,
+                options: [
+                  { label: 'An MCP server accessing a language model (like Claude) through the connected client, rather than calling the LLM directly', correct: true, feedback: 'Correct. The server sends a prompt to the client saying "Could you call Claude for me?" The client, which already has a Claude connection, makes the call and returns results.' },
+                  { label: 'Taking random samples of data from a database', correct: false, feedback: 'Sampling in MCP specifically refers to the server requesting LLM access through the client.' },
+                  { label: 'A testing technique for MCP servers', correct: false, feedback: 'Sampling is a production feature, not a testing technique. It lets servers use LLMs via clients.' },
+                  { label: 'Collecting metrics from MCP communication', correct: false, feedback: 'Sampling is about LLM access, not metrics collection.' },
+                ]
+              },
+              {
+                id: 'mcp-l6-s1-q2',
+                question: 'Why would an MCP server use sampling instead of calling Claude directly?',
+                codeBlock: null,
+                options: [
+                  { label: 'The server needs no API keys, token costs shift to the client, and it\'s ideal for public servers', correct: true, feedback: 'Correct. With sampling, the server has no LLM integration. Each client pays for their own AI usage — critical for public servers.' },
+                  { label: 'It\'s faster than direct API calls', correct: false, feedback: 'Speed isn\'t the benefit. The advantages are: no API keys on server, token costs shift to client, reduced server complexity.' },
+                  { label: 'Claude requires sampling to work', correct: false, feedback: 'Claude can be called directly. Sampling is an architectural choice, not a requirement.' },
+                  { label: 'Direct API calls are not supported in MCP', correct: false, feedback: 'Direct calls work fine. Sampling is preferred for public servers where you don\'t want to bear token costs.' },
+                ]
+              },
+              {
+                id: 'mcp-l6-s1-q3',
+                question: 'How does sampling work on the server side?',
+                codeBlock: 'result = await ctx.session.create_message(\n  messages=[SamplingMessage(\n    role="user", content=...\n  )],\n  max_tokens=500,\n  system_prompt="You are a helpful assistant"\n)',
+                options: [
+                  { label: 'Use `ctx.session.create_message()` inside a tool function with SamplingMessage, max_tokens, and system_prompt', correct: true, feedback: 'Correct. The context object provides the session, and create_message sends the sampling request to the connected client.' },
+                  { label: 'Import the Anthropic SDK and call Claude directly', correct: false, feedback: 'That defeats the purpose of sampling. The server uses `ctx.session.create_message()` to go through the client.' },
+                  { label: 'Write to stdout and hope the client picks it up', correct: false, feedback: 'Sampling uses the structured `create_message` API on the session, not raw stdout.' },
+                  { label: 'Define a special sampling tool', correct: false, feedback: 'Sampling is called from within existing tool functions, not defined as a separate tool.' },
+                ]
+              },
+              {
+                id: 'mcp-l6-s1-q4',
+                question: 'On the client side, how do you enable sampling support?',
+                codeBlock: null,
+                options: [
+                  { label: 'Create a `sampling_callback` function that receives params, calls Claude, and returns a CreateMessageResult — pass it when initializing ClientSession', correct: true, feedback: 'Correct. The callback receives CreateMessageRequestParams, uses the Anthropic SDK to call Claude, and returns the result.' },
+                  { label: 'Set `sampling=True` in the client config', correct: false, feedback: 'There\'s no simple flag. You must implement a sampling_callback function and pass it to the ClientSession.' },
+                  { label: 'Nothing — sampling works automatically', correct: false, feedback: 'You must explicitly create a sampling callback that handles LLM calls and pass it to the session.' },
+                  { label: 'Install a separate sampling package', correct: false, feedback: 'Sampling support is built into the MCP SDK. You just need to write the callback function.' },
+                ]
+              },
+            ]
+          },
+          {
+            id: 'mcp-l6-s2',
+            title: 'Set 2 — Notifications & Progress',
+            cards: [
+              {
+                id: 'mcp-l6-s2-q1',
+                question: 'How do you send log messages and progress updates from an MCP tool?',
+                codeBlock: 'await context.info("Processing file...")\nawait context.report_progress(current=5, total=10)',
+                options: [
+                  { label: 'Use the Context argument: `context.info()` for logs, `context.report_progress(current, total)` for progress', correct: true, feedback: 'Correct. The Context is automatically provided to tool functions. Use info() for logs and report_progress() for percentage-based updates.' },
+                  { label: 'Print to stdout', correct: false, feedback: 'Stdout is used for MCP protocol messages. Use context.info() and context.report_progress() instead.' },
+                  { label: 'Return progress in the tool result', correct: false, feedback: 'Progress is sent via real-time notifications during execution, not in the final result.' },
+                  { label: 'Write to a shared log file', correct: false, feedback: 'MCP uses structured notifications through the context, not file-based logging.' },
+                ]
+              },
+              {
+                id: 'mcp-l6-s2-q2',
+                question: 'On the client side, how do you receive logging and progress notifications?',
+                codeBlock: null,
+                options: [
+                  { label: 'Set up callback functions: `logging_callback` on ClientSession, `progress_callback` per tool call', correct: true, feedback: 'Correct. Logging callbacks are set at session level. Progress callbacks are passed per tool call via `session.call_tool(..., progress_callback=...)`.' },
+                  { label: 'Poll the server periodically', correct: false, feedback: 'Notifications are pushed to the client via callbacks, not polled.' },
+                  { label: 'Read from a notification queue', correct: false, feedback: 'Callbacks are the mechanism, not queues. Logging is session-level, progress is per-call.' },
+                  { label: 'They appear automatically in the tool result', correct: false, feedback: 'Notifications arrive during execution via callbacks, separate from the final result.' },
+                ]
+              },
+              {
+                id: 'mcp-l6-s2-q3',
+                question: 'Are notifications required for MCP clients to implement?',
+                codeBlock: null,
+                options: [
+                  { label: 'No — they\'re optional UX enhancements. Clients can ignore them, show certain types, or present them however they like', correct: true, feedback: 'Correct. Notifications are purely optional. CLI apps might print to terminal, web apps use WebSockets, desktop apps update progress bars.' },
+                  { label: 'Yes — the MCP spec requires handling all notifications', correct: false, feedback: 'Notifications are optional. Clients choose which (if any) to display.' },
+                  { label: 'Only progress notifications are required', correct: false, feedback: 'Neither logging nor progress notifications are required.' },
+                  { label: 'Yes — tools fail if notifications aren\'t handled', correct: false, feedback: 'Tools work fine without notification handling. Notifications are for UX, not functionality.' },
+                ]
+              },
+            ]
+          },
+          {
+            id: 'mcp-l6-s3',
+            title: 'Set 3 — Roots & Security',
+            cards: [
+              {
+                id: 'mcp-l6-s3-q1',
+                question: 'What are "roots" in MCP?',
+                codeBlock: null,
+                options: [
+                  { label: 'A permission system that tells MCP servers which specific files and folders on your machine they can access', correct: true, feedback: 'Correct. Roots grant targeted filesystem access. If only Desktop is a root, the server cannot access Documents or Downloads.' },
+                  { label: 'The root directory of your project', correct: false, feedback: 'Roots are a permission concept — a set of allowed directories — not necessarily the project root.' },
+                  { label: 'Administrative accounts for MCP servers', correct: false, feedback: 'Roots are filesystem permission boundaries, not user accounts.' },
+                  { label: 'The base URL for MCP communication', correct: false, feedback: 'Roots are about file system access, not URLs.' },
+                ]
+              },
+              {
+                id: 'mcp-l6-s3-q2',
+                question: 'What problem do roots solve?',
+                codeBlock: null,
+                options: [
+                  { label: 'Without roots, when a user says "convert biking.mp4" Claude has no way to know where the file lives — roots give context to find files without full paths', correct: true, feedback: 'Correct. Roots let Claude call list_roots → read_dir → find the file. They also limit access for security.' },
+                  { label: 'They speed up file access', correct: false, feedback: 'The benefits are discoverability (find files without full paths) and security (limit access), not speed.' },
+                  { label: 'They replace the file system', correct: false, feedback: 'Roots work WITH the filesystem, providing targeted access boundaries.' },
+                  { label: 'They compress files for transfer', correct: false, feedback: 'Roots are about access permissions and file discovery, not compression.' },
+                ]
+              },
+              {
+                id: 'mcp-l6-s3-q3',
+                question: 'Does the MCP SDK automatically enforce root restrictions?',
+                codeBlock: null,
+                options: [
+                  { label: 'No — you must implement enforcement yourself (e.g., an `is_path_allowed()` helper that checks paths against approved roots)', correct: true, feedback: 'Correct. The SDK provides the roots mechanism, but checking if a requested path falls within approved roots is YOUR responsibility.' },
+                  { label: 'Yes — all paths outside roots are automatically blocked', correct: false, feedback: 'The SDK does NOT enforce restrictions automatically. You must implement path checking yourself.' },
+                  { label: 'Yes — the OS handles enforcement', correct: false, feedback: 'Root enforcement is the developer\'s responsibility, not the OS or SDK.' },
+                  { label: 'Roots are just advisory — no enforcement possible', correct: false, feedback: 'You CAN enforce them — you just have to implement the checks yourself.' },
+                ]
+              },
+              {
+                id: 'mcp-l6-s3-q4',
+                question: 'What are the four benefits of roots?',
+                codeBlock: null,
+                options: [
+                  { label: 'User-friendly (no full paths), focused search (faster discovery), security (prevents sensitive access), flexible (can provide via tools or prompts)', correct: true, feedback: 'Correct. Roots make file access user-friendly, efficient, secure, and flexible in how they\'re provided to the server.' },
+                  { label: 'Speed, encryption, compression, caching', correct: false, feedback: 'Those are performance/security features. Roots provide user-friendliness, focused search, security, and flexibility.' },
+                  { label: 'Authentication, authorization, logging, monitoring', correct: false, feedback: 'Those are general security concepts. Roots specifically provide filesystem scoping.' },
+                  { label: 'They only have one benefit: security', correct: false, feedback: 'Roots have four benefits: user-friendly paths, focused search, security, and flexibility.' },
+                ]
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'mcp-l7',
+        title: 'Transports & Production',
+        slug: 'mcp-advanced/transports',
+        cardSets: [
+          {
+            id: 'mcp-l7-s1',
+            title: 'Set 1 — JSON Messages & STDIO',
+            cards: [
+              {
+                id: 'mcp-l7-s1-q1',
+                question: 'What are the two categories of MCP message types?',
+                codeBlock: null,
+                options: [
+                  { label: 'Request-Result messages (always in pairs) and Notification messages (one-way, no response expected)', correct: true, feedback: 'Correct. Request-Result: CallTool, ListPrompts, ReadResource, Initialize. Notifications: Progress, Logging, ToolListChanged, ResourceUpdated.' },
+                  { label: 'GET and POST messages', correct: false, feedback: 'MCP has its own message types, not HTTP methods. The categories are Request-Result and Notification.' },
+                  { label: 'Synchronous and asynchronous messages', correct: false, feedback: 'The distinction is Request-Result (bidirectional pairs) vs Notification (one-way).' },
+                  { label: 'Client messages and server messages', correct: false, feedback: 'Both clients AND servers can send both types. The categories are Request-Result and Notification.' },
+                ]
+              },
+              {
+                id: 'mcp-l7-s1-q2',
+                question: 'Why is MCP described as "bidirectional"?',
+                codeBlock: null,
+                options: [
+                  { label: 'Both clients and servers can initiate communication — servers can send requests TO clients (like sampling), not just respond', correct: true, feedback: 'Correct. This is crucial for transport selection — some transports have limitations on which directions are supported.' },
+                  { label: 'Messages can contain both text and binary data', correct: false, feedback: 'Bidirectional means both sides can initiate communication, not about data types.' },
+                  { label: 'You can read and write data', correct: false, feedback: 'Bidirectional refers to communication direction: both client→server AND server→client initiation.' },
+                  { label: 'Requests always require responses', correct: false, feedback: 'Notifications are one-way. Bidirectional means both client and server can initiate messages.' },
+                ]
+              },
+              {
+                id: 'mcp-l7-s1-q3',
+                question: 'How does the STDIO transport work?',
+                codeBlock: null,
+                options: [
+                  { label: 'Client launches the server as a subprocess and communicates via stdin/stdout — only works on the same machine', correct: true, feedback: 'Correct. Client writes to server\'s stdin, server responds via stdout. Either party can send at any time. Same-machine only.' },
+                  { label: 'It uses HTTP endpoints on localhost', correct: false, feedback: 'STDIO uses standard input/output streams, not HTTP. The server is launched as a subprocess.' },
+                  { label: 'It uses a shared file for communication', correct: false, feedback: 'STDIO uses stdin/stdout pipes between the parent (client) and child (server) processes.' },
+                  { label: 'It works over the network between different machines', correct: false, feedback: 'STDIO only works when client and server are on the SAME machine. Use StreamableHTTP for remote.' },
+                ]
+              },
+              {
+                id: 'mcp-l7-s1-q4',
+                question: 'What is the required three-message MCP connection handshake?',
+                codeBlock: null,
+                options: [
+                  { label: '(1) Initialize Request (client→server), (2) Initialize Result (server→client), (3) Initialized Notification (client→server, no response)', correct: true, feedback: 'Correct. Only after this three-step handshake can you send tool calls, list resources, etc.' },
+                  { label: 'SYN, SYN-ACK, ACK like TCP', correct: false, feedback: 'MCP uses its own handshake: Initialize Request → Initialize Result → Initialized Notification.' },
+                  { label: 'Connect, Authenticate, Ready', correct: false, feedback: 'The MCP handshake is: Initialize Request, Initialize Result, Initialized Notification.' },
+                  { label: 'No handshake is needed', correct: false, feedback: 'A three-message handshake is required before any operational messages can be sent.' },
+                ]
+              },
+            ]
+          },
+          {
+            id: 'mcp-l7-s2',
+            title: 'Set 2 — StreamableHTTP Transport',
+            cards: [
+              {
+                id: 'mcp-l7-s2-q1',
+                question: 'What does the StreamableHTTP transport enable?',
+                codeBlock: null,
+                options: [
+                  { label: 'MCP clients connecting to remotely hosted servers over HTTP — enabling public MCP servers anyone can access', correct: true, feedback: 'Correct. Unlike STDIO (same machine only), StreamableHTTP allows remote connections over the network.' },
+                  { label: 'Faster communication than STDIO', correct: false, feedback: 'StreamableHTTP isn\'t about speed — it\'s about enabling remote connections over HTTP.' },
+                  { label: 'Binary data transfer', correct: false, feedback: 'StreamableHTTP is about remote server access, not binary data support.' },
+                  { label: 'Encrypted communication', correct: false, feedback: 'While HTTPS adds encryption, the main purpose is enabling remote MCP server access.' },
+                ]
+              },
+              {
+                id: 'mcp-l7-s2-q2',
+                question: 'What is the core HTTP limitation that StreamableHTTP must solve?',
+                codeBlock: null,
+                options: [
+                  { label: 'Clients can call servers (known URL), but servers cannot easily initiate requests to clients (no known URL)', correct: true, feedback: 'Correct. This breaks server→client messages like sampling requests, progress notifications, and logging. StreamableHTTP uses SSE to work around this.' },
+                  { label: 'HTTP is too slow for MCP', correct: false, feedback: 'Speed isn\'t the issue. The limitation is that servers can\'t easily push messages to clients without a known URL.' },
+                  { label: 'HTTP doesn\'t support JSON', correct: false, feedback: 'HTTP handles JSON fine. The issue is server→client message initiation.' },
+                  { label: 'HTTP connections time out too quickly', correct: false, feedback: 'The core issue is directionality: servers can\'t easily push to clients.' },
+                ]
+              },
+              {
+                id: 'mcp-l7-s2-q3',
+                question: 'How does StreamableHTTP solve server-to-client communication?',
+                codeBlock: null,
+                options: [
+                  { label: 'Server-Sent Events (SSE) — after init, the client opens a long-lived GET connection that the server uses to stream messages at any time', correct: true, feedback: 'Correct. The session ID from initialization identifies the client. A persistent SSE connection lets the server push notifications and requests.' },
+                  { label: 'WebSockets', correct: false, feedback: 'StreamableHTTP uses SSE (Server-Sent Events), not WebSockets, for server→client communication.' },
+                  { label: 'Long polling', correct: false, feedback: 'StreamableHTTP uses SSE, which is more efficient than polling.' },
+                  { label: 'The server calls a webhook URL', correct: false, feedback: 'SSE is used — the client opens a persistent GET connection that the server writes to.' },
+                ]
+              },
+              {
+                id: 'mcp-l7-s2-q4',
+                question: 'What is the `mcp-session-id` header used for?',
+                codeBlock: null,
+                options: [
+                  { label: 'Returned during initialization — uniquely identifies the client. Must be included in all future requests', correct: true, feedback: 'Correct. The session ID lets the server track which client is making requests and route SSE messages to the right connection.' },
+                  { label: 'It\'s an authentication token', correct: false, feedback: 'It\'s a session identifier for routing, not authentication.' },
+                  { label: 'It encrypts the connection', correct: false, feedback: 'Session IDs are for client identification, not encryption.' },
+                  { label: 'It\'s optional metadata', correct: false, feedback: 'It\'s required — the server needs it to identify which client is making each request.' },
+                ]
+              },
+              {
+                id: 'mcp-l7-s2-q5',
+                question: 'What do `stateless_http=True` and `json_response=True` do, and what are the trade-offs?',
+                codeBlock: null,
+                options: [
+                  { label: '`stateless_http` enables horizontal scaling but loses session tracking, sampling, and notifications. `json_response` disables streaming, returning only final results', correct: true, feedback: 'Correct. Both break the SSE workaround. stateless_http removes sessions/server-initiated messages. json_response removes streaming/progress. Use only when those trade-offs are acceptable.' },
+                  { label: 'They improve security', correct: false, feedback: 'They solve scaling issues but sacrifice functionality (no sampling, no progress, no server→client messages).' },
+                  { label: 'They make communication faster', correct: false, feedback: 'They simplify communication but at the cost of losing SSE, progress notifications, and sampling.' },
+                  { label: 'They\'re required for production', correct: false, feedback: 'They\'re optional. Use them only when you need horizontal scaling and can accept the trade-offs.' },
+                ]
+              },
+            ]
+          },
+        ]
+      },
     ]
   },
   {

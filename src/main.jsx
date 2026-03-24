@@ -8,6 +8,8 @@ import Lesson02 from './pages/lessons/Lesson02'
 import Lesson03 from './pages/lessons/Lesson03'
 import Lesson04 from './pages/lessons/Lesson04'
 import Lesson05 from './pages/lessons/Lesson05'
+import Lesson06 from './pages/lessons/Lesson06'
+import Lesson07 from './pages/lessons/Lesson07'
 
 // Placeholder component for unbuilt lessons
 function ComingSoon() {
@@ -41,8 +43,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/mcp/resources-prompts" element={<Lesson05 />} />
 
         {/* Module 3: MCP Advanced */}
-        <Route path="/mcp-advanced/sampling" element={<ComingSoon />} />
-        <Route path="/mcp-advanced/transports" element={<ComingSoon />} />
+        <Route path="/mcp-advanced/sampling" element={<Lesson06 />} />
+        <Route path="/mcp-advanced/transports" element={<Lesson07 />} />
 
         {/* Interlude 2 */}
         <Route path="/interlude/2" element={<ComingSoon />} />
