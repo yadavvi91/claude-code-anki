@@ -4,9 +4,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import App from './App'
 import ScrollToTop from './components/ScrollToTop'
 import Lesson01 from './pages/lessons/Lesson01'
+import Lesson02 from './pages/lessons/Lesson02'
+import Lesson03 from './pages/lessons/Lesson03'
 
-// Lesson pages will be lazy-loaded as they're built
-// For now, placeholder component for unbuilt lessons
+// Placeholder component for unbuilt lessons
 function ComingSoon() {
   return (
     <div style={{ padding: '4rem 2rem', textAlign: 'center', fontFamily: "'Inter', sans-serif" }}>
@@ -27,8 +28,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
         {/* Module 1: Claude Code Fundamentals */}
         <Route path="/claude-code/architecture" element={<Lesson01 />} />
-        <Route path="/claude-code/planning" element={<ComingSoon />} />
-        <Route path="/claude-code/mcp-github" element={<ComingSoon />} />
+        <Route path="/claude-code/planning" element={<Lesson02 />} />
+        <Route path="/claude-code/mcp-github" element={<Lesson03 />} />
 
         {/* Interlude 1 */}
         <Route path="/interlude/1" element={<ComingSoon />} />
