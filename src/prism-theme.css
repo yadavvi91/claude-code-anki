@@ -33,17 +33,17 @@ pre[class*="language-"] {
 
 .token.atrule,
 .token.attr-value,
-.token.keyword { color: #818cf8; }
+.token.keyword { color: #f97316; }
 
 .token.function,
-.token.class-name { color: #60a5fa; }
+.token.class-name { color: #38bdf8; }
 
 .token.regex,
 .token.important,
-.token.variable { color: #f472b6; }
+.token.variable { color: #fb923c; }
 
 .token.decorator,
-.token.annotation { color: #c084fc; }
+.token.annotation { color: #facc15; }
 
 .token.important,
 .token.bold { font-weight: bold; }
