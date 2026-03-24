@@ -426,6 +426,8 @@
 | T087-T089 | Syntax highlighting (Prism.js) | WP33 | P0 | ✅ |
 | T090-T093 | Course images overhaul (70+ HD) | WP34 | P0 | ✅ |
 | T094-T099 | Fix mismatched images and alt text | WP37 | P0 | ✅ |
+| T100-T103 | Collapsible MCQ practice sections | WP38 | P0 | ✅ |
+| T104 | Tone down scroll animations | WP39 | P0 | ✅ |
 
 ---
 
@@ -567,3 +569,32 @@
 
 ### Dependencies
 - Depends on WP34 (images overhaul)
+
+---
+
+## Work Package WP38: Collapsible MCQ practice sections (Priority: P0) ✅ DONE
+
+**Goal**: Wrap all MCQ practice questions in collapsible sections so readers can focus on prose content without scrolling through cards. One collapsible section per card set, not per individual card.
+**Independent Test**: Each lesson shows "Practice questions (N)" collapse headers. Clicking expands to reveal cards, clicking again collapses them.
+
+### Included Subtasks
+- [x] T100 Create MCQSection.jsx wrapper component (collapsible header + body)
+- [x] T101 Update Lesson01 — collect 19 scattered individual cards into 4 MCQSection groups
+- [x] T102 Update Lessons 02-14 — wrap existing .map() card blocks in MCQSection
+- [x] T103 Verify all 14 lessons render correctly with collapsible sections
+
+### Dependencies
+- Depends on WP02 (MCQCard component)
+
+---
+
+## Work Package WP39: Tone down scroll animations (Priority: P0) ✅ DONE
+
+**Goal**: Reduce Reveal component animation from distracting slide-up + fade to subtle fade-in only. The original translateY(18px) + 0.55s animation was visually overwhelming when many elements animated simultaneously on scroll.
+**Independent Test**: Scrolling through any lesson shows smooth, non-distracting content fade-in without vertical motion.
+
+### Included Subtasks
+- [x] T104 Remove translateY motion from Reveal component, reduce duration to 0.35s
+
+### Dependencies
+- Depends on WP03 (Reveal component)
