@@ -425,6 +425,7 @@
 | T086 | NavSidebar on all pages | WP32 | P0 | ✅ |
 | T087-T089 | Syntax highlighting (Prism.js) | WP33 | P0 | ✅ |
 | T090-T093 | Course images overhaul (70+ HD) | WP34 | P0 | ✅ |
+| T094-T099 | Fix mismatched images and alt text | WP37 | P0 | ✅ |
 
 ---
 
@@ -548,3 +549,21 @@
 - [x] T091 Fix 7 timestamp mismatches in L1-L3
 - [x] T092 Restore 29 skills/subagents images for L8-L11
 - [x] T093 Add 70+ course images across L1-L7 (8-15 per lesson)
+
+---
+
+## Work Package WP37: Fix mismatched images and alt text (Priority: P0) ✅ DONE
+
+**Goal**: Audit every image in all 14 lessons against its alt text and surrounding prose context. Fix images that don't match their descriptions.
+**Independent Test**: Every image alt text accurately describes what the image actually shows.
+
+### Included Subtasks
+- [x] T094 Audit all ~100 lesson images against alt text (visual inspection)
+- [x] T095 Fix L1: swap Set 1 hero image to tools table, fix 8 alt texts
+- [x] T096 Fix L2: correct 9 demo screenshot alt texts
+- [x] T097 Fix L3: correct 6 terminal/code screenshot alt texts
+- [x] T098 Fix L6: correct 10 title-slide alt texts (were claiming implementation details)
+- [x] T099 Fix L7: correct 14 repetitive diagram alt texts
+
+### Dependencies
+- Depends on WP34 (images overhaul)

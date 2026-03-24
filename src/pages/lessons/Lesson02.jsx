@@ -165,7 +165,7 @@ export default function Lesson02() {
         </p></Reveal>
 
         <Reveal>
-          <img src={`${base}303236_000021s.jpg`} alt="VS Code with Claude Code — project structure visible in the explorer panel" style={styles.img} />
+          <img src={`${base}303236_000103s.jpg`} alt="Planning mode — enable with Shift+Tab twice, Claude explores and plans before writing code" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -203,7 +203,7 @@ export default function Lesson02() {
         </p></Reveal>
 
         <Reveal>
-          <img src={`${base}303236_000082s.jpg`} alt="VS Code showing Claude Code auto-accept edits mode during development" style={styles.img} />
+          <img src={`${base}303236_000149s.jpg`} alt="Thinking modes — from Think to Ultrathink, progressively deeper reasoning for harder problems" style={styles.img} />
         </Reveal>
 
         {/* S2 cards */}
