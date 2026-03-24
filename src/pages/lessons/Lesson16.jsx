@@ -22,11 +22,13 @@ const colors = allCards.map(() => nc())
 const s1 = sets[0].cards
 const s2 = sets[1].cards
 const s3 = sets[2].cards
+const s4 = sets[3].cards
 
 const NAV_SECTIONS = [
   { id: 'set1', label: 'Invoking the Coding Agent' },
   { id: 'set2', label: 'Environment & Security' },
   { id: 'set3', label: 'Custom Agents & Workflow' },
+  { id: 'set4', label: 'Agent Mode vs Coding Agent' },
   { id: 'summary', label: 'Summary', divider: true },
 ]
 
@@ -36,7 +38,7 @@ export default function Lesson16() {
       <main style={styles.main}>
         <Reveal><div style={styles.lessonLabel}>Lesson 16</div><h1 style={styles.h1}>The Coding Agent</h1>
           <p style={styles.subtitle}>Assign an issue to Copilot, get a pull request back — the fully autonomous cloud agent workflow</p></Reveal>
-        <Reveal><ConceptDisplay concept="Issue Assignment · Draft PRs · Self-Review · Custom Agents · AGENTS.md" description="The coding agent turns GitHub Issues into reviewed pull requests without anyone opening an editor." color={mod.color} /></Reveal>
+        <Reveal><ConceptDisplay concept="Issue Assignment · Draft PRs · Self-Review · Custom Agents · Agent Mode vs Cloud" description="The coding agent turns GitHub Issues into reviewed pull requests without anyone opening an editor." color={mod.color} /></Reveal>
 
         <Reveal id="set1"><div style={{ ...styles.setLabel, color: C[1] }}>Set 1 — Invoking the Coding Agent</div><h2 style={styles.h2}>From issue to pull request</h2></Reveal>
         <Reveal><p style={styles.prose}>The coding agent is Copilot's fully autonomous mode. You assign a GitHub Issue to Copilot — the same way you'd assign it to a colleague — and the agent takes over: it analyzes the issue, creates a branch, writes code, runs tests, and delivers a <strong>draft pull request</strong>. No editor needed.</p></Reveal>
@@ -121,8 +123,29 @@ For every change:
           </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
+
+        <Reveal id="set4"><div style={{ ...styles.setLabel, color: C[4] }}>Set 4 — Agent Mode vs Coding Agent</div><h2 style={styles.h2}>The agent spectrum</h2></Reveal>
+        <Reveal><p style={styles.prose}>Copilot offers three distinct agent types, each designed for a different workflow. Understanding when to use which is the key skill.</p></Reveal>
+        <Reveal><p style={styles.prose}><strong>Agent Mode</strong> (in VS Code, JetBrains, etc.) is synchronous and local. You chat with it, it reads your files, edits code, runs terminal commands — and you guide it in real-time. It inherits your full local environment automatically: your Node version, running databases, environment variables, everything. Think of it as <strong>pair programming with an AI</strong>.</p></Reveal>
+        <Reveal><p style={styles.prose}><strong>Background agents</strong> are the middle ground. They run locally on your machine but in a <strong>separate git worktree</strong>, working independently on their own branch. You keep coding in your workspace while the background agent refactors a module or writes migration scripts in parallel. Local environment, no conflicts.</p></Reveal>
+        <Reveal><p style={styles.prose}><strong>The cloud coding agent</strong> is fully autonomous and remote. It runs on GitHub Actions infrastructure, needs explicit environment setup via <code style={styles.code}>copilot-setup-steps.yml</code>, and delivers a draft PR when done. No developer needs to open an editor — assign an issue and walk away.</p></Reveal>
+        <Reveal><ComparisonTable headers={['', 'Agent Mode', 'Background Agent', 'Cloud Coding Agent']} rows={[
+          ['Where it runs', 'Your IDE (local)', 'Your machine (worktree)', 'GitHub Actions (remote)'],
+          ['Interaction', 'Synchronous — you guide it', 'Asynchronous — works independently', 'Asynchronous — fully autonomous'],
+          ['Environment', 'Inherits local setup', 'Inherits local setup', 'Needs copilot-setup-steps.yml'],
+          ['Trigger', 'Chat in editor', 'Chat / delegate', 'Assign issue or chat'],
+          ['Delivers', 'Edits in your workspace', 'Branch in worktree', 'Draft pull request'],
+          ['Best for', 'Interactive debugging, exploration', 'Parallel local tasks', 'Well-defined issues, no editor needed'],
+        ]} /></Reveal>
+        <Reveal><TipCallout variant="tip">Use Agent Mode when you need to iterate and explore. Use background agents when you want parallel local work. Use the cloud coding agent for well-defined tasks that don't need your machine or your attention.</TipCallout></Reveal>
+
+          <MCQSection color={colors[s1.length + s2.length + s3.length]} count={s4.length}>
+            {s4.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + s3.length + i]} /></Reveal>)}
+          </MCQSection>
+
+        <div style={styles.divider}>· · ·</div>
         <Reveal id="summary"><div style={styles.endSection}><div style={styles.endLabel}>End of Lesson 16</div>
-          <p style={styles.endProse}>You now understand how to invoke the coding agent (issue assignment, VS Code chat, CLI), how it delivers work (draft PRs with session logs), its security model (CodeQL, secret scanning, dependency checks, self-review), and how to create custom agents for specialized workflows. This completes Module 6: GitHub Copilot.</p>
+          <p style={styles.endProse}>You now understand how to invoke the coding agent (issue assignment, VS Code chat, CLI), how it delivers work (draft PRs with session logs), its security model (CodeQL, secret scanning, dependency checks, self-review), how to create custom agents for specialized workflows, and the spectrum from interactive Agent Mode to autonomous cloud coding agent. This completes Module 6: GitHub Copilot.</p>
           <a href="/claude-code-anki/" style={styles.nextBtn}>← Back to Home</a></div></Reveal>
       </main>
     </div>

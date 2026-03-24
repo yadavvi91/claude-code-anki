@@ -2950,6 +2950,67 @@ export const modules = [
               },
             ]
           },
+          {
+            id: 'cop-l16-s4',
+            title: 'Set 4 — Agent Mode vs Coding Agent',
+            cards: [
+              {
+                id: 'cop-l16-s4-q1',
+                question: 'You\'re debugging a tricky CSS layout issue and need the AI to iterate with you in real-time — reading files, editing code, checking the browser, and responding to your feedback. Which should you use?',
+                codeBlock: null,
+                options: [
+                  { label: 'Agent Mode in VS Code — it runs synchronously in your editor with access to local tools (read_file, apply_edit, run_terminal) and you guide it interactively', correct: true, feedback: 'Correct. Agent Mode is the synchronous, local counterpart to the coding agent. It works inside your IDE, responds to your feedback in real-time, and has direct access to your local environment — perfect for interactive debugging and iterative work.' },
+                  { label: 'The cloud coding agent — assign it as a GitHub Issue', correct: false, feedback: 'The cloud coding agent works asynchronously and delivers a PR. For real-time interactive debugging where you need to guide the AI, Agent Mode in your IDE is the right choice.' },
+                  { label: 'A background agent — it works in parallel on your machine', correct: false, feedback: 'Background agents work independently in a worktree. For interactive debugging where you\'re guiding the AI step-by-step, you want Agent Mode in your editor.' },
+                  { label: 'It doesn\'t matter — all agent types work the same way', correct: false, feedback: 'Agent types differ significantly: Agent Mode is synchronous and interactive, background agents are local but independent, and cloud agents are fully remote and asynchronous.' },
+                ]
+              },
+              {
+                id: 'cop-l16-s4-q2',
+                question: 'A PM files a well-defined issue: "Add a /health endpoint that returns 200 OK." No developer is available. What is the most efficient way to get this done?',
+                codeBlock: null,
+                options: [
+                  { label: 'Assign the issue to Copilot — the cloud coding agent picks it up, implements it autonomously on GitHub Actions, and delivers a draft PR for review', correct: true, feedback: 'Correct. Well-defined, self-contained tasks are ideal for the cloud coding agent. No developer needs to open an editor. The agent works on GitHub\'s infrastructure, runs security checks, and delivers a reviewed PR.' },
+                  { label: 'Wait for a developer to use Agent Mode in VS Code', correct: false, feedback: 'Agent Mode requires a developer at the keyboard. The cloud coding agent can handle well-defined tasks autonomously without anyone opening an editor.' },
+                  { label: 'Use a background agent on a developer\'s machine', correct: false, feedback: 'Background agents need a developer\'s machine running. The cloud coding agent is the fully remote option — no local resources needed.' },
+                  { label: 'This kind of task requires human implementation', correct: false, feedback: 'The cloud coding agent can implement well-defined tasks like adding endpoints autonomously, delivering a PR for human review.' },
+                ]
+              },
+              {
+                id: 'cop-l16-s4-q3',
+                question: 'What is the fundamental difference in how Agent Mode and the cloud coding agent access your development environment?',
+                codeBlock: null,
+                options: [
+                  { label: 'Agent Mode inherits your full local environment (installed tools, running services, env vars) automatically; the coding agent needs explicit setup via `copilot-setup-steps.yml`', correct: true, feedback: 'Correct. This is the key trade-off. Agent Mode runs locally and gets everything for free — your Node version, your database, your env vars. The coding agent runs remotely and needs every dependency explicitly defined in `copilot-setup-steps.yml`.' },
+                  { label: 'Both access the same environment — they share a remote VM', correct: false, feedback: 'Agent Mode runs locally in your IDE. The coding agent runs remotely on GitHub Actions. They have completely different environments.' },
+                  { label: 'The coding agent has better environment access because it runs on powerful servers', correct: false, feedback: 'Server power isn\'t the distinction. Agent Mode has richer environment access (your full local setup), while the coding agent needs explicit configuration but runs remotely.' },
+                  { label: 'Neither can access development tools — they only edit source files', correct: false, feedback: 'Both can run terminal commands, execute tests, and use dev tools. The difference is Agent Mode inherits your local tools while the coding agent needs explicit setup.' },
+                ]
+              },
+              {
+                id: 'cop-l16-s4-q4',
+                question: 'You want to refactor a module while continuing to write tests for another module on the same machine. Which agent type enables this parallel workflow?',
+                codeBlock: null,
+                options: [
+                  { label: 'A background agent — it creates a separate git worktree so it works on a different branch while you keep coding in your workspace', correct: true, feedback: 'Correct. Background agents use git worktrees for isolation. They work on a separate branch in a separate directory while you continue using VS Code normally. It\'s the local parallel option — between the interactive Agent Mode and the fully remote coding agent.' },
+                  { label: 'Agent Mode — just open two VS Code windows', correct: false, feedback: 'Agent Mode shares your workspace and is interactive. Background agents are specifically designed for parallel local work using git worktree isolation.' },
+                  { label: 'The cloud coding agent — it runs remotely so it can\'t conflict', correct: false, feedback: 'The cloud coding agent works, but background agents are the local option for parallel work when you want to leverage your existing environment without waiting for cloud setup.' },
+                  { label: 'This isn\'t possible — you must finish one task before starting another', correct: false, feedback: 'Background agents exist precisely for this use case: parallel work on the same machine using git worktree isolation.' },
+                ]
+              },
+              {
+                id: 'cop-l16-s4-q5',
+                question: 'Your team is choosing between Agent Mode, background agents, and cloud coding agents for different tasks. Which summary correctly maps each to its ideal use case?',
+                codeBlock: null,
+                options: [
+                  { label: 'Agent Mode → interactive, real-time pairing · Background agent → local parallel tasks using worktrees · Cloud coding agent → autonomous issue-to-PR with no editor needed', correct: true, feedback: 'Correct. This is the spectrum: Agent Mode for interactive collaboration (you\'re driving), background agents for parallel local work (you\'re both working), and cloud coding agents for fully autonomous tasks (it works while you sleep).' },
+                  { label: 'They\'re all the same — just different names for Copilot\'s agent feature', correct: false, feedback: 'Each operates differently: synchronous-local (Agent Mode), asynchronous-local (background), asynchronous-remote (cloud). They serve distinct workflows.' },
+                  { label: 'Agent Mode → small tasks · Background → medium tasks · Cloud → large tasks', correct: false, feedback: 'Task size isn\'t the distinguishing factor. The choice depends on interactivity needs, environment requirements, and whether a human is actively involved.' },
+                  { label: 'Agent Mode → free tier · Background → Pro tier · Cloud → Enterprise tier', correct: false, feedback: 'The distinction is workflow type, not pricing tier. All three are available with Copilot — the choice depends on the nature of the task.' },
+                ]
+              },
+            ]
+          },
         ]
       },
     ]
