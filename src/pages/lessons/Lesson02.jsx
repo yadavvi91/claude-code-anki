@@ -2,12 +2,14 @@ import { modules } from '../../data/cardSets'
 import MCQCard from '../../components/MCQCard'
 import Reveal from '../../components/Reveal'
 import LessonNav from '../../components/LessonNav'
+import NavSidebar from '../../components/NavSidebar'
 import ConceptDisplay from '../../components/ConceptDisplay'
 import CodeBlock from '../../components/CodeBlock'
 import ComparisonTable from '../../components/ComparisonTable'
 import TipCallout from '../../components/TipCallout'
 import { T } from '../../theme'
 
+const base = '/claude-code-anki/images/'
 const mod = modules[0] // Claude Code Fundamentals
 const lesson = mod.lessons[1] // Context, Planning & Commands
 const sets = lesson.cardSets
@@ -24,9 +26,18 @@ const s2 = sets[1].cards // Planning & Thinking
 const s3 = sets[2].cards // Conversation Control
 const s4 = sets[3].cards // Custom Commands
 
+const NAV_SECTIONS = [
+  { id: 'set1', label: 'CLAUDE.md & Context' },
+  { id: 'set2', label: 'Planning & Thinking' },
+  { id: 'set3', label: 'Conversation Control' },
+  { id: 'set4', label: 'Custom Commands' },
+  { id: 'summary', label: 'Summary', divider: true },
+]
+
 export default function Lesson02() {
   return (
     <div style={styles.page}>
+      <NavSidebar sections={NAV_SECTIONS} />
       <LessonNav
         moduleTitle="Claude Code Fundamentals"
         moduleColor={mod.color}
@@ -55,9 +66,13 @@ export default function Lesson02() {
         </Reveal>
 
         {/* ══════════════ SET 1 — CLAUDE.md & CONTEXT ══════════════ */}
-        <Reveal>
+        <Reveal id="set1">
           <div style={{ ...styles.setLabel, color: C[1] }}>Set 1 — CLAUDE.md & Context Management</div>
           <h2 style={styles.h2}>Teaching Claude about your project</h2>
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}cc-020.jpg`} alt="CLAUDE.md context management overview" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -118,9 +133,13 @@ export default function Lesson02() {
         <div style={styles.divider}>· · ·</div>
 
         {/* ══════════════ SET 2 — PLANNING & THINKING ══════════════ */}
-        <Reveal>
+        <Reveal id="set2">
           <div style={{ ...styles.setLabel, color: C[2] }}>Set 2 — Planning & Thinking Modes</div>
           <h2 style={styles.h2}>When Claude needs to think harder</h2>
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}cc-025.jpg`} alt="Planning mode and thinking modes comparison" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -171,7 +190,7 @@ export default function Lesson02() {
         <div style={styles.divider}>· · ·</div>
 
         {/* ══════════════ SET 3 — CONVERSATION CONTROL ══════════════ */}
-        <Reveal>
+        <Reveal id="set3">
           <div style={{ ...styles.setLabel, color: C[3] }}>Set 3 — Conversation Control</div>
           <h2 style={styles.h2}>Steering the conversation</h2>
         </Reveal>
@@ -215,9 +234,13 @@ export default function Lesson02() {
         <div style={styles.divider}>· · ·</div>
 
         {/* ══════════════ SET 4 — CUSTOM COMMANDS ══════════════ */}
-        <Reveal>
+        <Reveal id="set4">
           <div style={{ ...styles.setLabel, color: C[4] }}>Set 4 — Custom Commands</div>
           <h2 style={styles.h2}>Building your own slash commands</h2>
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}cc-028.jpg`} alt="Custom slash commands in the .claude/commands directory" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -266,7 +289,7 @@ Coverage:
         {/* ── END ── */}
         <div style={styles.divider}>· · ·</div>
 
-        <Reveal>
+        <Reveal id="summary">
           <div style={styles.endSection}>
             <div style={styles.endLabel}>End of Lesson 2</div>
             <p style={styles.endProse}>
@@ -362,6 +385,8 @@ const styles = {
     borderRadius: '3px',
     color: T.color.accent,
   },
+
+  img: { width: '100%', maxWidth: '480px', borderRadius: '8px', margin: '1rem auto', display: 'block' },
 
   divider: {
     textAlign: 'center',

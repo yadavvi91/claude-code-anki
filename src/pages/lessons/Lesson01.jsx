@@ -2,6 +2,7 @@ import { modules } from '../../data/cardSets'
 import MCQCard from '../../components/MCQCard'
 import Reveal from '../../components/Reveal'
 import LessonNav from '../../components/LessonNav'
+import NavSidebar from '../../components/NavSidebar'
 import ConceptDisplay from '../../components/ConceptDisplay'
 import CodeBlock from '../../components/CodeBlock'
 import ComparisonTable from '../../components/ComparisonTable'
@@ -9,6 +10,7 @@ import TipCallout from '../../components/TipCallout'
 import FileTree from '../../components/FileTree'
 import { T } from '../../theme'
 
+const base = '/claude-code-anki/images/'
 const mod = modules[0] // Claude Code Fundamentals
 const lesson = mod.lessons[0] // Architecture & Tools
 const sets = lesson.cardSets
@@ -29,9 +31,18 @@ const s2 = sets[1].cards // Architecture & Context
 const s3 = sets[2].cards // Safety & Best Practices
 const s4 = sets[3].cards // Bash & System Commands
 
+const NAV_SECTIONS = [
+  { id: 'set1', label: 'Tool Selection' },
+  { id: 'set2', label: 'Architecture' },
+  { id: 'set3', label: 'Safety' },
+  { id: 'set4', label: 'Bash Commands' },
+  { id: 'summary', label: 'Summary', divider: true },
+]
+
 export default function Lesson01() {
   return (
     <div style={styles.page}>
+      <NavSidebar sections={NAV_SECTIONS} />
       <LessonNav
         moduleTitle="Claude Code Fundamentals"
         moduleColor={mod.color}
@@ -60,9 +71,13 @@ export default function Lesson01() {
         </Reveal>
 
         {/* ══════════════ SET 1 — TOOL SELECTION ══════════════ */}
-        <Reveal>
+        <Reveal id="set1">
           <div style={{ ...styles.setLabel, color: C[1] }}>Set 1 — Tool Selection</div>
           <h2 style={styles.h2}>The right tool for the job</h2>
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}cc-005.jpg`} alt="Claude Code multi-tool architecture overview" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -142,9 +157,13 @@ export default function Lesson01() {
         <Reveal><div style={styles.divider}>◆</div></Reveal>
 
         {/* ══════════════ SET 2 — ARCHITECTURE & CONTEXT ══════════════ */}
-        <Reveal>
+        <Reveal id="set2">
           <div style={{ ...styles.setLabel, color: C[2] }}>Set 2 — Architecture & Context</div>
           <h2 style={styles.h2}>How Claude Code sees your project</h2>
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}cc-007.jpg`} alt="Claude Code sandbox and context architecture" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -228,7 +247,7 @@ Grep("handleSubmit")    // wait...`}
         <Reveal><div style={styles.divider}>◆</div></Reveal>
 
         {/* ══════════════ SET 3 — SAFETY & BEST PRACTICES ══════════════ */}
-        <Reveal>
+        <Reveal id="set3">
           <div style={{ ...styles.setLabel, color: C[3] }}>Set 3 — Safety & Best Practices</div>
           <h2 style={styles.h2}>Measure twice, cut once</h2>
         </Reveal>
@@ -292,9 +311,13 @@ Grep("handleSubmit")    // wait...`}
         <Reveal><div style={styles.divider}>◆</div></Reveal>
 
         {/* ══════════════ SET 4 — BASH & SYSTEM COMMANDS ══════════════ */}
-        <Reveal>
+        <Reveal id="set4">
           <div style={{ ...styles.setLabel, color: C[4] }}>Set 4 — Bash & System Commands</div>
           <h2 style={styles.h2}>When the shell is the right tool</h2>
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}cc-009.jpg`} alt="Bash tool usage and system command patterns" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -354,7 +377,7 @@ git log --oneline | head -5`}
           <div style={styles.divider}>◆</div>
         </Reveal>
 
-        <Reveal>
+        <Reveal id="summary">
           <div style={styles.endSection}>
             <div style={styles.endLabel}>End of Lesson 1</div>
             <p style={styles.endProse}>
@@ -455,6 +478,8 @@ const styles = {
     borderRadius: '3px',
     color: T.color.accent,
   },
+
+  img: { width: '100%', maxWidth: '480px', borderRadius: '8px', margin: '1rem auto', display: 'block' },
 
   divider: {
     textAlign: 'center',

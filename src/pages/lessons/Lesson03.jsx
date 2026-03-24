@@ -2,12 +2,14 @@ import { modules } from '../../data/cardSets'
 import MCQCard from '../../components/MCQCard'
 import Reveal from '../../components/Reveal'
 import LessonNav from '../../components/LessonNav'
+import NavSidebar from '../../components/NavSidebar'
 import ConceptDisplay from '../../components/ConceptDisplay'
 import CodeBlock from '../../components/CodeBlock'
 import ComparisonTable from '../../components/ComparisonTable'
 import TipCallout from '../../components/TipCallout'
 import { T } from '../../theme'
 
+const base = '/claude-code-anki/images/'
 const mod = modules[0] // Claude Code Fundamentals
 const lesson = mod.lessons[2] // MCP Integration & GitHub Workflows
 const sets = lesson.cardSets
@@ -24,9 +26,18 @@ const s2 = sets[1].cards // GitHub Integration
 const s3 = sets[2].cards // Hooks Fundamentals
 const s4 = sets[3].cards // Advanced Hooks & SDK
 
+const NAV_SECTIONS = [
+  { id: 'set1', label: 'MCP Servers' },
+  { id: 'set2', label: 'GitHub Integration' },
+  { id: 'set3', label: 'Hooks Fundamentals' },
+  { id: 'set4', label: 'Advanced Hooks & SDK' },
+  { id: 'summary', label: 'Summary', divider: true },
+]
+
 export default function Lesson03() {
   return (
     <div style={styles.page}>
+      <NavSidebar sections={NAV_SECTIONS} />
       <LessonNav
         moduleTitle="Claude Code Fundamentals"
         moduleColor={mod.color}
@@ -55,9 +66,13 @@ export default function Lesson03() {
         </Reveal>
 
         {/* ══════════════ SET 1 — MCP SERVERS ══════════════ */}
-        <Reveal>
+        <Reveal id="set1">
           <div style={{ ...styles.setLabel, color: C[1] }}>Set 1 — MCP Servers</div>
           <h2 style={styles.h2}>Adding new capabilities</h2>
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}cc-042.jpg`} alt="MCP server integration with Claude Code" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -112,7 +127,7 @@ export default function Lesson03() {
         <div style={styles.divider}>· · ·</div>
 
         {/* ══════════════ SET 2 — GITHUB INTEGRATION ══════════════ */}
-        <Reveal>
+        <Reveal id="set2">
           <div style={{ ...styles.setLabel, color: C[2] }}>Set 2 — GitHub Integration</div>
           <h2 style={styles.h2}>Claude as a GitHub team member</h2>
         </Reveal>
@@ -168,9 +183,13 @@ allowed_tools: "Bash(npm:*),Bash(sqlite3:*),
         <div style={styles.divider}>· · ·</div>
 
         {/* ══════════════ SET 3 — HOOKS FUNDAMENTALS ══════════════ */}
-        <Reveal>
+        <Reveal id="set3">
           <div style={{ ...styles.setLabel, color: C[3] }}>Set 3 — Hooks Fundamentals</div>
           <h2 style={styles.h2}>Intercepting tool calls</h2>
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}cc-052.jpg`} alt="Hook lifecycle with PreToolUse and PostToolUse events" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -238,7 +257,7 @@ main();`}
         <div style={styles.divider}>· · ·</div>
 
         {/* ══════════════ SET 4 — ADVANCED HOOKS & SDK ══════════════ */}
-        <Reveal>
+        <Reveal id="set4">
           <div style={{ ...styles.setLabel, color: C[4] }}>Set 4 — Advanced Hooks & SDK</div>
           <h2 style={styles.h2}>Power patterns</h2>
         </Reveal>
@@ -273,6 +292,10 @@ main();`}
             <code style={styles.code}>"command": "jq . {'>'} log.json"</code> and matcher
             <code style={styles.code}>"*"</code>. It dumps the input so you can inspect it.
           </TipCallout>
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}cc-060.jpg`} alt="Claude Code SDK integration patterns" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -320,7 +343,7 @@ for await (const message of query({
         {/* ── END ── */}
         <div style={styles.divider}>· · ·</div>
 
-        <Reveal>
+        <Reveal id="summary">
           <div style={styles.endSection}>
             <div style={styles.endLabel}>End of Lesson 3</div>
             <p style={styles.endProse}>
@@ -416,6 +439,8 @@ const styles = {
     borderRadius: '3px',
     color: T.color.accent,
   },
+
+  img: { width: '100%', maxWidth: '480px', borderRadius: '8px', margin: '1rem auto', display: 'block' },
 
   divider: {
     textAlign: 'center',

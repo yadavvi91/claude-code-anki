@@ -2,12 +2,14 @@ import { modules } from '../../data/cardSets'
 import MCQCard from '../../components/MCQCard'
 import Reveal from '../../components/Reveal'
 import LessonNav from '../../components/LessonNav'
+import NavSidebar from '../../components/NavSidebar'
 import ConceptDisplay from '../../components/ConceptDisplay'
 import CodeBlock from '../../components/CodeBlock'
 import ComparisonTable from '../../components/ComparisonTable'
 import TipCallout from '../../components/TipCallout'
 import { T } from '../../theme'
 
+const base = '/claude-code-anki/images/'
 const mod = modules[2] // MCP Advanced
 const lesson = mod.lessons[1] // Transports & Production
 const sets = lesson.cardSets
@@ -22,9 +24,16 @@ const colors = allCards.map(() => nc())
 const s1 = sets[0].cards // JSON & STDIO
 const s2 = sets[1].cards // StreamableHTTP
 
+const NAV_SECTIONS = [
+  { id: 'set1', label: 'JSON & STDIO' },
+  { id: 'set2', label: 'StreamableHTTP' },
+  { id: 'summary', label: 'Summary', divider: true },
+]
+
 export default function Lesson07() {
   return (
     <div style={styles.page}>
+      <NavSidebar sections={NAV_SECTIONS} />
       <LessonNav
         moduleTitle="MCP Advanced"
         moduleColor={mod.color}
@@ -52,9 +61,13 @@ export default function Lesson07() {
         </Reveal>
 
         {/* ══════════════ SET 1 — JSON & STDIO ══════════════ */}
-        <Reveal>
+        <Reveal id="set1">
           <div style={{ ...styles.setLabel, color: C[1] }}>Set 1 — JSON Messages & STDIO</div>
           <h2 style={styles.h2}>The message layer</h2>
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}mcp-adv-025.jpg`} alt="JSON message types in MCP communication" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -98,9 +111,13 @@ export default function Lesson07() {
         <div style={styles.divider}>· · ·</div>
 
         {/* ══════════════ SET 2 — STREAMABLE HTTP ══════════════ */}
-        <Reveal>
+        <Reveal id="set2">
           <div style={{ ...styles.setLabel, color: C[2] }}>Set 2 — StreamableHTTP Transport</div>
           <h2 style={styles.h2}>Going remote</h2>
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}mcp-adv-040.jpg`} alt="StreamableHTTP transport for remote MCP servers" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -133,6 +150,10 @@ export default function Lesson07() {
         </Reveal>
 
         <Reveal>
+          <img src={`${base}mcp-adv-055.jpg`} alt="SSE and session management for production MCP" style={styles.img} />
+        </Reveal>
+
+        <Reveal>
           <TipCallout variant="warning">
             If your app works with STDIO locally but breaks with HTTP transport, the
             <code style={styles.code}>stateless_http</code>/<code style={styles.code}>json_response</code> settings
@@ -147,7 +168,7 @@ export default function Lesson07() {
         {/* ── END ── */}
         <div style={styles.divider}>· · ·</div>
 
-        <Reveal>
+        <Reveal id="summary">
           <div style={styles.endSection}>
             <div style={styles.endLabel}>End of Lesson 7</div>
             <p style={styles.endProse}>
@@ -179,6 +200,7 @@ const styles = {
   h2: { fontFamily: T.font.heading, fontSize: '1.55rem', fontWeight: 600, color: T.color.ink2, lineHeight: 1.3, marginBottom: '1.4rem' },
   prose: { fontFamily: T.font.prose, fontSize: '1.05rem', lineHeight: 1.85, color: T.color.ink3, marginBottom: '1.4rem', maxWidth: '65ch' },
   code: { fontFamily: T.font.code, fontSize: '0.85em', background: 'rgba(99,102,241,0.08)', padding: '0.15em 0.4em', borderRadius: '3px', color: T.color.accent },
+  img: { width: '100%', maxWidth: '480px', borderRadius: '8px', margin: '1rem auto', display: 'block' },
   divider: { textAlign: 'center', color: T.color.bg3, fontSize: '1rem', margin: '3rem 0', letterSpacing: '0.5em' },
   endSection: { textAlign: 'center', padding: '2rem 0' },
   endLabel: { fontFamily: T.font.label, fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.3em', textTransform: 'uppercase', color: T.color.ink4, marginBottom: '1.5rem' },

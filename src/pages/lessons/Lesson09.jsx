@@ -2,11 +2,13 @@ import { modules } from '../../data/cardSets'
 import MCQCard from '../../components/MCQCard'
 import Reveal from '../../components/Reveal'
 import LessonNav from '../../components/LessonNav'
+import NavSidebar from '../../components/NavSidebar'
 import ConceptDisplay from '../../components/ConceptDisplay'
 import ComparisonTable from '../../components/ComparisonTable'
 import TipCallout from '../../components/TipCallout'
 import { T } from '../../theme'
 
+const base = '/claude-code-anki/images/'
 const mod = modules[3]
 const lesson = mod.lessons[1]
 const sets = lesson.cardSets
@@ -18,15 +20,24 @@ const colors = allCards.map(() => nc())
 const s1 = sets[0].cards
 const s2 = sets[1].cards
 
+const NAV_SECTIONS = [
+  { id: 'set1', label: 'Skills vs Other Features' },
+  { id: 'set2', label: 'Sharing & Troubleshooting' },
+  { id: 'summary', label: 'Summary', divider: true },
+]
+
 export default function Lesson09() {
   return (
-    <div style={styles.page}><LessonNav moduleTitle="Agent Skills" moduleColor={mod.color} prevLink="/skills/anatomy" prevLabel="L8: Anatomy" nextLink="/interlude/3" nextLabel="Interlude 3" />
+    <div style={styles.page}><NavSidebar sections={NAV_SECTIONS} /><LessonNav moduleTitle="Agent Skills" moduleColor={mod.color} prevLink="/skills/anatomy" prevLabel="L8: Anatomy" nextLink="/interlude/3" nextLabel="Interlude 3" />
       <main style={styles.main}>
         <Reveal><div style={styles.lessonLabel}>Lesson 9</div><h1 style={styles.h1}>Distribution & Troubleshooting</h1>
           <p style={styles.subtitle}>How skills compare to other Claude Code features, sharing skills, and fixing common problems</p></Reveal>
         <Reveal><ConceptDisplay concept="Skills vs CLAUDE.md · Skills vs Hooks · Skills vs Subagents · Distribution · Debugging" description="Know when to use which feature, how to share skills, and how to fix them when they break." color={mod.color} /></Reveal>
 
-        <Reveal><div style={{ ...styles.setLabel, color: C[1] }}>Set 1 — Skills vs Other Features</div><h2 style={styles.h2}>Choosing the right tool</h2></Reveal>
+        <Reveal id="set1"><div style={{ ...styles.setLabel, color: C[1] }}>Set 1 — Skills vs Other Features</div><h2 style={styles.h2}>Choosing the right tool</h2></Reveal>
+        <Reveal>
+          <img src={`${base}skills-010.jpg`} alt="Comparing skills with other Claude Code extension mechanisms" style={styles.img} />
+        </Reveal>
         <Reveal><p style={styles.prose}>Claude Code has five extension mechanisms. Each serves a different purpose, and a well-configured project typically uses several together. Understanding when to use which is critical.</p></Reveal>
         <Reveal><ComparisonTable headers={['Feature', 'Trigger', 'Purpose', 'Example']} rows={[
           ['CLAUDE.md', 'Always loaded', 'Project-wide standards', '"Never modify the DB schema"'],
@@ -41,8 +52,14 @@ export default function Lesson09() {
 
         <div style={styles.divider}>· · ·</div>
 
-        <Reveal><div style={{ ...styles.setLabel, color: C[2] }}>Set 2 — Sharing & Troubleshooting</div><h2 style={styles.h2}>Getting skills to others, fixing when they break</h2></Reveal>
+        <Reveal id="set2"><div style={{ ...styles.setLabel, color: C[2] }}>Set 2 — Sharing & Troubleshooting</div><h2 style={styles.h2}>Getting skills to others, fixing when they break</h2></Reveal>
+        <Reveal>
+          <img src={`${base}skills-013.jpg`} alt="Three methods for distributing skills to teams" style={styles.img} />
+        </Reveal>
         <Reveal><p style={styles.prose}>There are three ways to distribute skills: <strong>repository commits</strong> (simplest — commit <code style={styles.code}>.claude/skills</code> and anyone who clones gets them), <strong>plugin marketplaces</strong> (for community sharing), and <strong>enterprise managed settings</strong> (admin-deployed, highest priority, org-wide enforcement).</p></Reveal>
+        <Reveal>
+          <img src={`${base}skills-016.jpg`} alt="Troubleshooting skills with debug mode and validators" style={styles.img} />
+        </Reveal>
         <Reveal><p style={styles.prose}>When a skill doesn't trigger, the cause is almost always the description. Claude uses semantic matching, so the request must overlap with the description's meaning. Test with variations of how you actually phrase requests, and add failing keywords to the description.</p></Reveal>
         <Reveal><ComparisonTable headers={['Symptom', 'Fix']} rows={[
           ['Not triggering', 'Improve description, add trigger phrases matching actual phrasing'],
@@ -55,7 +72,7 @@ export default function Lesson09() {
         {s2.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>)}
 
         <div style={styles.divider}>· · ·</div>
-        <Reveal><div style={styles.endSection}><div style={styles.endLabel}>End of Lesson 9</div>
+        <Reveal id="summary"><div style={styles.endSection}><div style={styles.endLabel}>End of Lesson 9</div>
           <p style={styles.endProse}>You now know how skills compare to CLAUDE.md, hooks, subagents, and MCP servers. You can distribute skills via repos, plugins, or enterprise settings, and troubleshoot common issues.</p>
           <a href="/claude-code-anki/interlude/3" style={styles.nextBtn}>Next → Interlude 3: Agents & Skills Reflections</a></div></Reveal>
       </main>
@@ -72,6 +89,7 @@ const styles = {
   h2: { fontFamily: T.font.heading, fontSize: '1.55rem', fontWeight: 600, color: T.color.ink2, lineHeight: 1.3, marginBottom: '1.4rem' },
   prose: { fontFamily: T.font.prose, fontSize: '1.05rem', lineHeight: 1.85, color: T.color.ink3, marginBottom: '1.4rem', maxWidth: '65ch' },
   code: { fontFamily: T.font.code, fontSize: '0.85em', background: 'rgba(99,102,241,0.08)', padding: '0.15em 0.4em', borderRadius: '3px', color: T.color.accent },
+  img: { width: '100%', maxWidth: '640px', borderRadius: '8px', margin: '1rem auto', display: 'block' },
   divider: { textAlign: 'center', color: T.color.bg3, fontSize: '1rem', margin: '3rem 0', letterSpacing: '0.5em' },
   endSection: { textAlign: 'center', padding: '2rem 0' },
   endLabel: { fontFamily: T.font.label, fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.3em', textTransform: 'uppercase', color: T.color.ink4, marginBottom: '1.5rem' },

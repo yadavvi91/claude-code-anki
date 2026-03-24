@@ -2,12 +2,14 @@ import { modules } from '../../data/cardSets'
 import MCQCard from '../../components/MCQCard'
 import Reveal from '../../components/Reveal'
 import LessonNav from '../../components/LessonNav'
+import NavSidebar from '../../components/NavSidebar'
 import ConceptDisplay from '../../components/ConceptDisplay'
 import CodeBlock from '../../components/CodeBlock'
 import ComparisonTable from '../../components/ComparisonTable'
 import TipCallout from '../../components/TipCallout'
 import { T } from '../../theme'
 
+const base = '/claude-code-anki/images/'
 const mod = modules[1] // MCP Fundamentals
 const lesson = mod.lessons[1] // Resources, Prompts & Patterns
 const sets = lesson.cardSets
@@ -23,9 +25,17 @@ const s1 = sets[0].cards // Resources Fundamentals
 const s2 = sets[1].cards // Prompts
 const s3 = sets[2].cards // Three Primitives
 
+const NAV_SECTIONS = [
+  { id: 'set1', label: 'Resources' },
+  { id: 'set2', label: 'Prompts' },
+  { id: 'set3', label: 'Choosing Primitives' },
+  { id: 'summary', label: 'Summary', divider: true },
+]
+
 export default function Lesson05() {
   return (
     <div style={styles.page}>
+      <NavSidebar sections={NAV_SECTIONS} />
       <LessonNav
         moduleTitle="MCP Fundamentals"
         moduleColor={mod.color}
@@ -53,9 +63,13 @@ export default function Lesson05() {
         </Reveal>
 
         {/* ══════════════ SET 1 — RESOURCES ══════════════ */}
-        <Reveal>
+        <Reveal id="set1">
           <div style={{ ...styles.setLabel, color: C[1] }}>Set 1 — Resources Fundamentals</div>
           <h2 style={styles.h2}>Exposing data from your server</h2>
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}mcp-032.jpg`} alt="MCP resources exposing read-only data to clients" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -116,9 +130,13 @@ def fetch_doc(doc_id: str) -> str:
         <div style={styles.divider}>· · ·</div>
 
         {/* ══════════════ SET 2 — PROMPTS ══════════════ */}
-        <Reveal>
+        <Reveal id="set2">
           <div style={{ ...styles.setLabel, color: C[2] }}>Set 2 — Prompts</div>
           <h2 style={styles.h2}>Pre-built instructions for users</h2>
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}mcp-045.jpg`} alt="MCP prompts as pre-built instructions for users" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -178,9 +196,13 @@ def format_document(
         <div style={styles.divider}>· · ·</div>
 
         {/* ══════════════ SET 3 — THREE PRIMITIVES ══════════════ */}
-        <Reveal>
+        <Reveal id="set3">
           <div style={{ ...styles.setLabel, color: C[3] }}>Set 3 — Choosing the Right Primitive</div>
           <h2 style={styles.h2}>Tools, resources, or prompts?</h2>
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}mcp-055.jpg`} alt="Three MCP primitives: tools, resources, and prompts" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -221,7 +243,7 @@ def format_document(
         {/* ── END ── */}
         <div style={styles.divider}>· · ·</div>
 
-        <Reveal>
+        <Reveal id="summary">
           <div style={styles.endSection}>
             <div style={styles.endLabel}>End of Lesson 5</div>
             <p style={styles.endProse}>
@@ -253,6 +275,7 @@ const styles = {
   h2: { fontFamily: T.font.heading, fontSize: '1.55rem', fontWeight: 600, color: T.color.ink2, lineHeight: 1.3, marginBottom: '1.4rem' },
   prose: { fontFamily: T.font.prose, fontSize: '1.05rem', lineHeight: 1.85, color: T.color.ink3, marginBottom: '1.4rem', maxWidth: '65ch' },
   code: { fontFamily: T.font.code, fontSize: '0.85em', background: 'rgba(99,102,241,0.08)', padding: '0.15em 0.4em', borderRadius: '3px', color: T.color.accent },
+  img: { width: '100%', maxWidth: '480px', borderRadius: '8px', margin: '1rem auto', display: 'block' },
   divider: { textAlign: 'center', color: T.color.bg3, fontSize: '1rem', margin: '3rem 0', letterSpacing: '0.5em' },
   endSection: { textAlign: 'center', padding: '2rem 0' },
   endLabel: { fontFamily: T.font.label, fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.3em', textTransform: 'uppercase', color: T.color.ink4, marginBottom: '1.5rem' },
