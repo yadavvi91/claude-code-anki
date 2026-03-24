@@ -75,11 +75,13 @@ const styles = {
 
   card: {
     background: T.color.bg2,
-    borderRadius: '8px',
+    borderRadius: '10px',
     borderTop: '3px solid',
     padding: '1.5rem',
     display: 'flex',
     flexDirection: 'column',
+    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+    boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
   },
 
   moduleNum: {

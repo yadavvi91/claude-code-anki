@@ -23,12 +23,18 @@
     />
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
       body {
         background: #f8f9fc;
         font-family: 'Inter', system-ui, sans-serif;
         -webkit-font-smoothing: antialiased;
         color: #1a1d2e;
       }
+      ::selection { background: rgba(99,102,241,0.15); }
+      a { transition: opacity 0.15s ease; }
+      a:hover { opacity: 0.8; }
+      button { transition: transform 0.1s ease; }
+      button:active { transform: scale(0.98); }
       /* Keyframes used by Hero and intro sections */
       @keyframes fadeUp  { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
       @keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }

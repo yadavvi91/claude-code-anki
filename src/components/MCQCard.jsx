@@ -223,11 +223,12 @@ const styles = {
   card: {
     background: T.color.bg2,
     border: `1px solid ${T.color.border}`,
-    borderLeft: '4px solid',          // color set inline
-    borderRadius: '0 6px 6px 0',
+    borderLeft: '4px solid',
+    borderRadius: '0 8px 8px 0',
     padding: '1.5rem 1.75rem',
     margin: '2rem 0',
-    transition: 'border-left-color 0.35s ease',
+    transition: 'border-left-color 0.35s ease, box-shadow 0.35s ease',
+    boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
   },
 
   question: {
