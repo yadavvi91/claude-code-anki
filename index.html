@@ -23,12 +23,18 @@
     />
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
       body {
         background: #f8f9fc;
         font-family: 'Inter', system-ui, sans-serif;
         -webkit-font-smoothing: antialiased;
         color: #1a1d2e;
       }
+      ::selection { background: rgba(99,102,241,0.15); }
+      a { transition: opacity 0.15s ease; }
+      a:hover { opacity: 0.8; }
+      button { transition: transform 0.1s ease; }
+      button:active { transform: scale(0.98); }
       /* Keyframes used by Hero and intro sections */
       @keyframes fadeUp  { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
       @keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
@@ -43,7 +49,7 @@
       .anim-float  { animation: floatY 6s ease-in-out infinite; }
       .anim-pulse  { animation: pulse  2s ease-in-out infinite; }
     </style>
-    <script type="module" crossorigin src="/claude-code-anki/assets/index-BtYMP3Ng.js"></script>
+    <script type="module" crossorigin src="/claude-code-anki/assets/index-B_UbqouP.js"></script>
     <link rel="stylesheet" crossorigin href="/claude-code-anki/assets/index-DT598fYu.css">
   </head>
   <body>
