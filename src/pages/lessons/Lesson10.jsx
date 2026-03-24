@@ -35,10 +35,6 @@ export default function Lesson10() {
           <p style={styles.subtitle}>What subagents are, why they exist, and how to create custom ones</p></Reveal>
         <Reveal><ConceptDisplay concept="Context Isolation · /agents · System Prompt · Proactive Delegation" description="Subagents keep your main context clean by doing exploratory work in isolated windows." color={mod.color} /></Reveal>
 
-        <Reveal>
-          <img src="/claude-code-anki/images/diagrams/subagent-isolation.svg" alt="Subagent context isolation — main context stays clean while subagent does exploratory work" style={styles.diagram} />
-        </Reveal>
-
         <Reveal id="set1"><div style={{ ...styles.setLabel, color: C[1] }}>Set 1 — What Are Subagents?</div><h2 style={styles.h2}>Isolated execution contexts</h2></Reveal>
         <Reveal>
           <img src={`${base}subagents-002.jpg`} alt="Subagent context isolation from the main thread" style={styles.img} />

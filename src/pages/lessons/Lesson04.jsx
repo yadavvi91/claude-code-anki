@@ -65,7 +65,7 @@ export default function Lesson04() {
         </Reveal>
 
         <Reveal>
-          <img src="/claude-code-anki/images/diagrams/mcp-flow.svg" alt="MCP client-server communication flow — from user query through MCP client/server to external API and back" style={styles.diagram} />
+          <img src={`${base}296689_000014s.jpg`} alt="MCP architecture overview — clients, servers, and protocols" style={styles.img} />
         </Reveal>
 
         {/* ══════════════ SET 1 — MCP FUNDAMENTALS ══════════════ */}
@@ -91,6 +91,10 @@ export default function Lesson04() {
         </p></Reveal>
 
         <Reveal>
+          <img src={`${base}296689_000108s.jpg`} alt="MCP server wrapping external services like GitHub and databases" style={styles.img} />
+        </Reveal>
+
+        <Reveal>
           <TipCallout variant="insight">
             MCP and tool use are <strong>complementary, not the same thing</strong>. Tool use is
             HOW Claude calls functions. MCP is about WHO implements them — someone else has already
@@ -104,6 +108,10 @@ export default function Lesson04() {
           author MCP servers, though service providers often release official ones.
         </p></Reveal>
 
+        <Reveal>
+          <img src={`${base}296689_000168s.jpg`} alt="Transport agnostic design — STDIO, HTTP, WebSockets" style={styles.img} />
+        </Reveal>
+
         {s1.map((card, i) => (
           <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>
         ))}
@@ -114,6 +122,10 @@ export default function Lesson04() {
         <Reveal id="set2">
           <div style={{ ...styles.setLabel, color: C[2] }}>Set 2 — Client-Server Communication</div>
           <h2 style={styles.h2}>The complete message flow</h2>
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}296696_000128s.jpg`} alt="Full MCP communication flow — client to server message exchange" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -141,6 +153,10 @@ export default function Lesson04() {
         </p></Reveal>
 
         <Reveal>
+          <img src={`${base}296696_000345s.jpg`} alt="Annotated MCP flow diagram showing complete request-response cycle" style={styles.img} />
+        </Reveal>
+
+        <Reveal>
           <TipCallout variant="tip">
             In a typical project, you implement either a client OR a server — not both. Build a
             server to expose your service. Build a client to consume tools from others.
@@ -150,6 +166,10 @@ export default function Lesson04() {
         {s2.map((card, i) => (
           <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>
         ))}
+
+        <Reveal>
+          <img src={`${base}296690_000111s.jpg`} alt="MCP client-server communication summary" style={styles.img} />
+        </Reveal>
 
         <div style={styles.divider}>· · ·</div>
 
@@ -205,6 +225,14 @@ def read_document(
           parameter descriptions. The SDK auto-generates the JSON schema Claude needs.
         </p></Reveal>
 
+        <Reveal>
+          <img src={`${base}296694_000063s.jpg`} alt="Python SDK project setup with FastMCP and Pydantic" style={styles.img} />
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}296697_000079s.jpg`} alt="Tool decorator generating JSON schema from Python type hints" style={styles.img} />
+        </Reveal>
+
         {s3.map((card, i) => (
           <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + i]} /></Reveal>
         ))}
@@ -235,6 +263,14 @@ def read_document(
           <strong> Tools</strong> to list, select, and test tools with custom inputs. State persists
           between calls — you can edit a document then read it to verify the change.
         </p></Reveal>
+
+        <Reveal>
+          <img src={`${base}296693_000133s.jpg`} alt="MCP Inspector browser UI — connecting and listing tools" style={styles.img} />
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}296693_000163s.jpg`} alt="Testing tools in the MCP Inspector with custom inputs" style={styles.img} />
+        </Reveal>
 
         <Reveal><p style={styles.prose}>
           On the client side, implement two core functions: <code style={styles.code}>list_tools()</code> to

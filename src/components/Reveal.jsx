@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 
-export default function Reveal({ children }) {
+export default function Reveal({ children, ...rest }) {
   const ref = useRef()
   const [visible, setVisible] = useState(false)
 
@@ -16,6 +16,7 @@ export default function Reveal({ children }) {
   return (
     <div
       ref={ref}
+      {...rest}
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(18px)',

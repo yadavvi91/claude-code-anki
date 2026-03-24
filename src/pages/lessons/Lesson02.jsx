@@ -65,6 +65,10 @@ export default function Lesson02() {
           />
         </Reveal>
 
+        <Reveal>
+          <img src={`${base}303241_000019s.jpg`} alt="Overview of how context shapes Claude Code's behavior" style={styles.img} />
+        </Reveal>
+
         {/* ══════════════ SET 1 — CLAUDE.md & CONTEXT ══════════════ */}
         <Reveal id="set1">
           <div style={{ ...styles.setLabel, color: C[1] }}>Set 1 — CLAUDE.md & Context Management</div>
@@ -72,7 +76,7 @@ export default function Lesson02() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}303241_000129s.jpg`} alt="CLAUDE.md context management overview" style={styles.img} />
+          <img src={`${base}303237_000056s.jpg`} alt="Adding memory with # command to CLAUDE.md" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -87,6 +91,10 @@ export default function Lesson02() {
           Claude to analyze your entire codebase — purpose, architecture, important commands, critical
           files, coding patterns — and write a summary to <code style={styles.code}>CLAUDE.md</code>.
         </p></Reveal>
+
+        <Reveal>
+          <img src={`${base}303241_000062s.jpg`} alt="Running /init to generate a CLAUDE.md file" style={styles.img} />
+        </Reveal>
 
         <Reveal>
           <TipCallout variant="insight">
@@ -116,6 +124,10 @@ export default function Lesson02() {
           <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>
         ))}
 
+        <Reveal>
+          <img src={`${base}303241_000094s.jpg`} alt="CLAUDE.md file locations — project root, local, and global" style={styles.img} />
+        </Reveal>
+
         <Reveal><p style={styles.prose}>
           The <code style={styles.code}>@</code> symbol is your shortcut for including file contents.
           Type <code style={styles.code}>@auth</code> and Claude shows matching files to choose from.
@@ -129,6 +141,10 @@ export default function Lesson02() {
           "memory mode" and Claude merges the instruction into your CLAUDE.md automatically.
         </p></Reveal>
 
+        <Reveal>
+          <img src={`${base}303241_000129s.jpg`} alt="Using the @ symbol to include file context and # for memory" style={styles.img} />
+        </Reveal>
+
         {/* S1 remaining cards */}
         <div style={styles.divider}>· · ·</div>
 
@@ -139,7 +155,7 @@ export default function Lesson02() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}303236_000113s.jpg`} alt="Planning mode and thinking modes comparison" style={styles.img} />
+          <img src={`${base}303237_000146s.jpg`} alt="Rewind a conversation with Esc+Esc to remove irrelevant context" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -147,6 +163,10 @@ export default function Lesson02() {
           <strong> Planning Mode</strong> for breadth across your codebase, and
           <strong> Thinking Modes</strong> for depth on hard problems.
         </p></Reveal>
+
+        <Reveal>
+          <img src={`${base}303236_000021s.jpg`} alt="Planning Mode and Thinking Modes in Claude Code" style={styles.img} />
+        </Reveal>
 
         <Reveal><p style={styles.prose}>
           <strong>Planning Mode</strong> is activated by pressing <code style={styles.code}>Shift+Tab</code> twice
@@ -182,6 +202,10 @@ export default function Lesson02() {
           you're looking at.
         </p></Reveal>
 
+        <Reveal>
+          <img src={`${base}303236_000082s.jpg`} alt="Shift+Tab activation for Planning Mode in Claude Code" style={styles.img} />
+        </Reveal>
+
         {/* S2 cards */}
         {s2.map((card, i) => (
           <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>
@@ -193,6 +217,10 @@ export default function Lesson02() {
         <Reveal id="set3">
           <div style={{ ...styles.setLabel, color: C[3] }}>Set 3 — Conversation Control</div>
           <h2 style={styles.h2}>Steering the conversation</h2>
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}303237_000138s.jpg`} alt="Conversation control techniques — Escape, /compact, /clear" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -231,6 +259,10 @@ export default function Lesson02() {
           <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + i]} /></Reveal>
         ))}
 
+        <Reveal>
+          <img src={`${base}303237_000195s.jpg`} alt="Summary of conversation control commands in Claude Code" style={styles.img} />
+        </Reveal>
+
         <div style={styles.divider}>· · ·</div>
 
         {/* ══════════════ SET 4 — CUSTOM COMMANDS ══════════════ */}
@@ -240,7 +272,7 @@ export default function Lesson02() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}303237_000195s.jpg`} alt="Custom slash commands in the .claude/commands directory" style={styles.img} />
+          <img src={`${base}303237_000184s.jpg`} alt="/compact command usage in Claude Code terminal" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -249,6 +281,10 @@ export default function Lesson02() {
           files. The filename becomes the command name — <code style={styles.code}>audit.md</code> becomes
           <code style={styles.code}>/audit</code>.
         </p></Reveal>
+
+        <Reveal>
+          <img src={`${base}303234_000078s.jpg`} alt="Custom commands in the .claude/commands/ directory" style={styles.img} />
+        </Reveal>
 
         <Reveal>
           <CodeBlock
@@ -275,6 +311,10 @@ Coverage:
         </p></Reveal>
 
         <Reveal>
+          <img src={`${base}303234_000092s.jpg`} alt="$ARGUMENTS placeholder substitution in custom commands" style={styles.img} />
+        </Reveal>
+
+        <Reveal>
           <TipCallout variant="tip">
             Remember to restart Claude Code after creating new command files — commands are
             discovered at startup, not hot-loaded.
@@ -285,6 +325,10 @@ Coverage:
         {s4.map((card, i) => (
           <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + s3.length + i]} /></Reveal>
         ))}
+
+        <Reveal>
+          <img src={`${base}303236_000207s.jpg`} alt="Summary of making effective changes with Claude Code" style={styles.img} />
+        </Reveal>
 
         {/* ── END ── */}
         <div style={styles.divider}>· · ·</div>

@@ -62,6 +62,10 @@ export default function Lesson06() {
           />
         </Reveal>
 
+        <Reveal>
+          <img src={`${base}296288_000060s.jpg`} alt="Overview of advanced MCP features — sampling, notifications, roots" style={styles.img} />
+        </Reveal>
+
         {/* ══════════════ SET 1 — SAMPLING ══════════════ */}
         <Reveal id="set1">
           <div style={{ ...styles.setLabel, color: C[1] }}>Set 1 — Sampling</div>
@@ -86,6 +90,10 @@ export default function Lesson06() {
         </p></Reveal>
 
         <Reveal>
+          <img src={`${base}296288_000090s.jpg`} alt="Sampling shifts token costs from server to client" style={styles.img} />
+        </Reveal>
+
+        <Reveal>
           <CodeBlock
             title="Server-side: requesting LLM access"
             code={`# Inside a tool function
@@ -100,9 +108,17 @@ result = await ctx.session.create_message(
           />
         </Reveal>
 
+        <Reveal>
+          <img src={`${base}296288_000150s.jpg`} alt="Server-side create_message call for sampling" style={styles.img} />
+        </Reveal>
+
         {s1.map((card, i) => (
           <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>
         ))}
+
+        <Reveal>
+          <img src={`${base}296288_000210s.jpg`} alt="Client-side sampling handler implementation" style={styles.img} />
+        </Reveal>
 
         <div style={styles.divider}>· · ·</div>
 
@@ -121,6 +137,10 @@ result = await ctx.session.create_message(
           <strong> progress notifications</strong> through the Context argument automatically
           provided to tool functions.
         </p></Reveal>
+
+        <Reveal>
+          <img src={`${base}296284_000050s.jpg`} alt="Logging levels and progress reporting in MCP tools" style={styles.img} />
+        </Reveal>
 
         <Reveal>
           <CodeBlock
@@ -145,6 +165,10 @@ result = await ctx.session.create_message(
         {s2.map((card, i) => (
           <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>
         ))}
+
+        <Reveal>
+          <img src={`${base}296284_000125s.jpg`} alt="Client-side handling of notifications and progress updates" style={styles.img} />
+        </Reveal>
 
         <div style={styles.divider}>· · ·</div>
 
@@ -171,6 +195,14 @@ result = await ctx.session.create_message(
         </p></Reveal>
 
         <Reveal>
+          <img src={`${base}296289_000120s.jpg`} alt="Roots workflow — list_roots, read_dir, and file access" style={styles.img} />
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}296289_000200s.jpg`} alt="Implementing is_path_allowed for root security enforcement" style={styles.img} />
+        </Reveal>
+
+        <Reveal>
           <TipCallout variant="warning">
             The MCP SDK does <strong>NOT</strong> automatically enforce root restrictions. You must
             implement path checking yourself — e.g., an <code style={styles.code}>is_path_allowed()</code> helper
@@ -181,6 +213,10 @@ result = await ctx.session.create_message(
         {s3.map((card, i) => (
           <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + i]} /></Reveal>
         ))}
+
+        <Reveal>
+          <img src={`${base}296289_000320s.jpg`} alt="Root restrictions in practice — securing filesystem access" style={styles.img} />
+        </Reveal>
 
         {/* ── END ── */}
         <div style={styles.divider}>· · ·</div>

@@ -63,7 +63,11 @@ export default function Lesson01() {
         </Reveal>
 
         <Reveal>
-          <img src="/claude-code-anki/images/diagrams/agent-tool-loop.svg" alt="The coding agent tool loop — how the agent calls the LLM with tools, executes tool calls, and returns results" style={styles.diagram} />
+          <img src={`${base}303235_000022s.jpg`} alt="Agentic loop: Task → Language Model → Gather context → Plan → Act → Iterate" style={styles.img} />
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}303233_000014s.jpg`} alt="Course introduction — what you will learn about Claude Code" style={styles.img} />
         </Reveal>
 
         <Reveal>
@@ -81,7 +85,7 @@ export default function Lesson01() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}303235_000106s.jpg`} alt="Claude Code multi-tool architecture overview" style={styles.img} />
+          <img src={`${base}303242_000056s.jpg`} alt="Claude Code terminal interface showing multi-tool system in action" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -116,6 +120,10 @@ export default function Lesson01() {
 
         <Reveal><MCQCard card={s1[0]} color={colors[0]} /></Reveal>
 
+        <Reveal>
+          <img src={`${base}303235_000106s.jpg`} alt="Dedicated tools produce structured output for easy review" style={styles.img} />
+        </Reveal>
+
         <Reveal><p style={styles.prose}>
           File discovery is one of the most common operations. The <code style={styles.code}>Glob</code> tool
           takes a pattern like <code style={styles.code}>src/components/**/*.tsx</code> and returns matching
@@ -132,6 +140,10 @@ export default function Lesson01() {
         </p></Reveal>
 
         <Reveal><MCQCard card={s1[2]} color={colors[2]} /></Reveal>
+
+        <Reveal>
+          <img src={`${base}303242_000094s.jpg`} alt="Claude Code navigating a codebase with multiple tool calls" style={styles.img} />
+        </Reveal>
 
         <Reveal><p style={styles.prose}>
           Sometimes a simple search isn't enough. When you need to explore an unfamiliar codebase,
@@ -158,6 +170,10 @@ export default function Lesson01() {
 
         <Reveal><MCQCard card={s1[4]} color={colors[4]} /></Reveal>
 
+        <Reveal>
+          <img src={`${base}303242_000157s.jpg`} alt="Claude Code editing a file with the Edit tool showing precise diffs" style={styles.img} />
+        </Reveal>
+
         <Reveal><div style={styles.divider}>◆</div></Reveal>
 
         {/* ══════════════ SET 2 — ARCHITECTURE & CONTEXT ══════════════ */}
@@ -167,7 +183,7 @@ export default function Lesson01() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}303242_000240s.jpg`} alt="Claude Code sandbox and context architecture" style={styles.img} />
+          <img src={`${base}303235_000225s.jpg`} alt="Tool use sequence: You → Coding Assistant → Language Model → ReadFile request/response" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -178,6 +194,10 @@ export default function Lesson01() {
         </p></Reveal>
 
         <Reveal><MCQCard card={s2[0]} color={colors[5]} /></Reveal>
+
+        <Reveal>
+          <img src={`${base}303235_000278s.jpg`} alt="Claude Code sandbox and permission system overview" style={styles.img} />
+        </Reveal>
 
         <Reveal><p style={styles.prose}>
           The preference for dedicated tools isn't about performance — it's about <strong>reviewability</strong>.
@@ -212,6 +232,10 @@ Grep("handleSubmit")    // wait...`}
         </Reveal>
 
         <Reveal><MCQCard card={s2[2]} color={colors[7]} /></Reveal>
+
+        <Reveal>
+          <img src={`${base}303242_000240s.jpg`} alt="Parallel tool calls executing simultaneously for faster results" style={styles.img} />
+        </Reveal>
 
         <Reveal><p style={styles.prose}>
           Context is everything. When Claude Code starts, it reads <code style={styles.code}>CLAUDE.md</code> from
@@ -264,6 +288,10 @@ Grep("handleSubmit")    // wait...`}
         </p></Reveal>
 
         <Reveal><MCQCard card={s3[0]} color={colors[10]} /></Reveal>
+
+        <Reveal>
+          <img src={`${base}303242_000379s.jpg`} alt="Safety principles in Claude Code — reversibility and confirmation" style={styles.img} />
+        </Reveal>
 
         <Reveal><p style={styles.prose}>
           Pre-commit hooks are safety nets. When they fail, the commit <em>never happened</em>.
@@ -321,7 +349,7 @@ Grep("handleSubmit")    // wait...`}
         </Reveal>
 
         <Reveal>
-          <img src={`${base}303242_000157s.jpg`} alt="Bash tool usage and system command patterns" style={styles.img} />
+          <img src={`${base}303235_000322s.jpg`} alt="Strong tool use benefits: tackles harder tasks, extensible platform, improved security" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -332,6 +360,10 @@ Grep("handleSubmit")    // wait...`}
         </p></Reveal>
 
         <Reveal><MCQCard card={s4[0]} color={colors[15]} /></Reveal>
+
+        <Reveal>
+          <img src={`${base}303242_000448s.jpg`} alt="Bash tool in Claude Code running system commands" style={styles.img} />
+        </Reveal>
 
         <Reveal><p style={styles.prose}>
           Some git commands require interactive input — <code style={styles.code}>git rebase -i</code>,
@@ -375,6 +407,10 @@ git log --oneline | head -5`}
         </Reveal>
 
         <Reveal><MCQCard card={s4[3]} color={colors[18]} /></Reveal>
+
+        <Reveal>
+          <img src={`${base}303242_000183s.jpg`} alt="Claude Code completing a complex multi-step task" style={styles.img} />
+        </Reveal>
 
         {/* ── LESSON END ── */}
         <Reveal>

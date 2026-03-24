@@ -60,6 +60,10 @@ export default function Lesson07() {
           />
         </Reveal>
 
+        <Reveal>
+          <img src={`${base}296290_000070s.jpg`} alt="Overview of MCP transport options — STDIO and StreamableHTTP" style={styles.img} />
+        </Reveal>
+
         {/* ══════════════ SET 1 — JSON & STDIO ══════════════ */}
         <Reveal id="set1">
           <div style={{ ...styles.setLabel, color: C[1] }}>Set 1 — JSON Messages & STDIO</div>
@@ -92,6 +96,10 @@ export default function Lesson07() {
           selection, as some transports limit which directions are supported.
         </p></Reveal>
 
+        <Reveal>
+          <img src={`${base}296290_000140s.jpg`} alt="Bidirectional communication — both client and server can initiate messages" style={styles.img} />
+        </Reveal>
+
         <Reveal><p style={styles.prose}>
           The <strong>STDIO transport</strong> is the simplest: client launches the server as a
           subprocess and communicates via stdin/stdout. Either party can send at any time. It
@@ -104,9 +112,25 @@ export default function Lesson07() {
           (3) Initialized Notification (client→server, no response). Only then can operations begin.
         </p></Reveal>
 
+        <Reveal>
+          <img src={`${base}296291_000090s.jpg`} alt="STDIO transport — subprocess communication via stdin/stdout" style={styles.img} />
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}296290_000210s.jpg`} alt="Three-message initialization handshake sequence" style={styles.img} />
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}296291_000180s.jpg`} alt="STDIO transport implementation details" style={styles.img} />
+        </Reveal>
+
         {s1.map((card, i) => (
           <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>
         ))}
+
+        <Reveal>
+          <img src={`${base}296290_000315s.jpg`} alt="JSON message format summary — requests, results, and notifications" style={styles.img} />
+        </Reveal>
 
         <div style={styles.divider}>· · ·</div>
 
@@ -132,6 +156,10 @@ export default function Lesson07() {
           notifications, progress updates, and sampling requests at any time.
         </p></Reveal>
 
+        <Reveal>
+          <img src={`${base}296287_000105s.jpg`} alt="SSE connection — long-lived GET for server-to-client streaming" style={styles.img} />
+        </Reveal>
+
         <Reveal><p style={styles.prose}>
           The server returns an <code style={styles.code}>mcp-session-id</code> header during
           initialization. This ID uniquely identifies the client and must be included in all
@@ -154,6 +182,14 @@ export default function Lesson07() {
         </Reveal>
 
         <Reveal>
+          <img src={`${base}296286_000150s.jpg`} alt="StreamableHTTP deep dive — stateless vs stateful configuration" style={styles.img} />
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}296285_000105s.jpg`} alt="Session state management with mcp-session-id header" style={styles.img} />
+        </Reveal>
+
+        <Reveal>
           <TipCallout variant="warning">
             If your app works with STDIO locally but breaks with HTTP transport, the
             <code style={styles.code}>stateless_http</code>/<code style={styles.code}>json_response</code> settings
@@ -164,6 +200,14 @@ export default function Lesson07() {
         {s2.map((card, i) => (
           <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>
         ))}
+
+        <Reveal>
+          <img src={`${base}296286_000350s.jpg`} alt="StreamableHTTP production deployment patterns" style={styles.img} />
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}296285_000280s.jpg`} alt="Scaling considerations — sticky sessions vs stateless mode" style={styles.img} />
+        </Reveal>
 
         {/* ── END ── */}
         <div style={styles.divider}>· · ·</div>

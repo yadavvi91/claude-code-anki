@@ -65,6 +65,10 @@ export default function Lesson03() {
           />
         </Reveal>
 
+        <Reveal>
+          <img src={`${base}303239_000019s.jpg`} alt="Overview of Claude Code extension points — MCP, hooks, SDK" style={styles.img} />
+        </Reveal>
+
         {/* ══════════════ SET 1 — MCP SERVERS ══════════════ */}
         <Reveal id="set1">
           <div style={{ ...styles.setLabel, color: C[1] }}>Set 1 — MCP Servers</div>
@@ -72,7 +76,7 @@ export default function Lesson03() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}303239_000045s.jpg`} alt="MCP server integration with Claude Code" style={styles.img} />
+          <img src={`${base}303239_000000s.jpg`} alt="Claude Code with default tools + Playwright MCP Server architecture" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -94,6 +98,10 @@ export default function Lesson03() {
           and make informed decisions about styling based on what things <em>look like</em>, not
           just what the code says.
         </p></Reveal>
+
+        <Reveal>
+          <img src={`${base}303239_000045s.jpg`} alt="Playwright MCP server controlling a web browser for Claude" style={styles.img} />
+        </Reveal>
 
         <Reveal><p style={styles.prose}>
           When you first use MCP tools, Claude asks for permission each time. To pre-approve, add
@@ -124,6 +132,10 @@ export default function Lesson03() {
           <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>
         ))}
 
+        <Reveal>
+          <img src={`${base}303239_000128s.jpg`} alt="MCP server permissions and settings configuration" style={styles.img} />
+        </Reveal>
+
         <div style={styles.divider}>· · ·</div>
 
         {/* ══════════════ SET 2 — GITHUB INTEGRATION ══════════════ */}
@@ -132,11 +144,19 @@ export default function Lesson03() {
           <h2 style={styles.h2}>Claude as a GitHub team member</h2>
         </Reveal>
 
+        <Reveal>
+          <img src={`${base}303240_000011s.jpg`} alt="GitHub integration overview — Claude as a team member" style={styles.img} />
+        </Reveal>
+
         <Reveal><p style={styles.prose}>
           Claude Code offers an official GitHub integration that runs Claude inside GitHub Actions.
           Run <code style={styles.code}>/install-github-app</code> in Claude to set it up — it installs
           the app, adds your API key, and generates a PR with the workflow files.
         </p></Reveal>
+
+        <Reveal>
+          <img src={`${base}303240_000019s.jpg`} alt="Installing the GitHub app with /install-github-app command" style={styles.img} />
+        </Reveal>
 
         <Reveal>
           <ComparisonTable
@@ -180,6 +200,10 @@ allowed_tools: "Bash(npm:*),Bash(sqlite3:*),
           <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>
         ))}
 
+        <Reveal>
+          <img src={`${base}303240_000148s.jpg`} alt="GitHub Actions workflow customization for Claude" style={styles.img} />
+        </Reveal>
+
         <div style={styles.divider}>· · ·</div>
 
         {/* ══════════════ SET 3 — HOOKS FUNDAMENTALS ══════════════ */}
@@ -189,7 +213,7 @@ allowed_tools: "Bash(npm:*),Bash(sqlite3:*),
         </Reveal>
 
         <Reveal>
-          <img src="/claude-code-anki/images/diagrams/hook-interception.svg" alt="Hook interception flow — PreToolUse can block, PostToolUse can modify results" style={styles.diagram} />
+          <img src={`${base}312000_000076s.jpg`} alt="Hook lifecycle: PreToolUse → Claude Code reads file → PostToolUse" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -202,6 +226,10 @@ allowed_tools: "Bash(npm:*),Bash(sqlite3:*),
           operation (exit code 2) or allow it (exit code 0). <strong>PostToolUse</strong> hooks run
           after execution — they can provide feedback but can't undo what happened.
         </p></Reveal>
+
+        <Reveal>
+          <img src={`${base}312000_000108s.jpg`} alt="PreToolUse and PostToolUse hook execution flow" style={styles.img} />
+        </Reveal>
 
         <Reveal>
           <CodeBlock
@@ -254,12 +282,20 @@ main();`}
           <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + i]} /></Reveal>
         ))}
 
+        <Reveal>
+          <img src={`${base}312002_000039s.jpg`} alt="Hook matcher patterns for filtering which tools to intercept" style={styles.img} />
+        </Reveal>
+
         <div style={styles.divider}>· · ·</div>
 
         {/* ══════════════ SET 4 — ADVANCED HOOKS & SDK ══════════════ */}
         <Reveal id="set4">
           <div style={{ ...styles.setLabel, color: C[4] }}>Set 4 — Advanced Hooks & SDK</div>
           <h2 style={styles.h2}>Power patterns</h2>
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}312004_000286s.jpg`} alt="Advanced hook patterns — TypeScript checking and query deduplication" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -298,6 +334,10 @@ main();`}
           <img src={`${base}303240_000052s.jpg`} alt="Claude Code SDK integration patterns" style={styles.img} />
         </Reveal>
 
+        <Reveal>
+          <img src={`${base}312001_000041s.jpg`} alt="Claude Code SDK — programmatic access to Claude from scripts" style={styles.img} />
+        </Reveal>
+
         <Reveal><p style={styles.prose}>
           The <strong>Claude Code SDK</strong> lets you run Claude programmatically from your own
           scripts. It's available for TypeScript, Python, and CLI — same Claude Code, same tools,
@@ -326,6 +366,10 @@ for await (const message of query({
             tools like <code style={styles.code}>Edit</code> via <code style={styles.code}>allowedTools</code> to
             enable writes.
           </TipCallout>
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}312004_000468s.jpg`} alt="Security best practices — absolute paths for hook scripts" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>

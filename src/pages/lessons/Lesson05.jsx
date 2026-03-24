@@ -62,6 +62,10 @@ export default function Lesson05() {
           />
         </Reveal>
 
+        <Reveal>
+          <img src={`${base}296696_000128s.jpg`} alt="Full MCP flow — tools, resources, and prompts working together" style={styles.img} />
+        </Reveal>
+
         {/* ══════════════ SET 1 — RESOURCES ══════════════ */}
         <Reveal id="set1">
           <div style={{ ...styles.setLabel, color: C[1] }}>Set 1 — Resources Fundamentals</div>
@@ -82,6 +86,10 @@ export default function Lesson05() {
           There are two types: <strong>direct resources</strong> with static URIs, and
           <strong> templated resources</strong> with parameters in their URIs.
         </p></Reveal>
+
+        <Reveal>
+          <img src={`${base}296699_000080s.jpg`} alt="Direct vs templated resources — static URIs and parameterized URIs" style={styles.img} />
+        </Reveal>
 
         <Reveal>
           <CodeBlock
@@ -123,6 +131,14 @@ def fetch_doc(doc_id: str) -> str:
           whether to parse JSON or use the text as-is.
         </p></Reveal>
 
+        <Reveal>
+          <img src={`${base}296695_000107s.jpg`} alt="Accessing resources from the client side — list and read" style={styles.img} />
+        </Reveal>
+
+        <Reveal>
+          <img src={`${base}296699_000175s.jpg`} alt="MIME type handling in MCP resources — JSON vs plain text" style={styles.img} />
+        </Reveal>
+
         {s1.map((card, i) => (
           <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>
         ))}
@@ -150,6 +166,10 @@ def fetch_doc(doc_id: str) -> str:
           menu items. They return a list of <strong>messages</strong> (user and/or assistant) that
           get sent directly to Claude.
         </p></Reveal>
+
+        <Reveal>
+          <img src={`${base}296698_000063s.jpg`} alt="Prompts exposed as slash commands and buttons in the client UI" style={styles.img} />
+        </Reveal>
 
         <Reveal>
           <CodeBlock
@@ -193,6 +213,10 @@ def format_document(
           <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + i]} /></Reveal>
         ))}
 
+        <Reveal>
+          <img src={`${base}296692_000134s.jpg`} alt="Prompts in the client — list_prompts and get_prompt calls" style={styles.img} />
+        </Reveal>
+
         <div style={styles.divider}>· · ·</div>
 
         {/* ══════════════ SET 3 — THREE PRIMITIVES ══════════════ */}
@@ -209,6 +233,10 @@ def format_document(
           Each MCP primitive is controlled by a different part of your application stack.
           Understanding who controls what is the key to choosing the right one.
         </p></Reveal>
+
+        <Reveal>
+          <img src={`${base}296696_000345s.jpg`} alt="Annotated MCP flow — tools, resources, and prompts in a complete system" style={styles.img} />
+        </Reveal>
 
         <Reveal>
           <ComparisonTable
@@ -229,6 +257,10 @@ def format_document(
         </p></Reveal>
 
         <Reveal>
+          <img src={`${base}296691_000224s.jpg`} alt="All three primitives in Claude's interface — buttons, drive, code execution" style={styles.img} />
+        </Reveal>
+
+        <Reveal>
           <TipCallout variant="tip">
             Quick decision guide: Need to give Claude abilities? <strong>Tools</strong>.
             Need data for your app? <strong>Resources</strong>.
@@ -239,6 +271,10 @@ def format_document(
         {s3.map((card, i) => (
           <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + i]} /></Reveal>
         ))}
+
+        <Reveal>
+          <img src={`${base}296696_000167s.jpg`} alt="Implementing the MCP client — connecting tools, resources, and prompts" style={styles.img} />
+        </Reveal>
 
         {/* ── END ── */}
         <div style={styles.divider}>· · ·</div>
