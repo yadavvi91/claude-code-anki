@@ -1,4 +1,9 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect, useRef } from 'react'
+import Prism from 'prismjs'
+import 'prismjs/components/prism-python'
+import 'prismjs/components/prism-json'
+import 'prismjs/components/prism-bash'
+import '../prism-theme.css'
 import { T } from '../theme'
 
 // Shuffle array using Fisher-Yates (seeded by card id for stability)
@@ -13,6 +18,24 @@ function shuffleOptions(options, cardId) {
     [arr[i], arr[j]] = [arr[j], arr[i]]
   }
   return arr
+}
+
+function detectLang(code) {
+  if (code.includes('def ') || code.includes('async def') || code.includes('@mcp.') || code.includes('import ')) return 'python'
+  if (code.trimStart().startsWith('{') || code.trimStart().startsWith('"')) return 'json'
+  if (code.includes('claude ') || code.includes('npm ') || code.includes('uv ') || code.includes('mcp ')) return 'bash'
+  return 'python'
+}
+
+function HighlightedCode({ code }) {
+  const ref = useRef()
+  const lang = detectLang(code)
+  useEffect(() => { if (ref.current) Prism.highlightElement(ref.current) }, [code, lang])
+  return (
+    <pre style={styles.codeBlock}>
+      <code ref={ref} className={`language-${lang}`}>{code}</code>
+    </pre>
+  )
 }
 
 // States: 'unanswered' | 'answered'
@@ -93,9 +116,7 @@ export default function MCQCard({ card, color = T.color.accent }) {
 
       {/* Code block if present */}
       {card.codeBlock && (
-        <pre style={styles.codeBlock}>
-          <code>{card.codeBlock}</code>
-        </pre>
+        <HighlightedCode code={card.codeBlock} />
       )}
 
       {/* Options */}

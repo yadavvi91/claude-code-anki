@@ -8,8 +8,12 @@ export default function ModuleOverview() {
   let srs = {}
   try { srs = JSON.parse(localStorage.getItem('claude-copilot-srs') || '{}') } catch {}
 
+  const totalCards = allCards.length
+  const totalSeen = allCards.filter(c => srs[c.id]?.seen).length
+
   return (
-    <div style={styles.grid}>
+    <div>
+      <div style={styles.grid}>
       {modules.map((m, i) => {
         const moduleCards = allCards.filter(c => c.moduleId === m.id)
         const seen = moduleCards.filter(c => srs[c.id]?.seen).length
@@ -46,6 +50,12 @@ export default function ModuleOverview() {
           </div>
         )
       })}
+    </div>
+    <div style={styles.reviewWrap}>
+      <Link to="/review" style={styles.reviewBtn}>
+        Start Review — {totalSeen} / {totalCards} cards seen
+      </Link>
+    </div>
     </div>
   )
 }
@@ -132,5 +142,24 @@ const styles = {
     fontSize: '0.7rem',
     color: T.color.ink4,
     whiteSpace: 'nowrap',
+  },
+
+  reviewWrap: {
+    textAlign: 'center',
+    padding: '1.5rem 2rem 2rem',
+  },
+
+  reviewBtn: {
+    display: 'inline-block',
+    padding: '0.85rem 2.5rem',
+    background: T.color.accent,
+    color: '#fff',
+    borderRadius: '6px',
+    fontFamily: T.font.label,
+    fontSize: '0.75rem',
+    fontWeight: 600,
+    letterSpacing: '0.1em',
+    textTransform: 'uppercase',
+    textDecoration: 'none',
   },
 }

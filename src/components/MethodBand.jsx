@@ -40,14 +40,6 @@ export default function MethodBand() {
           ))}
         </div>
 
-        <Reveal>
-          <div style={s.pullQuote}>
-            <p style={s.pullText}>
-              Spaced repetition doesn't replace understanding — it preserves it.
-              First you learn. Then you never forget.
-            </p>
-          </div>
-        </Reveal>
       </div>
     </div>
   )

@@ -12,8 +12,8 @@ export default function LessonNav({ moduleTitle, moduleColor, prevLink, nextLink
           <span />
         )}
       </div>
-      <div style={{ ...styles.center, color: moduleColor }}>
-        {moduleTitle}
+      <div style={styles.center}>
+        <Link to="/" style={{ ...styles.homeLink, color: moduleColor }}>{moduleTitle}</Link>
       </div>
       <div style={styles.right}>
         {nextLink ? (
@@ -63,5 +63,14 @@ const styles = {
     color: T.color.accent,
     textDecoration: 'none',
     transition: 'opacity 0.2s',
+  },
+
+  homeLink: {
+    textDecoration: 'none',
+    fontFamily: T.font.label,
+    fontSize: '0.7rem',
+    fontWeight: 600,
+    letterSpacing: '0.15em',
+    textTransform: 'uppercase',
   },
 }

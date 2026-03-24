@@ -17,6 +17,7 @@ import Lesson11 from './pages/lessons/Lesson11'
 import Interlude01 from './pages/interludes/Interlude01'
 import Interlude02 from './pages/interludes/Interlude02'
 import Interlude03 from './pages/interludes/Interlude03'
+import Review from './pages/Review'
 
 // Placeholder component for unbuilt lessons
 function ComingSoon() {
@@ -73,7 +74,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/copilot/cloud-agents" element={<ComingSoon />} />
 
         {/* Review */}
-        <Route path="/review" element={<ComingSoon />} />
+        <Route path="/review" element={<Review />} />
 
         {/* Catch-all */}
         <Route path="*" element={<ComingSoon />} />
