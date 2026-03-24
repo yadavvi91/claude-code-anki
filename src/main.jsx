@@ -21,6 +21,7 @@ import Interlude01 from './pages/interludes/Interlude01'
 import Interlude02 from './pages/interludes/Interlude02'
 import Interlude03 from './pages/interludes/Interlude03'
 import Review from './pages/Review'
+import Comparison from './pages/Comparison'
 
 // Placeholder component for unbuilt lessons
 function ComingSoon() {
@@ -75,6 +76,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/copilot/core-modes" element={<Lesson12 />} />
         <Route path="/copilot/customization" element={<Lesson13 />} />
         <Route path="/copilot/cloud-agents" element={<Lesson14 />} />
+
+        {/* Reference */}
+        <Route path="/comparison" element={<Comparison />} />
 
         {/* Review */}
         <Route path="/review" element={<Review />} />

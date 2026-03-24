@@ -52,6 +52,9 @@ export default function ModuleOverview() {
       })}
     </div>
     <div style={styles.reviewWrap}>
+      <Link to="/comparison" style={styles.comparisonBtn}>
+        Claude Code vs Copilot — Comparison Guide
+      </Link>
       <Link to="/review" style={styles.reviewBtn}>
         Start Review — {totalSeen} / {totalCards} cards seen
       </Link>
@@ -149,6 +152,20 @@ const styles = {
     padding: '1.5rem 2rem 2rem',
   },
 
+  comparisonBtn: {
+    display: 'inline-block',
+    padding: '0.75rem 2rem',
+    border: `1px solid ${T.color.accent}`,
+    color: T.color.accent,
+    borderRadius: '6px',
+    fontFamily: T.font.label,
+    fontSize: '0.7rem',
+    fontWeight: 600,
+    letterSpacing: '0.1em',
+    textTransform: 'uppercase',
+    textDecoration: 'none',
+    marginRight: '1rem',
+  },
   reviewBtn: {
     display: 'inline-block',
     padding: '0.85rem 2.5rem',
