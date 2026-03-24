@@ -24,6 +24,8 @@ const s2 = sets[1].cards // Client-Server Communication
 const s3 = sets[2].cards // Building Servers
 const s4 = sets[3].cards // Testing & Inspector
 
+const base = import.meta.env.BASE_URL + 'images/'
+
 export default function Lesson04() {
   return (
     <div style={styles.page}>
@@ -57,6 +59,10 @@ export default function Lesson04() {
         <Reveal>
           <div style={{ ...styles.setLabel, color: C[1] }}>Set 1 — MCP Fundamentals</div>
           <h2 style={styles.h2}>Why MCP exists</h2>
+        </Reveal>
+
+        <Reveal>
+          <img src={base + 'mcp-intro-introducing-mcp-2.jpg'} alt="MCP architecture" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>

@@ -24,6 +24,8 @@ const s2 = sets[1].cards // GitHub Integration
 const s3 = sets[2].cards // Hooks Fundamentals
 const s4 = sets[3].cards // Advanced Hooks & SDK
 
+const base = import.meta.env.BASE_URL + 'images/'
+
 export default function Lesson03() {
   return (
     <div style={styles.page}>
@@ -58,6 +60,10 @@ export default function Lesson03() {
         <Reveal>
           <div style={{ ...styles.setLabel, color: C[1] }}>Set 1 — MCP Servers</div>
           <h2 style={styles.h2}>Adding new capabilities</h2>
+        </Reveal>
+
+        <Reveal>
+          <img src={base + 'cc-mcp-servers-claude-code-2.jpg'} alt="MCP servers" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -171,6 +177,10 @@ allowed_tools: "Bash(npm:*),Bash(sqlite3:*),
         <Reveal>
           <div style={{ ...styles.setLabel, color: C[3] }}>Set 3 — Hooks Fundamentals</div>
           <h2 style={styles.h2}>Intercepting tool calls</h2>
+        </Reveal>
+
+        <Reveal>
+          <img src={base + 'cc-introducing-hooks-2.jpg'} alt="Hook architecture" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -416,6 +426,8 @@ const styles = {
     borderRadius: '3px',
     color: T.color.accent,
   },
+
+  img: { width: '100%', borderRadius: '8px', marginBottom: '1.5rem', border: `1px solid ${T.color.border}` },
 
   divider: {
     textAlign: 'center',

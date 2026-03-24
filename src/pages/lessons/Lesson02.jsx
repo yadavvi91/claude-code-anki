@@ -24,6 +24,8 @@ const s2 = sets[1].cards // Planning & Thinking
 const s3 = sets[2].cards // Conversation Control
 const s4 = sets[3].cards // Custom Commands
 
+const base = import.meta.env.BASE_URL + 'images/'
+
 export default function Lesson02() {
   return (
     <div style={styles.page}>
@@ -58,6 +60,10 @@ export default function Lesson02() {
         <Reveal>
           <div style={{ ...styles.setLabel, color: C[1] }}>Set 1 — CLAUDE.md & Context Management</div>
           <h2 style={styles.h2}>Teaching Claude about your project</h2>
+        </Reveal>
+
+        <Reveal>
+          <img src={base + 'cc-adding-context-2.jpg'} alt="CLAUDE.md context" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -121,6 +127,10 @@ export default function Lesson02() {
         <Reveal>
           <div style={{ ...styles.setLabel, color: C[2] }}>Set 2 — Planning & Thinking Modes</div>
           <h2 style={styles.h2}>When Claude needs to think harder</h2>
+        </Reveal>
+
+        <Reveal>
+          <img src={base + 'cc-making-changes-3.jpg'} alt="Planning mode" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -362,6 +372,8 @@ const styles = {
     borderRadius: '3px',
     color: T.color.accent,
   },
+
+  img: { width: '100%', borderRadius: '8px', marginBottom: '1.5rem', border: `1px solid ${T.color.border}` },
 
   divider: {
     textAlign: 'center',

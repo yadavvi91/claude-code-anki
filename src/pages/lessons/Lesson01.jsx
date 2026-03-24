@@ -29,6 +29,8 @@ const s2 = sets[1].cards // Architecture & Context
 const s3 = sets[2].cards // Safety & Best Practices
 const s4 = sets[3].cards // Bash & System Commands
 
+const base = import.meta.env.BASE_URL + 'images/'
+
 export default function Lesson01() {
   return (
     <div style={styles.page}>
@@ -63,6 +65,10 @@ export default function Lesson01() {
         <Reveal>
           <div style={{ ...styles.setLabel, color: C[1] }}>Set 1 — Tool Selection</div>
           <h2 style={styles.h2}>The right tool for the job</h2>
+        </Reveal>
+
+        <Reveal>
+          <img src={base + 'cc-what-coding-assistant-3.jpg'} alt="Tool use flow" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -455,6 +461,8 @@ const styles = {
     borderRadius: '3px',
     color: T.color.accent,
   },
+
+  img: { width: '100%', borderRadius: '8px', marginBottom: '1.5rem', border: `1px solid ${T.color.border}` },
 
   divider: {
     textAlign: 'center',
