@@ -1,0 +1,50 @@
+/* Custom Prism theme matching codeBg #1e2030 */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #e2e5ed;
+  text-shadow: none;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata { color: #636d83; font-style: italic; }
+
+.token.punctuation { color: #8b95a8; }
+.token.namespace { opacity: 0.8; }
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol { color: #f59e0b; }
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin { color: #34d399; }
+
+.token.operator,
+.token.entity,
+.token.url { color: #8b95a8; }
+
+.token.atrule,
+.token.attr-value,
+.token.keyword { color: #818cf8; }
+
+.token.function,
+.token.class-name { color: #60a5fa; }
+
+.token.regex,
+.token.important,
+.token.variable { color: #f472b6; }
+
+.token.decorator,
+.token.annotation { color: #c084fc; }
+
+.token.important,
+.token.bold { font-weight: bold; }
+.token.italic { font-style: italic; }

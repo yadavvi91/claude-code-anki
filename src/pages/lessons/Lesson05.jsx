@@ -23,8 +23,6 @@ const s1 = sets[0].cards // Resources Fundamentals
 const s2 = sets[1].cards // Prompts
 const s3 = sets[2].cards // Three Primitives
 
-const base = import.meta.env.BASE_URL + 'images/'
-
 export default function Lesson05() {
   return (
     <div style={styles.page}>
@@ -58,10 +56,6 @@ export default function Lesson05() {
         <Reveal>
           <div style={{ ...styles.setLabel, color: C[1] }}>Set 1 — Resources Fundamentals</div>
           <h2 style={styles.h2}>Exposing data from your server</h2>
-        </Reveal>
-
-        <Reveal>
-          <img src={base + 'mcp-intro-defining-resources-2.jpg'} alt="Resources concept" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -187,10 +181,6 @@ def format_document(
         <Reveal>
           <div style={{ ...styles.setLabel, color: C[3] }}>Set 3 — Choosing the Right Primitive</div>
           <h2 style={styles.h2}>Tools, resources, or prompts?</h2>
-        </Reveal>
-
-        <Reveal>
-          <img src={base + 'mcp-intro-mcp-review-1.jpg'} alt="Three primitives overview" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>

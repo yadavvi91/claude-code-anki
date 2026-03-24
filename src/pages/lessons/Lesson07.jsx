@@ -22,8 +22,6 @@ const colors = allCards.map(() => nc())
 const s1 = sets[0].cards // JSON & STDIO
 const s2 = sets[1].cards // StreamableHTTP
 
-const base = import.meta.env.BASE_URL + 'images/'
-
 export default function Lesson07() {
   return (
     <div style={styles.page}>
@@ -59,10 +57,6 @@ export default function Lesson07() {
           <h2 style={styles.h2}>The message layer</h2>
         </Reveal>
 
-        <Reveal>
-          <img src={base + 'mcp-adv-json-message-types-1.jpg'} alt="JSON message types" style={styles.img} />
-        </Reveal>
-
         <Reveal><p style={styles.prose}>
           All MCP communication uses <strong>JSON messages</strong>. They fall into two categories:
           <strong> Request-Result</strong> messages (always in pairs) and <strong>Notification</strong> messages
@@ -85,10 +79,6 @@ export default function Lesson07() {
           selection, as some transports limit which directions are supported.
         </p></Reveal>
 
-        <Reveal>
-          <img src={base + 'mcp-adv-stdio-transport-1.jpg'} alt="STDIO transport" style={styles.img} />
-        </Reveal>
-
         <Reveal><p style={styles.prose}>
           The <strong>STDIO transport</strong> is the simplest: client launches the server as a
           subprocess and communicates via stdin/stdout. Either party can send at any time. It
@@ -100,10 +90,6 @@ export default function Lesson07() {
           (1) Initialize Request (client→server), (2) Initialize Result (server→client),
           (3) Initialized Notification (client→server, no response). Only then can operations begin.
         </p></Reveal>
-
-        <Reveal>
-          <img src={base + 'mcp-adv-stdio-transport-3.jpg'} alt="STDIO handshake" style={styles.img} />
-        </Reveal>
 
         {s1.map((card, i) => (
           <Reveal key={card.id}><MCQCard card={card} color={colors[i]} /></Reveal>
@@ -117,10 +103,6 @@ export default function Lesson07() {
           <h2 style={styles.h2}>Going remote</h2>
         </Reveal>
 
-        <Reveal>
-          <img src={base + 'mcp-adv-streamablehttp-transport-1.jpg'} alt="StreamableHTTP overview" style={styles.img} />
-        </Reveal>
-
         <Reveal><p style={styles.prose}>
           <strong>StreamableHTTP</strong> enables clients to connect to remotely hosted servers over HTTP.
           The core challenge: clients can call servers (known URL), but servers can't easily
@@ -132,10 +114,6 @@ export default function Lesson07() {
           opens a long-lived GET connection. The server uses this persistent channel to stream
           notifications, progress updates, and sampling requests at any time.
         </p></Reveal>
-
-        <Reveal>
-          <img src={base + 'mcp-adv-streamablehttp-depth-2.jpg'} alt="SSE connections" style={styles.img} />
-        </Reveal>
 
         <Reveal><p style={styles.prose}>
           The server returns an <code style={styles.code}>mcp-session-id</code> header during
@@ -160,10 +138,6 @@ export default function Lesson07() {
             <code style={styles.code}>stateless_http</code>/<code style={styles.code}>json_response</code> settings
             are likely the culprit. Test with the same transport you'll use in production.
           </TipCallout>
-        </Reveal>
-
-        <Reveal>
-          <img src={base + 'mcp-adv-state-streamablehttp-transport-3.jpg'} alt="Stateless trade-offs" style={styles.img} />
         </Reveal>
 
         {s2.map((card, i) => (
@@ -205,7 +179,6 @@ const styles = {
   h2: { fontFamily: T.font.heading, fontSize: '1.55rem', fontWeight: 600, color: T.color.ink2, lineHeight: 1.3, marginBottom: '1.4rem' },
   prose: { fontFamily: T.font.prose, fontSize: '1.05rem', lineHeight: 1.85, color: T.color.ink3, marginBottom: '1.4rem', maxWidth: '65ch' },
   code: { fontFamily: T.font.code, fontSize: '0.85em', background: 'rgba(99,102,241,0.08)', padding: '0.15em 0.4em', borderRadius: '3px', color: T.color.accent },
-  img: { width: '100%', borderRadius: '8px', marginBottom: '1.5rem', border: `1px solid ${T.color.border}` },
   divider: { textAlign: 'center', color: T.color.bg3, fontSize: '1rem', margin: '3rem 0', letterSpacing: '0.5em' },
   endSection: { textAlign: 'center', padding: '2rem 0' },
   endLabel: { fontFamily: T.font.label, fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.3em', textTransform: 'uppercase', color: T.color.ink4, marginBottom: '1.5rem' },

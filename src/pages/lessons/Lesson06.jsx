@@ -23,8 +23,6 @@ const s1 = sets[0].cards // Sampling
 const s2 = sets[1].cards // Notifications
 const s3 = sets[2].cards // Roots
 
-const base = import.meta.env.BASE_URL + 'images/'
-
 export default function Lesson06() {
   return (
     <div style={styles.page}>
@@ -60,20 +58,12 @@ export default function Lesson06() {
           <h2 style={styles.h2}>Letting servers use Claude</h2>
         </Reveal>
 
-        <Reveal>
-          <img src={base + 'mcp-adv-sampling-1.jpg'} alt="Sampling architecture" style={styles.img} />
-        </Reveal>
-
         <Reveal><p style={styles.prose}>
           <strong>Sampling</strong> allows an MCP server to access a language model through the connected
           client, rather than calling the LLM directly. The server creates a prompt and says
           "Could you call Claude for me?" — the client, which already has a connection to Claude,
           makes the call and returns the result.
         </p></Reveal>
-
-        <Reveal>
-          <img src={base + 'mcp-adv-sampling-2.jpg'} alt="Sampling flow" style={styles.img} />
-        </Reveal>
 
         <Reveal><p style={styles.prose}>
           Why? Because it <strong>shifts token costs to the client</strong>. The server needs no
@@ -106,10 +96,6 @@ result = await ctx.session.create_message(
         <Reveal>
           <div style={{ ...styles.setLabel, color: C[2] }}>Set 2 — Notifications & Progress</div>
           <h2 style={styles.h2}>Real-time feedback</h2>
-        </Reveal>
-
-        <Reveal>
-          <img src={base + 'mcp-adv-log-progress-notifications-1.jpg'} alt="Notifications" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -150,19 +136,11 @@ result = await ctx.session.create_message(
           <h2 style={styles.h2}>Controlling filesystem access</h2>
         </Reveal>
 
-        <Reveal>
-          <img src={base + 'mcp-adv-roots-1.jpg'} alt="Roots concept" style={styles.img} />
-        </Reveal>
-
         <Reveal><p style={styles.prose}>
           <strong>Roots</strong> are a permission system that tells MCP servers which files and
           folders on your machine they can access. When a user says "convert biking.mp4," roots
           give Claude the context to find the file without requiring the full path.
         </p></Reveal>
-
-        <Reveal>
-          <img src={base + 'mcp-adv-roots-3.jpg'} alt="Roots workflow" style={styles.img} />
-        </Reveal>
 
         <Reveal><p style={styles.prose}>
           The workflow: user asks to convert a file → Claude calls <code style={styles.code}>list_roots</code> →
@@ -212,7 +190,6 @@ const styles = {
   h2: { fontFamily: T.font.heading, fontSize: '1.55rem', fontWeight: 600, color: T.color.ink2, lineHeight: 1.3, marginBottom: '1.4rem' },
   prose: { fontFamily: T.font.prose, fontSize: '1.05rem', lineHeight: 1.85, color: T.color.ink3, marginBottom: '1.4rem', maxWidth: '65ch' },
   code: { fontFamily: T.font.code, fontSize: '0.85em', background: 'rgba(99,102,241,0.08)', padding: '0.15em 0.4em', borderRadius: '3px', color: T.color.accent },
-  img: { width: '100%', borderRadius: '8px', marginBottom: '1.5rem', border: `1px solid ${T.color.border}` },
   divider: { textAlign: 'center', color: T.color.bg3, fontSize: '1rem', margin: '3rem 0', letterSpacing: '0.5em' },
   endSection: { textAlign: 'center', padding: '2rem 0' },
   endLabel: { fontFamily: T.font.label, fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.3em', textTransform: 'uppercase', color: T.color.ink4, marginBottom: '1.5rem' },
