@@ -1,0 +1,23 @@
+src/components/MCQCard.jsx
+  68098c85b7fbaece 1,4-17,20,23-24,27,103
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.17",
+  "base_commit_sha": "a1324c94a210ad032714a4825e3ae862e008b883",
+  "prompts": {
+    "68098c85b7fbaece": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "36c2fc92-8520-4531-b2b6-87112da3000e",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Vishal Yadav <yadavvi91@gmail.com>",
+      "messages": [],
+      "total_additions": 21,
+      "total_deletions": 4,
+      "accepted_lines": 21,
+      "overriden_lines": 0
+    }
+  }
+}
