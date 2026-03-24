@@ -414,20 +414,20 @@
 | T063-T071 | L12-L14 | WP19-21 | P1 | ⬜ |
 | T072-T074 | Review system | WP22 | P0 | ⬜ |
 | T075-T077 | Deploy | WP23 | P0 | ⬜ |
-| T078 | Tighten landing page | WP24 | P0 | ⬜ |
-| T079 | Add course images | WP25 | P0 | ⬜ |
-| T080 | Fix Hero gradient | WP26 | P1 | ⬜ |
+| T078 | Tighten landing page | WP24 | P0 | ✅ |
+| T079 | Add course images | WP25 | P0 | ⬜ BLOCKED (all course images are 320x180 thumbnails) |
+| T080 | Fix Hero gradient | WP26 | P1 | ✅ |
 
 ---
 
-## Work Package WP24: Tighten landing page scroll (Priority: P0)
+## Work Package WP24: Tighten landing page scroll (Priority: P0) ✅ DONE
 
 **Goal**: Reduce vertical space so users reach modules faster.
 **Independent Test**: Module grid visible without excessive scrolling.
 **Requirements Refs**: UX feedback
 
 ### Included Subtasks
-- [ ] T078 Cut or compact Hero, Problem, Insight, Method sections
+- [x] T078 Cut or compact Hero, Problem, Insight, Method sections
 
 ### Dependencies
 - None
@@ -448,14 +448,14 @@
 
 ---
 
-## Work Package WP26: Fix Hero gradient (Priority: P1)
+## Work Package WP26: Fix Hero gradient (Priority: P1) ✅ DONE
 
 **Goal**: Replace blue-purple hero gradient with a cleaner color treatment.
 **Independent Test**: Landing page looks polished without the off-putting hue.
 **Requirements Refs**: UX feedback
 
 ### Included Subtasks
-- [ ] T080 Update Hero.jsx gradient colors
+- [x] T080 Update Hero.jsx gradient colors
 
 ### Dependencies
 - None
