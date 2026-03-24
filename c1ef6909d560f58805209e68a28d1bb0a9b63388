@@ -1,0 +1,43 @@
+src/pages/lessons/Lesson07.jsx
+  68098c85b7fbaece 5,27-31
+src/pages/lessons/Lesson02.jsx
+  68098c85b7fbaece 5,29-35
+src/pages/lessons/Lesson01.jsx
+  68098c85b7fbaece 5,34-40
+src/pages/lessons/Lesson11.jsx
+  68098c85b7fbaece 5,23-27
+src/pages/lessons/Lesson06.jsx
+  68098c85b7fbaece 5,28-33
+src/pages/lessons/Lesson05.jsx
+  68098c85b7fbaece 5,28-33
+src/pages/lessons/Lesson03.jsx
+  68098c85b7fbaece 5,29-35
+src/pages/lessons/Lesson04.jsx
+  68098c85b7fbaece 5,29-35
+src/pages/lessons/Lesson09.jsx
+  68098c85b7fbaece 5,23-27
+src/pages/lessons/Lesson08.jsx
+  68098c85b7fbaece 5,24-28
+src/pages/lessons/Lesson10.jsx
+  68098c85b7fbaece 5,24-28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.17",
+  "base_commit_sha": "c1ef6909d560f58805209e68a28d1bb0a9b63388",
+  "prompts": {
+    "68098c85b7fbaece": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "36c2fc92-8520-4531-b2b6-87112da3000e",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Vishal Yadav <yadavvi91@gmail.com>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 183,
+      "overriden_lines": 0
+    }
+  }
+}
