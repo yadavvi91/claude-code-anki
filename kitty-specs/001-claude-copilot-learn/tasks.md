@@ -415,7 +415,12 @@
 | T072-T074 | Review system | WP22 | P0 | ⬜ |
 | T075-T077 | Deploy | WP23 | P0 | ⬜ |
 | T078 | Tighten landing page | WP24 | P0 | ✅ |
-| T079 | Add course images | WP25 | P0 | ⬜ BLOCKED (all course images are 320x180 thumbnails) |
+| T079 | Add course images | WP25 | P0 | ✅ |
+| T081 | Home link in LessonNav | WP27 | P0 | ✅ |
+| T082 | Compact landing page more | WP28 | P0 | ✅ |
+| T083 | Review/quiz page | WP29 | P0 | ✅ |
+| T084 | Worktree/subagent guide | WP30 | P1 | ⬜ |
+| T085 | Deploy to GitHub Pages | WP31 | P0 | ✅ |
 | T080 | Fix Hero gradient | WP26 | P1 | ✅ |
 
 ---
@@ -434,17 +439,66 @@
 
 ---
 
-## Work Package WP25: Add course images to lessons (Priority: P0)
+## Work Package WP25: Add course images to lessons (Priority: P0) ✅ DONE
 
 **Goal**: Extract usable images from detailed course markdown files and add to lessons.
 **Independent Test**: Lessons display relevant course images.
 **Requirements Refs**: Content quality
 
 ### Included Subtasks
-- [ ] T079 Extract and add images from course markdown files to L1-L11
+- [x] T079 Extract and add HD (1920x1080) images from Chrome scrape to L1-L11
 
 ### Dependencies
 - None
+
+---
+
+## Work Package WP27: Home link in LessonNav (Priority: P0) ✅ DONE
+
+**Goal**: Add a way to navigate back to home from any lesson page.
+**Independent Test**: Module title in LessonNav links to home.
+
+### Included Subtasks
+- [x] T081 Make module title a Link to home
+
+---
+
+## Work Package WP28: Compact landing page more (Priority: P0) ✅ DONE
+
+**Goal**: Further reduce landing page scroll.
+**Independent Test**: Less scrolling to reach modules.
+
+### Included Subtasks
+- [x] T082 Tighter sections, restore stat descriptions
+
+---
+
+## Work Package WP29: Review/quiz page (Priority: P0) ✅ DONE
+
+**Goal**: SRS review page with due cards queue.
+**Independent Test**: /review route shows due cards with progress counter.
+
+### Included Subtasks
+- [x] T083 Build Review.jsx with SRS filtering, wire route, add button to home
+
+---
+
+## Work Package WP30: Worktree/subagent usage guide (Priority: P1)
+
+**Goal**: Help users use worktrees and subagents correctly.
+
+### Included Subtasks
+- [ ] T084 TBD — scope not yet defined by user
+
+---
+
+## Work Package WP31: Deploy to GitHub Pages (Priority: P0) ✅ DONE
+
+**Goal**: Build and deploy to yadavvi91.github.io/claude-code-anki.
+**Independent Test**: Site loads at the URL.
+
+### Included Subtasks
+- [x] T085 Make repo public, enable Pages, npm run deploy
 
 ---
 
