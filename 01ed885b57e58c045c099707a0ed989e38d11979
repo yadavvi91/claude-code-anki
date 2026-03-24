@@ -1,0 +1,37 @@
+public/images/diagrams/hook-interception.svg
+  68098c85b7fbaece 1-77
+src/pages/lessons/Lesson04.jsx
+  68098c85b7fbaece 67-70,284
+src/pages/lessons/Lesson03.jsx
+  68098c85b7fbaece 192,444
+public/images/diagrams/mcp-flow.svg
+  68098c85b7fbaece 1-85
+public/images/diagrams/agent-tool-loop.svg
+  68098c85b7fbaece 1-75
+public/images/diagrams/subagent-isolation.svg
+  68098c85b7fbaece 1-64
+src/pages/lessons/Lesson01.jsx
+  68098c85b7fbaece 66-68,487
+src/pages/lessons/Lesson10.jsx
+  68098c85b7fbaece 38-41,106
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.17",
+  "base_commit_sha": "01ed885b57e58c045c099707a0ed989e38d11979",
+  "prompts": {
+    "68098c85b7fbaece": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "36c2fc92-8520-4531-b2b6-87112da3000e",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Vishal Yadav <yadavvi91@gmail.com>",
+      "messages": [],
+      "total_additions": 318,
+      "total_deletions": 1,
+      "accepted_lines": 360,
+      "overriden_lines": 0
+    }
+  }
+}
