@@ -1,0 +1,29 @@
+src/pages/lessons/Lesson01.jsx
+  68098c85b7fbaece 80,166,320
+src/pages/lessons/Lesson03.jsx
+  68098c85b7fbaece 192
+src/pages/lessons/Lesson02.jsx
+  68098c85b7fbaece 75,142,243
+src/components/ModuleOverview.jsx
+  68098c85b7fbaece 27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.17",
+  "base_commit_sha": "659890e105f56d5cff9de83f93f7b77c52654bba",
+  "prompts": {
+    "68098c85b7fbaece": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "36c2fc92-8520-4531-b2b6-87112da3000e",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Vishal Yadav <yadavvi91@gmail.com>",
+      "messages": [],
+      "total_additions": 8,
+      "total_deletions": 8,
+      "accepted_lines": 50,
+      "overriden_lines": 0
+    }
+  }
+}
