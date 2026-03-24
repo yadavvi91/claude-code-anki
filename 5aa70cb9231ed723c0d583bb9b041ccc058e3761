@@ -1,0 +1,43 @@
+src/components/Reveal.jsx
+  68098c85b7fbaece 3,19
+src/pages/lessons/Lesson02.jsx
+  68098c85b7fbaece 68-71,79,96-98,127-130,144-147,158,167-170,205-208,222-225,262-265,275,286-288,314-316,329-332
+src/pages/lessons/Lesson03.jsx
+  68098c85b7fbaece 68-71,79,102-105,135-138,147-150,157-159,203-206,216,231-233,285-288,297-300,337-340,371-374
+src/pages/lessons/Lesson06.jsx
+  68098c85b7fbaece 65-68,93-95,111-114,119-121,142-144,169-172,198-204,217-220
+src/pages/interludes/Interlude01.jsx
+  68098c85b7fbaece 3,6-11,16,23,27,31,35
+src/pages/lessons/Lesson05.jsx
+  68098c85b7fbaece 65-68,91-93,134-141,171-173,216-219,238-240,260-262,275-278
+src/pages/interludes/Interlude02.jsx
+  68098c85b7fbaece 3,6-12,17,24,28,32,36,39
+src/pages/lessons/Lesson01.jsx
+  68098c85b7fbaece 66,70,88,123-126,144-147,173-176,186,198-201,236-239,292-295,352,364-367,411-414
+src/pages/interludes/Interlude03.jsx
+  68098c85b7fbaece 3,6-12,17,24,28,32,36,40
+src/pages/lessons/Lesson07.jsx
+  68098c85b7fbaece 63-66,99-102,115-126,131-134,159-162,185-191,204-211
+src/pages/lessons/Lesson04.jsx
+  68098c85b7fbaece 68,94-96,111-114,127-130,156-158,170-173,228-235,267-274
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.17",
+  "base_commit_sha": "5aa70cb9231ed723c0d583bb9b041ccc058e3761",
+  "prompts": {
+    "68098c85b7fbaece": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "36c2fc92-8520-4531-b2b6-87112da3000e",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Vishal Yadav <yadavvi91@gmail.com>",
+      "messages": [],
+      "total_additions": 290,
+      "total_deletions": 18,
+      "accepted_lines": 330,
+      "overriden_lines": 0
+    }
+  }
+}
