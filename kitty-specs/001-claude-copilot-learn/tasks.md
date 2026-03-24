@@ -430,6 +430,7 @@
 | T104 | Tone down scroll animations | WP39 | P0 | ✅ |
 | T105 | Online Resources section on home page | WP40 | P0 | ✅ |
 | T106-T110 | Lesson 15: The Agent Loop | WP41 | P0 | ✅ |
+| T111 | Home page site map | WP42 | P0 | ✅ |
 
 ---
 
@@ -630,3 +631,16 @@
 
 ### Dependencies
 - Depends on WP02 (card infrastructure), WP38 (MCQSection)
+
+---
+
+## Work Package WP42: Home page site map (Priority: P0) ✅ DONE
+
+**Goal**: Add a full site map to the bottom of the home page showing all modules, lessons, interludes, and reference pages in a color-coded grid layout.
+**Independent Test**: Home page shows "Site Map" section with all 15 lessons, 3 interludes, and 3 reference links organized by module.
+
+### Included Subtasks
+- [x] T111 Add sitemap grid section to App.jsx with color-coded module headers and lesson links
+
+### Dependencies
+- None
