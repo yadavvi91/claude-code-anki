@@ -317,7 +317,7 @@ Grep("handleSubmit")    // wait...`}
         </Reveal>
 
         <Reveal>
-          <img src={`${base}303242_000448s.jpg`} alt="Bash tool usage and system command patterns" style={styles.img} />
+          <img src={`${base}303242_000157s.jpg`} alt="Bash tool usage and system command patterns" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
