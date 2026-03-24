@@ -189,7 +189,7 @@ allowed_tools: "Bash(npm:*),Bash(sqlite3:*),
         </Reveal>
 
         <Reveal>
-          <img src={`${base}312000_000108s.jpg`} alt="Hook lifecycle with PreToolUse and PostToolUse events" style={styles.img} />
+          <img src="/claude-code-anki/images/diagrams/hook-interception.svg" alt="Hook interception flow — PreToolUse can block, PostToolUse can modify results" style={styles.diagram} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -441,6 +441,7 @@ const styles = {
   },
 
   img: { width: '100%', maxWidth: '720px', borderRadius: '8px', margin: '1rem auto', display: 'block' },
+  diagram: { width: '100%', maxWidth: '800px', borderRadius: '8px', margin: '1.5rem auto', display: 'block' },
 
   divider: {
     textAlign: 'center',

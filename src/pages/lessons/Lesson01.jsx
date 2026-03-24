@@ -63,6 +63,10 @@ export default function Lesson01() {
         </Reveal>
 
         <Reveal>
+          <img src="/claude-code-anki/images/diagrams/agent-tool-loop.svg" alt="The coding agent tool loop — how the agent calls the LLM with tools, executes tool calls, and returns results" style={styles.diagram} />
+        </Reveal>
+
+        <Reveal>
           <ConceptDisplay
             concept="Read · Edit · Write · Bash · Grep · Glob · Agent"
             description="Seven tools, each purpose-built. Choosing the right one is the first skill."
@@ -480,6 +484,7 @@ const styles = {
   },
 
   img: { width: '100%', maxWidth: '720px', borderRadius: '8px', margin: '1rem auto', display: 'block' },
+  diagram: { width: '100%', maxWidth: '800px', borderRadius: '8px', margin: '1.5rem auto', display: 'block' },
 
   divider: {
     textAlign: 'center',
