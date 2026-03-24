@@ -19,8 +19,7 @@ export default function Reveal({ children, ...rest }) {
       {...rest}
       style={{
         opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(18px)',
-        transition: 'opacity 0.55s ease, transform 0.55s ease',
+        transition: 'opacity 0.35s ease',
       }}
     >
       {children}
