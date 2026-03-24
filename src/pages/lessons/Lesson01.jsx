@@ -77,7 +77,7 @@ export default function Lesson01() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}cc-005.jpg`} alt="Claude Code multi-tool architecture overview" style={styles.img} />
+          <img src={`${base}303235_000146s.jpg`} alt="Claude Code multi-tool architecture overview" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -163,7 +163,7 @@ export default function Lesson01() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}cc-007.jpg`} alt="Claude Code sandbox and context architecture" style={styles.img} />
+          <img src={`${base}303242_000237s.jpg`} alt="Claude Code sandbox and context architecture" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -317,7 +317,7 @@ Grep("handleSubmit")    // wait...`}
         </Reveal>
 
         <Reveal>
-          <img src={`${base}cc-009.jpg`} alt="Bash tool usage and system command patterns" style={styles.img} />
+          <img src={`${base}303242_000619s.jpg`} alt="Bash tool usage and system command patterns" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -479,7 +479,7 @@ const styles = {
     color: T.color.accent,
   },
 
-  img: { width: '100%', maxWidth: '480px', borderRadius: '8px', margin: '1rem auto', display: 'block' },
+  img: { width: '100%', maxWidth: '720px', borderRadius: '8px', margin: '1rem auto', display: 'block' },
 
   divider: {
     textAlign: 'center',

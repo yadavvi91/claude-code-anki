@@ -67,7 +67,7 @@ export default function Lesson07() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}mcp-adv-025.jpg`} alt="JSON message types in MCP communication" style={styles.img} />
+          <img src={`${base}296290_000035s.jpg`} alt="JSON message types in MCP communication" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -117,7 +117,7 @@ export default function Lesson07() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}mcp-adv-040.jpg`} alt="StreamableHTTP transport for remote MCP servers" style={styles.img} />
+          <img src={`${base}296291_000045s.jpg`} alt="StreamableHTTP transport for remote MCP servers" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -150,7 +150,7 @@ export default function Lesson07() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}mcp-adv-055.jpg`} alt="SSE and session management for production MCP" style={styles.img} />
+          <img src={`${base}296287_000035s.jpg`} alt="SSE and session management for production MCP" style={styles.img} />
         </Reveal>
 
         <Reveal>
@@ -200,7 +200,7 @@ const styles = {
   h2: { fontFamily: T.font.heading, fontSize: '1.55rem', fontWeight: 600, color: T.color.ink2, lineHeight: 1.3, marginBottom: '1.4rem' },
   prose: { fontFamily: T.font.prose, fontSize: '1.05rem', lineHeight: 1.85, color: T.color.ink3, marginBottom: '1.4rem', maxWidth: '65ch' },
   code: { fontFamily: T.font.code, fontSize: '0.85em', background: 'rgba(99,102,241,0.08)', padding: '0.15em 0.4em', borderRadius: '3px', color: T.color.accent },
-  img: { width: '100%', maxWidth: '480px', borderRadius: '8px', margin: '1rem auto', display: 'block' },
+  img: { width: '100%', maxWidth: '720px', borderRadius: '8px', margin: '1rem auto', display: 'block' },
   divider: { textAlign: 'center', color: T.color.bg3, fontSize: '1rem', margin: '3rem 0', letterSpacing: '0.5em' },
   endSection: { textAlign: 'center', padding: '2rem 0' },
   endLabel: { fontFamily: T.font.label, fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.3em', textTransform: 'uppercase', color: T.color.ink4, marginBottom: '1.5rem' },

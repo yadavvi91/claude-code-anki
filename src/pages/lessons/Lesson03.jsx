@@ -72,7 +72,7 @@ export default function Lesson03() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}cc-042.jpg`} alt="MCP server integration with Claude Code" style={styles.img} />
+          <img src={`${base}303239_000045s.jpg`} alt="MCP server integration with Claude Code" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -189,7 +189,7 @@ allowed_tools: "Bash(npm:*),Bash(sqlite3:*),
         </Reveal>
 
         <Reveal>
-          <img src={`${base}cc-052.jpg`} alt="Hook lifecycle with PreToolUse and PostToolUse events" style={styles.img} />
+          <img src={`${base}312000_000116s.jpg`} alt="Hook lifecycle with PreToolUse and PostToolUse events" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -295,7 +295,7 @@ main();`}
         </Reveal>
 
         <Reveal>
-          <img src={`${base}cc-060.jpg`} alt="Claude Code SDK integration patterns" style={styles.img} />
+          <img src={`${base}303240_000052s.jpg`} alt="Claude Code SDK integration patterns" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -440,7 +440,7 @@ const styles = {
     color: T.color.accent,
   },
 
-  img: { width: '100%', maxWidth: '480px', borderRadius: '8px', margin: '1rem auto', display: 'block' },
+  img: { width: '100%', maxWidth: '720px', borderRadius: '8px', margin: '1rem auto', display: 'block' },
 
   divider: {
     textAlign: 'center',
