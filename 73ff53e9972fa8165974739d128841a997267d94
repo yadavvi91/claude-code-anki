@@ -1,0 +1,29 @@
+index.html
+  68098c85b7fbaece 26,33-37
+src/pages/Review.jsx
+  68098c85b7fbaece 11,16,27-49,53-54,56,60-63,65-72,76,78-89,92-96,99-114,117-141,144-150,155-156,167-168,171-172,174-260
+src/components/ModuleOverview.jsx
+  68098c85b7fbaece 78,83-84
+src/components/MCQCard.jsx
+  68098c85b7fbaece 226-227,230-231
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.17",
+  "base_commit_sha": "73ff53e9972fa8165974739d128841a997267d94",
+  "prompts": {
+    "68098c85b7fbaece": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "36c2fc92-8520-4531-b2b6-87112da3000e",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Vishal Yadav <yadavvi91@gmail.com>",
+      "messages": [],
+      "total_additions": 214,
+      "total_deletions": 40,
+      "accepted_lines": 213,
+      "overriden_lines": 0
+    }
+  }
+}
