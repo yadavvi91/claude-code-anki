@@ -34,7 +34,7 @@ const NAV_SECTIONS = [
 
 export default function Lesson14() {
   return (
-    <div style={styles.page}><NavSidebar sections={NAV_SECTIONS} /><LessonNav moduleTitle="GitHub Copilot" moduleColor={mod.color} prevLink="/copilot/customization" prevLabel="L13: Customization" nextLink="/" nextLabel="Home" />
+    <div style={styles.page}><NavSidebar sections={NAV_SECTIONS} /><LessonNav moduleTitle="GitHub Copilot" moduleColor={mod.color} prevLink="/copilot/customization" prevLabel="L13: Customization" nextLink="/copilot/coding-agent" nextLabel="L16: Coding Agent" />
       <main style={styles.main}>
         <Reveal><div style={styles.lessonLabel}>Lesson 14</div><h1 style={styles.h1}>Advanced Features</h1>
           <p style={styles.subtitle}>Cloud agents, hooks, cross-tool comparison, and the latest Copilot capabilities</p></Reveal>
@@ -136,7 +136,7 @@ export default function Lesson14() {
         <div style={styles.divider}>· · ·</div>
         <Reveal id="summary"><div style={styles.endSection}><div style={styles.endLabel}>End of Lesson 14</div>
           <p style={styles.endProse}>You now understand the four agent types (local, background, cloud, sub-agent), how hooks enforce policy, the concept mapping between Copilot and Claude Code, and the latest features like NES and browser debugging. This completes Module 6: GitHub Copilot.</p>
-          <a href="/claude-code-anki/" style={styles.nextBtn}>← Back to Home</a></div></Reveal>
+          <a href="/claude-code-anki/copilot/coding-agent" style={styles.nextBtn}>Next → Lesson 16: The Coding Agent</a></div></Reveal>
       </main>
     </div>
   )

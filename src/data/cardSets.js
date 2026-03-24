@@ -2762,6 +2762,196 @@ export const modules = [
           },
         ]
       },
+      {
+        id: 'cop-l16',
+        title: 'The Coding Agent',
+        slug: 'copilot/coding-agent',
+        cardSets: [
+          {
+            id: 'cop-l16-s1',
+            title: 'Set 1 — Invoking the Coding Agent',
+            cards: [
+              {
+                id: 'cop-l16-s1-q1',
+                question: 'A teammate opens an issue asking for a bug fix. They want Copilot to handle it without anyone opening an editor. How do they trigger the coding agent?',
+                codeBlock: null,
+                options: [
+                  { label: 'Assign the issue to Copilot — just like assigning to a human team member. Works from github.com, GitHub Mobile, or the GitHub CLI.', correct: true, feedback: 'Correct. Assigning an issue to Copilot triggers the coding agent. It analyzes the issue, creates a branch, works autonomously, and delivers a draft pull request — all without anyone opening an editor.' },
+                  { label: 'Add a "copilot" label to the issue', correct: false, feedback: 'Labels don\'t trigger the coding agent. You assign the issue to Copilot directly, just as you\'d assign it to a colleague.' },
+                  { label: 'Comment @copilot on the issue', correct: false, feedback: 'While @copilot mentions work in some contexts, the primary trigger for the coding agent on issues is assignment — assigning the issue to Copilot.' },
+                  { label: 'Create a GitHub Actions workflow that calls the coding agent API', correct: false, feedback: 'No API call needed. Assign the issue to Copilot and the coding agent starts automatically.' },
+                ]
+              },
+              {
+                id: 'cop-l16-s1-q2',
+                question: 'After you assign an issue to Copilot, what is the very first thing the coding agent does?',
+                codeBlock: null,
+                options: [
+                  { label: 'Creates a draft pull request with an initial empty commit to establish a workspace branch, then pushes code commits as it works', correct: true, feedback: 'Correct. The coding agent immediately creates a draft PR with an empty commit. This establishes the branch and gives you a place to track progress. Subsequent commits with actual code changes follow as the agent works.' },
+                  { label: 'Starts writing code directly to the main branch', correct: false, feedback: 'The coding agent never writes to main. It creates its own branch via a draft PR first, keeping all changes isolated until review.' },
+                  { label: 'Sends you a plan for approval before writing any code', correct: false, feedback: 'The coding agent starts working immediately after creating the draft PR. You can monitor progress through session logs, but it doesn\'t wait for plan approval.' },
+                  { label: 'Clones the repo to a local machine and opens VS Code', correct: false, feedback: 'The coding agent runs entirely in the cloud on GitHub\'s infrastructure. No local machine or VS Code is involved.' },
+                ]
+              },
+              {
+                id: 'cop-l16-s1-q3',
+                question: 'You\'re working locally in VS Code and want to hand off a task to the cloud coding agent without leaving your editor. How?',
+                codeBlock: null,
+                options: [
+                  { label: 'Use Copilot Chat in VS Code to ask it to start working — it can delegate to the cloud coding agent directly from the chat interface', correct: true, feedback: 'Correct. You can trigger the coding agent from Copilot Chat in VS Code. This creates a seamless workflow where you describe the task locally and the agent picks it up in the cloud, delivering a PR when done.' },
+                  { label: 'This is not possible — you must go to github.com to use the coding agent', correct: false, feedback: 'The coding agent can be triggered from VS Code\'s Copilot Chat, GitHub Mobile, GitHub CLI, or github.com — multiple entry points.' },
+                  { label: 'Run a terminal command: `gh copilot agent start`', correct: false, feedback: 'While the GitHub CLI can assign issues to Copilot, VS Code\'s Copilot Chat provides a more direct way to delegate tasks to the coding agent.' },
+                  { label: 'Push your branch and the cloud agent will automatically pick it up', correct: false, feedback: 'The coding agent doesn\'t auto-detect pushed branches. You must explicitly trigger it via issue assignment or Copilot Chat.' },
+                ]
+              },
+              {
+                id: 'cop-l16-s1-q4',
+                question: 'The coding agent has been working on your issue for 10 minutes. How do you see what it\'s doing?',
+                codeBlock: null,
+                options: [
+                  { label: 'Check the session logs in the draft PR — they show every step the agent takes, including tool calls, file reads, and decisions', correct: true, feedback: 'Correct. Session logs provide full transparency into the agent\'s work. You can see what files it read, what searches it ran, what edits it made, and why — all from the draft PR page.' },
+                  { label: 'You can\'t — the coding agent works in a black box until it\'s done', correct: false, feedback: 'The coding agent is fully transparent. Session logs in the draft PR show every action in real-time.' },
+                  { label: 'Check the GitHub Actions tab for workflow logs', correct: false, feedback: 'While the coding agent uses GitHub Actions infrastructure, its progress is tracked via session logs on the PR, not Actions workflow logs.' },
+                  { label: 'Wait for an email notification when it finishes', correct: false, feedback: 'You don\'t have to wait. Session logs let you monitor the agent\'s progress in real-time on the draft PR.' },
+                ]
+              },
+              {
+                id: 'cop-l16-s1-q5',
+                question: 'Which model powers the coding agent, and can you change it?',
+                codeBlock: null,
+                options: [
+                  { label: 'The model picker lets you choose between multiple models (including Claude Opus 4.5, GPT-4o, GPT-5.1-Codex-Max, Gemini 2.0 Flash) or set it to Auto', correct: true, feedback: 'Correct. The coding agent supports a model picker with multiple options. Auto mode lets Copilot choose the best model per task. This multi-model approach lets you optimize for speed, quality, or cost depending on the task.' },
+                  { label: 'It always uses GPT-4 and cannot be changed', correct: false, feedback: 'The coding agent supports multiple models via a model picker, including non-OpenAI models like Claude Opus 4.5 and Gemini 2.0 Flash.' },
+                  { label: 'You must configure the model in copilot-setup-steps.yml', correct: false, feedback: 'Model selection happens via the model picker in the UI, not in the setup steps file (which is for environment configuration).' },
+                  { label: 'Only organization admins can change the model', correct: false, feedback: 'Individual users can choose models via the model picker. Organization policies may restrict available models, but the picker is user-facing.' },
+                ]
+              },
+            ]
+          },
+          {
+            id: 'cop-l16-s2',
+            title: 'Set 2 — Environment & Security',
+            cards: [
+              {
+                id: 'cop-l16-s2-q1',
+                question: 'The coding agent needs to install dependencies, start a database, and compile your project before it can work. Where do you define these steps?',
+                codeBlock: null,
+                options: [
+                  { label: '`copilot-setup-steps.yml` — a GitHub Actions workflow that runs before the agent starts coding, setting up the full dev environment', correct: true, feedback: 'Correct. `copilot-setup-steps.yml` is a GitHub Actions workflow that configures the coding agent\'s environment. It installs language runtimes, database services, dependencies — everything the agent needs before it starts writing code.' },
+                  { label: 'A Dockerfile in the repo root', correct: false, feedback: 'While Docker can define environments, the coding agent uses `copilot-setup-steps.yml` (a GitHub Actions workflow) for its environment setup.' },
+                  { label: 'Add a "setup" section to `.github/copilot-instructions.md`', correct: false, feedback: 'Instructions guide the AI\'s coding behavior, not its environment. `copilot-setup-steps.yml` handles executable environment setup.' },
+                  { label: 'The coding agent auto-detects the environment from package.json or requirements.txt', correct: false, feedback: 'The coding agent needs explicit setup steps. It doesn\'t auto-detect environments — you must define them in `copilot-setup-steps.yml`.' },
+                ]
+              },
+              {
+                id: 'cop-l16-s2-q2',
+                question: 'After the coding agent writes code, what security checks does it run before opening the PR?',
+                codeBlock: null,
+                options: [
+                  { label: 'CodeQL for vulnerability scanning, secret scanning for leaked API keys, and dependency checks against the GitHub Advisory Database', correct: true, feedback: 'Correct. The coding agent runs a triple security check: CodeQL analyzes code for vulnerabilities, secret scanning catches accidentally committed API keys and tokens, and dependency scanning checks new packages against known vulnerability databases.' },
+                  { label: 'No security checks — that\'s the reviewer\'s job', correct: false, feedback: 'The coding agent has built-in security validation. It runs CodeQL, secret scanning, and dependency checks automatically before finishing the PR.' },
+                  { label: 'Only a basic linter check', correct: false, feedback: 'The coding agent goes far beyond linting. It runs CodeQL, secret scanning, and dependency vulnerability checks — comprehensive security analysis.' },
+                  { label: 'It only runs checks if you have GitHub Advanced Security', correct: false, feedback: 'The coding agent\'s security checks (CodeQL, secret scanning, dependency checks) are included with Copilot usage and don\'t require a separate GitHub Advanced Security license.' },
+                ]
+              },
+              {
+                id: 'cop-l16-s2-q3',
+                question: 'The coding agent found a security issue in its own code during self-review. What happens next?',
+                codeBlock: null,
+                options: [
+                  { label: 'It attempts to fix the issue automatically, then summarizes what it found and how it resolved it in the PR description', correct: true, feedback: 'Correct. Self-review means the coding agent doesn\'t just flag problems — it tries to fix them. If CodeQL or secret scanning finds an issue, the agent attempts resolution and documents everything in the PR summary.' },
+                  { label: 'It opens a separate issue flagging the security problem', correct: false, feedback: 'The coding agent handles security issues inline. It tries to fix them itself rather than deferring to a separate issue.' },
+                  { label: 'It stops working and asks you to fix the security issue manually', correct: false, feedback: 'The coding agent attempts to resolve security issues automatically. It only escalates to humans if it can\'t fix the problem.' },
+                  { label: 'It ignores the issue and opens the PR anyway', correct: false, feedback: 'The coding agent takes security seriously. It attempts to fix issues before finishing the PR and documents all findings in the summary.' },
+                ]
+              },
+              {
+                id: 'cop-l16-s2-q4',
+                question: 'Who controls whether the coding agent is available in an organization?',
+                codeBlock: null,
+                options: [
+                  { label: 'Organization owners and enterprise admins control availability through policy settings, including which repos can use it', correct: true, feedback: 'Correct. Enterprise policies and organization settings govern coding agent availability. Admins can enable or disable it per repo, set trust levels, and configure governance controls for the whole organization.' },
+                  { label: 'Anyone with a Copilot license can use it on any repo', correct: false, feedback: 'While Copilot users can access the coding agent, organization and enterprise admins control availability through policy settings.' },
+                  { label: 'Only repo maintainers can enable it per repository', correct: false, feedback: 'Organization-level and enterprise-level policies take precedence over individual repo settings.' },
+                  { label: 'It\'s always enabled — there are no administrative controls', correct: false, feedback: 'Enterprise and organization admins have granular controls over coding agent availability and policies.' },
+                ]
+              },
+              {
+                id: 'cop-l16-s2-q5',
+                question: 'What infrastructure powers the coding agent\'s isolated execution environment?',
+                codeBlock: null,
+                options: [
+                  { label: 'GitHub Actions — the same infrastructure that runs CI/CD, providing secure, customizable compute environments', correct: true, feedback: 'Correct. The coding agent runs on GitHub Actions infrastructure, which processes over 40 million daily jobs. This gives it access to runners (GitHub-hosted or self-hosted), caching, secrets management, and the entire Actions ecosystem.' },
+                  { label: 'A dedicated Copilot cloud separate from GitHub\'s infrastructure', correct: false, feedback: 'The coding agent runs on GitHub Actions infrastructure, not a separate cloud. This leverages existing Actions capabilities like runners and caching.' },
+                  { label: 'Your local machine via a background process', correct: false, feedback: 'The coding agent runs entirely in the cloud on GitHub Actions infrastructure. It never touches your local machine.' },
+                  { label: 'GitHub Codespaces dev containers', correct: false, feedback: 'While similar in concept, the coding agent uses GitHub Actions infrastructure, not Codespaces. Setup is via `copilot-setup-steps.yml`, not devcontainer.json.' },
+                ]
+              },
+            ]
+          },
+          {
+            id: 'cop-l16-s3',
+            title: 'Set 3 — Custom Agents & Workflow',
+            cards: [
+              {
+                id: 'cop-l16-s3-q1',
+                question: 'You want to create a custom agent that always runs benchmarks before and after making performance changes. Where do you define it?',
+                codeBlock: null,
+                options: [
+                  { label: 'Create a markdown file in `.github/agents/` with YAML frontmatter defining the agent\'s name, tools, and MCP servers — the markdown body is the system prompt', correct: true, feedback: 'Correct. Custom agents are defined as markdown files in `.github/agents/`. The YAML frontmatter specifies the agent\'s configuration (name, tools, MCP servers), and the markdown body below the frontmatter becomes the system prompt that guides the agent\'s behavior.' },
+                  { label: 'Configure it in `.github/copilot-instructions.md`', correct: false, feedback: 'Instructions files guide general behavior. Custom agents are separate entities defined in `.github/agents/` with their own prompts and tool configurations.' },
+                  { label: 'Write a GitHub Actions workflow that calls the Copilot API', correct: false, feedback: 'Custom agents are defined declaratively in markdown files, not as Actions workflows. They\'re configured in `.github/agents/`.' },
+                  { label: 'Install an extension from the VS Code marketplace', correct: false, feedback: 'Custom agents are defined in your repo\'s `.github/agents/` directory, not as VS Code extensions.' },
+                ]
+              },
+              {
+                id: 'cop-l16-s3-q2',
+                question: 'Your custom agent needs access to a Jira MCP server to read ticket details while coding. How do you configure this?',
+                codeBlock: null,
+                options: [
+                  { label: 'Add the MCP server configuration directly in the agent\'s YAML frontmatter — custom agents can specify their own MCP servers', correct: true, feedback: 'Correct. Custom agent profiles can include MCP server configurations in their frontmatter. This means each agent can have access to different external services, making them highly specialized.' },
+                  { label: 'MCP servers must be configured globally — agents can\'t have their own', correct: false, feedback: 'Custom agents can specify their own MCP servers in their frontmatter, in addition to any globally configured servers.' },
+                  { label: 'Add it to `.vscode/mcp.json` and it applies to all agents automatically', correct: false, feedback: 'While `.vscode/mcp.json` configures global MCP servers, custom agents can also specify their own in their agent profile frontmatter.' },
+                  { label: 'MCP servers are not supported in custom agents', correct: false, feedback: 'Custom agents fully support MCP server configuration in their YAML frontmatter.' },
+                ]
+              },
+              {
+                id: 'cop-l16-s3-q3',
+                question: 'You want to restrict a custom agent to only read files and run searches — no editing or terminal access. How?',
+                codeBlock: null,
+                options: [
+                  { label: 'Set the `tools` property in the frontmatter to list only the specific tools allowed (e.g., `read`, `search`), omitting `edit` and `execute`', correct: true, feedback: 'Correct. The `tools` property in the agent\'s YAML frontmatter controls which tools the agent can use. List only `read` and `search` to create a read-only agent. Omit `tools` or use `["*"]` to grant access to all tools.' },
+                  { label: 'Custom agents always have access to all tools — you can\'t restrict them', correct: false, feedback: 'The `tools` property in the frontmatter explicitly controls tool access. You can restrict agents to only specific tools.' },
+                  { label: 'Set file system permissions on the agent\'s markdown file', correct: false, feedback: 'Tool access is controlled via the `tools` property in the agent profile\'s YAML frontmatter, not file system permissions.' },
+                  { label: 'Add a `permissions: read-only` field to the frontmatter', correct: false, feedback: 'There\'s no `permissions` field. Use the `tools` property to list only the specific tools the agent should have access to.' },
+                ]
+              },
+              {
+                id: 'cop-l16-s3-q4',
+                question: 'Where can custom agent definitions be shared across all repositories in an organization?',
+                codeBlock: null,
+                options: [
+                  { label: 'Place agent files in the `agents` folder of the organization\'s `.github` or `.github-private` repository — they apply org-wide', correct: true, feedback: 'Correct. Organization-wide custom agents live in the `.github` or `.github-private` repo under the `agents` folder. This lets you define shared agents (like a security reviewer or documentation writer) that work across all repos in the org.' },
+                  { label: 'Copy the agent file into every repo\'s `.github/agents/` directory', correct: false, feedback: 'That works but doesn\'t scale. The org-level `.github` or `.github-private` repository lets you define agents once for the entire organization.' },
+                  { label: 'Configure them in the organization\'s GitHub settings page', correct: false, feedback: 'Custom agents are defined as files in repositories, not through the settings UI. Use the org\'s `.github` repo for org-wide agents.' },
+                  { label: 'Org-wide agents are not supported — agents are always repo-specific', correct: false, feedback: 'Agents can be shared org-wide by placing them in the organization\'s `.github` or `.github-private` repository.' },
+                ]
+              },
+              {
+                id: 'cop-l16-s3-q5',
+                question: 'The coding agent supports `AGENTS.md` for custom instructions. How does this relate to `CLAUDE.md`?',
+                codeBlock: null,
+                options: [
+                  { label: 'Both serve the same purpose — repo-level agent instructions. Copilot reads both `AGENTS.md` and `CLAUDE.md` for cross-tool compatibility', correct: true, feedback: 'Correct. `AGENTS.md` is the tool-agnostic convention for agent instructions. Copilot reads both `AGENTS.md` and `CLAUDE.md`, meaning teams using multiple AI tools can share instructions without duplication.' },
+                  { label: '`AGENTS.md` replaces `CLAUDE.md` entirely', correct: false, feedback: '`AGENTS.md` doesn\'t replace `CLAUDE.md`. Copilot reads both files for compatibility. Teams can use either or both.' },
+                  { label: '`AGENTS.md` is for Copilot only, `CLAUDE.md` is for Claude only', correct: false, feedback: 'Copilot reads both files. `AGENTS.md` is a cross-tool convention, and `CLAUDE.md` is supported for compatibility.' },
+                  { label: 'These are unrelated files with different purposes', correct: false, feedback: 'Both files serve the same purpose: providing custom instructions to AI coding agents. Copilot supports both for cross-tool compatibility.' },
+                ]
+              },
+            ]
+          },
+        ]
+      },
     ]
   },
 ]

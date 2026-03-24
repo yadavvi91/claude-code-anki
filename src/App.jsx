@@ -83,6 +83,7 @@ export default function App() {
                 <Link to="/copilot/core-modes" style={styles.sitemapLink}>L12: Core Modes</Link>
                 <Link to="/copilot/customization" style={styles.sitemapLink}>L13: Customization</Link>
                 <Link to="/copilot/cloud-agents" style={styles.sitemapLink}>L14: Advanced Features</Link>
+                <Link to="/copilot/coding-agent" style={styles.sitemapLink}>L16: The Coding Agent</Link>
               </div>
               <div style={styles.sitemapCol}>
                 <div style={{ ...styles.sitemapModTitle, color: T.color.ink3 }}>Reference</div>

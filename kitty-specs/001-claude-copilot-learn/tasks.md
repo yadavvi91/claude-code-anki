@@ -431,6 +431,10 @@
 | T105 | Online Resources section on home page | WP40 | P0 | ✅ |
 | T106-T110 | Lesson 15: The Agent Loop | WP41 | P0 | ✅ |
 | T111 | Home page site map | WP42 | P0 | ✅ |
+| T112 | Research coding agent feature | WP43 | P0 | ✅ |
+| T113 | Card data for L16 in cardSets.js | WP43 | P0 | ✅ |
+| T114 | Create Lesson16.jsx component | WP43 | P0 | ✅ |
+| T115 | Route, nav links, sitemap update | WP43 | P0 | ✅ |
 
 ---
 
@@ -644,3 +648,19 @@
 
 ### Dependencies
 - None
+
+---
+
+## Work Package WP43: Lesson 16 — The Coding Agent (Priority: P0) ✅ DONE
+
+**Goal**: Add a new lesson covering GitHub Copilot's autonomous coding agent: issue assignment triggers, draft PR workflow, session logs, model picker, environment setup (copilot-setup-steps.yml), triple security checks (CodeQL, secret scanning, dependency checks), self-review, custom agents (.github/agents/), org-wide agents, AGENTS.md compatibility, and tool access control.
+**Independent Test**: Navigate to /copilot/coding-agent, all 3 sets render with prose + MCQ cards. L14 links forward, sitemap shows L16.
+
+### Included Subtasks
+- [x] T112 Research coding agent feature from GitHub blog and docs
+- [x] T113 Add cop-l16 card data to cardSets.js (3 sets, 15 MCQ cards)
+- [x] T114 Create Lesson16.jsx with prose, code blocks, comparison tables, and MCQ sections
+- [x] T115 Add route in main.jsx, update L14 nav to link forward, add L16 to sitemap
+
+### Dependencies
+- WP30 (Lesson 14 must exist)

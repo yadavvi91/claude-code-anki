@@ -18,6 +18,7 @@ import Lesson12 from './pages/lessons/Lesson12'
 import Lesson13 from './pages/lessons/Lesson13'
 import Lesson14 from './pages/lessons/Lesson14'
 import Lesson15 from './pages/lessons/Lesson15'
+import Lesson16 from './pages/lessons/Lesson16'
 import Interlude01 from './pages/interludes/Interlude01'
 import Interlude02 from './pages/interludes/Interlude02'
 import Interlude03 from './pages/interludes/Interlude03'
@@ -78,6 +79,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/copilot/core-modes" element={<Lesson12 />} />
         <Route path="/copilot/customization" element={<Lesson13 />} />
         <Route path="/copilot/cloud-agents" element={<Lesson14 />} />
+        <Route path="/copilot/coding-agent" element={<Lesson16 />} />
 
         {/* Reference */}
         <Route path="/comparison" element={<Comparison />} />
