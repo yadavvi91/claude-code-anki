@@ -1,0 +1,33 @@
+src/pages/lessons/Lesson13.jsx
+  68098c85b7fbaece 1-150
+src/main.jsx
+  68098c85b7fbaece 17-19,75-77
+src/pages/lessons/Lesson14.jsx
+  68098c85b7fbaece 1-131
+src/pages/lessons/Lesson12.jsx
+  68098c85b7fbaece 1-111
+kitty-specs/001-claude-copilot-learn/research/copilot-research.md
+  68098c85b7fbaece 1-85
+src/data/cardSets.js
+  68098c85b7fbaece 1772-2524
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.17",
+  "base_commit_sha": "79dacfd38d15282802cd95d000c0ee07c005c87a",
+  "prompts": {
+    "68098c85b7fbaece": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "36c2fc92-8520-4531-b2b6-87112da3000e",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Vishal Yadav <yadavvi91@gmail.com>",
+      "messages": [],
+      "total_additions": 1236,
+      "total_deletions": 6,
+      "accepted_lines": 1236,
+      "overriden_lines": 0
+    }
+  }
+}
