@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Claude Copilot Learn</title>
+    <script>
+      // GitHub Pages SPA redirect
+      // Stores the path in sessionStorage, then redirects to index.html
+      var path = window.location.pathname;
+      var base = '/claude-code-anki';
+      var redirect = path.slice(base.length) || '/';
+      sessionStorage.setItem('spa-redirect', redirect);
+      window.location.replace(base + '/');
+    </script>
+  </head>
+  <body></body>
+</html>

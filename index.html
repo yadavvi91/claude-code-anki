@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Claude Copilot Learn</title>
+    <meta name="description" content="Spaced repetition learning for Claude Code &amp; GitHub Copilot" />
+    <script>
+      // GitHub Pages SPA: restore route stored by 404.html
+      (function() {
+        var redirect = sessionStorage.getItem('spa-redirect');
+        if (redirect) {
+          sessionStorage.removeItem('spa-redirect');
+          window.history.replaceState(null, '', '/claude-code-anki' + redirect);
+        }
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background: #f8f9fc;
+        font-family: 'Inter', system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        color: #1a1d2e;
+      }
+      /* Keyframes used by Hero and intro sections */
+      @keyframes fadeUp  { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+      @keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
+      @keyframes floatY  { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-8px); } }
+      @keyframes pulse   { 0%,100% { opacity:0.4; } 50% { opacity:0.8; } }
+      /* Named animation utility classes */
+      .anim-fadeUp-1 { animation: fadeUp 1s ease 0.3s both; }
+      .anim-fadeUp-2 { animation: fadeUp 1s ease 0.6s both; }
+      .anim-fadeUp-3 { animation: fadeUp 1s ease 0.9s both; }
+      .anim-fadeUp-4 { animation: fadeUp 1s ease 1.2s both; }
+      .anim-fadeIn-slow { animation: fadeIn 2s ease 2s both; }
+      .anim-float  { animation: floatY 6s ease-in-out infinite; }
+      .anim-pulse  { animation: pulse  2s ease-in-out infinite; }
+    </style>
+    <script type="module" crossorigin src="/claude-code-anki/assets/index-DNyIHIw6.js"></script>
+    <link rel="stylesheet" crossorigin href="/claude-code-anki/assets/index-DT598fYu.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
