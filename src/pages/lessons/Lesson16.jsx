@@ -23,12 +23,14 @@ const s1 = sets[0].cards
 const s2 = sets[1].cards
 const s3 = sets[2].cards
 const s4 = sets[3].cards
+const s5 = sets[4].cards
 
 const NAV_SECTIONS = [
   { id: 'set1', label: 'Invoking the Coding Agent' },
   { id: 'set2', label: 'Environment & Security' },
   { id: 'set3', label: 'Custom Agents & Workflow' },
   { id: 'set4', label: 'Agent Mode vs Coding Agent' },
+  { id: 'set5', label: 'Copilot Code Review' },
   { id: 'summary', label: 'Summary', divider: true },
 ]
 
@@ -38,7 +40,7 @@ export default function Lesson16() {
       <main style={styles.main}>
         <Reveal><div style={styles.lessonLabel}>Lesson 16</div><h1 style={styles.h1}>The Coding Agent</h1>
           <p style={styles.subtitle}>Assign an issue to Copilot, get a pull request back — the fully autonomous cloud agent workflow</p></Reveal>
-        <Reveal><ConceptDisplay concept="Issue Assignment · Draft PRs · Self-Review · Custom Agents · Agent Mode vs Cloud" description="The coding agent turns GitHub Issues into reviewed pull requests without anyone opening an editor." color={mod.color} /></Reveal>
+        <Reveal><ConceptDisplay concept="Issue Assignment · Draft PRs · Self-Review · Custom Agents · Agent Spectrum · Code Review" description="The coding agent turns GitHub Issues into reviewed pull requests without anyone opening an editor." color={mod.color} /></Reveal>
 
         <Reveal id="set1"><div style={{ ...styles.setLabel, color: C[1] }}>Set 1 — Invoking the Coding Agent</div><h2 style={styles.h2}>From issue to pull request</h2></Reveal>
         <Reveal><p style={styles.prose}>The coding agent is Copilot's fully autonomous mode. You assign a GitHub Issue to Copilot — the same way you'd assign it to a colleague — and the agent takes over: it analyzes the issue, creates a branch, writes code, runs tests, and delivers a <strong>draft pull request</strong>. No editor needed.</p></Reveal>
@@ -144,8 +146,26 @@ For every change:
           </MCQSection>
 
         <div style={styles.divider}>· · ·</div>
+
+        <Reveal id="set5"><div style={{ ...styles.setLabel, color: C[5] }}>Set 5 — Copilot Code Review</div><h2 style={styles.h2}>AI-powered review everywhere</h2></Reveal>
+        <Reveal><p style={styles.prose}>Beyond writing code, Copilot can <strong>review</strong> it. Copilot code review works in three places: on pull requests at github.com, locally in VS Code, and from the terminal via the GitHub CLI.</p></Reveal>
+        <Reveal><ComparisonTable headers={['Where', 'How to Trigger', 'What It Reviews']} rows={[
+          ['github.com', 'Add Copilot as a reviewer from the PR\'s Reviewers menu', 'Entire pull request diff'],
+          ['VS Code', 'Right-click selection → Review, or Source Control panel button', 'Selected code or all uncommitted changes'],
+          ['GitHub CLI', 'gh pr create --reviewer copilot  or  gh pr edit --add-reviewer copilot', 'PR diff (same as github.com)'],
+        ]} /></Reveal>
+        <Reveal><p style={styles.prose}>On github.com, Copilot leaves inline comments with suggestions — just like a human reviewer. One important design choice: Copilot <strong>always leaves a "Comment" review</strong>, never "Approve" or "Request Changes." This means it never counts toward required approvals and never blocks merging. AI review is advisory; humans keep the final say.</p></Reveal>
+        <Reveal><p style={styles.prose}><strong>In VS Code</strong>, you get two review modes. <em>Selection review</em>: highlight code, right-click, and choose Review for targeted feedback on a specific block. <em>Uncommitted changes review</em>: click the Copilot Code Review button in the Source Control panel to review everything you've changed before committing. Feedback appears as inline editor comments you can accept or dismiss. This is powerful for <strong>pre-commit self-review</strong> — catching issues before code even leaves your machine.</p></Reveal>
+        <Reveal><p style={styles.prose}>For teams that want reviews on every PR without manual action, <strong>branch rulesets</strong> automate it. In repository settings, create a branch ruleset and enable "Automatically request Copilot code review." Optional extras: "Review new pushes" triggers a re-review after each push, and "Review draft pull requests" gives early feedback on work-in-progress.</p></Reveal>
+        <Reveal><TipCallout variant="tip">Copilot code review is available in VS Code for local pre-commit review. It's not currently available in JetBrains or other IDEs for the local review workflow — only in VS Code and Xcode. PR-level review on github.com works regardless of which IDE you use.</TipCallout></Reveal>
+
+          <MCQSection color={colors[s1.length + s2.length + s3.length + s4.length]} count={s5.length}>
+            {s5.map((card, i) => <Reveal key={card.id}><MCQCard card={card} color={colors[s1.length + s2.length + s3.length + s4.length + i]} /></Reveal>)}
+          </MCQSection>
+
+        <div style={styles.divider}>· · ·</div>
         <Reveal id="summary"><div style={styles.endSection}><div style={styles.endLabel}>End of Lesson 16</div>
-          <p style={styles.endProse}>You now understand how to invoke the coding agent (issue assignment, VS Code chat, CLI), how it delivers work (draft PRs with session logs), its security model (CodeQL, secret scanning, dependency checks, self-review), how to create custom agents for specialized workflows, and the spectrum from interactive Agent Mode to autonomous cloud coding agent. This completes Module 6: GitHub Copilot.</p>
+          <p style={styles.endProse}>You now understand how to invoke the coding agent (issue assignment, VS Code chat, CLI), how it delivers work (draft PRs with session logs), its security model (CodeQL, secret scanning, dependency checks, self-review), how to create custom agents for specialized workflows, the spectrum from interactive Agent Mode to autonomous cloud coding agent, and how Copilot code review works across github.com, VS Code, and the CLI. This completes Module 6: GitHub Copilot.</p>
           <a href="/claude-code-anki/" style={styles.nextBtn}>← Back to Home</a></div></Reveal>
       </main>
     </div>

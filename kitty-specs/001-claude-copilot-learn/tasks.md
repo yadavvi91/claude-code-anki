@@ -435,6 +435,7 @@
 | T113 | Card data for L16 in cardSets.js | WP43 | P0 | ✅ |
 | T114 | Create Lesson16.jsx component | WP43 | P0 | ✅ |
 | T115 | Route, nav links, sitemap update | WP43 | P0 | ✅ |
+| T116 | Set 5: Copilot Code Review (cards + prose) | WP43 | P0 | ✅ |
 
 ---
 
@@ -661,6 +662,7 @@
 - [x] T113 Add cop-l16 card data to cardSets.js (3 sets, 15 MCQ cards)
 - [x] T114 Create Lesson16.jsx with prose, code blocks, comparison tables, and MCQ sections
 - [x] T115 Add route in main.jsx, update L14 nav to link forward, add L16 to sitemap
+- [x] T116 Add Set 5 (Copilot Code Review) — 5 MCQ cards + prose covering github.com, VS Code, CLI review, auto-review rulesets, and advisory-only design
 
 ### Dependencies
 - WP30 (Lesson 14 must exist)

@@ -3011,6 +3011,67 @@ export const modules = [
               },
             ]
           },
+          {
+            id: 'cop-l16-s5',
+            title: 'Set 5 — Copilot Code Review',
+            cards: [
+              {
+                id: 'cop-l16-s5-q1',
+                question: 'You\'ve opened a pull request and want Copilot to review it before your teammates do. How do you request a review on github.com?',
+                codeBlock: null,
+                options: [
+                  { label: 'Open the Reviewers menu on the PR and select Copilot — the same way you\'d add a human reviewer. It reviews in under 30 seconds.', correct: true, feedback: 'Correct. Copilot appears as a reviewer option in the Reviewers dropdown. Select it and Copilot analyzes your PR, leaving inline comments with suggestions. It always leaves a "Comment" review — never "Approve" or "Request Changes" — so it won\'t block merging.' },
+                  { label: 'Comment "@copilot review" on the PR', correct: false, feedback: 'While @copilot mentions work in some contexts, the standard way is to add Copilot as a reviewer through the Reviewers menu on the PR.' },
+                  { label: 'Enable a GitHub Action that triggers Copilot reviews', correct: false, feedback: 'No Actions workflow needed. Copilot is a built-in reviewer option — just add it from the Reviewers dropdown.' },
+                  { label: 'Copilot can only review code in the IDE, not on PRs', correct: false, feedback: 'Copilot code review works both on github.com PRs and locally in VS Code. On PRs, add Copilot as a reviewer from the Reviewers menu.' },
+                ]
+              },
+              {
+                id: 'cop-l16-s5-q2',
+                question: 'You want Copilot to automatically review every PR in your repo without anyone manually requesting it. How do you set this up?',
+                codeBlock: null,
+                options: [
+                  { label: 'Create a branch ruleset in the repo settings and enable "Automatically request Copilot code review" — optionally review new pushes and draft PRs too', correct: true, feedback: 'Correct. Branch rulesets let you automate Copilot reviews at the repo or org level. You can also enable "Review new pushes" (re-reviews after each push) and "Review draft pull requests" for early feedback. No per-PR manual action needed.' },
+                  { label: 'Add Copilot to the CODEOWNERS file', correct: false, feedback: 'CODEOWNERS assigns human reviewers by path. Copilot automatic reviews are configured through branch rulesets in repository settings.' },
+                  { label: 'Set `auto-review: true` in `.github/copilot-instructions.md`', correct: false, feedback: 'Instruction files guide Copilot\'s coding behavior, not review configuration. Automatic reviews are enabled through branch rulesets.' },
+                  { label: 'This isn\'t possible — someone must always request the review manually', correct: false, feedback: 'Branch rulesets can automatically request Copilot reviews on every PR. No manual action required.' },
+                ]
+              },
+              {
+                id: 'cop-l16-s5-q3',
+                question: 'You\'re writing code locally in VS Code and want Copilot to review your changes before you even create a PR. What are your options?',
+                codeBlock: null,
+                options: [
+                  { label: 'Two options: select code and choose "Review" from the context menu for a targeted review, or click the Copilot Code Review button in the Source Control panel to review all uncommitted changes', correct: true, feedback: 'Correct. VS Code supports both targeted and broad reviews. Right-click a selection for focused feedback, or use the Source Control panel\'s Copilot Code Review button to review all uncommitted changes at once. Review comments appear inline in the editor.' },
+                  { label: 'Code review is only available on github.com, not in VS Code', correct: false, feedback: 'Copilot code review works in VS Code too — both on selected code blocks and on uncommitted changes via the Source Control panel.' },
+                  { label: 'Type `/review` in Copilot Chat', correct: false, feedback: 'While Copilot Chat is useful, code review has dedicated UI integration: right-click selection for targeted review, or the Source Control panel button for uncommitted changes.' },
+                  { label: 'You must commit and push first — Copilot can only review committed code', correct: false, feedback: 'VS Code\'s Copilot code review works on uncommitted changes. You can get feedback before committing, making it ideal for pre-commit self-review.' },
+                ]
+              },
+              {
+                id: 'cop-l16-s5-q4',
+                question: 'Your team wants to request Copilot reviews from the terminal without opening a browser. How?',
+                codeBlock: null,
+                options: [
+                  { label: 'Use the GitHub CLI — Copilot is available as a reviewer in `gh pr create` and `gh pr edit`, just like adding a human reviewer', correct: true, feedback: 'Correct. As of March 2026, the GitHub CLI supports adding Copilot as a reviewer via `gh pr create --reviewer copilot` or `gh pr edit --add-reviewer copilot`. This fits naturally into terminal-based workflows.' },
+                  { label: 'Run `copilot review` as a standalone CLI command', correct: false, feedback: 'There\'s no standalone `copilot review` command. Use the standard GitHub CLI with `--reviewer copilot` on `gh pr create` or `gh pr edit`.' },
+                  { label: 'This is not possible — reviews must be requested through the web UI', correct: false, feedback: 'The GitHub CLI supports Copilot as a reviewer. You can request reviews from the terminal via `gh pr create --reviewer copilot` or `gh pr edit`.' },
+                  { label: 'Create a git hook that auto-requests reviews on push', correct: false, feedback: 'While hooks can automate workflows, the direct approach is using `gh pr create --reviewer copilot` or `gh pr edit --add-reviewer copilot` from the CLI.' },
+                ]
+              },
+              {
+                id: 'cop-l16-s5-q5',
+                question: 'Does Copilot\'s code review count toward required approvals in branch protection rules?',
+                codeBlock: null,
+                options: [
+                  { label: 'No — Copilot always leaves a "Comment" review, never "Approve" or "Request Changes", so it never counts toward required approvals and never blocks merging', correct: true, feedback: 'Correct. This is by design. Copilot\'s review is advisory — it surfaces issues and suggests fixes, but the approval decision remains with human reviewers. It complements your review process without replacing it.' },
+                  { label: 'Yes — Copilot\'s approval counts the same as a human\'s', correct: false, feedback: 'Copilot always leaves "Comment" reviews. It never approves or requests changes, so it cannot satisfy branch protection requirements.' },
+                  { label: 'Only if the org admin enables "Trust AI reviews"', correct: false, feedback: 'There\'s no such setting. Copilot always leaves Comment reviews by design — approval authority stays with humans.' },
+                  { label: 'It depends on the Copilot plan (Free vs Pro vs Enterprise)', correct: false, feedback: 'Regardless of plan, Copilot code review always leaves Comment reviews. It\'s a deliberate design choice to keep human approval as the gate.' },
+                ]
+              },
+            ]
+          },
         ]
       },
     ]
