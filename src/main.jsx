@@ -6,6 +6,8 @@ import ScrollToTop from './components/ScrollToTop'
 import Lesson01 from './pages/lessons/Lesson01'
 import Lesson02 from './pages/lessons/Lesson02'
 import Lesson03 from './pages/lessons/Lesson03'
+import Lesson04 from './pages/lessons/Lesson04'
+import Lesson05 from './pages/lessons/Lesson05'
 
 // Placeholder component for unbuilt lessons
 function ComingSoon() {
@@ -35,8 +37,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/interlude/1" element={<ComingSoon />} />
 
         {/* Module 2: MCP Fundamentals */}
-        <Route path="/mcp/architecture" element={<ComingSoon />} />
-        <Route path="/mcp/resources-prompts" element={<ComingSoon />} />
+        <Route path="/mcp/architecture" element={<Lesson04 />} />
+        <Route path="/mcp/resources-prompts" element={<Lesson05 />} />
 
         {/* Module 3: MCP Advanced */}
         <Route path="/mcp-advanced/sampling" element={<ComingSoon />} />

@@ -767,8 +767,436 @@ export const modules = [
     title: 'MCP Fundamentals',
     color: '#8b5cf6',
     lessons: [
-      { id: 'mcp-l4', title: 'MCP Architecture & Building Servers', slug: 'mcp/architecture', cardSets: [] },
-      { id: 'mcp-l5', title: 'Resources, Prompts & Patterns', slug: 'mcp/resources-prompts', cardSets: [] },
+      {
+        id: 'mcp-l4',
+        title: 'MCP Architecture & Building Servers',
+        slug: 'mcp/architecture',
+        cardSets: [
+          {
+            id: 'mcp-l4-s1',
+            title: 'Set 1 — MCP Fundamentals',
+            cards: [
+              {
+                id: 'mcp-l4-s1-q1',
+                question: 'What problem does MCP (Model Context Protocol) solve?',
+                codeBlock: null,
+                options: [
+                  { label: 'It shifts the burden of defining and executing tools from your server to dedicated MCP servers', correct: true, feedback: 'Correct. Without MCP, you\'d write, test, and maintain all tool schemas and functions yourself. MCP servers handle that for you.' },
+                  { label: 'It replaces the need for language models', correct: false, feedback: 'MCP works WITH language models, not instead of them. It provides tools that models can use.' },
+                  { label: 'It makes APIs faster', correct: false, feedback: 'MCP isn\'t about performance — it\'s about shifting the burden of tool implementation to specialized servers.' },
+                  { label: 'It encrypts communication between Claude and APIs', correct: false, feedback: 'MCP is about tool distribution, not encryption.' },
+                ]
+              },
+              {
+                id: 'mcp-l4-s1-q2',
+                question: 'How is MCP different from just calling APIs directly?',
+                codeBlock: null,
+                options: [
+                  { label: 'MCP provides tool schemas and functions already defined — you don\'t have to author them yourself', correct: true, feedback: 'Correct. If you call APIs directly, you author all tool definitions yourself. MCP servers come with tools pre-built.' },
+                  { label: 'MCP is faster than direct API calls', correct: false, feedback: 'Speed isn\'t the distinction. The key difference is who implements the tools.' },
+                  { label: 'MCP replaces HTTP entirely', correct: false, feedback: 'MCP can use HTTP as a transport. It\'s not a replacement for it.' },
+                  { label: 'There\'s no difference — MCP IS just tool use', correct: false, feedback: 'Common misconception. MCP and tool use are complementary but different — MCP is about WHO implements the tools, not the mechanism of calling them.' },
+                ]
+              },
+              {
+                id: 'mcp-l4-s1-q3',
+                question: 'Who can author MCP servers?',
+                codeBlock: null,
+                options: [
+                  { label: 'Anyone — though service providers often create official implementations', correct: true, feedback: 'Correct. Anyone can build an MCP server. AWS, GitHub, etc. often release official ones for their services.' },
+                  { label: 'Only Anthropic', correct: false, feedback: 'MCP is an open protocol. Anyone can build servers.' },
+                  { label: 'Only the service provider (e.g., only GitHub can make a GitHub MCP server)', correct: false, feedback: 'Anyone can create an MCP server for any service, though official ones from providers are common.' },
+                  { label: 'Only certified developers', correct: false, feedback: 'There\'s no certification required. MCP is open to all.' },
+                ]
+              },
+              {
+                id: 'mcp-l4-s1-q4',
+                question: 'What does "transport agnostic" mean in the context of MCP?',
+                codeBlock: null,
+                options: [
+                  { label: 'The client and server can communicate over different protocols — stdio, HTTP, WebSockets, etc.', correct: true, feedback: 'Correct. The most common setup runs both on the same machine via stdin/stdout, but HTTP, WebSockets, and other protocols also work.' },
+                  { label: 'MCP doesn\'t use any transport protocol', correct: false, feedback: 'MCP does use protocols — the point is it supports MULTIPLE protocols.' },
+                  { label: 'MCP only works over HTTP', correct: false, feedback: 'HTTP is just one option. stdio (standard input/output) is actually the most common for local setups.' },
+                  { label: 'The data format can be XML, JSON, or binary', correct: false, feedback: 'Transport agnostic refers to the communication channel (stdio, HTTP, etc.), not the data format.' },
+                ]
+              },
+              {
+                id: 'mcp-l4-s1-q5',
+                question: 'In a typical MCP project, do you implement both a client AND a server?',
+                codeBlock: null,
+                options: [
+                  { label: 'No — typically you implement either a client OR a server, not both', correct: true, feedback: 'Correct. You\'d build an MCP server to expose your service\'s functionality, OR build a client that connects to existing MCP servers built by others.' },
+                  { label: 'Yes — you always need both', correct: false, feedback: 'In real projects, you usually build one side. You build a server if you\'re exposing a service, or a client if you\'re consuming tools from existing servers.' },
+                  { label: 'You only ever build servers', correct: false, feedback: 'You might build a client that connects to servers built by others.' },
+                  { label: 'You only ever build clients', correct: false, feedback: 'You might build a server to expose your service\'s tools to others.' },
+                ]
+              },
+            ]
+          },
+          {
+            id: 'mcp-l4-s2',
+            title: 'Set 2 — Client-Server Communication',
+            cards: [
+              {
+                id: 'mcp-l4-s2-q1',
+                question: 'What are the two key message types an MCP client exchanges with a server?',
+                codeBlock: null,
+                options: [
+                  { label: '`ListToolsRequest/Result` (discover tools) and `CallToolRequest/Result` (execute tools)', correct: true, feedback: 'Correct. ListTools discovers what tools are available. CallTool executes a specific tool with given arguments.' },
+                  { label: 'GET and POST requests', correct: false, feedback: 'MCP uses its own message types, not HTTP methods. The key ones are ListTools and CallTool.' },
+                  { label: 'Connect and Disconnect messages', correct: false, feedback: 'Those relate to transport setup. The key operational messages are ListTools and CallTool.' },
+                  { label: 'Query and Response messages', correct: false, feedback: 'The specific MCP message types are ListToolsRequest/Result and CallToolRequest/Result.' },
+                ]
+              },
+              {
+                id: 'mcp-l4-s2-q2',
+                question: 'In the full MCP flow, what happens FIRST after a user submits a query?',
+                codeBlock: null,
+                options: [
+                  { label: 'Your server asks the MCP client for a list of available tools to send to Claude', correct: true, feedback: 'Correct. Before sending the user\'s query to Claude, your server needs to know what tools are available, so it asks the MCP client to list them.' },
+                  { label: 'Claude processes the query immediately', correct: false, feedback: 'Claude needs to receive the query along with available tools. Your server must gather the tool list first.' },
+                  { label: 'The MCP server starts executing tools', correct: false, feedback: 'No tools are executed yet. First, your server needs to discover what tools exist.' },
+                  { label: 'The user\'s query goes directly to the MCP server', correct: false, feedback: 'The query goes to your server first, which needs to gather tools before sending everything to Claude.' },
+                ]
+              },
+              {
+                id: 'mcp-l4-s2-q3',
+                question: 'When Claude decides it needs to call a tool, who actually executes the tool?',
+                codeBlock: null,
+                options: [
+                  { label: 'The MCP server — your server asks the MCP client, which forwards a CallToolRequest to the MCP server', correct: true, feedback: 'Correct. Claude says "I want to call this tool." Your server sends that to the MCP client, which sends a CallToolRequest to the MCP server, which executes it.' },
+                  { label: 'Claude executes it directly', correct: false, feedback: 'Claude only decides WHICH tool to call. The actual execution happens on the MCP server.' },
+                  { label: 'Your server executes the tool locally', correct: false, feedback: 'With MCP, tool execution is delegated to the MCP server, not your server.' },
+                  { label: 'The MCP client executes it', correct: false, feedback: 'The MCP client forwards the request to the MCP server. The server does the actual execution.' },
+                ]
+              },
+              {
+                id: 'mcp-l4-s2-q4',
+                question: 'What is the MCP client\'s primary role?',
+                codeBlock: null,
+                options: [
+                  { label: 'A communication bridge between your application and MCP servers — it handles message exchange and protocol details', correct: true, feedback: 'Correct. The client is your access point to all tools in an MCP server, abstracting away communication complexity.' },
+                  { label: 'It runs the language model', correct: false, feedback: 'The language model (Claude) is separate. The MCP client bridges your app and MCP servers.' },
+                  { label: 'It stores tool definitions', correct: false, feedback: 'Tool definitions live on the MCP server. The client retrieves them on demand.' },
+                  { label: 'It renders the user interface', correct: false, feedback: 'UI is your app\'s responsibility. The client handles MCP server communication.' },
+                ]
+              },
+              {
+                id: 'mcp-l4-s2-q5',
+                question: 'Why does the MCP client typically need to be wrapped in a custom class?',
+                codeBlock: null,
+                options: [
+                  { label: 'The underlying client session requires proper resource cleanup when the connection closes', correct: true, feedback: 'Correct. The session (actual connection to the server) needs cleanup when done. A wrapper class handles this automatically.' },
+                  { label: 'The SDK doesn\'t provide a client at all', correct: false, feedback: 'The SDK provides a ClientSession. The wrapper class manages its lifecycle (cleanup, resource management).' },
+                  { label: 'For security reasons', correct: false, feedback: 'The wrapper is about resource management (cleanup), not security.' },
+                  { label: 'To add caching', correct: false, feedback: 'The primary reason is resource cleanup, not caching.' },
+                ]
+              },
+            ]
+          },
+          {
+            id: 'mcp-l4-s3',
+            title: 'Set 3 — Building Servers with Python SDK',
+            cards: [
+              {
+                id: 'mcp-l4-s3-q1',
+                question: 'How do you initialize an MCP server using the Python SDK?',
+                codeBlock: 'from mcp.server.fastmcp import FastMCP\n\nmcp = FastMCP("DocumentMCP", log_level="ERROR")',
+                options: [
+                  { label: 'Import `FastMCP` from the SDK and create an instance with a name', correct: true, feedback: 'Correct. One line creates the server. You then define tools, resources, and prompts using decorators on this instance.' },
+                  { label: 'Write a JSON configuration file', correct: false, feedback: 'The Python SDK uses code, not configuration files. Import FastMCP and create an instance.' },
+                  { label: 'Subclass a base server class', correct: false, feedback: 'No subclassing needed. Just create a FastMCP instance and use decorators.' },
+                  { label: 'Run a CLI generator command', correct: false, feedback: 'No generator needed. Import FastMCP and create an instance in Python.' },
+                ]
+              },
+              {
+                id: 'mcp-l4-s3-q2',
+                question: 'How do you define a tool in the MCP Python SDK?',
+                codeBlock: '@mcp.tool(\n  name="read_doc_contents",\n  description="Read a document."\n)\ndef read_document(\n  doc_id: str = Field(description="Document ID")\n):\n  return docs[doc_id]',
+                options: [
+                  { label: 'Use the `@mcp.tool` decorator with name/description, and `Field` for parameter descriptions', correct: true, feedback: 'Correct. The decorator defines the tool, Python type hints provide types, and Field from Pydantic adds parameter descriptions. The SDK auto-generates the JSON schema.' },
+                  { label: 'Write a JSON schema file for each tool', correct: false, feedback: 'The SDK generates JSON schemas automatically from your decorators and type hints. No manual schema writing needed.' },
+                  { label: 'Register tools in a configuration dictionary', correct: false, feedback: 'Tools are defined with decorators, not configuration. The `@mcp.tool` decorator handles registration.' },
+                  { label: 'Inherit from a Tool base class', correct: false, feedback: 'No class inheritance needed. Just use the `@mcp.tool` decorator on a plain function.' },
+                ]
+              },
+              {
+                id: 'mcp-l4-s3-q3',
+                question: 'Where does the `Field` class come from, and what does it do in tool definitions?',
+                codeBlock: 'from pydantic import Field',
+                options: [
+                  { label: 'From Pydantic — it provides parameter descriptions that help Claude understand each argument', correct: true, feedback: 'Correct. Field adds descriptions to function parameters, which the SDK includes in the generated tool schema for Claude to read.' },
+                  { label: 'From the MCP SDK — it defines required fields', correct: false, feedback: 'Field comes from Pydantic (imported as `from pydantic import Field`), not the MCP SDK directly.' },
+                  { label: 'From Python\'s standard library — it defines data types', correct: false, feedback: 'Field is from Pydantic, a third-party validation library, not Python\'s standard library.' },
+                  { label: 'From FastMCP — it creates form inputs', correct: false, feedback: 'Field is from Pydantic. It provides descriptions and validation for function parameters.' },
+                ]
+              },
+              {
+                id: 'mcp-l4-s3-q4',
+                question: 'What happens when a tool function raises a ValueError?',
+                codeBlock: 'if doc_id not in docs:\n  raise ValueError(f"Doc with id {doc_id} not found")',
+                options: [
+                  { label: 'The error is returned to Claude as feedback, explaining why the tool call failed', correct: true, feedback: 'Correct. Python exceptions integrate naturally with the SDK. The error message is sent back through the MCP protocol to inform Claude.' },
+                  { label: 'The MCP server crashes', correct: false, feedback: 'The SDK handles exceptions gracefully, converting them into error responses rather than crashing.' },
+                  { label: 'Nothing — errors are silently ignored', correct: false, feedback: 'Errors are not ignored. They\'re returned to the caller as error messages.' },
+                  { label: 'The tool is automatically removed from the server', correct: false, feedback: 'A single error doesn\'t remove the tool. The error is returned and the tool remains available.' },
+                ]
+              },
+              {
+                id: 'mcp-l4-s3-q5',
+                question: 'What is the key benefit of defining tools with the Python SDK vs writing JSON schemas manually?',
+                codeBlock: null,
+                options: [
+                  { label: 'The SDK auto-generates JSON schemas from decorators and type hints — no manual schema writing', correct: true, feedback: 'Correct. You write plain Python functions with type hints and decorators. The SDK generates proper tool schemas that Claude can understand.' },
+                  { label: 'The SDK makes tools run faster', correct: false, feedback: 'The benefit is developer experience (no manual schemas), not runtime performance.' },
+                  { label: 'JSON schemas are deprecated', correct: false, feedback: 'JSON schemas are still used under the hood. The SDK just generates them for you automatically.' },
+                  { label: 'The SDK adds encryption to tool calls', correct: false, feedback: 'The benefit is about eliminating manual schema writing, not security.' },
+                ]
+              },
+            ]
+          },
+          {
+            id: 'mcp-l4-s4',
+            title: 'Set 4 — Testing & Inspector',
+            cards: [
+              {
+                id: 'mcp-l4-s4-q1',
+                question: 'How do you launch the MCP Inspector to test your server?',
+                codeBlock: 'mcp dev mcp_server.py',
+                options: [
+                  { label: 'Run `mcp dev <server_file>` — it starts a browser-based inspector', correct: true, feedback: 'Correct. This starts a development server and gives you a local URL (e.g., http://127.0.0.1:6274) to access the inspector in your browser.' },
+                  { label: 'Run `pytest` on your server file', correct: false, feedback: 'The MCP Inspector is a browser-based debugger, not a test framework. Use `mcp dev`.' },
+                  { label: 'Import an inspector module in your code', correct: false, feedback: 'The inspector is a standalone tool launched from the command line with `mcp dev`.' },
+                  { label: 'Deploy the server first, then use a separate tool', correct: false, feedback: 'The inspector runs locally during development. No deployment needed.' },
+                ]
+              },
+              {
+                id: 'mcp-l4-s4-q2',
+                question: 'What can you do in the MCP Inspector?',
+                codeBlock: null,
+                options: [
+                  { label: 'List available tools, test them with custom inputs, and verify results — all without connecting to a real app', correct: true, feedback: 'Correct. The inspector lets you test tools, resources, and prompts interactively. State persists between calls, so you can test workflows.' },
+                  { label: 'Only view tool definitions', correct: false, feedback: 'You can also EXECUTE tools, test resources, and inspect prompts — not just view definitions.' },
+                  { label: 'Deploy your server to production', correct: false, feedback: 'The inspector is for development and debugging, not deployment.' },
+                  { label: 'Connect to Claude directly', correct: false, feedback: 'The inspector tests your MCP server in isolation, without involving Claude.' },
+                ]
+              },
+              {
+                id: 'mcp-l4-s4-q3',
+                question: 'What are the two core functions an MCP client must implement?',
+                codeBlock: 'async def list_tools(self):\n  result = await self.session().list_tools()\n  return result.tools\n\nasync def call_tool(self, tool_name, tool_input):\n  return await self.session().call_tool(\n    tool_name, tool_input\n  )',
+                options: [
+                  { label: '`list_tools()` to discover available tools, and `call_tool()` to execute a specific tool', correct: true, feedback: 'Correct. list_tools gets the tool definitions to send to Claude. call_tool executes a tool that Claude requests.' },
+                  { label: '`connect()` and `disconnect()`', correct: false, feedback: 'Connection management is handled by the session. The two KEY functions are list_tools and call_tool.' },
+                  { label: '`send()` and `receive()`', correct: false, feedback: 'MCP uses higher-level abstractions: list_tools (discover) and call_tool (execute).' },
+                  { label: '`query()` and `respond()`', correct: false, feedback: 'The client doesn\'t query Claude. It lists tools and calls them on behalf of your application.' },
+                ]
+              },
+              {
+                id: 'mcp-l4-s4-q4',
+                question: 'How do you test your MCP client independently?',
+                codeBlock: 'uv run mcp_client.py',
+                options: [
+                  { label: 'Run the client file directly — it includes a test harness that connects to the server and prints available tools', correct: true, feedback: 'Correct. The client file has a `__main__` block that forms a connection to the MCP server and runs basic operations like listing tools.' },
+                  { label: 'You can\'t test the client independently', correct: false, feedback: 'You can run the client file directly with a test harness to verify it connects and retrieves tools.' },
+                  { label: 'Use the MCP Inspector', correct: false, feedback: 'The Inspector tests the server. To test the client, run its file directly.' },
+                  { label: 'Write unit tests with mocks', correct: false, feedback: 'While possible, the simplest approach is running the client directly with a test block.' },
+                ]
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'mcp-l5',
+        title: 'Resources, Prompts & Patterns',
+        slug: 'mcp/resources-prompts',
+        cardSets: [
+          {
+            id: 'mcp-l5-s1',
+            title: 'Set 1 — Resources Fundamentals',
+            cards: [
+              {
+                id: 'mcp-l5-s1-q1',
+                question: 'What are MCP resources, and how are they different from tools?',
+                codeBlock: null,
+                options: [
+                  { label: 'Resources expose read-only data to clients — like GET endpoints in an HTTP server', correct: true, feedback: 'Correct. Resources fetch information without performing actions. They\'re app-controlled (your code decides when to read them), unlike tools which are model-controlled.' },
+                  { label: 'Resources are just another name for tools', correct: false, feedback: 'Resources are distinct from tools. Resources expose data; tools perform actions. Different parts of your app control each.' },
+                  { label: 'Resources replace API calls', correct: false, feedback: 'Resources provide data from MCP servers, but they serve a different purpose than general API calls.' },
+                  { label: 'Resources are files stored on disk', correct: false, feedback: 'Resources are a protocol concept — they can return any data. They\'re not limited to files.' },
+                ]
+              },
+              {
+                id: 'mcp-l5-s1-q2',
+                question: 'What is the difference between a direct resource and a templated resource?',
+                codeBlock: '// Direct:\n@mcp.resource("docs://documents")\n\n// Templated:\n@mcp.resource("docs://documents/{doc_id}")',
+                options: [
+                  { label: 'Direct resources have static URIs; templated resources include parameters in their URIs', correct: true, feedback: 'Correct. Direct resources always return the same thing (e.g., list all docs). Templated resources accept parameters (e.g., fetch a specific doc by ID).' },
+                  { label: 'Direct resources are faster', correct: false, feedback: 'The distinction is about parameterization, not speed. Direct = static URI, Templated = parameterized URI.' },
+                  { label: 'They are interchangeable', correct: false, feedback: 'Direct resources have fixed URIs. Templated resources accept variable parameters in the URI.' },
+                  { label: 'Direct resources return JSON; templated return text', correct: false, feedback: 'Both can return any data type. The difference is whether the URI accepts parameters.' },
+                ]
+              },
+              {
+                id: 'mcp-l5-s1-q3',
+                question: 'What does the `mime_type` parameter do in a resource definition?',
+                codeBlock: '@mcp.resource(\n  "docs://documents",\n  mime_type="application/json"\n)',
+                options: [
+                  { label: 'Hints to the client what kind of data is being returned so it knows how to parse it', correct: true, feedback: 'Correct. `application/json` means the client should parse it as JSON. `text/plain` means raw text. The SDK auto-serializes your return value.' },
+                  { label: 'It encrypts the response', correct: false, feedback: 'MIME types are content hints, not encryption. They tell the client how to interpret the data.' },
+                  { label: 'It restricts who can access the resource', correct: false, feedback: 'MIME types are about content format, not access control.' },
+                  { label: 'It\'s required but has no effect', correct: false, feedback: 'It directly affects how clients parse the returned data — JSON vs plain text vs binary.' },
+                ]
+              },
+              {
+                id: 'mcp-l5-s1-q4',
+                question: 'In a templated resource, how does the URI parameter get passed to the function?',
+                codeBlock: '@mcp.resource("docs://documents/{doc_id}")\ndef fetch_doc(doc_id: str) -> str:\n  return docs[doc_id]',
+                options: [
+                  { label: 'The SDK automatically parses the URI and passes parameters as keyword arguments matching the template names', correct: true, feedback: 'Correct. `{doc_id}` in the URI becomes the `doc_id` keyword argument in the function. Names must match.' },
+                  { label: 'You parse the URI manually in your function', correct: false, feedback: 'The SDK handles URI parsing automatically. Just name your function parameter to match the template.' },
+                  { label: 'Parameters are passed via a separate config object', correct: false, feedback: 'Parameters come directly from the URI template. The SDK extracts them automatically.' },
+                  { label: 'You access them via `request.params`', correct: false, feedback: 'There\'s no request object. The SDK passes URI parameters as function keyword arguments.' },
+                ]
+              },
+              {
+                id: 'mcp-l5-s1-q5',
+                question: 'Do you need to manually serialize return values from resources to JSON?',
+                codeBlock: 'def list_docs() -> list[str]:\n  return list(docs.keys())',
+                options: [
+                  { label: 'No — the MCP Python SDK automatically serializes return values', correct: true, feedback: 'Correct. Just return your Python data structure. The SDK handles serialization based on the mime_type.' },
+                  { label: 'Yes — you must use `json.dumps()`', correct: false, feedback: 'The SDK serializes for you. Just return the Python object.' },
+                  { label: 'Only for JSON responses', correct: false, feedback: 'The SDK handles all serialization automatically, regardless of MIME type.' },
+                  { label: 'Only for binary data', correct: false, feedback: 'All serialization is handled by the SDK. Just return the data.' },
+                ]
+              },
+            ]
+          },
+          {
+            id: 'mcp-l5-s2',
+            title: 'Set 2 — Prompts',
+            cards: [
+              {
+                id: 'mcp-l5-s2-q1',
+                question: 'What are MCP prompts, and why would you use them instead of letting users write their own prompts?',
+                codeBlock: null,
+                options: [
+                  { label: 'Pre-built, well-tested instructions that give better results than what users might write on their own', correct: true, feedback: 'Correct. As the MCP server author, you can spend time crafting, testing, and evaluating prompts that work consistently, so users benefit without being prompt engineering experts.' },
+                  { label: 'They replace the need for a language model', correct: false, feedback: 'Prompts are sent TO the language model. They\'re pre-crafted instructions, not a replacement for AI.' },
+                  { label: 'They\'re just regular text templates', correct: false, feedback: 'MCP prompts return actual message lists (user/assistant messages) that get sent directly to Claude, not just text.' },
+                  { label: 'They\'re required for all MCP servers', correct: false, feedback: 'Prompts are optional. They\'re useful when you want to provide pre-built workflows.' },
+                ]
+              },
+              {
+                id: 'mcp-l5-s2-q2',
+                question: 'How do you define a prompt in the MCP Python SDK?',
+                codeBlock: '@mcp.prompt(\n  name="format",\n  description="Rewrites in Markdown"\n)\ndef format_document(\n  doc_id: str = Field(...)\n) -> list[base.Message]:\n  return [base.UserMessage(prompt)]',
+                options: [
+                  { label: 'Use `@mcp.prompt` decorator and return a list of messages (user/assistant)', correct: true, feedback: 'Correct. The decorator defines the prompt name/description. The function returns a list of messages that get sent directly to Claude.' },
+                  { label: 'Write the prompt in a YAML file', correct: false, feedback: 'Prompts are defined in code using the `@mcp.prompt` decorator, not YAML files.' },
+                  { label: 'Add them to a prompts.json configuration', correct: false, feedback: 'No configuration files needed. Use the `@mcp.prompt` decorator on a function.' },
+                  { label: 'Define them inside tool functions', correct: false, feedback: 'Prompts and tools are separate primitives. Prompts use their own `@mcp.prompt` decorator.' },
+                ]
+              },
+              {
+                id: 'mcp-l5-s2-q3',
+                question: 'What does a prompt function return?',
+                codeBlock: null,
+                options: [
+                  { label: 'A list of messages (user and/or assistant messages) to send directly to Claude', correct: true, feedback: 'Correct. You can include multiple user and assistant messages to create complex conversation flows. These messages are sent to Claude as-is.' },
+                  { label: 'A single string', correct: false, feedback: 'Prompt functions return a list of message objects (UserMessage, AssistantMessage), not a plain string.' },
+                  { label: 'A tool definition', correct: false, feedback: 'Prompts return messages, not tool definitions. They\'re separate primitives.' },
+                  { label: 'An HTTP response', correct: false, feedback: 'Prompts return MCP message objects, not HTTP responses.' },
+                ]
+              },
+              {
+                id: 'mcp-l5-s2-q4',
+                question: 'How do prompt arguments get passed when a client requests a prompt?',
+                codeBlock: 'result = await self.session().get_prompt(\n  prompt_name, {"doc_id": "plan.md"}\n)',
+                options: [
+                  { label: 'As a dictionary of key-value pairs — they become keyword arguments in the prompt function', correct: true, feedback: 'Correct. The client passes `{"doc_id": "plan.md"}`, and the SDK passes `doc_id="plan.md"` to your prompt function.' },
+                  { label: 'As positional arguments', correct: false, feedback: 'Arguments are passed as a dictionary, not positionally.' },
+                  { label: 'They can\'t accept arguments', correct: false, feedback: 'Prompts support parameterized arguments via keyword dictionaries.' },
+                  { label: 'As a JSON string in the URI', correct: false, feedback: 'That\'s resources. Prompts receive arguments as a dictionary in the get_prompt call.' },
+                ]
+              },
+              {
+                id: 'mcp-l5-s2-q5',
+                question: 'What import is needed for creating prompt messages?',
+                codeBlock: 'from mcp.server.fastmcp.prompts import base\n\nreturn [base.UserMessage(prompt)]',
+                options: [
+                  { label: '`from mcp.server.fastmcp.prompts import base` — provides `UserMessage` and other message types', correct: true, feedback: 'Correct. The `base` module provides message types like `UserMessage` and `AssistantMessage` for constructing prompt responses.' },
+                  { label: '`from anthropic import Message`', correct: false, feedback: 'Prompt messages use MCP\'s own types from `mcp.server.fastmcp.prompts`, not Anthropic\'s SDK.' },
+                  { label: 'No import needed — use plain strings', correct: false, feedback: 'You need to import message types from the MCP SDK to create proper prompt responses.' },
+                  { label: '`from mcp import prompts`', correct: false, feedback: 'The correct import is `from mcp.server.fastmcp.prompts import base`.' },
+                ]
+              },
+            ]
+          },
+          {
+            id: 'mcp-l5-s3',
+            title: 'Set 3 — The Three Primitives',
+            cards: [
+              {
+                id: 'mcp-l5-s3-q1',
+                question: 'Who controls MCP tools — the model, the app, or the user?',
+                codeBlock: null,
+                options: [
+                  { label: 'Model-controlled — Claude alone decides when to call tools', correct: true, feedback: 'Correct. Tools are model-controlled. Claude autonomously decides when and which tools to use to complete tasks.' },
+                  { label: 'User-controlled — the user triggers tool calls', correct: false, feedback: 'Users don\'t directly trigger tools. Claude (the model) decides when to use them.' },
+                  { label: 'App-controlled — your code decides when to call tools', correct: false, feedback: 'That describes resources. Tools are controlled by the model (Claude).' },
+                  { label: 'Server-controlled — the MCP server decides', correct: false, feedback: 'The MCP server executes tools, but Claude (the model) decides WHEN to call them.' },
+                ]
+              },
+              {
+                id: 'mcp-l5-s3-q2',
+                question: 'Who controls MCP resources?',
+                codeBlock: null,
+                options: [
+                  { label: 'App-controlled — your application code decides when to fetch resource data', correct: true, feedback: 'Correct. Resources are app-controlled. Your code fetches them for UI elements (autocomplete) or to augment prompts with context.' },
+                  { label: 'Model-controlled — Claude fetches resources', correct: false, feedback: 'Claude controls tools, not resources. Your application code decides when to read resources.' },
+                  { label: 'User-controlled — users request resources directly', correct: false, feedback: 'That describes prompts. Resources are fetched by your application code, often behind the scenes.' },
+                  { label: 'They\'re automatic — always running', correct: false, feedback: 'Resources are fetched on demand by your application code, not automatically.' },
+                ]
+              },
+              {
+                id: 'mcp-l5-s3-q3',
+                question: 'Who controls MCP prompts?',
+                codeBlock: null,
+                options: [
+                  { label: 'User-controlled — users trigger prompts through UI interactions like slash commands or buttons', correct: true, feedback: 'Correct. Prompts are user-controlled. Users decide when to invoke predefined workflows via buttons, menus, or slash commands.' },
+                  { label: 'Model-controlled — Claude decides when to use prompts', correct: false, feedback: 'Claude controls tools. Prompts are triggered by user actions.' },
+                  { label: 'App-controlled — your code runs prompts automatically', correct: false, feedback: 'Your code controls resources. Prompts are triggered by explicit user actions.' },
+                  { label: 'Server-controlled', correct: false, feedback: 'Prompts are defined on the server but triggered by user actions on the client side.' },
+                ]
+              },
+              {
+                id: 'mcp-l5-s3-q4',
+                question: 'You need to give Claude the ability to query a database. Which MCP primitive should you use?',
+                codeBlock: null,
+                options: [
+                  { label: 'Tools — they give Claude new capabilities it can use autonomously', correct: true, feedback: 'Correct. Tools are for giving Claude capabilities. Claude decides when to query the database based on the user\'s request.' },
+                  { label: 'Resources — they provide data access', correct: false, feedback: 'Resources are for your app to fetch data for UI or context. For Claude to autonomously query a database, use tools.' },
+                  { label: 'Prompts — they define workflows', correct: false, feedback: 'Prompts are pre-built instructions. For Claude to have database access, you need a tool.' },
+                  { label: 'Any of the three would work equally well', correct: false, feedback: 'Tools are the right choice when you want to give Claude a capability it can use on its own.' },
+                ]
+              },
+              {
+                id: 'mcp-l5-s3-q5',
+                question: 'You want to show a list of available documents in an autocomplete dropdown. Which primitive?',
+                codeBlock: null,
+                options: [
+                  { label: 'Resources — they provide data for your app to use in UI elements', correct: true, feedback: 'Correct. Resources are app-controlled and perfect for fetching data to populate UI elements like autocomplete lists.' },
+                  { label: 'Tools — Claude can generate the list', correct: false, feedback: 'Autocomplete is a UI concern, not a Claude concern. Resources provide data for your app to render.' },
+                  { label: 'Prompts — they handle user input', correct: false, feedback: 'Prompts are pre-built instructions for Claude, not data providers for UI elements.' },
+                  { label: 'None — hardcode the list', correct: false, feedback: 'Resources are designed exactly for this: exposing data from MCP servers for app use.' },
+                ]
+              },
+            ]
+          },
+        ]
+      },
     ]
   },
   {
