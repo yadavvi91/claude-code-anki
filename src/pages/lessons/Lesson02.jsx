@@ -66,7 +66,7 @@ export default function Lesson02() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}303241_000019s.jpg`} alt="Overview of how context shapes Claude Code's behavior" style={styles.img} />
+          <img src={`${base}303241_000019s.jpg`} alt="Course demo — React Component Generator app built with Claude Code" style={styles.img} />
         </Reveal>
 
         {/* ══════════════ SET 1 — CLAUDE.md & CONTEXT ══════════════ */}
@@ -93,7 +93,7 @@ export default function Lesson02() {
         </p></Reveal>
 
         <Reveal>
-          <img src={`${base}303241_000062s.jpg`} alt="Running /init to generate a CLAUDE.md file" style={styles.img} />
+          <img src={`${base}303241_000062s.jpg`} alt="VS Code with the uigen project file tree and terminal ready for Claude Code" style={styles.img} />
         </Reveal>
 
         <Reveal>
@@ -125,7 +125,7 @@ export default function Lesson02() {
         ))}
 
         <Reveal>
-          <img src={`${base}303241_000094s.jpg`} alt="CLAUDE.md file locations — project root, local, and global" style={styles.img} />
+          <img src={`${base}303241_000094s.jpg`} alt="Running /init — Claude Code analyzes the codebase structure and reads README.md" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -142,7 +142,7 @@ export default function Lesson02() {
         </p></Reveal>
 
         <Reveal>
-          <img src={`${base}303241_000129s.jpg`} alt="Using the @ symbol to include file context and # for memory" style={styles.img} />
+          <img src={`${base}303241_000129s.jpg`} alt="The CLAUDE.md file — guides Claude through your codebase with commands, architecture, and coding style" style={styles.img} />
         </Reveal>
 
         {/* S1 remaining cards */}
@@ -165,7 +165,7 @@ export default function Lesson02() {
         </p></Reveal>
 
         <Reveal>
-          <img src={`${base}303236_000021s.jpg`} alt="Planning Mode and Thinking Modes in Claude Code" style={styles.img} />
+          <img src={`${base}303236_000021s.jpg`} alt="VS Code with Claude Code — project structure visible in the explorer panel" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -203,7 +203,7 @@ export default function Lesson02() {
         </p></Reveal>
 
         <Reveal>
-          <img src={`${base}303236_000082s.jpg`} alt="Shift+Tab activation for Planning Mode in Claude Code" style={styles.img} />
+          <img src={`${base}303236_000082s.jpg`} alt="VS Code showing Claude Code auto-accept edits mode during development" style={styles.img} />
         </Reveal>
 
         {/* S2 cards */}
@@ -220,7 +220,7 @@ export default function Lesson02() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}303237_000138s.jpg`} alt="Conversation control techniques — Escape, /compact, /clear" style={styles.img} />
+          <img src={`${base}303237_000138s.jpg`} alt="Claude Code terminal running tests and shell commands during a session" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -260,7 +260,7 @@ export default function Lesson02() {
         ))}
 
         <Reveal>
-          <img src={`${base}303237_000195s.jpg`} alt="Summary of conversation control commands in Claude Code" style={styles.img} />
+          <img src={`${base}303237_000195s.jpg`} alt="Using /clear in Claude Code to reset conversation context" style={styles.img} />
         </Reveal>
 
         <div style={styles.divider}>· · ·</div>
@@ -327,7 +327,7 @@ Coverage:
         ))}
 
         <Reveal>
-          <img src={`${base}303236_000207s.jpg`} alt="Summary of making effective changes with Claude Code" style={styles.img} />
+          <img src={`${base}303236_000207s.jpg`} alt="Claude Code completing a task — successfully implementing an enhanced tool with implementation details" style={styles.img} />
         </Reveal>
 
         {/* ── END ── */}

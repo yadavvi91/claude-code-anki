@@ -18,35 +18,35 @@ export const modules = [
             cards: [
               {
                 id: 'cc-l1-s1-q1',
-                question: 'When Claude Code needs to read a file, which tool should it prefer?',
+                question: 'You need to read lines 50-80 of a 5000-line config file without loading the entire thing into context. Which approach is most token-efficient?',
                 codeBlock: null,
                 options: [
-                  { label: '`Read` tool', correct: true, feedback: 'Correct. The `Read` tool is purpose-built for reading files and provides line numbers, unlike `cat` via Bash.' },
-                  { label: '`Bash` with `cat`', correct: false, feedback: 'While `cat` works, the `Read` tool is preferred because it shows line numbers and provides a better user experience for reviewing code.' },
-                  { label: '`Grep` tool', correct: false, feedback: '`Grep` searches file contents for patterns — it doesn\'t read an entire file.' },
-                  { label: '`Glob` tool', correct: false, feedback: '`Glob` finds files by name patterns — it returns file paths, not file contents.' },
+                  { label: '`Read` tool with `offset` and `limit` parameters', correct: true, feedback: 'Correct. The `Read` tool supports `offset` and `limit`, letting you load only the exact line range you need — keeping the context window small on large files.' },
+                  { label: '`Bash` with `cat` and pipe through `head`/`tail`', correct: false, feedback: '`cat file | tail -n +50 | head -n 30` works but outputs raw text without line numbers. `Read` with offset/limit is purpose-built for partial file reads with line numbering.' },
+                  { label: '`Grep` tool searching for content near line 50', correct: false, feedback: '`Grep` finds matching patterns, not line ranges. If you don\'t know the content, you can\'t search for it.' },
+                  { label: '`Read` the entire file and ignore what you don\'t need', correct: false, feedback: 'Loading all 5000 lines wastes context window tokens. Use `offset` and `limit` to read only what you need.' },
                 ]
               },
               {
                 id: 'cc-l1-s1-q2',
-                question: 'You need to find all TypeScript files matching `src/components/**/*.tsx`. Which tool is best?',
+                question: 'You need to find the most recently modified test files in `src/` to understand what was last worked on. Which tool returns results sorted by modification time?',
                 codeBlock: null,
                 options: [
-                  { label: '`Glob` tool', correct: true, feedback: 'Correct. `Glob` is optimized for file pattern matching and returns paths sorted by modification time.' },
-                  { label: '`Bash` with `find`', correct: false, feedback: '`find` works but `Glob` is preferred — it\'s faster and provides a better review experience for the user.' },
-                  { label: '`Grep` tool', correct: false, feedback: '`Grep` searches file contents, not file names. Use `Glob` for name-based pattern matching.' },
-                  { label: '`Agent` tool', correct: false, feedback: 'The `Agent` tool is overkill for a simple file search. Use it for complex, multi-step explorations.' },
+                  { label: '`Glob` tool — results are sorted by modification time by default', correct: true, feedback: 'Correct. `Glob` returns matching file paths sorted by modification time, so the most recently changed files appear first — perfect for understanding recent activity.' },
+                  { label: '`Bash` with `find` and manually piping to `sort`', correct: false, feedback: '`find` requires extra piping (`-printf` + `sort`) to get modification-time ordering. `Glob` provides this out of the box.' },
+                  { label: '`Grep` tool searching for test patterns', correct: false, feedback: '`Grep` searches file contents, not file names. You need pattern matching on paths, not content search.' },
+                  { label: '`Bash` with `ls -lt` on the directory', correct: false, feedback: '`ls` doesn\'t support glob patterns like `**/*.test.tsx`. `Glob` handles recursive patterns and returns modification-time-sorted results.' },
                 ]
               },
               {
                 id: 'cc-l1-s1-q3',
-                question: 'You want to search for all usages of `handleSubmit` across a codebase. Which tool?',
+                question: 'You need to find every file where `handleSubmit` is called with more than one argument (e.g., `handleSubmit(data, options)`). Which approach handles this regex-based content search across the codebase?',
                 codeBlock: null,
                 options: [
-                  { label: '`Grep` tool', correct: true, feedback: 'Correct. `Grep` is built on ripgrep and supports full regex, file type filtering, and context lines.' },
-                  { label: '`Bash` with `grep -r`', correct: false, feedback: 'The `Grep` tool is preferred over `grep` in Bash — it has better permissions handling and the user can review the search easily.' },
-                  { label: '`Read` tool on each file', correct: false, feedback: 'Reading files one by one is inefficient. `Grep` searches across the entire codebase in one call.' },
-                  { label: '`Glob` tool', correct: false, feedback: '`Glob` matches file names, not file contents. You need `Grep` to search inside files.' },
+                  { label: '`Grep` tool with a regex pattern like `handleSubmit\\(.*,`', correct: true, feedback: 'Correct. `Grep` is built on ripgrep with full regex support, file type filtering, and context lines — ideal for pattern-based content search across many files.' },
+                  { label: '`Glob` tool filtering for files containing `handleSubmit`', correct: false, feedback: '`Glob` matches file names/paths, not file contents. You need `Grep` to search inside files for content patterns.' },
+                  { label: '`Read` each file and check manually', correct: false, feedback: 'Reading files one by one is extremely slow across a large codebase. `Grep` searches all files in a single call.' },
+                  { label: '`Agent` tool to explore the codebase', correct: false, feedback: 'An Agent is overkill for a straightforward regex search. `Grep` handles this directly in one call.' },
                 ]
               },
               {
@@ -90,13 +90,13 @@ export const modules = [
               },
               {
                 id: 'cc-l1-s2-q2',
-                question: 'Why does Claude Code prefer dedicated tools over equivalent Bash commands?',
+                question: 'A user is reviewing Claude Code\'s actions and sees a `Read` tool call for `src/app.ts`. Compare this to seeing `Bash: cat src/app.ts | head -50` in the log. What is the practical difference for the reviewer?',
                 codeBlock: null,
                 options: [
-                  { label: 'Dedicated tools provide a better review experience for the user', correct: true, feedback: 'Correct. When Claude uses `Read` instead of `cat`, or `Grep` instead of `rg`, the user can more easily understand and approve the action.' },
-                  { label: 'Bash commands are slower', correct: false, feedback: 'Performance isn\'t the main reason — it\'s about user experience and reviewability.' },
-                  { label: 'Bash is disabled by default', correct: false, feedback: 'Bash is available, but dedicated tools are preferred when they exist for the task.' },
-                  { label: 'Dedicated tools have more features', correct: false, feedback: 'Bash commands are often more flexible. The preference is about UX, not features.' },
+                  { label: 'The `Read` call is easier to review — the user instantly sees what file and lines were read, whereas the Bash command requires parsing the shell pipeline', correct: true, feedback: 'Correct. Dedicated tools expose structured parameters (file, offset, limit) making actions transparent. Bash commands require the reviewer to mentally parse shell syntax to understand intent.' },
+                  { label: 'No practical difference — both show the file being read', correct: false, feedback: 'The `Read` tool surfaces structured metadata (file path, line range) directly. A Bash pipeline requires the reviewer to understand `cat`, `head`, and piping to know what happened.' },
+                  { label: 'The Bash version is better because it shows the exact command run', correct: false, feedback: 'Seeing the exact shell command is less reviewable, not more. Structured tool calls make intent clearer at a glance.' },
+                  { label: 'The `Read` tool is faster, which is why it\'s preferred', correct: false, feedback: 'Speed isn\'t the main factor. The preference is about reviewability — how easily a human can understand and approve each action.' },
                 ]
               },
               {
@@ -212,24 +212,24 @@ export const modules = [
               },
               {
                 id: 'cc-l1-s4-q2',
-                question: 'What flag should you NEVER use with `git rebase` in Claude Code?',
+                question: 'Claude Code tries to run `git rebase -i HEAD~3` via the Bash tool, but the command hangs and eventually times out. What went wrong?',
                 codeBlock: null,
                 options: [
-                  { label: '`-i` (interactive)', correct: true, feedback: 'Correct. Interactive mode requires user input which isn\'t supported in Claude Code\'s Bash execution.' },
-                  { label: '`--onto`', correct: false, feedback: '`--onto` is a valid non-interactive flag for rebasing.' },
-                  { label: '`--continue`', correct: false, feedback: '`--continue` is fine — it resumes a rebase in progress.' },
-                  { label: '`--abort`', correct: false, feedback: '`--abort` is fine — it cancels a rebase in progress.' },
+                  { label: 'The `-i` flag opens an interactive editor, which Claude Code\'s Bash tool cannot provide — it has no stdin for user interaction', correct: true, feedback: 'Correct. Interactive flags like `-i` (rebase), `-p` (add), and interactive `add -i` all require user input that Claude Code\'s non-interactive Bash execution cannot supply.' },
+                  { label: 'The rebase had merge conflicts that need manual resolution', correct: false, feedback: 'Merge conflicts produce error output, not a hang. The hang occurs because `-i` opens an interactive editor waiting for input that will never come.' },
+                  { label: 'Git rebase is not supported in Claude Code', correct: false, feedback: 'Non-interactive `git rebase` works fine. The problem is specifically the `-i` flag requiring interactive input.' },
+                  { label: 'The `HEAD~3` syntax is invalid inside Claude Code', correct: false, feedback: '`HEAD~3` is standard git syntax and works fine. The issue is the `-i` flag opening an interactive editor.' },
                 ]
               },
               {
                 id: 'cc-l1-s4-q3',
-                question: 'Claude Code\'s Bash tool has a default timeout. What is it?',
+                question: 'Claude Code runs `npm run build` via Bash, but the project is large and the build takes 4 minutes. The command fails with a timeout. What should Claude do?',
                 codeBlock: null,
                 options: [
-                  { label: '2 minutes (120,000ms)', correct: true, feedback: 'Correct. The default timeout is 120 seconds. You can specify a longer timeout up to 10 minutes (600,000ms).' },
-                  { label: '30 seconds', correct: false, feedback: 'The default is 2 minutes, not 30 seconds.' },
-                  { label: '10 minutes', correct: false, feedback: '10 minutes (600,000ms) is the maximum, not the default.' },
-                  { label: 'No timeout', correct: false, feedback: 'There is always a timeout — 2 minutes by default.' },
+                  { label: 'Re-run the command with an explicit `timeout` parameter set higher than the default 2 minutes (up to 10 minutes max)', correct: true, feedback: 'Correct. The default Bash timeout is 2 minutes (120,000ms). For long builds, set `timeout: 300000` (5 min) or up to `600000` (10 min max).' },
+                  { label: 'Split the build into smaller commands that each finish within the timeout', correct: false, feedback: 'Build processes are usually not easily splittable. The correct approach is to increase the timeout parameter for the single build command.' },
+                  { label: 'Use `run_in_background` and wait indefinitely', correct: false, feedback: '`run_in_background` is useful but still subject to the max timeout. For a 4-minute build, explicitly setting `timeout: 300000` is the direct fix.' },
+                  { label: 'There is no way to handle this — commands that exceed the timeout always fail', correct: false, feedback: 'The Bash tool accepts an optional `timeout` parameter up to 600,000ms (10 minutes), which solves this exact problem.' },
                 ]
               },
               {
@@ -291,24 +291,24 @@ export const modules = [
               },
               {
                 id: 'cc-l2-s1-q4',
-                question: 'What happens when you reference a file with `@` inside your CLAUDE.md?',
+                question: 'Your team has a critical `API_CONVENTIONS.md` file that Claude must always know about when working in the repo. You add `@API_CONVENTIONS.md` to CLAUDE.md. What is the trade-off of this approach?',
                 codeBlock: null,
                 options: [
-                  { label: 'That file\'s contents are automatically included in every request to Claude', correct: true, feedback: 'Correct. Files mentioned with `@` in CLAUDE.md are included in every request, so Claude can answer questions about that file immediately without searching for it.' },
-                  { label: 'Claude reads the file once and forgets it', correct: false, feedback: 'Since CLAUDE.md is loaded on every request, the `@` reference causes the file to be included every time.' },
-                  { label: 'It creates a symbolic link to the file', correct: false, feedback: '`@` in CLAUDE.md is a content inclusion mechanism, not a filesystem operation.' },
-                  { label: 'It adds the file to `.gitignore`', correct: false, feedback: '`@` references have nothing to do with git.' },
+                  { label: 'The file is included in EVERY request (immediate access), but it consumes context window tokens even when irrelevant to the current task', correct: true, feedback: 'Correct. `@` references in CLAUDE.md load on every request. This guarantees Claude always has the info, but wastes tokens on tasks unrelated to API conventions.' },
+                  { label: 'No trade-off — it is free to include files this way', correct: false, feedback: 'Every included file consumes context window tokens. On large files, this reduces space available for actual task work.' },
+                  { label: 'Claude reads the file once and caches it permanently across sessions', correct: false, feedback: 'There is no cross-session cache. CLAUDE.md is reloaded on every request, and `@` files are re-included each time.' },
+                  { label: 'The file becomes read-only and cannot be edited by Claude', correct: false, feedback: '`@` references only affect context loading. Claude can still edit the referenced file if asked.' },
                 ]
               },
               {
                 id: 'cc-l2-s1-q5',
-                question: 'How do you enter "memory mode" to add custom instructions to CLAUDE.md?',
+                question: 'Claude keeps importing lodash in your project, but your team banned lodash in favor of native JS methods. You want this rule to persist across all future conversations. What is the best approach?',
                 codeBlock: null,
                 options: [
-                  { label: 'Type `#` followed by your instruction', correct: true, feedback: 'Correct. The `#` command enters memory mode. Type something like `# Use comments sparingly` and Claude will merge the instruction into your CLAUDE.md automatically.' },
-                  { label: 'Type `/memory` followed by your instruction', correct: false, feedback: 'There is no `/memory` command. Use the `#` shortcut instead.' },
-                  { label: 'Edit CLAUDE.md directly in your IDE', correct: false, feedback: 'While you can edit it manually, the `#` shortcut is the built-in way to intelligently merge instructions.' },
-                  { label: 'Type `/init --update`', correct: false, feedback: '`/init` generates the initial CLAUDE.md. The `#` shortcut is for adding specific instructions.' },
+                  { label: 'Type `# Never use lodash — use native JS array/object methods` to add a persistent memory to CLAUDE.md', correct: true, feedback: 'Correct. The `#` command enters memory mode and merges your instruction into CLAUDE.md. This persists across sessions, so Claude will always know about the lodash ban.' },
+                  { label: 'Correct Claude in the current conversation and hope it remembers', correct: false, feedback: 'Corrections in a single conversation don\'t persist. Use `#` to add the rule to CLAUDE.md so it applies to all future sessions.' },
+                  { label: 'Add a lint rule and rely on Claude to check lint output', correct: false, feedback: 'A lint rule helps catch mistakes, but telling Claude upfront via `#` memory prevents the mistake from happening at all.' },
+                  { label: 'Use `/clear` at the start of every conversation and re-state the rule', correct: false, feedback: 'Re-stating rules every session is tedious. `#` memories persist in CLAUDE.md automatically.' },
                 ]
               },
             ]
@@ -319,13 +319,13 @@ export const modules = [
             cards: [
               {
                 id: 'cc-l2-s2-q1',
-                question: 'How do you enable Planning Mode in Claude Code?',
+                question: 'You need to refactor authentication across 15 files spanning 3 modules. Before Claude starts editing, you want it to read all relevant files and present a plan for your approval. Which mode should you activate?',
                 codeBlock: null,
                 options: [
-                  { label: 'Press Shift+Tab twice (or once if already auto-accepting edits)', correct: true, feedback: 'Correct. Shift+Tab toggles between permission levels. Two presses from default enters Planning Mode where Claude explores thoroughly before acting.' },
-                  { label: 'Type `/plan` before your prompt', correct: false, feedback: 'There\'s no `/plan` command. Use Shift+Tab to toggle into Planning Mode.' },
-                  { label: 'Add "plan first" to your message', correct: false, feedback: 'While you can ask Claude to plan, the official Planning Mode is activated with Shift+Tab.' },
-                  { label: 'Press Ctrl+P', correct: false, feedback: 'Ctrl+P is not the Planning Mode shortcut. Use Shift+Tab.' },
+                  { label: 'Planning Mode (Shift+Tab) — Claude reads broadly, creates a plan, and waits for your approval before making any changes', correct: true, feedback: 'Correct. Planning Mode makes Claude do thorough exploration first, then present a detailed plan. You review and approve before any edits happen — critical for large cross-module refactors.' },
+                  { label: 'Default mode with "plan first" in your prompt — same result', correct: false, feedback: 'Asking Claude to plan in default mode is informal. Planning Mode formally prevents Claude from acting until you approve the plan — a stronger guarantee for risky refactors.' },
+                  { label: 'Use a Thinking mode like "ultrathink" for the same effect', correct: false, feedback: 'Thinking modes give Claude more reasoning tokens but don\'t prevent it from acting. Planning Mode ensures Claude proposes a plan and waits for approval.' },
+                  { label: 'There is no way to prevent Claude from editing immediately', correct: false, feedback: 'Planning Mode (Shift+Tab) exists specifically to make Claude explore and plan before acting.' },
                 ]
               },
               {
@@ -341,13 +341,13 @@ export const modules = [
               },
               {
                 id: 'cc-l2-s2-q3',
-                question: 'Which thinking mode gives Claude the MAXIMUM reasoning capability?',
+                question: 'You ask Claude to implement a complex recursive algorithm with memoization, but its first attempt has subtle off-by-one bugs in the base cases. What should you try before re-explaining the problem?',
                 codeBlock: null,
                 options: [
-                  { label: '"Ultrathink"', correct: true, feedback: 'Correct. The thinking modes from least to most: Think → Think more → Think a lot → Think longer → Ultrathink. Each gives Claude progressively more tokens for reasoning.' },
-                  { label: '"Think longer"', correct: false, feedback: '"Think longer" is the second-highest. "Ultrathink" is the maximum.' },
-                  { label: '"Think a lot"', correct: false, feedback: '"Think a lot" is mid-tier. "Ultrathink" is the maximum reasoning mode.' },
-                  { label: '"Deep think"', correct: false, feedback: '"Deep think" is not one of the modes. The maximum is "Ultrathink".' },
+                  { label: 'Add "ultrathink" to your prompt — giving Claude maximum reasoning tokens helps it work through complex algorithmic logic more carefully', correct: true, feedback: 'Correct. Thinking modes (think → think more → think a lot → think longer → ultrathink) allocate progressively more tokens for internal reasoning. Complex algorithms with subtle edge cases benefit from deeper reasoning.' },
+                  { label: 'Switch to Planning Mode so Claude reads more files first', correct: false, feedback: 'Planning Mode is for broad codebase exploration. This is a depth problem (complex logic), not a breadth problem (many files). A thinking mode is the right tool.' },
+                  { label: 'Break the function into smaller pieces and ask Claude to implement each one', correct: false, feedback: 'Decomposition can help, but giving Claude more reasoning tokens with a thinking mode often solves subtle logic bugs without requiring you to manually decompose the problem.' },
+                  { label: 'Start a new conversation — Claude\'s context is probably corrupted', correct: false, feedback: 'Context doesn\'t "corrupt." The issue is that the algorithm requires deeper reasoning. Thinking modes give Claude more space to work through the logic.' },
                 ]
               },
               {
@@ -363,13 +363,13 @@ export const modules = [
               },
               {
                 id: 'cc-l2-s2-q5',
-                question: 'How do you paste a screenshot into Claude Code?',
+                question: 'A designer sends you a screenshot of a UI bug on macOS. You try to paste it into Claude Code with Cmd+V but nothing happens. What is the correct shortcut?',
                 codeBlock: null,
                 options: [
-                  { label: 'Use Ctrl+V (not Cmd+V on macOS)', correct: true, feedback: 'Correct. Ctrl+V is the specific shortcut for pasting screenshots into the Claude Code chat interface, even on macOS.' },
-                  { label: 'Use Cmd+V on macOS', correct: false, feedback: 'On macOS, screenshots in Claude Code specifically require Ctrl+V, not the usual Cmd+V.' },
-                  { label: 'Drag and drop the image file', correct: false, feedback: 'The supported method is Ctrl+V to paste from clipboard.' },
-                  { label: 'Use the `@` syntax with an image path', correct: false, feedback: '`@` references files by path but Ctrl+V is the way to paste screenshots.' },
+                  { label: 'Ctrl+V — Claude Code uses Ctrl+V for screenshot pasting, even on macOS where Cmd+V is the system standard', correct: true, feedback: 'Correct. This is a common gotcha on macOS. Claude Code specifically uses Ctrl+V (not Cmd+V) for pasting screenshots from the clipboard.' },
+                  { label: 'Cmd+Shift+V — the modified paste shortcut', correct: false, feedback: 'The correct shortcut is Ctrl+V, not Cmd+Shift+V. This differs from the standard macOS paste behavior.' },
+                  { label: 'Save the screenshot to a file first, then use `@` to reference it', correct: false, feedback: 'While `@` can reference image files, Ctrl+V directly pastes from the clipboard — faster when you already have a screenshot copied.' },
+                  { label: 'Screenshots are not supported in Claude Code\'s terminal interface', correct: false, feedback: 'Screenshots are fully supported. Paste with Ctrl+V (even on macOS) to include images in your conversation.' },
                 ]
               },
             ]
@@ -391,13 +391,13 @@ export const modules = [
               },
               {
                 id: 'cc-l2-s3-q2',
-                question: 'What does pressing Escape TWICE do?',
+                question: 'Claude went down a wrong path for 5 messages — you want to go back to message #3 where things were still on track, but keep the context Claude built up to that point. What do you do?',
                 codeBlock: null,
                 options: [
-                  { label: 'Shows all previous messages so you can rewind the conversation to an earlier point', correct: true, feedback: 'Correct. Double-tap Escape shows your message history and lets you jump back, keeping valuable context while removing distracting conversation history.' },
-                  { label: 'Exits Claude Code', correct: false, feedback: 'Double Escape rewinds the conversation, it doesn\'t exit.' },
-                  { label: 'Clears the entire conversation', correct: false, feedback: 'That\'s `/clear`. Double Escape lets you selectively rewind, preserving some context.' },
-                  { label: 'Restarts Claude with a fresh session', correct: false, feedback: 'Double Escape rewinds to a chosen point, not a full restart.' },
+                  { label: 'Double-tap Escape to open the rewind view, then select message #3 — this preserves context up to that point and discards the wrong path', correct: true, feedback: 'Correct. Double Escape shows your message history. Selecting a point rewinds there, keeping valuable earlier context while removing the derailed portion.' },
+                  { label: 'Use `/clear` and re-explain everything from scratch', correct: false, feedback: '`/clear` erases ALL context, including the useful work in messages 1-3. Double Escape lets you selectively rewind to keep the good parts.' },
+                  { label: 'Use `/compact` to summarize and hope it drops the bad parts', correct: false, feedback: '`/compact` summarizes everything including the wrong path. Double Escape lets you precisely choose where to rewind.' },
+                  { label: 'Just tell Claude to ignore the last 5 messages and start over', correct: false, feedback: 'Claude can\'t truly ignore messages already in context. Rewinding with double Escape actually removes them from the conversation.' },
                 ]
               },
               {
@@ -463,24 +463,24 @@ export const modules = [
               },
               {
                 id: 'cc-l2-s4-q3',
-                question: 'After creating a new custom command file, what must you do?',
+                question: 'You just added `.claude/commands/deploy.md` to your project and immediately try `/deploy` in your running Claude Code session, but the command isn\'t found. Why?',
                 codeBlock: null,
                 options: [
-                  { label: 'Restart Claude Code for it to recognize the new command', correct: true, feedback: 'Correct. Claude Code reads available commands at startup. New `.claude/commands/` files require a restart to be discovered.' },
-                  { label: 'Run `/reload-commands`', correct: false, feedback: 'There\'s no reload command. You need to restart Claude Code.' },
-                  { label: 'Nothing — commands are hot-loaded', correct: false, feedback: 'Commands are not hot-loaded. You must restart Claude Code after adding new command files.' },
-                  { label: 'Register it with `/register`', correct: false, feedback: 'No registration needed — just restart Claude Code after creating the file.' },
+                  { label: 'Claude Code reads commands at startup — you need to restart the session for new command files to be discovered', correct: true, feedback: 'Correct. Commands are loaded once at session start. Unlike CLAUDE.md changes, new command files require a restart to be picked up.' },
+                  { label: 'The file extension must be `.yaml`, not `.md`', correct: false, feedback: 'Commands are markdown (`.md`) files. The issue is that Claude Code needs a restart to discover new command files.' },
+                  { label: 'You need to register the command with `/register deploy`', correct: false, feedback: 'No registration is needed. Just restart Claude Code — it discovers commands from `.claude/commands/` automatically at startup.' },
+                  { label: 'The command file has a syntax error', correct: false, feedback: 'Command files are plain markdown — there is no special syntax to get wrong. The issue is that Claude Code needs a restart to load new commands.' },
                 ]
               },
               {
                 id: 'cc-l2-s4-q4',
-                question: 'What format are custom command files written in?',
+                question: 'Your team wants to create a `/review` command that checks code quality. A teammate suggests writing it as a shell script that runs ESLint. Why is this the wrong approach for a Claude Code custom command?',
                 codeBlock: null,
                 options: [
-                  { label: 'Markdown (`.md` files)', correct: true, feedback: 'Correct. Custom commands are markdown files where the content becomes the prompt sent to Claude when the command is invoked.' },
-                  { label: 'JSON configuration files', correct: false, feedback: 'Commands are plain markdown files, not JSON.' },
-                  { label: 'YAML files', correct: false, feedback: 'Commands are markdown (`.md`), not YAML.' },
-                  { label: 'Shell scripts', correct: false, feedback: 'Command files are markdown prompts for Claude, not shell scripts. Claude may run shell commands based on the prompt, but the file itself is markdown.' },
+                  { label: 'Custom commands are markdown prompt files, not executable scripts — the content is sent to Claude as a prompt, and Claude decides which tools to use', correct: true, feedback: 'Correct. Command files are markdown prompts. Write something like "Review the staged changes for code quality issues, run the linter, and report findings." Claude then uses its tools (Bash, Grep, etc.) to execute the review.' },
+                  { label: 'Shell scripts work fine — the teammate\'s approach is correct', correct: false, feedback: 'Claude Code commands are markdown prompts, not shell scripts. The content tells Claude what to do; Claude decides how to do it.' },
+                  { label: 'You need to write it in JavaScript, not shell script', correct: false, feedback: 'Commands are markdown files, not code in any language. They contain prompt text that Claude interprets.' },
+                  { label: 'Shell scripts need special permissions that Claude Code doesn\'t have', correct: false, feedback: 'The issue isn\'t permissions — command files are fundamentally markdown prompts for Claude, not executable scripts.' },
                 ]
               },
               {
@@ -509,13 +509,13 @@ export const modules = [
             cards: [
               {
                 id: 'cc-l3-s1-q1',
-                question: 'What is the command to add the Playwright MCP server to Claude Code?',
+                question: 'You want Claude Code to control a browser for visual testing, but Claude doesn\'t have browser tools built in. A colleague suggests "just npm install a browser library." Why is adding an MCP server the better approach?',
                 codeBlock: null,
                 options: [
-                  { label: '`claude mcp add playwright npx @playwright/mcp@latest`', correct: true, feedback: 'Correct. This names the server "playwright" and provides the command that starts it locally on your machine.' },
-                  { label: '`npm install @playwright/mcp`', correct: false, feedback: 'npm install adds a dependency. MCP servers are added via `claude mcp add`.' },
-                  { label: '`claude install playwright`', correct: false, feedback: 'The correct syntax is `claude mcp add <name> <command>`, not `claude install`.' },
-                  { label: '`claude mcp install playwright`', correct: false, feedback: 'The verb is `add`, not `install`. `claude mcp add playwright npx @playwright/mcp@latest`.' },
+                  { label: 'An MCP server (e.g., `claude mcp add playwright ...`) provides pre-built, tested browser tools that Claude can call directly — no custom code needed', correct: true, feedback: 'Correct. MCP servers come with tool definitions already built. `claude mcp add playwright npx @playwright/mcp@latest` instantly gives Claude browser control, screenshot, and navigation tools.' },
+                  { label: 'npm install and MCP add do the same thing under the hood', correct: false, feedback: 'npm install adds a library to YOUR code. `claude mcp add` registers a server that provides tools Claude can call directly — no custom integration code needed.' },
+                  { label: 'You can\'t use npm packages with Claude Code at all', correct: false, feedback: 'You can use npm packages via Bash, but you\'d have to write all the tool definitions and integration yourself. MCP servers provide this out of the box.' },
+                  { label: 'MCP servers are faster than npm packages', correct: false, feedback: 'Speed isn\'t the differentiator. The benefit is that MCP servers provide pre-built, tested tool definitions that Claude understands immediately.' },
                 ]
               },
               {
@@ -542,13 +542,13 @@ export const modules = [
               },
               {
                 id: 'cc-l3-s1-q4',
-                question: 'Where should you run `claude mcp add` — inside or outside Claude Code?',
+                question: 'You are inside a Claude Code session and type "claude mcp add playwright npx @playwright/mcp@latest" as a prompt. Claude responds with confusion. What went wrong?',
                 codeBlock: null,
                 options: [
-                  { label: 'In your terminal, NOT inside Claude Code', correct: true, feedback: 'Correct. The `claude mcp add` command is run in your regular terminal, not within a Claude Code session.' },
-                  { label: 'Inside Claude Code as a prompt', correct: false, feedback: 'MCP server management commands are run in your terminal, not as prompts inside Claude Code.' },
-                  { label: 'Either works the same', correct: false, feedback: 'These are CLI commands for configuring Claude Code, not prompts for Claude to process.' },
-                  { label: 'Inside a CLAUDE.md file', correct: false, feedback: 'CLAUDE.md is a context file, not a command execution environment.' },
+                  { label: '`claude mcp add` is a terminal CLI command, not a Claude Code prompt — run it in a separate terminal window outside of Claude Code', correct: true, feedback: 'Correct. `claude mcp add` configures Claude Code itself. It must be run in your regular terminal as a CLI command, not typed as a conversation prompt inside a running Claude Code session.' },
+                  { label: 'The command syntax is wrong — it should be `claude mcp install`', correct: false, feedback: 'The syntax is correct (`claude mcp add`), but you\'re running it in the wrong place. It\'s a terminal CLI command, not a Claude Code prompt.' },
+                  { label: 'Claude Code doesn\'t support MCP servers', correct: false, feedback: 'Claude Code fully supports MCP servers. The issue is that `claude mcp add` is a CLI command for your terminal, not a prompt for inside Claude Code.' },
+                  { label: 'You need to install Playwright with npm first', correct: false, feedback: 'No npm install is needed. The issue is that `claude mcp add` must be run in your terminal, not inside a Claude Code session.' },
                 ]
               },
               {
@@ -570,13 +570,13 @@ export const modules = [
             cards: [
               {
                 id: 'cc-l3-s2-q1',
-                question: 'What command sets up Claude\'s official GitHub integration?',
+                question: 'Your team wants Claude to automatically review PRs and respond to `@claude` mentions in GitHub Issues. You need an API key, a GitHub App, and workflow files. What is the fastest way to set all of this up?',
                 codeBlock: null,
                 options: [
-                  { label: '`/install-github-app` inside Claude Code', correct: true, feedback: 'Correct. This command walks you through installing the Claude Code GitHub app, adding your API key, and generating a PR with the workflow files.' },
-                  { label: '`gh extension install claude`', correct: false, feedback: 'The GitHub CLI is separate. Use `/install-github-app` inside Claude Code.' },
-                  { label: '`claude github connect`', correct: false, feedback: 'The correct command is `/install-github-app` run inside a Claude Code session.' },
-                  { label: '`npm install claude-github-action`', correct: false, feedback: 'The integration is set up via `/install-github-app`, which generates the workflow files automatically.' },
+                  { label: 'Run `/install-github-app` inside Claude Code — it walks you through the entire setup and generates a PR with the workflow files', correct: true, feedback: 'Correct. `/install-github-app` handles the full setup: installing the GitHub App, configuring your API key, and creating a PR with the necessary workflow YAML files.' },
+                  { label: 'Manually create GitHub Actions workflow files and configure secrets', correct: false, feedback: 'Manual setup works but is error-prone. `/install-github-app` automates the entire process and generates correct workflow files.' },
+                  { label: 'Install a GitHub App from the marketplace and configure it in repo settings', correct: false, feedback: 'Claude\'s GitHub integration has a dedicated setup command (`/install-github-app`) that handles everything including workflow file generation.' },
+                  { label: 'Add a `.github/claude.yml` config file to the repo', correct: false, feedback: 'There is no generic claude.yml config. The `/install-github-app` command generates the specific workflow files needed.' },
                 ]
               },
               {

@@ -85,7 +85,7 @@ export default function Lesson01() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}303242_000056s.jpg`} alt="Claude Code terminal interface showing multi-tool system in action" style={styles.img} />
+          <img src={`${base}303242_000000s.jpg`} alt="Tools with Claude Code — full list of tool names and their purposes" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -121,7 +121,7 @@ export default function Lesson01() {
         <Reveal><MCQCard card={s1[0]} color={colors[0]} /></Reveal>
 
         <Reveal>
-          <img src={`${base}303235_000106s.jpg`} alt="Dedicated tools produce structured output for easy review" style={styles.img} />
+          <img src={`${base}303235_000278s.jpg`} alt="Tool Use — how models use plain text directions to read files, write files, and make requests" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -142,7 +142,7 @@ export default function Lesson01() {
         <Reveal><MCQCard card={s1[2]} color={colors[2]} /></Reveal>
 
         <Reveal>
-          <img src={`${base}303242_000094s.jpg`} alt="Claude Code navigating a codebase with multiple tool calls" style={styles.img} />
+          <img src={`${base}303242_000094s.jpg`} alt="Course demo — browsing an npm package page as part of a Claude Code workflow" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -171,7 +171,7 @@ export default function Lesson01() {
         <Reveal><MCQCard card={s1[4]} color={colors[4]} /></Reveal>
 
         <Reveal>
-          <img src={`${base}303242_000157s.jpg`} alt="Claude Code editing a file with the Edit tool showing precise diffs" style={styles.img} />
+          <img src={`${base}303242_000157s.jpg`} alt="VS Code with Claude Code terminal — Welcome screen and file analysis prompt" style={styles.img} />
         </Reveal>
 
         <Reveal><div style={styles.divider}>◆</div></Reveal>
@@ -196,7 +196,7 @@ export default function Lesson01() {
         <Reveal><MCQCard card={s2[0]} color={colors[5]} /></Reveal>
 
         <Reveal>
-          <img src={`${base}303235_000278s.jpg`} alt="Claude Code sandbox and permission system overview" style={styles.img} />
+          <img src={`${base}303235_000278s.jpg`} alt="Tool Use — models receive plain text directions and respond with tool requests like ReadFile" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -234,7 +234,7 @@ Grep("handleSubmit")    // wait...`}
         <Reveal><MCQCard card={s2[2]} color={colors[7]} /></Reveal>
 
         <Reveal>
-          <img src={`${base}303242_000240s.jpg`} alt="Parallel tool calls executing simultaneously for faster results" style={styles.img} />
+          <img src={`${base}303242_000240s.jpg`} alt="Claude Code running Playwright MCP to build and style a card component in the browser" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -290,7 +290,7 @@ Grep("handleSubmit")    // wait...`}
         <Reveal><MCQCard card={s3[0]} color={colors[10]} /></Reveal>
 
         <Reveal>
-          <img src={`${base}303242_000379s.jpg`} alt="Safety principles in Claude Code — reversibility and confirmation" style={styles.img} />
+          <img src={`${base}303242_000379s.jpg`} alt="Course demo — DynamoDB, Lambda, and S3 architecture that Claude Code can read from Terraform files" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -362,7 +362,7 @@ Grep("handleSubmit")    // wait...`}
         <Reveal><MCQCard card={s4[0]} color={colors[15]} /></Reveal>
 
         <Reveal>
-          <img src={`${base}303242_000448s.jpg`} alt="Bash tool in Claude Code running system commands" style={styles.img} />
+          <img src={`${base}303242_000448s.jpg`} alt="GitHub pull request diff — Claude Code reviewing changed files in a PR" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -409,7 +409,7 @@ git log --oneline | head -5`}
         <Reveal><MCQCard card={s4[3]} color={colors[18]} /></Reveal>
 
         <Reveal>
-          <img src={`${base}303242_000183s.jpg`} alt="Claude Code completing a complex multi-step task" style={styles.img} />
+          <img src={`${base}303242_000183s.jpg`} alt="React Component Generator — a UI built with Claude Code for creating components with AI assistance" style={styles.img} />
         </Reveal>
 
         {/* ── LESSON END ── */}

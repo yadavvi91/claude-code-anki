@@ -145,7 +145,7 @@ export default function Lesson03() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}303240_000011s.jpg`} alt="GitHub integration overview — Claude as a team member" style={styles.img} />
+          <img src={`${base}303240_000011s.jpg`} alt="VS Code terminal showing the /install-github-app command for GitHub integration" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -201,7 +201,7 @@ allowed_tools: "Bash(npm:*),Bash(sqlite3:*),
         ))}
 
         <Reveal>
-          <img src={`${base}303240_000148s.jpg`} alt="GitHub Actions workflow customization for Claude" style={styles.img} />
+          <img src={`${base}303240_000148s.jpg`} alt="Git output showing Claude Code creating workflow files and a pull request" style={styles.img} />
         </Reveal>
 
         <div style={styles.divider}>· · ·</div>
@@ -283,7 +283,7 @@ main();`}
         ))}
 
         <Reveal>
-          <img src={`${base}312002_000039s.jpg`} alt="Hook matcher patterns for filtering which tools to intercept" style={styles.img} />
+          <img src={`${base}312002_000039s.jpg`} alt="VS Code showing a .env file with API keys — the kind of sensitive data hooks can protect" style={styles.img} />
         </Reveal>
 
         <div style={styles.divider}>· · ·</div>
@@ -295,7 +295,7 @@ main();`}
         </Reveal>
 
         <Reveal>
-          <img src={`${base}312004_000286s.jpg`} alt="Advanced hook patterns — TypeScript checking and query deduplication" style={styles.img} />
+          <img src={`${base}312004_000286s.jpg`} alt="TypeScript database code — a getPendingOrders function that hooks could validate" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -331,7 +331,7 @@ main();`}
         </Reveal>
 
         <Reveal>
-          <img src={`${base}303240_000052s.jpg`} alt="Claude Code SDK integration patterns" style={styles.img} />
+          <img src={`${base}303240_000052s.jpg`} alt="Terminal prompt in a project directory — ready for Claude Code SDK commands" style={styles.img} />
         </Reveal>
 
         <Reveal>
@@ -369,7 +369,7 @@ for await (const message of query({
         </Reveal>
 
         <Reveal>
-          <img src={`${base}312004_000468s.jpg`} alt="Security best practices — absolute paths for hook scripts" style={styles.img} />
+          <img src={`${base}312004_000468s.jpg`} alt="TypeScript database query code with date operations and type casting" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>

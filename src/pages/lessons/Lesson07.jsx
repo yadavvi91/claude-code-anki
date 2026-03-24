@@ -61,7 +61,7 @@ export default function Lesson07() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}296290_000070s.jpg`} alt="Overview of MCP transport options — STDIO and StreamableHTTP" style={styles.img} />
+          <img src={`${base}296290_000070s.jpg`} alt="Course plan — Messages Format, STDIO Transport, and StreamableHTTP Transport topics" style={styles.img} />
         </Reveal>
 
         {/* ══════════════ SET 1 — JSON & STDIO ══════════════ */}
@@ -71,7 +71,7 @@ export default function Lesson07() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}296290_000035s.jpg`} alt="JSON message types in MCP communication" style={styles.img} />
+          <img src={`${base}296290_000035s.jpg`} alt="Course plan — Messages Format, STDIO Transport, and StreamableHTTP Transport topics" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -97,7 +97,7 @@ export default function Lesson07() {
         </p></Reveal>
 
         <Reveal>
-          <img src={`${base}296290_000140s.jpg`} alt="Bidirectional communication — both client and server can initiate messages" style={styles.img} />
+          <img src={`${base}296290_000140s.jpg`} alt="Course plan — Messages Format, STDIO Transport, and StreamableHTTP Transport topics" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -113,15 +113,15 @@ export default function Lesson07() {
         </p></Reveal>
 
         <Reveal>
-          <img src={`${base}296291_000090s.jpg`} alt="STDIO transport — subprocess communication via stdin/stdout" style={styles.img} />
+          <img src={`${base}296291_000090s.jpg`} alt="MCP Transports — client-server communication with JSON messages" style={styles.img} />
         </Reveal>
 
         <Reveal>
-          <img src={`${base}296290_000210s.jpg`} alt="Three-message initialization handshake sequence" style={styles.img} />
+          <img src={`${base}296290_000210s.jpg`} alt="Course plan — Messages Format, STDIO Transport, and StreamableHTTP Transport topics" style={styles.img} />
         </Reveal>
 
         <Reveal>
-          <img src={`${base}296291_000180s.jpg`} alt="STDIO transport implementation details" style={styles.img} />
+          <img src={`${base}296291_000180s.jpg`} alt="MCP Transports — client-server communication with JSON messages" style={styles.img} />
         </Reveal>
 
         {s1.map((card, i) => (
@@ -129,7 +129,7 @@ export default function Lesson07() {
         ))}
 
         <Reveal>
-          <img src={`${base}296290_000315s.jpg`} alt="JSON message format summary — requests, results, and notifications" style={styles.img} />
+          <img src={`${base}296290_000315s.jpg`} alt="Course plan — Messages Format, STDIO Transport, and StreamableHTTP Transport topics" style={styles.img} />
         </Reveal>
 
         <div style={styles.divider}>· · ·</div>
@@ -141,7 +141,7 @@ export default function Lesson07() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}296291_000045s.jpg`} alt="StreamableHTTP transport for remote MCP servers" style={styles.img} />
+          <img src={`${base}296291_000045s.jpg`} alt="MCP Transports — client-server communication with JSON messages" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -157,7 +157,7 @@ export default function Lesson07() {
         </p></Reveal>
 
         <Reveal>
-          <img src={`${base}296287_000105s.jpg`} alt="SSE connection — long-lived GET for server-to-client streaming" style={styles.img} />
+          <img src={`${base}296287_000105s.jpg`} alt="StreamableHTTP Issues — challenges with stateful HTTP transport" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -178,15 +178,15 @@ export default function Lesson07() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}296287_000035s.jpg`} alt="SSE and session management for production MCP" style={styles.img} />
+          <img src={`${base}296287_000035s.jpg`} alt="StreamableHTTP Issues — challenges with stateful HTTP transport" style={styles.img} />
         </Reveal>
 
         <Reveal>
-          <img src={`${base}296286_000150s.jpg`} alt="StreamableHTTP deep dive — stateless vs stateful configuration" style={styles.img} />
+          <img src={`${base}296286_000150s.jpg`} alt="StreamableHTTP configuration — stateless vs stateful transport modes" style={styles.img} />
         </Reveal>
 
         <Reveal>
-          <img src={`${base}296285_000105s.jpg`} alt="Session state management with mcp-session-id header" style={styles.img} />
+          <img src={`${base}296285_000105s.jpg`} alt="Python code — FastMCP server configuration with stateless_http and json_response flags" style={styles.img} />
         </Reveal>
 
         <Reveal>
@@ -202,11 +202,11 @@ export default function Lesson07() {
         ))}
 
         <Reveal>
-          <img src={`${base}296286_000350s.jpg`} alt="StreamableHTTP production deployment patterns" style={styles.img} />
+          <img src={`${base}296286_000350s.jpg`} alt="StreamableHTTP configuration — stateless vs stateful transport modes" style={styles.img} />
         </Reveal>
 
         <Reveal>
-          <img src={`${base}296285_000280s.jpg`} alt="Scaling considerations — sticky sessions vs stateless mode" style={styles.img} />
+          <img src={`${base}296285_000280s.jpg`} alt="Python code — FastMCP server configuration with stateless_http and json_response flags" style={styles.img} />
         </Reveal>
 
         {/* ── END ── */}

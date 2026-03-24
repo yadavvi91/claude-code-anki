@@ -73,7 +73,7 @@ export default function Lesson06() {
         </Reveal>
 
         <Reveal>
-          <img src={`${base}296288_000030s.jpg`} alt="Sampling flow between MCP server and client" style={styles.img} />
+          <img src={`${base}296288_000030s.jpg`} alt="Course slide — Sampling section title" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -90,7 +90,7 @@ export default function Lesson06() {
         </p></Reveal>
 
         <Reveal>
-          <img src={`${base}296288_000090s.jpg`} alt="Sampling shifts token costs from server to client" style={styles.img} />
+          <img src={`${base}296288_000090s.jpg`} alt="Course slide — Sampling section title" style={styles.img} />
         </Reveal>
 
         <Reveal>
@@ -109,7 +109,7 @@ result = await ctx.session.create_message(
         </Reveal>
 
         <Reveal>
-          <img src={`${base}296288_000150s.jpg`} alt="Server-side create_message call for sampling" style={styles.img} />
+          <img src={`${base}296288_000150s.jpg`} alt="Course slide — Sampling section title" style={styles.img} />
         </Reveal>
 
         {s1.map((card, i) => (
@@ -117,7 +117,7 @@ result = await ctx.session.create_message(
         ))}
 
         <Reveal>
-          <img src={`${base}296288_000210s.jpg`} alt="Client-side sampling handler implementation" style={styles.img} />
+          <img src={`${base}296288_000210s.jpg`} alt="Course slide — Sampling section title" style={styles.img} />
         </Reveal>
 
         <div style={styles.divider}>· · ·</div>
@@ -129,7 +129,7 @@ result = await ctx.session.create_message(
         </Reveal>
 
         <Reveal>
-          <img src={`${base}296284_000025s.jpg`} alt="Progress notifications and logging in MCP" style={styles.img} />
+          <img src={`${base}296284_000025s.jpg`} alt="Course slide — Logging and progress notifications section title" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -139,7 +139,7 @@ result = await ctx.session.create_message(
         </p></Reveal>
 
         <Reveal>
-          <img src={`${base}296284_000050s.jpg`} alt="Logging levels and progress reporting in MCP tools" style={styles.img} />
+          <img src={`${base}296284_000050s.jpg`} alt="Course slide — Logging and progress notifications section title" style={styles.img} />
         </Reveal>
 
         <Reveal>
@@ -167,7 +167,7 @@ result = await ctx.session.create_message(
         ))}
 
         <Reveal>
-          <img src={`${base}296284_000125s.jpg`} alt="Client-side handling of notifications and progress updates" style={styles.img} />
+          <img src={`${base}296284_000125s.jpg`} alt="Course slide — Logging and progress notifications section title" style={styles.img} />
         </Reveal>
 
         <div style={styles.divider}>· · ·</div>
@@ -179,7 +179,7 @@ result = await ctx.session.create_message(
         </Reveal>
 
         <Reveal>
-          <img src={`${base}296289_000040s.jpg`} alt="Roots filesystem access control for MCP servers" style={styles.img} />
+          <img src={`${base}296289_000040s.jpg`} alt="Course slide — Roots section title" style={styles.img} />
         </Reveal>
 
         <Reveal><p style={styles.prose}>
@@ -195,11 +195,11 @@ result = await ctx.session.create_message(
         </p></Reveal>
 
         <Reveal>
-          <img src={`${base}296289_000120s.jpg`} alt="Roots workflow — list_roots, read_dir, and file access" style={styles.img} />
+          <img src={`${base}296289_000120s.jpg`} alt="Course slide — Roots section title" style={styles.img} />
         </Reveal>
 
         <Reveal>
-          <img src={`${base}296289_000200s.jpg`} alt="Implementing is_path_allowed for root security enforcement" style={styles.img} />
+          <img src={`${base}296289_000200s.jpg`} alt="Course slide — Roots section title" style={styles.img} />
         </Reveal>
 
         <Reveal>
@@ -215,7 +215,7 @@ result = await ctx.session.create_message(
         ))}
 
         <Reveal>
-          <img src={`${base}296289_000320s.jpg`} alt="Root restrictions in practice — securing filesystem access" style={styles.img} />
+          <img src={`${base}296289_000320s.jpg`} alt="Course slide — Roots section title" style={styles.img} />
         </Reveal>
 
         {/* ── END ── */}
