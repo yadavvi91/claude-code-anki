@@ -1780,57 +1780,57 @@ export const modules = [
             cards: [
               {
                 id: 'cop-l12-s1-q1',
-                question: 'What is Agent Mode in GitHub Copilot?',
+                question: 'You need to scaffold a new Express app, install dependencies, create routes, write tests, and make sure they pass. Which Copilot mode?',
                 codeBlock: null,
                 options: [
-                  { label: 'An autonomous mode where Copilot plans, edits files, runs terminal commands, and iterates on errors', correct: true, feedback: 'Correct. Agent mode operates in an agentic loop — it plans a solution, makes edits, runs commands, observes results, and self-corrects until the task is complete.' },
-                  { label: 'A mode that only suggests single-line completions', correct: false, feedback: 'Single-line completions are the inline suggestion feature, not agent mode. Agent mode handles complex multi-step tasks autonomously.' },
-                  { label: 'A read-only mode for asking questions about code', correct: false, feedback: 'That describes Ask mode, which is read-only. Agent mode actively modifies files and runs commands.' },
-                  { label: 'A mode that only works with GitHub Issues', correct: false, feedback: 'Agent mode works from natural language prompts in the editor, not just GitHub Issues.' },
+                  { label: 'Agent mode — it can create files, run npm install, execute tests, and fix failures autonomously', correct: true, feedback: 'Correct. This is a multi-step task requiring file creation, terminal commands (npm install, npm test), and iteration on failures. Agent mode handles the full loop: plan, edit, run, observe, repeat.' },
+                  { label: 'Edit mode — it can generate all the code you need', correct: false, feedback: 'Edit mode can write code but cannot run npm install or execute tests. You need Agent mode for the full workflow including terminal commands.' },
+                  { label: 'Ask mode — have it plan everything first, then you execute manually', correct: false, feedback: 'Ask mode is read-only and cannot create files. Agent mode can both plan and execute the entire workflow.' },
+                  { label: 'Use all three modes in sequence for maximum control', correct: false, feedback: 'Agent mode alone handles this entire workflow — it plans, writes, runs, and iterates. No mode switching needed.' },
                 ]
               },
               {
                 id: 'cop-l12-s1-q2',
-                question: 'How does the agentic loop in Copilot Agent Mode work?',
+                question: 'Your Copilot agent just ran a test suite that failed with 3 errors. What happens next in Agent mode?',
                 codeBlock: null,
                 options: [
-                  { label: 'Plan → Edit files → Run terminal commands → Observe output → Iterate until done', correct: true, feedback: 'Correct. The agent plans its approach, makes code changes, runs commands to verify, reads the output, and loops back to fix any issues — continuing until the task succeeds.' },
-                  { label: 'Read file → Suggest completion → Wait for user approval', correct: false, feedback: 'That describes inline completions, not the agentic loop. Agent mode autonomously iterates without waiting for approval at each step.' },
-                  { label: 'Open PR → Run CI → Merge automatically', correct: false, feedback: 'That describes cloud/background agents. The local agentic loop edits and runs commands in your workspace.' },
-                  { label: 'Parse AST → Transform code → Write output', correct: false, feedback: 'Agent mode uses an LLM-driven loop, not AST manipulation. It reasons about tasks in natural language.' },
+                  { label: 'The agent reads the error output, edits the code to fix the issues, and re-runs the tests — repeating until they pass', correct: true, feedback: 'Correct. The agentic loop is: plan, edit, run commands, observe output, iterate. When tests fail, the agent reads the errors, makes corrections, and re-runs — continuing until the task succeeds.' },
+                  { label: 'The agent stops and asks you to fix the errors manually', correct: false, feedback: 'Agent mode does not stop at failures — it self-corrects. It reads the error output and iterates autonomously.' },
+                  { label: 'The agent opens a GitHub Issue with the error details', correct: false, feedback: 'The local agent iterates on errors in your workspace. Opening Issues is a cloud agent behavior.' },
+                  { label: 'The agent reverts all changes and starts over from scratch', correct: false, feedback: 'The agent makes targeted fixes based on error output, not full reverts. It iterates incrementally.' },
                 ]
               },
               {
                 id: 'cop-l12-s1-q3',
-                question: 'What are the three permission levels for Agent Mode tool execution?',
+                question: 'You want Agent mode to automatically run file edits and linting without asking, but still prompt before executing shell commands. Which permission setup?',
                 codeBlock: null,
                 options: [
-                  { label: 'Default (ask every time), Bypass (allow specific tools), and Autopilot (allow all without asking)', correct: true, feedback: 'Correct. Default prompts for every tool use. Bypass lets you pre-approve specific tools like file edits. Autopilot grants blanket approval for all tool calls.' },
-                  { label: 'Read, Write, and Execute', correct: false, feedback: 'Those are Unix file permissions, not Copilot permission levels. The three levels are Default, Bypass, and Autopilot.' },
-                  { label: 'User, Admin, and Root', correct: false, feedback: 'Those are OS user roles. Copilot uses Default, Bypass, and Autopilot permission levels.' },
-                  { label: 'Safe, Standard, and Unrestricted', correct: false, feedback: 'Those are not the actual names. The three levels are Default, Bypass, and Autopilot.' },
+                  { label: 'Bypass for file edits and lint tools, keep Default for terminal execution', correct: true, feedback: 'Correct. Bypass lets you pre-approve specific safe tools (like file edits and linting) while Default continues to prompt for riskier operations like running arbitrary shell commands.' },
+                  { label: 'Autopilot mode for everything — it is the most efficient', correct: false, feedback: 'Autopilot grants blanket approval for all tools including shell commands. You want selective control, which is what Bypass provides for specific tools.' },
+                  { label: 'Default for everything — approve each action individually', correct: false, feedback: 'Default works but defeats the purpose. Bypass lets you pre-approve safe tools while keeping prompts for risky ones.' },
+                  { label: 'This is not possible — permission levels are all-or-nothing', correct: false, feedback: 'Bypass is specifically designed for granular control. You can pre-approve specific tools while requiring confirmation for others.' },
                 ]
               },
               {
                 id: 'cop-l12-s1-q4',
-                question: 'What keyboard shortcut opens Agent Mode in VS Code?',
+                question: 'A junior developer is nervous about Agent mode "doing too much." How should they start using it safely?',
                 codeBlock: null,
                 options: [
-                  { label: 'Ctrl+Alt+I (Cmd+Alt+I on Mac)', correct: true, feedback: 'Correct. Ctrl+Alt+I (or Cmd+Alt+I on Mac) opens the Copilot chat panel in Agent Mode, ready for multi-step tasks.' },
-                  { label: 'Ctrl+Shift+P', correct: false, feedback: 'Ctrl+Shift+P opens the VS Code Command Palette, not Agent Mode directly.' },
-                  { label: 'Ctrl+K', correct: false, feedback: 'Ctrl+K is a VS Code chord prefix for various commands, not the Agent Mode shortcut.' },
-                  { label: 'Ctrl+Space', correct: false, feedback: 'Ctrl+Space triggers inline completions/suggestions, not Agent Mode.' },
+                  { label: 'Use Default permissions so every tool action requires explicit approval, then gradually Bypass safe tools as confidence grows', correct: true, feedback: 'Correct. Default permissions create a "human-in-the-loop" experience — the agent proposes each action but waits for approval. This lets beginners learn what the agent does while maintaining full control.' },
+                  { label: 'Avoid Agent mode entirely and only use Ask mode', correct: false, feedback: 'Agent mode with Default permissions is already safe — every action requires approval. Avoiding it entirely means missing its most powerful capabilities.' },
+                  { label: 'Start with Autopilot to see everything it can do, then restrict later', correct: false, feedback: 'Starting with maximum autonomy is the opposite of a safe ramp-up. Default permissions give you a safe learning experience.' },
+                  { label: 'Only use Agent mode on throwaway branches', correct: false, feedback: 'While branches help, Default permissions already make Agent mode safe by requiring approval for every action.' },
                 ]
               },
               {
                 id: 'cop-l12-s1-q5',
-                question: 'Which of the following can Agent Mode do that other modes cannot?',
+                question: 'You are debugging a test failure that involves reading error logs, tweaking config files, and re-running the test suite. Why is Agent mode better than Edit mode here?',
                 codeBlock: null,
                 options: [
-                  { label: 'Run terminal commands and iterate on their output', correct: true, feedback: 'Correct. Agent mode is the only mode that can execute terminal commands, observe results, and self-correct. Edit mode can modify files but cannot run commands; Ask mode is read-only.' },
-                  { label: 'Read the contents of files in the workspace', correct: false, feedback: 'All three modes (Agent, Edit, Ask) can read files. Terminal command execution is unique to Agent mode.' },
-                  { label: 'Answer questions about code', correct: false, feedback: 'Ask mode and Agent mode can both answer questions. The unique capability of Agent mode is running terminal commands and iterating.' },
-                  { label: 'Suggest inline code completions', correct: false, feedback: 'Inline completions are a separate feature (Tab completions), not specific to Agent mode.' },
+                  { label: 'Agent mode can run the tests, read the output, and iterate — Edit mode can only change files but cannot execute commands', correct: true, feedback: 'Correct. The debug loop requires running terminal commands (test suite) and observing output. Only Agent mode can execute commands, read results, and self-correct. Edit mode is limited to file modifications.' },
+                  { label: 'Agent mode uses a better AI model than Edit mode', correct: false, feedback: 'Both modes can use the same models. The difference is capability: Agent mode can run terminal commands, Edit mode cannot.' },
+                  { label: 'Agent mode can read more files at once', correct: false, feedback: 'Both modes can read files. The key difference is that Agent mode can execute terminal commands and iterate on their output.' },
+                  { label: 'Edit mode cannot modify config files, only source code', correct: false, feedback: 'Edit mode can modify any file type. The issue is that it cannot run the test suite to verify if the fix worked.' },
                 ]
               },
             ]
@@ -1841,57 +1841,57 @@ export const modules = [
             cards: [
               {
                 id: 'cop-l12-s2-q1',
-                question: 'What is Edit Mode in GitHub Copilot?',
+                question: 'You need to rename an interface and update its usage across 5 files. You already know every location. Which mode and why?',
                 codeBlock: null,
                 options: [
-                  { label: 'A mode that makes targeted code edits across files without running terminal commands', correct: true, feedback: 'Correct. Edit mode focuses on code changes — it can modify multiple files simultaneously but does not execute terminal commands or iterate on output like Agent mode.' },
-                  { label: 'A mode that only edits a single line at a time', correct: false, feedback: 'Edit mode can make changes across multiple files and multiple locations, not just single lines.' },
-                  { label: 'A mode identical to Agent mode', correct: false, feedback: 'Edit mode differs from Agent mode — it cannot run terminal commands or iterate on errors.' },
-                  { label: 'A mode for editing VS Code settings', correct: false, feedback: 'Edit mode edits source code files, not VS Code settings.' },
+                  { label: 'Edit mode — it is a targeted, well-defined change with no need for terminal commands or iteration', correct: true, feedback: 'Correct. You know exactly what needs to change. Edit mode makes the multi-file edits and shows diffs for review. No need for Agent mode\'s command execution or autonomous iteration.' },
+                  { label: 'Agent mode — it can find and replace everything automatically', correct: false, feedback: 'Agent mode works but is overkill here. You already know the locations, so Edit mode\'s targeted approach gives you more control and is faster.' },
+                  { label: 'Ask mode — have it locate all usages first', correct: false, feedback: 'You already know the locations. Ask mode is read-only anyway — it cannot make the changes.' },
+                  { label: 'Use VS Code Find & Replace instead — Copilot is unnecessary', correct: false, feedback: 'Copilot Edit mode understands context. A rename may need different changes at each site (e.g., updating type assertions, generics), not just string replacement.' },
                 ]
               },
               {
                 id: 'cop-l12-s2-q2',
-                question: 'How does Edit Mode differ from Agent Mode?',
+                question: 'You asked Edit mode to refactor a function, but you are not sure the changes are correct. What is your safety net?',
                 codeBlock: null,
                 options: [
-                  { label: 'Edit mode cannot run terminal commands and is user-directed rather than autonomous', correct: true, feedback: 'Correct. Edit mode makes the code changes you request but does not run commands, observe output, or self-correct. You direct each edit; the agent does not iterate on its own.' },
-                  { label: 'Edit mode can only modify one file at a time', correct: false, feedback: 'Edit mode can modify multiple files. The key difference is no terminal access and user-directed workflow.' },
-                  { label: 'Edit mode uses a different AI model', correct: false, feedback: 'Both modes can use the same models. The difference is in capabilities (terminal access) and autonomy level.' },
-                  { label: 'Edit mode is slower than Agent mode', correct: false, feedback: 'Edit mode is often faster for targeted edits because it skips the command execution loop.' },
+                  { label: 'Edit mode shows inline diffs — you review each change and accept or reject it before anything is applied', correct: true, feedback: 'Correct. Edit mode presents every change as an inline diff in the editor. You can accept or reject each one individually, giving you full control before any code is modified.' },
+                  { label: 'Edit mode automatically runs the test suite to verify changes', correct: false, feedback: 'Edit mode cannot run terminal commands. The safety net is the diff review — you inspect each change before accepting it.' },
+                  { label: 'Edit mode creates a git branch backup automatically', correct: false, feedback: 'Edit mode does not interact with git. Its safety net is the inline diff review where you accept or reject changes.' },
+                  { label: 'There is no safety net — changes are applied immediately', correct: false, feedback: 'Edit mode always shows diffs for review first. Nothing is applied until you explicitly accept the changes.' },
                 ]
               },
               {
                 id: 'cop-l12-s2-q3',
-                question: 'When is Edit Mode most appropriate?',
+                question: 'You are working on a large legacy codebase and need to convert a class component to a functional component with hooks. Why choose Edit mode over Agent mode?',
                 codeBlock: null,
                 options: [
-                  { label: 'For surgical, targeted edits where you know exactly what needs to change', correct: true, feedback: 'Correct. Edit mode excels at precise modifications — refactoring a function, updating an interface, or applying a specific pattern across files — especially in brownfield codebases where you want control.' },
-                  { label: 'When you need to scaffold an entire new project', correct: false, feedback: 'Project scaffolding involves creating files, installing dependencies, and running commands — that is Agent mode territory.' },
-                  { label: 'When you only want to ask questions without changing code', correct: false, feedback: 'That is Ask mode. Edit mode is specifically for making code changes.' },
-                  { label: 'When you need to run tests after making changes', correct: false, feedback: 'If you need to run tests, use Agent mode — Edit mode cannot execute terminal commands.' },
+                  { label: 'Edit mode lets you review every diff before it is applied, reducing the risk of unintended changes in unfamiliar legacy code', correct: true, feedback: 'Correct. In a legacy codebase, you want maximum control. Edit mode lets you direct the specific refactoring and inspect each diff, avoiding the risk of an autonomous agent making cascading changes you did not anticipate.' },
+                  { label: 'Agent mode cannot handle React code', correct: false, feedback: 'Agent mode handles React fine. The reason to prefer Edit mode here is control over changes in risky legacy code, not technical limitations.' },
+                  { label: 'Edit mode is the only mode that can modify JSX files', correct: false, feedback: 'Both Agent and Edit modes can modify any file type. Edit mode is preferred here for its controlled diff-review workflow.' },
+                  { label: 'Edit mode automatically preserves backward compatibility', correct: false, feedback: 'Edit mode does not automatically ensure compatibility. Its advantage is giving you fine-grained diff review so you can verify each change.' },
                 ]
               },
               {
                 id: 'cop-l12-s2-q4',
-                question: 'How does Edit Mode present its proposed changes?',
+                question: 'You want to add error handling to 4 API route handlers following the same pattern. Which mode is the best fit?',
                 codeBlock: null,
                 options: [
-                  { label: 'As inline diffs in the editor that you can accept or reject', correct: true, feedback: 'Correct. Edit mode shows changes as diffs directly in your editor, letting you review each change and accept or reject it before it is applied.' },
-                  { label: 'By automatically committing changes to git', correct: false, feedback: 'Edit mode does not touch git. It presents diffs for your review in the editor.' },
-                  { label: 'By opening a new file with the modified code', correct: false, feedback: 'Changes appear as inline diffs in the existing file, not in a separate new file.' },
-                  { label: 'By printing the changes to the terminal', correct: false, feedback: 'Edit mode shows diffs in the editor UI, not in the terminal.' },
+                  { label: 'Edit mode — it is a pattern-based change across known files with no need to run anything', correct: true, feedback: 'Correct. Applying a consistent pattern across multiple known files is Edit mode\'s sweet spot. You describe the pattern once, it applies it across all files, and you review the diffs.' },
+                  { label: 'Agent mode — you need it to run the server and test each endpoint', correct: false, feedback: 'If you just want the code changes applied, Edit mode is sufficient. Only reach for Agent mode if you also need to run and verify the endpoints.' },
+                  { label: 'Ask mode — have it generate the error handling code for you to copy', correct: false, feedback: 'Ask mode is read-only and would require manual copy-paste. Edit mode directly applies the changes to the actual files.' },
+                  { label: 'Create a VS Code snippet and apply it manually', correct: false, feedback: 'A snippet is static text expansion. Copilot Edit mode understands each handler\'s context and adapts the error handling pattern accordingly.' },
                 ]
               },
               {
                 id: 'cop-l12-s2-q5',
-                question: 'Why might you prefer Edit Mode for working in a brownfield (existing) codebase?',
+                question: 'A developer used Agent mode to add a feature but it also reformatted unrelated files. How could they have avoided this?',
                 codeBlock: null,
                 options: [
-                  { label: 'It gives you fine-grained control over exactly which changes are applied, reducing risk of unintended modifications', correct: true, feedback: 'Correct. In a mature codebase, you want to control each change carefully. Edit mode lets you direct specific edits and review diffs, avoiding the risk of an autonomous agent making unwanted changes.' },
-                  { label: 'It automatically understands the entire codebase architecture', correct: false, feedback: 'No mode automatically understands the entire codebase. Edit mode is preferred for control, not comprehension.' },
-                  { label: 'It runs all existing tests before applying changes', correct: false, feedback: 'Edit mode cannot run terminal commands, including tests. You choose it for control over individual edits.' },
-                  { label: 'It only modifies files that have been recently changed', correct: false, feedback: 'Edit mode modifies whatever files you direct it to, regardless of recency.' },
+                  { label: 'Use Edit mode for targeted changes — it only modifies what you direct it to, giving you diff review over every change', correct: true, feedback: 'Correct. Agent mode\'s autonomy can lead to side effects like reformatting. Edit mode is user-directed: you specify exactly what to change, and its diff review lets you catch any unintended modifications before they are applied.' },
+                  { label: 'Use Ask mode to plan the changes first', correct: false, feedback: 'Planning helps but does not prevent Agent mode from making unintended changes. Edit mode\'s controlled workflow is the real solution.' },
+                  { label: 'Always run Agent mode with Autopilot turned off', correct: false, feedback: 'Permission levels control tool approval, not what the agent decides to change. Edit mode is the better tool for controlled, targeted edits.' },
+                  { label: 'There is no way to prevent this — Agent mode always reformats', correct: false, feedback: 'Agent mode does not always reformat. But Edit mode avoids the issue entirely by giving you control over exactly which changes are applied.' },
                 ]
               },
             ]
@@ -1902,57 +1902,57 @@ export const modules = [
             cards: [
               {
                 id: 'cop-l12-s3-q1',
-                question: 'What is Ask Mode in GitHub Copilot?',
+                question: 'You just joined a new team and want to understand how their payment processing module works. You do not want to accidentally change anything. Which mode?',
                 codeBlock: null,
                 options: [
-                  { label: 'A read-only Q&A mode that answers questions about your code without making any changes', correct: true, feedback: 'Correct. Ask mode is strictly read-only — it can explore your codebase, explain code, and answer questions, but it never modifies files or runs commands.' },
-                  { label: 'A mode that asks the user questions before making edits', correct: false, feedback: 'Ask mode does not make edits at all. It is a read-only mode for getting answers about your code.' },
-                  { label: 'A mode that searches Stack Overflow for answers', correct: false, feedback: 'Ask mode uses the AI model to reason about your local codebase, not external Q&A sites.' },
-                  { label: 'A mode only available in GitHub.com, not VS Code', correct: false, feedback: 'Ask mode is available directly in VS Code as one of the three chat modes.' },
+                  { label: 'Ask mode — it is read-only, so it can explore and explain the codebase without any risk of accidental modifications', correct: true, feedback: 'Correct. Ask mode is strictly read-only. It can trace through files, explain architecture, and answer questions — but it will never modify files or run commands. Perfect for safely learning an unfamiliar codebase.' },
+                  { label: 'Agent mode — it can run the app so you can see the payment flow in action', correct: false, feedback: 'Running an unfamiliar payment system is risky. Ask mode can explain the flow by reading the code, with zero risk of side effects.' },
+                  { label: 'Edit mode — open each file and read through it', correct: false, feedback: 'Edit mode is for making changes, not just reading. Ask mode is purpose-built for comprehension without any modification risk.' },
+                  { label: 'None of these — just read the documentation', correct: false, feedback: 'Documentation may be outdated. Ask mode reads the actual current code and synthesizes information across many files faster than manual reading.' },
                 ]
               },
               {
                 id: 'cop-l12-s3-q2',
-                question: 'When is Ask Mode the best choice?',
+                question: 'You are reviewing a pull request and want to understand what a complex regex does before approving. Which mode?',
                 codeBlock: null,
                 options: [
-                  { label: 'When you need to understand code, explore architecture, or learn how something works without making changes', correct: true, feedback: 'Correct. Ask mode is ideal for comprehension tasks — understanding unfamiliar code, exploring call chains, learning project conventions — where you want information without any side effects.' },
-                  { label: 'When you want to refactor a function', correct: false, feedback: 'Refactoring requires code changes. Use Edit mode for targeted refactors or Agent mode for larger ones.' },
-                  { label: 'When you need to fix a failing test', correct: false, feedback: 'Fixing tests requires editing code and running the test suite. Use Agent mode for that workflow.' },
-                  { label: 'When you want to create a new file', correct: false, feedback: 'Creating files requires write access. Ask mode is read-only — use Agent or Edit mode instead.' },
+                  { label: 'Ask mode — you need an explanation, not code changes', correct: true, feedback: 'Correct. During code review, you want to understand code, not modify it. Ask mode can explain the regex pattern, describe what it matches, and flag edge cases — all without touching the codebase.' },
+                  { label: 'Agent mode — have it write test cases for the regex', correct: false, feedback: 'Writing tests changes the codebase. For pure understanding during review, Ask mode is the right choice.' },
+                  { label: 'Edit mode — have it add comments explaining the regex', correct: false, feedback: 'Adding comments modifies the file. You just want to understand the regex for review purposes — Ask mode provides the explanation in chat.' },
+                  { label: 'Use an online regex tool instead', correct: false, feedback: 'Ask mode can explain the regex in context of the surrounding code, which an isolated regex tool cannot do.' },
                 ]
               },
               {
                 id: 'cop-l12-s3-q3',
-                question: 'What can Ask Mode NOT do?',
+                question: 'You asked Ask mode to refactor a function for you, but nothing happened. Why?',
                 codeBlock: null,
                 options: [
-                  { label: 'Modify files, run terminal commands, or make any changes to the workspace', correct: true, feedback: 'Correct. Ask mode is completely read-only. It cannot edit files, execute commands, or alter your workspace in any way.' },
-                  { label: 'Read files in your workspace', correct: false, feedback: 'Ask mode can read files — that is how it answers questions about your code.' },
-                  { label: 'Explain complex code patterns', correct: false, feedback: 'Explaining code is exactly what Ask mode excels at.' },
-                  { label: 'Reference multiple files in a single answer', correct: false, feedback: 'Ask mode can reference and reason across multiple files in your workspace.' },
+                  { label: 'Ask mode is read-only — it cannot modify files, run commands, or make any changes to your workspace', correct: true, feedback: 'Correct. Ask mode can only read and explain. For refactoring, you need Edit mode (targeted changes) or Agent mode (if you also want to run tests afterward).' },
+                  { label: 'There was a bug in Copilot — Ask mode should be able to refactor', correct: false, feedback: 'This is by design, not a bug. Ask mode is intentionally read-only for safe exploration and comprehension.' },
+                  { label: 'You need to select the code first before Ask mode can modify it', correct: false, feedback: 'Selecting code does not change Ask mode\'s capabilities. It is fundamentally read-only regardless of selection.' },
+                  { label: 'Ask mode only refactors if you use a slash command like /refactor', correct: false, feedback: 'No slash command gives Ask mode write capabilities. It is always read-only. Switch to Edit mode for refactoring.' },
                 ]
               },
               {
                 id: 'cop-l12-s3-q4',
-                question: 'A teammate asks "How does the authentication flow work in our app?" Which mode should they use?',
+                question: 'A developer needs to trace how an API request flows from the controller through 6 middleware functions to the database. What advantage does Ask mode have over manually reading each file?',
                 codeBlock: null,
                 options: [
-                  { label: 'Ask mode — it is a comprehension question that does not require any code changes', correct: true, feedback: 'Correct. Understanding an existing flow is a pure reading/reasoning task. Ask mode will trace through the relevant files and explain the auth flow without touching anything.' },
-                  { label: 'Agent mode — it needs to run the app to trace the flow', correct: false, feedback: 'Understanding a flow does not require running the app. Ask mode can trace code statically by reading files.' },
-                  { label: 'Edit mode — it needs to annotate the code with comments', correct: false, feedback: 'The question is about understanding, not modifying code. Ask mode provides the explanation directly in chat.' },
-                  { label: 'None — Copilot cannot explain code flows', correct: false, feedback: 'Explaining code flows is one of the core strengths of Ask mode.' },
+                  { label: 'It synthesizes information across all files at once — tracing imports, following call chains, and explaining the end-to-end flow faster than reading linearly', correct: true, feedback: 'Correct. Ask mode can pull context from many files simultaneously, follow the chain of calls, and present a coherent explanation of the full request flow — a task that would take much longer by manual file-by-file reading.' },
+                  { label: 'It runs the API request and shows the actual execution trace', correct: false, feedback: 'Ask mode is read-only and cannot run code. Its advantage is static analysis across many files, not runtime tracing.' },
+                  { label: 'It generates a UML diagram of the flow', correct: false, feedback: 'Ask mode provides text explanations in chat, not diagrams. Its strength is synthesizing information across files quickly.' },
+                  { label: 'It only reads the files that matter and skips irrelevant ones', correct: false, feedback: 'While it focuses on relevant files, the key advantage is synthesizing cross-file information into a coherent explanation — something manual reading cannot easily do.' },
                 ]
               },
               {
                 id: 'cop-l12-s3-q5',
-                question: 'What is the key advantage of using Ask Mode over just reading code yourself?',
+                question: 'Your team lead wants Copilot to explain the codebase to new hires but is worried about AI accidentally modifying production code. What is the safest setup?',
                 codeBlock: null,
                 options: [
-                  { label: 'It can synthesize information across many files and explain relationships you might miss by reading linearly', correct: true, feedback: 'Correct. Ask mode can quickly pull together context from across the codebase — tracing imports, following call chains, connecting configuration to behavior — much faster than manual exploration.' },
-                  { label: 'It automatically generates documentation for the code', correct: false, feedback: 'Ask mode does not generate documentation files. It answers questions in the chat panel.' },
-                  { label: 'It runs the code to verify its explanations', correct: false, feedback: 'Ask mode is read-only and cannot execute any code.' },
-                  { label: 'It always provides more accurate answers than Agent mode', correct: false, feedback: 'Accuracy depends on the model and context, not the mode. Ask mode\'s advantage is being safe (read-only) and focused on comprehension.' },
+                  { label: 'Have new hires use Ask mode exclusively — it is physically incapable of modifying files or running commands', correct: true, feedback: 'Correct. Ask mode is the zero-risk option. It can explain architecture, trace data flows, and answer questions, but it literally cannot write to files or execute terminal commands. Perfect for safe onboarding.' },
+                  { label: 'Use Agent mode but set permissions to Default so nothing runs without approval', correct: false, feedback: 'Default permissions still allow modifications after approval. Ask mode eliminates the risk entirely — there is nothing to accidentally approve.' },
+                  { label: 'Use Edit mode but tell them to reject all diffs', correct: false, feedback: 'Relying on humans to always reject is error-prone. Ask mode removes the possibility of modifications entirely.' },
+                  { label: 'Disable Copilot and just use documentation', correct: false, feedback: 'Ask mode gives new hires an interactive way to explore the codebase safely. Disabling it loses that learning advantage.' },
                 ]
               },
             ]
@@ -1963,57 +1963,57 @@ export const modules = [
             cards: [
               {
                 id: 'cop-l12-s4-q1',
-                question: 'You need to add a new REST endpoint, write tests, and ensure they pass. Which mode?',
+                question: 'You need to migrate a database schema, update the ORM models, and verify the migration runs without errors. Which mode?',
                 codeBlock: null,
                 options: [
-                  { label: 'Agent mode — it can create files, write code, run tests, and iterate on failures', correct: true, feedback: 'Correct. This is a multi-step task requiring file creation, code writing, and command execution. Agent mode handles the full loop autonomously.' },
-                  { label: 'Edit mode — it can make all the code changes needed', correct: false, feedback: 'Edit mode can write the code, but it cannot run the tests or iterate on failures. You need Agent mode for the full workflow.' },
-                  { label: 'Ask mode — start by understanding the existing endpoints first', correct: false, feedback: 'While understanding existing code is useful, the task requires creating and testing code. Agent mode is the right choice.' },
-                  { label: 'Use all three modes in sequence', correct: false, feedback: 'While possible, Agent mode alone can handle this entire workflow — understanding, coding, and testing.' },
+                  { label: 'Agent mode — it can edit models, run the migration command, check for errors, and fix them in a loop', correct: true, feedback: 'Correct. This task requires editing code, running terminal commands (migration scripts), observing output for errors, and iterating. Only Agent mode can execute the full loop.' },
+                  { label: 'Edit mode — it can update all the model files at once', correct: false, feedback: 'Edit mode can update the model files, but it cannot run the migration or verify it succeeds. You need Agent mode for the terminal execution.' },
+                  { label: 'Ask mode first to plan the migration, then Edit mode to apply it', correct: false, feedback: 'This two-step approach skips verification. Agent mode handles the entire workflow including running the migration and fixing any issues.' },
+                  { label: 'Edit mode with manual terminal work between steps', correct: false, feedback: 'While possible, Agent mode handles this entire workflow autonomously — code changes, running migrations, and fixing errors — without manual intervention.' },
                 ]
               },
               {
                 id: 'cop-l12-s4-q2',
-                question: 'You want to rename a variable across 3 files with no side effects. Which mode?',
+                question: 'You are pairing with a colleague and want to show them how a caching layer works by walking through the code together in VS Code. Which mode?',
                 codeBlock: null,
                 options: [
-                  { label: 'Edit mode — it is a targeted, user-directed change with no need for terminal commands', correct: true, feedback: 'Correct. A rename across files is a precise, well-defined edit. Edit mode will show you diffs for each file, letting you verify the changes before applying them.' },
-                  { label: 'Agent mode — let it find and replace everything', correct: false, feedback: 'Agent mode works but is overkill for a simple rename. Edit mode gives you more control and is faster for targeted changes.' },
-                  { label: 'Ask mode — have it locate all usages first', correct: false, feedback: 'Ask mode can find usages but cannot make changes. Edit mode is the right tool for this task.' },
-                  { label: 'Use VS Code\'s built-in rename instead', correct: false, feedback: 'VS Code rename (F2) works for simple renames, but Copilot Edit mode can handle more complex renames that involve pattern changes or context-aware modifications.' },
+                  { label: 'Ask mode — it explains code without modifying anything, perfect for collaborative learning', correct: true, feedback: 'Correct. During a pairing session focused on understanding, Ask mode traces through the caching code and explains it without risk. No accidental edits while you are presenting to your colleague.' },
+                  { label: 'Agent mode — have it instrument the code with logging to show the cache in action', correct: false, feedback: 'Adding instrumentation modifies the code. For a walkthrough focused on understanding, Ask mode is safer and more appropriate.' },
+                  { label: 'Edit mode — add comments explaining each function', correct: false, feedback: 'The goal is a live explanation, not permanent code comments. Ask mode provides interactive explanations in chat.' },
+                  { label: 'No Copilot needed — just read the code together', correct: false, feedback: 'Ask mode can synthesize information across many files and explain relationships that would take much longer to trace manually.' },
                 ]
               },
               {
                 id: 'cop-l12-s4-q3',
-                question: 'You joined a new team and want to understand how their microservices communicate. Which mode?',
+                question: 'You need to convert all callback-based API calls in a module to async/await. The module has 12 files and you want to verify nothing breaks. Which mode?',
                 codeBlock: null,
                 options: [
-                  { label: 'Ask mode — pure comprehension, no changes needed', correct: true, feedback: 'Correct. You want to learn, not change. Ask mode will read the codebase and explain the service communication patterns without any risk of accidental modifications.' },
-                  { label: 'Agent mode — it can run the services and trace requests', correct: false, feedback: 'Running services is complex and risky in an unfamiliar codebase. Ask mode can explain the architecture from the code alone.' },
-                  { label: 'Edit mode — have it add architecture comments', correct: false, feedback: 'Adding comments is a modification. The goal is understanding first — use Ask mode.' },
-                  { label: 'None of these — use the team\'s wiki instead', correct: false, feedback: 'Wikis may be outdated. Ask mode reads the actual current code, providing accurate, up-to-date explanations.' },
+                  { label: 'Agent mode — the scale of changes plus the need to run tests and iterate makes it the right choice', correct: true, feedback: 'Correct. Converting 12 files is a large change that needs verification. Agent mode can systematically convert each file, run the test suite, and fix any issues — handling the full workflow autonomously.' },
+                  { label: 'Edit mode — it can handle multi-file changes', correct: false, feedback: 'Edit mode can make the code changes but cannot run tests to verify nothing broke. At this scale, automated verification is essential.' },
+                  { label: 'Ask mode to plan the conversion, then manual edits', correct: false, feedback: 'Manual conversion of 12 files is tedious and error-prone. Agent mode automates the entire process including verification.' },
+                  { label: 'Edit mode file by file, testing manually after each one', correct: false, feedback: 'This is possible but slow. Agent mode can handle the entire batch conversion and verification loop more efficiently.' },
                 ]
               },
               {
                 id: 'cop-l12-s4-q4',
-                question: 'How does Copilot\'s Agent Mode compare to Claude Code\'s agentic mode?',
+                question: 'You use Claude Code in the terminal and Copilot in VS Code. Both support an agentic loop. When would you pick Copilot\'s Agent mode over Claude Code?',
                 codeBlock: null,
                 options: [
-                  { label: 'Both use an agentic loop with tool calls, but Copilot runs in VS Code while Claude Code runs in the terminal', correct: true, feedback: 'Correct. Both follow the same pattern — plan, act, observe, iterate — but Copilot agent mode is embedded in VS Code with GUI diffs, while Claude Code is a CLI tool that works in any terminal.' },
-                  { label: 'Claude Code does not have an agentic mode', correct: false, feedback: 'Claude Code is inherently agentic — it uses the same plan-act-observe loop with tools like Read, Edit, Bash, and Grep.' },
-                  { label: 'Copilot Agent Mode is more powerful because it has a GUI', correct: false, feedback: 'Both are powerful in different ways. Claude Code\'s terminal-based approach can be faster for certain workflows and works without VS Code.' },
-                  { label: 'They use completely different architectures', correct: false, feedback: 'Both use an LLM-driven agentic loop with tool calls. The architecture is conceptually very similar.' },
+                  { label: 'When you want inline diffs in the VS Code editor and GUI-based review of changes', correct: true, feedback: 'Correct. Both tools use the same plan-act-observe-iterate loop. Copilot\'s advantage is VS Code integration — inline diffs, GUI-based accept/reject, and visual context. Claude Code\'s advantage is terminal-based speed and editor independence.' },
+                  { label: 'When the task is too complex for Claude Code', correct: false, feedback: 'Both tools handle complex tasks. The choice is about workflow preference (GUI vs terminal), not task complexity.' },
+                  { label: 'When you need to run terminal commands — Claude Code cannot do that', correct: false, feedback: 'Claude Code runs terminal commands via its Bash tool. Both tools have comparable agentic capabilities.' },
+                  { label: 'Always — Copilot is strictly better because of its GUI', correct: false, feedback: 'Each has strengths. Claude Code is faster for terminal-centric workflows and works without VS Code. The choice depends on your workflow.' },
                 ]
               },
               {
                 id: 'cop-l12-s4-q5',
-                question: 'What is the general principle for choosing between the three modes?',
+                question: 'A developer always uses Agent mode for everything, even simple one-line changes. What principle are they violating and why does it matter?',
                 codeBlock: null,
                 options: [
-                  { label: 'Use the least powerful mode that can accomplish the task — Ask for learning, Edit for targeted changes, Agent for complex multi-step work', correct: true, feedback: 'Correct. Start with Ask if you just need information, use Edit for precise changes, and reach for Agent mode only when you need autonomous multi-step execution. This minimizes risk and maximizes control.' },
-                  { label: 'Always use Agent mode since it can do everything', correct: false, feedback: 'Agent mode can do everything but offers less control. For targeted edits, Edit mode is safer. For learning, Ask mode avoids accidental changes.' },
-                  { label: 'Use Ask mode first, then Edit, then Agent — always in that order', correct: false, feedback: 'The sequence depends on the task, not a fixed order. A simple rename goes straight to Edit mode; a complex feature goes straight to Agent mode.' },
-                  { label: 'The modes are interchangeable — pick whichever you prefer', correct: false, feedback: 'The modes have fundamentally different capabilities. Ask mode cannot edit; Edit mode cannot run commands. Choosing correctly matters.' },
+                  { label: 'Use the least powerful mode for the task — Agent mode adds unnecessary autonomy risk for simple changes that Edit or Ask mode handle more safely', correct: true, feedback: 'Correct. The principle of least privilege applies: Ask for learning, Edit for targeted changes, Agent for multi-step work. Using Agent mode for a one-line change risks unintended side effects that Edit mode\'s controlled diffs would prevent.' },
+                  { label: 'There is no problem — Agent mode can handle everything efficiently', correct: false, feedback: 'Agent mode works but offers less control. For simple changes, its autonomy is a liability, not an advantage. Edit mode is safer and faster.' },
+                  { label: 'They should always start with Ask mode before any other mode', correct: false, feedback: 'The principle is not about always starting with Ask mode — it is about matching the mode to the task. A simple rename goes straight to Edit mode.' },
+                  { label: 'Agent mode costs more API credits than other modes', correct: false, feedback: 'While Agent mode may use more tokens, the real concern is control and risk. More autonomous means more potential for unintended changes.' },
                 ]
               },
             ]
@@ -2031,57 +2031,57 @@ export const modules = [
             cards: [
               {
                 id: 'cop-l13-s1-q1',
-                question: 'Where do you place repository-wide custom instructions for GitHub Copilot?',
+                question: 'Your team wants every Copilot interaction to follow the project\'s coding standards — consistent naming, error handling patterns, and import ordering. Where do you put these rules?',
                 codeBlock: null,
                 options: [
-                  { label: '`.github/copilot-instructions.md`', correct: true, feedback: 'Correct. The `.github/copilot-instructions.md` file contains instructions that apply to every Copilot interaction in the repository — coding standards, preferred patterns, and project-specific rules.' },
-                  { label: '`.vscode/settings.json`', correct: false, feedback: 'VS Code settings configure the editor, not Copilot\'s custom instructions. Use `.github/copilot-instructions.md` for repo-wide instructions.' },
-                  { label: '`CLAUDE.md` in the repo root', correct: false, feedback: '`CLAUDE.md` is for Claude Code instructions. GitHub Copilot uses `.github/copilot-instructions.md`.' },
-                  { label: '`package.json` under a "copilot" key', correct: false, feedback: 'Copilot instructions live in a dedicated markdown file, not in package.json.' },
+                  { label: '`.github/copilot-instructions.md` — it applies repo-wide to every Copilot interaction', correct: true, feedback: 'Correct. The `.github/copilot-instructions.md` file is the repo-wide instruction source. Every Copilot interaction — Agent, Edit, or Ask mode — will follow these rules automatically.' },
+                  { label: '`.vscode/settings.json` under a Copilot key', correct: false, feedback: 'VS Code settings configure the editor, not Copilot\'s behavior instructions. Use `.github/copilot-instructions.md` for coding standards.' },
+                  { label: 'A comment block at the top of every source file', correct: false, feedback: 'Per-file comments are tedious to maintain. A single `.github/copilot-instructions.md` applies standards across the entire repo.' },
+                  { label: 'The repository README.md', correct: false, feedback: 'README is for humans. Copilot reads its instructions from `.github/copilot-instructions.md`.' },
                 ]
               },
               {
                 id: 'cop-l13-s1-q2',
-                question: 'What are path-specific instruction files and how do they work?',
-                codeBlock: '# .github/instructions/react-components.instructions.md\n---\napplyTo: "src/components/**/*.tsx"\n---\nUse functional components with hooks.\nAlways add PropTypes or TypeScript interfaces.',
+                question: 'Your repo has React components in `src/components/` and Python scripts in `scripts/`. You want Copilot to use hooks and TypeScript interfaces for React files, but follow PEP 8 for Python. How do you configure this?',
+                codeBlock: '# .github/instructions/react-components.instructions.md\n---\napplyTo: "src/components/**/*.tsx"\n---\nUse functional components with hooks.\nAlways add TypeScript interfaces.',
                 options: [
-                  { label: 'Markdown files with `applyTo` globs in YAML frontmatter that provide instructions only when Copilot works on matching file paths', correct: true, feedback: 'Correct. Files named `*.instructions.md` use an `applyTo` glob to scope their instructions. Copilot only includes these instructions when working with files that match the pattern.' },
-                  { label: 'Files that override all other instructions for matching paths', correct: false, feedback: 'Path-specific instructions supplement, not override, the global instructions. Both are included for matching files.' },
-                  { label: 'JSON configuration files that restrict which files Copilot can access', correct: false, feedback: 'They are markdown files with instructions, not JSON access control files.' },
-                  { label: 'Files that only work in Agent mode', correct: false, feedback: 'Path-specific instructions work across all Copilot modes, not just Agent mode.' },
+                  { label: 'Create path-specific instruction files with `applyTo` globs — one for `src/components/**/*.tsx` and one for `scripts/**/*.py`', correct: true, feedback: 'Correct. Path-specific files use `applyTo` globs in YAML frontmatter. Copilot only includes the relevant instructions when working on files that match each glob pattern.' },
+                  { label: 'Put both React and Python rules in the global instructions file', correct: false, feedback: 'Global instructions would include irrelevant React rules when editing Python (and vice versa), wasting context window space. Path-specific files keep instructions targeted.' },
+                  { label: 'Create separate VS Code workspaces for React and Python', correct: false, feedback: 'Path-specific instruction files handle this within a single workspace. No need to split into separate workspaces.' },
+                  { label: 'This is not possible — Copilot applies the same rules to all file types', correct: false, feedback: 'Path-specific instruction files exist precisely for this use case. The `applyTo` glob targets rules to specific file patterns.' },
                 ]
               },
               {
                 id: 'cop-l13-s1-q3',
-                question: 'Can Copilot use AGENTS.md or CLAUDE.md files that already exist in a repository?',
+                question: 'Your team uses both Claude Code and Copilot. They already have a CLAUDE.md with project conventions. Do they need to duplicate everything into a Copilot-specific file?',
                 codeBlock: null,
                 options: [
-                  { label: 'Yes — Copilot can read AGENTS.md and CLAUDE.md as additional instruction sources for compatibility', correct: true, feedback: 'Correct. Copilot recognizes AGENTS.md (Cursor/Windsurf convention) and CLAUDE.md (Claude Code convention), providing cross-tool compatibility so teams can use one instruction set.' },
-                  { label: 'No — Copilot only reads its own `.github/copilot-instructions.md` file', correct: false, feedback: 'Copilot also supports AGENTS.md and CLAUDE.md for cross-tool compatibility.' },
-                  { label: 'Only if you rename them to `.github/copilot-instructions.md`', correct: false, feedback: 'No renaming needed. Copilot can read them directly in their original locations.' },
-                  { label: 'Only AGENTS.md — CLAUDE.md is ignored', correct: false, feedback: 'Copilot supports both AGENTS.md and CLAUDE.md.' },
+                  { label: 'No — Copilot can read CLAUDE.md and AGENTS.md as additional instruction sources for cross-tool compatibility', correct: true, feedback: 'Correct. Copilot recognizes CLAUDE.md (Claude Code) and AGENTS.md (Cursor/Windsurf) automatically. Teams can maintain one instruction set that works across multiple AI tools.' },
+                  { label: 'Yes — Copilot only reads `.github/copilot-instructions.md` and ignores all other files', correct: false, feedback: 'Copilot supports CLAUDE.md and AGENTS.md for cross-tool compatibility. No duplication needed.' },
+                  { label: 'You must rename CLAUDE.md to copilot-instructions.md', correct: false, feedback: 'No renaming needed. Copilot reads CLAUDE.md directly from its original location.' },
+                  { label: 'Only if the team switches entirely to Copilot', correct: false, feedback: 'Copilot can read CLAUDE.md even when both tools are used simultaneously. It is designed for multi-tool teams.' },
                 ]
               },
               {
                 id: 'cop-l13-s1-q4',
-                question: 'What is the priority order when multiple instruction sources exist?',
+                question: 'Your repo has a CLAUDE.md, a `.github/copilot-instructions.md`, and a path-specific instruction file for tests. When Copilot works on a test file, which instructions take precedence?',
                 codeBlock: null,
                 options: [
-                  { label: 'Path-specific instructions take highest priority, then repo-level `.github/copilot-instructions.md`, then AGENTS.md/CLAUDE.md', correct: true, feedback: 'Correct. More specific instructions win. Path-specific files (scoped by glob) are most specific, followed by the repo-level Copilot file, then general-purpose instruction files.' },
-                  { label: 'CLAUDE.md always takes highest priority', correct: false, feedback: 'CLAUDE.md is a compatibility source with lower priority than Copilot\'s native instruction files.' },
-                  { label: 'All instruction sources have equal priority and are merged alphabetically', correct: false, feedback: 'Instructions have a defined priority order, with more specific sources taking precedence.' },
-                  { label: 'Only one instruction source is ever active at a time', correct: false, feedback: 'Multiple instruction sources can be active simultaneously, combined according to their priority.' },
+                  { label: 'Path-specific instructions (highest) > `.github/copilot-instructions.md` > CLAUDE.md (lowest) — more specific wins', correct: true, feedback: 'Correct. Copilot applies a specificity hierarchy. Path-specific files scoped by glob are most specific, the repo-level Copilot file is next, and compatibility files like CLAUDE.md have the lowest priority.' },
+                  { label: 'CLAUDE.md always wins because it was there first', correct: false, feedback: 'CLAUDE.md is a compatibility source with the lowest priority. Copilot\'s native files take precedence.' },
+                  { label: 'All instructions are merged equally with no priority order', correct: false, feedback: 'Instructions have a defined hierarchy. More specific sources (path-scoped) take precedence over general sources.' },
+                  { label: 'Only one instruction file is active at a time — the most recently modified one', correct: false, feedback: 'Multiple instruction sources are combined simultaneously, with priority determined by specificity, not modification date.' },
                 ]
               },
               {
                 id: 'cop-l13-s1-q5',
-                question: 'Why would you use path-specific instructions instead of putting everything in the global instructions file?',
+                question: 'Your global instructions file has grown to 500 lines covering React, Python, Go, and testing conventions. What is the problem and how do you fix it?',
                 codeBlock: null,
                 options: [
-                  { label: 'To avoid polluting the context window with irrelevant instructions when working on unrelated files', correct: true, feedback: 'Correct. If you have React instructions, they are irrelevant when editing Python scripts. Path-specific instructions keep the context clean by only including relevant rules for the files being worked on.' },
-                  { label: 'Path-specific files are the only way to add instructions', correct: false, feedback: 'The global `.github/copilot-instructions.md` file exists for repo-wide instructions. Path-specific files are an additional mechanism.' },
-                  { label: 'Global instructions are limited to 100 characters', correct: false, feedback: 'There is no such character limit. The benefit of path-specific files is relevance, not size.' },
-                  { label: 'Path-specific instructions run faster', correct: false, feedback: 'Performance is not the reason. The benefit is keeping context focused and relevant.' },
+                  { label: 'It wastes context window on irrelevant rules — split into path-specific instruction files so each file type only loads its relevant instructions', correct: true, feedback: 'Correct. When editing a Go file, 400 lines of React/Python/testing rules are irrelevant noise in the context window. Path-specific files with `applyTo` globs ensure Copilot only loads instructions relevant to the file being edited.' },
+                  { label: 'The file is too large for Copilot to read — reduce it to under 100 lines', correct: false, feedback: 'There is no strict line limit. The issue is context relevance, not file size. Path-specific files solve this by scoping instructions to matching file patterns.' },
+                  { label: 'Nothing is wrong — more instructions always produce better results', correct: false, feedback: 'Irrelevant instructions dilute the context window and can confuse the model. Focused, relevant instructions produce better results than a large dump of everything.' },
+                  { label: 'Move all instructions to CLAUDE.md instead for cross-tool compatibility', correct: false, feedback: 'Moving to CLAUDE.md does not solve the context pollution problem. You need path-specific files to scope instructions by file type.' },
                 ]
               },
             ]
@@ -2092,57 +2092,57 @@ export const modules = [
             cards: [
               {
                 id: 'cop-l13-s2-q1',
-                question: 'Where do custom agent definitions live in a Copilot repository?',
+                question: 'You want to create a reusable "API reviewer" agent that your whole team can invoke in Copilot chat. Where do you define it so it is version-controlled and shared?',
                 codeBlock: null,
                 options: [
-                  { label: '`.github/agents/*.agent.md`', correct: true, feedback: 'Correct. Custom agents are markdown files in the `.github/agents/` directory with the `.agent.md` extension. Each file defines one reusable agent.' },
-                  { label: '`.vscode/agents/`', correct: false, feedback: 'Agents live in `.github/agents/`, not `.vscode/agents/`. The `.github/` directory is the standard location for Copilot configuration.' },
-                  { label: '`.claude/agents/`', correct: false, feedback: 'That is the Claude Code agent location. Copilot uses `.github/agents/`.' },
-                  { label: '`.copilot/agents.json`', correct: false, feedback: 'Agents are defined as individual markdown files, not in a JSON configuration file.' },
+                  { label: '`.github/agents/api-reviewer.agent.md` — agents live in `.github/agents/` and are committed to the repo', correct: true, feedback: 'Correct. Custom agents are markdown files in `.github/agents/` with the `.agent.md` extension. Since they are committed to git, the entire team automatically gets the same agent definitions.' },
+                  { label: 'Each developer creates it in their local VS Code settings', correct: false, feedback: 'Local settings are not shared. Putting agents in `.github/agents/` makes them version-controlled and available to the whole team.' },
+                  { label: '`.claude/agents/` so it works with both Claude Code and Copilot', correct: false, feedback: '`.claude/agents/` is for Claude Code agents. Copilot agents live in `.github/agents/`. Each tool reads from its own directory.' },
+                  { label: 'Install it from the VS Code extension marketplace', correct: false, feedback: 'Custom agents are project-specific markdown files, not marketplace extensions. They live in `.github/agents/`.' },
                 ]
               },
               {
                 id: 'cop-l13-s2-q2',
-                question: 'What goes in the YAML frontmatter of a `.agent.md` file?',
-                codeBlock: '---\nname: api-designer\ndescription: Designs REST API endpoints following OpenAPI conventions\ntools:\n  - execute\n  - read\n  - search\nmodel: gpt-4o\n---',
+                question: 'You are building a custom agent that should design REST APIs but should NOT be able to run shell commands. How do you restrict it?',
+                codeBlock: '---\nname: api-designer\ndescription: Designs REST API endpoints following OpenAPI conventions\ntools:\n  - read\n  - edit\n  - search\nmodel: gpt-4o\n---',
                 options: [
-                  { label: 'Agent metadata: name, description, allowed tools, and preferred model', correct: true, feedback: 'Correct. The frontmatter configures the agent\'s identity (name, description), capabilities (tools list), and which model to use. The markdown body below becomes the agent\'s system prompt.' },
-                  { label: 'Only the agent name — everything else goes in the body', correct: false, feedback: 'The frontmatter includes name, description, tools, and model. The body is the system prompt.' },
-                  { label: 'A JSON schema defining the agent\'s input/output format', correct: false, feedback: 'The frontmatter is YAML metadata, not a JSON schema. Input/output formats are described in the system prompt body.' },
-                  { label: 'Environment variables and secrets for the agent', correct: false, feedback: 'Secrets should never go in agent files (they are committed to git). The frontmatter contains metadata like name, tools, and model.' },
+                  { label: 'List only the tools it needs in the YAML frontmatter — omit `execute` to prevent terminal access', correct: true, feedback: 'Correct. The `tools` list in the frontmatter controls what the agent can do. By including only `read`, `edit`, and `search` (and omitting `execute`), the agent cannot run terminal commands.' },
+                  { label: 'Add a "no terminal" instruction in the system prompt body', correct: false, feedback: 'Instructions are not enforceable restrictions. The tools list in the frontmatter is the actual capability control — unlisted tools are unavailable to the agent.' },
+                  { label: 'Set a permission level to "read-only" in the frontmatter', correct: false, feedback: 'There is no "read-only" permission level. You control capabilities by listing specific tools (read, edit, search, execute) in the frontmatter.' },
+                  { label: 'This is not possible — all agents have access to all tools', correct: false, feedback: 'The tools list in the frontmatter is specifically designed to restrict agent capabilities. Unlisted tools are not available.' },
                 ]
               },
               {
                 id: 'cop-l13-s2-q3',
-                question: 'What are the tool aliases available in Copilot custom agents?',
+                question: 'You have a Claude Code agent in `.claude/agents/` that uses Bash, Read, and Grep tools. You want to port it to a Copilot agent. What changes?',
                 codeBlock: null,
                 options: [
-                  { label: 'execute (run commands), read (read files), edit (modify files), and search (search codebase)', correct: true, feedback: 'Correct. These four aliases map to Copilot\'s internal tools: `execute` for terminal commands, `read` for file reading, `edit` for file modification, and `search` for codebase search.' },
-                  { label: 'Bash, Read, Write, Grep — same as Claude Code', correct: false, feedback: 'Copilot uses its own tool aliases (execute, read, edit, search), not Claude Code\'s tool names.' },
-                  { label: 'run, open, save, find', correct: false, feedback: 'The correct aliases are execute, read, edit, and search.' },
-                  { label: 'There are no tool restrictions — agents can use all tools', correct: false, feedback: 'Agents specify which tools they can access in their frontmatter. Unlisted tools are not available to the agent.' },
+                  { label: 'Move it to `.github/agents/`, rename tools to Copilot aliases (execute, read, search), and change the extension to `.agent.md`', correct: true, feedback: 'Correct. Both systems use markdown with YAML frontmatter, but the directory (`.github/agents/` vs `.claude/agents/`), tool aliases (execute/read/edit/search vs Bash/Read/Write/Grep), and file extension differ.' },
+                  { label: 'Just copy the file to `.github/agents/` — everything else is identical', correct: false, feedback: 'The file format is similar but tool aliases differ. Claude Code uses Bash/Read/Grep while Copilot uses execute/read/search. You need to update the tools list.' },
+                  { label: 'Rewrite the entire agent from scratch — the systems are incompatible', correct: false, feedback: 'Both use markdown with YAML frontmatter. The format is nearly identical — you just need to change the directory, tool aliases, and file extension.' },
+                  { label: 'Copilot does not support custom agents, only Claude Code does', correct: false, feedback: 'Both Copilot and Claude Code fully support custom agents defined as markdown files with YAML frontmatter.' },
                 ]
               },
               {
                 id: 'cop-l13-s2-q4',
-                question: 'How do you invoke a custom agent in Copilot chat?',
+                question: 'A new developer on your team wants to use the custom "db-migrator" agent you defined. How do they invoke it?',
                 codeBlock: null,
                 options: [
-                  { label: 'Type `@agent-name` in the chat panel to mention and activate it', correct: true, feedback: 'Correct. Custom agents appear as mentionable participants in the chat. Type `@` followed by the agent name to invoke it for a specific task.' },
-                  { label: 'Run a slash command like `/run-agent api-designer`', correct: false, feedback: 'Custom agents are invoked with the `@` mention syntax, not slash commands.' },
-                  { label: 'They run automatically when matching files are opened', correct: false, feedback: 'Custom agents must be explicitly invoked with `@` mentions. They do not run automatically.' },
-                  { label: 'Use the Command Palette to select and launch an agent', correct: false, feedback: 'While the Command Palette has Copilot commands, custom agents are invoked directly in chat with `@` mentions.' },
+                  { label: 'Type `@db-migrator` in the Copilot chat panel — custom agents are invoked with @ mentions', correct: true, feedback: 'Correct. Custom agents appear as mentionable participants in chat. The developer types `@db-migrator` followed by their request, and the agent handles it with its defined tools and system prompt.' },
+                  { label: 'Run `/db-migrator` as a slash command', correct: false, feedback: 'Custom agents use the `@` mention syntax, not slash commands. Type `@db-migrator` in the chat panel.' },
+                  { label: 'Open the agent file and click "Run" at the top', correct: false, feedback: 'Agent files are definitions, not scripts. Invoke agents by typing `@agent-name` in the Copilot chat.' },
+                  { label: 'The agent runs automatically when database files are opened', correct: false, feedback: 'Custom agents must be explicitly invoked with `@` mentions. They do not trigger automatically based on file types.' },
                 ]
               },
               {
                 id: 'cop-l13-s2-q5',
-                question: 'How do Copilot custom agents compare to Claude Code custom agents?',
+                question: 'You want a "security auditor" agent that can read code and search for patterns but should never modify files or run commands. Which tools do you list?',
                 codeBlock: null,
                 options: [
-                  { label: 'Both use markdown files with YAML frontmatter but live in different directories (`.github/agents/` vs `.claude/agents/`)', correct: true, feedback: 'Correct. The format is nearly identical — markdown files with YAML frontmatter defining name, description, tools, and model. Only the directory and tool aliases differ.' },
-                  { label: 'They are completely different systems with no similarities', correct: false, feedback: 'Both use markdown files with YAML frontmatter. The systems are conceptually very similar.' },
-                  { label: 'Copilot agents are more powerful because they support more tools', correct: false, feedback: 'Both systems support comparable tool sets. The difference is location and tool alias naming, not capability.' },
-                  { label: 'Claude Code does not support custom agents', correct: false, feedback: 'Claude Code fully supports custom agents in `.claude/agents/` with YAML frontmatter.' },
+                  { label: 'Only `read` and `search` — omit `edit` and `execute` to make it read-only', correct: true, feedback: 'Correct. By listing only `read` (file reading) and `search` (codebase search), the agent can audit code but cannot modify files (`edit`) or run commands (`execute`). The tools list is the enforcement mechanism.' },
+                  { label: 'All four tools but add "do not modify files" to the system prompt', correct: false, feedback: 'System prompt instructions are suggestions, not hard restrictions. The tools list is what actually controls capabilities — omit `edit` and `execute` for true enforcement.' },
+                  { label: 'There is no way to create a read-only agent in Copilot', correct: false, feedback: 'Omitting `edit` and `execute` from the tools list creates an effectively read-only agent. The tools list controls what capabilities are available.' },
+                  { label: 'Use `read`, `search`, `edit`, and `execute` with "read-only: true" flag', correct: false, feedback: 'There is no "read-only" flag. Simply omit the tools you do not want the agent to have. Only listed tools are available.' },
                 ]
               },
             ]
@@ -2153,57 +2153,57 @@ export const modules = [
             cards: [
               {
                 id: 'cop-l13-s3-q1',
-                question: 'What is a Copilot Skill and where is it defined?',
+                question: 'Your team has a complex multi-step deployment verification process — checking health endpoints, validating database migrations, and verifying rollback procedures. Should this be a prompt file or a skill?',
                 codeBlock: null,
                 options: [
-                  { label: 'A reusable capability defined in `.github/skills/*/SKILL.md` that can be invoked by agents or users', correct: true, feedback: 'Correct. Skills are structured capabilities with their own directory under `.github/skills/`. Each skill has a `SKILL.md` file that defines what it does and how to use it.' },
-                  { label: 'A VS Code extension that adds features to Copilot', correct: false, feedback: 'Skills are markdown-based definitions in the repo, not VS Code extensions.' },
-                  { label: 'An API endpoint that Copilot can call', correct: false, feedback: 'Skills are local markdown definitions, not API endpoints.' },
-                  { label: 'A pre-trained model fine-tuned for specific tasks', correct: false, feedback: 'Skills are prompt-based capabilities, not fine-tuned models.' },
+                  { label: 'A skill — it is a structured capability with its own directory, supporting complex multi-step workflows that agents can invoke', correct: true, feedback: 'Correct. Skills live in `.github/skills/*/SKILL.md` and define structured capabilities. Complex multi-step processes with their own supporting files belong as skills. Prompt files are better for simpler, template-based tasks.' },
+                  { label: 'A prompt file — it is just a sequence of steps', correct: false, feedback: 'Prompt files are lightweight templates. A complex multi-step process with supporting files and structured logic is better modeled as a skill with its own directory.' },
+                  { label: 'Neither — use a GitHub Actions workflow instead', correct: false, feedback: 'Skills let Copilot perform the verification interactively with the developer. GitHub Actions run in CI/CD. Both have their place, but this asks about Copilot capabilities.' },
+                  { label: 'A custom agent — only agents can handle multi-step tasks', correct: false, feedback: 'Skills provide the structured capability that agents (or users) can invoke. The skill defines the "what," and agents can use it as a building block.' },
                 ]
               },
               {
                 id: 'cop-l13-s3-q2',
-                question: 'What are prompt files and how do they differ from skills?',
-                codeBlock: '# .github/prompts/add-api-endpoint.prompt.md\n---\nname: add-api-endpoint\ndescription: Scaffolds a new REST API endpoint\n---\nCreate a new endpoint at ${input:path} that:\n- Follows our REST conventions\n- Includes validation\n- Has error handling',
+                question: 'You want a reusable template that scaffolds a new API endpoint whenever a developer provides a path and HTTP method. What should you create?',
+                codeBlock: '# .github/prompts/add-api-endpoint.prompt.md\n---\nname: add-api-endpoint\ndescription: Scaffolds a new REST API endpoint\n---\nCreate a new endpoint at ${input:path} with method ${input:method} that:\n- Follows our REST conventions\n- Includes validation\n- Has error handling',
                 options: [
-                  { label: 'Prompt files (`.prompt.md`) are reusable prompt templates with variables, while skills are more structured capabilities with their own directories', correct: true, feedback: 'Correct. Prompt files are lightweight templates in `.github/prompts/` that support variables like `${input:name}`. Skills are more structured, living in their own directories with a `SKILL.md` definition.' },
-                  { label: 'They are identical — just different file extensions', correct: false, feedback: 'Prompts are simpler templates; skills are structured capabilities with directories and more complex definitions.' },
-                  { label: 'Prompt files can only be used in Ask mode', correct: false, feedback: 'Prompt files can be used across modes. They are templates, not mode-specific.' },
-                  { label: 'Skills are deprecated in favor of prompt files', correct: false, feedback: 'Both coexist — skills for complex capabilities, prompts for reusable templates.' },
+                  { label: 'A prompt file (`.prompt.md`) with `${input:...}` variables — it is a lightweight template perfect for parameterized scaffolding', correct: true, feedback: 'Correct. Prompt files in `.github/prompts/` are lightweight templates that support `${input:name}` variables. When invoked, Copilot asks the user for each input value and fills in the template.' },
+                  { label: 'A full skill with its own directory', correct: false, feedback: 'A skill is overkill for a template. Prompt files are the lightweight choice for parameterized templates that do not need complex multi-step logic.' },
+                  { label: 'A VS Code snippet with tab stops', correct: false, feedback: 'VS Code snippets are static text expansion. A prompt file leverages Copilot\'s AI to generate context-aware code adapted to the project.' },
+                  { label: 'A custom agent dedicated to API creation', correct: false, feedback: 'A dedicated agent is overkill for a template. Prompt files are designed exactly for this use case — reusable templates with runtime variables.' },
                 ]
               },
               {
                 id: 'cop-l13-s3-q3',
-                question: 'How do you create a new skill or prompt interactively?',
+                question: 'A developer wants to quickly create a new prompt file for their team. What is the fastest way?',
                 codeBlock: null,
                 options: [
-                  { label: 'Use `/create-skill` or `/create-prompt` slash commands in Copilot chat', correct: true, feedback: 'Correct. These slash commands guide you through creating a new skill or prompt file interactively, placing it in the correct directory with proper formatting.' },
-                  { label: 'Use the VS Code Command Palette to generate templates', correct: false, feedback: 'While the Command Palette has Copilot commands, skills and prompts are created with the `/create-skill` and `/create-prompt` chat commands.' },
-                  { label: 'Skills and prompts can only be created by manually writing markdown files', correct: false, feedback: 'You can write them manually, but the `/create-skill` and `/create-prompt` commands provide an interactive guided experience.' },
-                  { label: 'Download them from the GitHub Marketplace', correct: false, feedback: 'Skills and prompts are project-specific and created locally, not downloaded from a marketplace.' },
+                  { label: 'Type `/create-prompt` in Copilot chat — it interactively guides you through creating the file in the right directory', correct: true, feedback: 'Correct. The `/create-prompt` (and `/create-skill`) slash commands walk you through the creation process interactively, ensuring correct file placement and formatting.' },
+                  { label: 'Manually write a markdown file and hope the format is correct', correct: false, feedback: 'Manual creation works but is error-prone. The `/create-prompt` command ensures correct formatting, directory placement, and frontmatter structure.' },
+                  { label: 'Copy a prompt from the GitHub Marketplace', correct: false, feedback: 'Prompt files are project-specific and created locally. The `/create-prompt` command is the fastest interactive approach.' },
+                  { label: 'Use Agent mode to generate the prompt file', correct: false, feedback: 'Agent mode could do this, but `/create-prompt` is purpose-built for this task and provides a guided experience.' },
                 ]
               },
               {
                 id: 'cop-l13-s3-q4',
-                question: 'What variables can you use in prompt files?',
+                question: 'You created a prompt file that reviews code for security issues. You want it to analyze whatever code the developer has selected in the editor. Which variable do you use?',
                 codeBlock: null,
                 options: [
-                  { label: '`${selection}` for current editor selection and `${input:name}` for user-provided values at runtime', correct: true, feedback: 'Correct. `${selection}` injects the currently selected code, and `${input:name}` prompts the user to enter a value when the prompt is invoked, making prompts dynamic and reusable.' },
-                  { label: 'Only environment variables like `${HOME}` and `${PATH}`', correct: false, feedback: 'Prompt variables are Copilot-specific (`${selection}`, `${input:...}`), not shell environment variables.' },
-                  { label: 'No variables are supported — all content must be static', correct: false, feedback: 'Prompt files explicitly support variables like `${selection}` and `${input:name}` for dynamic content.' },
-                  { label: 'Only `${file}` to reference the current file name', correct: false, feedback: 'While file context is available, the key variables are `${selection}` for selected code and `${input:name}` for user input.' },
+                  { label: '`${selection}` — it injects the current editor selection into the prompt', correct: true, feedback: 'Correct. `${selection}` captures whatever code is highlighted in the editor when the prompt is invoked. Combined with `${input:name}` for user-provided values, prompts become dynamic and context-aware.' },
+                  { label: '`${clipboard}` — the developer copies the code first', correct: false, feedback: 'There is no `${clipboard}` variable. `${selection}` directly injects the current editor selection, no copy-paste needed.' },
+                  { label: '`${file}` — it reads the entire current file', correct: false, feedback: 'The developer wants to analyze a specific selection, not the whole file. `${selection}` captures exactly what is highlighted.' },
+                  { label: 'Variables cannot reference editor state — you must paste the code manually', correct: false, feedback: '`${selection}` exists precisely to reference editor state. It injects the selected code automatically.' },
                 ]
               },
               {
                 id: 'cop-l13-s3-q5',
-                question: 'You want a reusable template that asks the user for a component name and scaffolds a React component. What do you create?',
+                question: 'Your team has both a Claude Code custom slash command and wants the same functionality in Copilot. What is the closest Copilot equivalent to Claude Code\'s `/command` skill files?',
                 codeBlock: null,
                 options: [
-                  { label: 'A prompt file using `${input:componentName}` to capture the name at runtime', correct: true, feedback: 'Correct. A `.prompt.md` file with `${input:componentName}` will ask the user for the component name when invoked, then use it in the scaffolding template.' },
-                  { label: 'A VS Code snippet with tab stops', correct: false, feedback: 'VS Code snippets are for inline text expansion. A Copilot prompt file provides AI-powered scaffolding with full context awareness.' },
-                  { label: 'A custom agent that always creates React components', correct: false, feedback: 'An agent is overkill for a simple template. A prompt file is the lightweight, reusable solution.' },
-                  { label: 'A shell script that generates the file', correct: false, feedback: 'A prompt file leverages Copilot\'s AI to generate context-aware code, which is more flexible than a static shell script.' },
+                  { label: 'Prompt files in `.github/prompts/` — they serve the same purpose as reusable templates invokable from chat', correct: true, feedback: 'Correct. Claude Code skills (`.claude/skills/`) and Copilot prompt files (`.github/prompts/`) serve similar roles — reusable, parameterized templates that developers invoke from chat. The directory and format differ slightly.' },
+                  { label: 'There is no Copilot equivalent — this is a Claude Code-only feature', correct: false, feedback: 'Copilot has prompt files (`.prompt.md`) and skills (`.github/skills/`) that provide equivalent functionality to Claude Code\'s slash commands.' },
+                  { label: 'VS Code keyboard shortcuts mapped to Copilot commands', correct: false, feedback: 'Keyboard shortcuts are for editor actions. Prompt files are the reusable template equivalent of Claude Code\'s skill system.' },
+                  { label: 'Custom agents are the only reusable abstraction in Copilot', correct: false, feedback: 'Copilot has prompt files and skills in addition to custom agents. Prompt files are the lightweight equivalent of Claude Code skill slash commands.' },
                 ]
               },
             ]
@@ -2214,57 +2214,57 @@ export const modules = [
             cards: [
               {
                 id: 'cop-l13-s4-q1',
-                question: 'Where is MCP server configuration defined for Copilot in VS Code?',
+                question: 'You want your whole team to have access to a Jira MCP server when using Copilot. Where do you configure it so the config is shared via git?',
                 codeBlock: null,
                 options: [
-                  { label: '`.vscode/mcp.json`', correct: true, feedback: 'Correct. MCP server configuration for Copilot lives in `.vscode/mcp.json`, which defines which MCP servers are available and how to connect to them.' },
-                  { label: '`.github/mcp-servers.yml`', correct: false, feedback: 'MCP config for the VS Code extension is in `.vscode/mcp.json`, not in the `.github/` directory.' },
-                  { label: '`settings.json` under `mcp.servers`', correct: false, feedback: 'While VS Code settings can reference MCP, the dedicated config file is `.vscode/mcp.json`.' },
-                  { label: '`.copilot/mcp.json`', correct: false, feedback: 'There is no `.copilot/` directory. MCP config lives in `.vscode/mcp.json`.' },
+                  { label: '`.vscode/mcp.json` — it is version-controlled and shared with the team when committed', correct: true, feedback: 'Correct. MCP server configuration for Copilot lives in `.vscode/mcp.json`. Since it is a file in the repo, committing it shares the MCP configuration with the whole team.' },
+                  { label: '`.github/mcp-servers.yml` alongside other GitHub config', correct: false, feedback: 'MCP config for Copilot in VS Code lives in `.vscode/mcp.json`, not in the `.github/` directory.' },
+                  { label: 'Each developer configures it in their personal VS Code settings', correct: false, feedback: 'Personal settings are not shared. `.vscode/mcp.json` in the repo is the team-shared location.' },
+                  { label: '`.claude/settings.json` since MCP config is tool-agnostic', correct: false, feedback: '`.claude/settings.json` is for Claude Code. Copilot reads MCP config from `.vscode/mcp.json`.' },
                 ]
               },
               {
                 id: 'cop-l13-s4-q2',
-                question: 'What are the supported MCP server transport types in Copilot?',
+                question: 'You have an MCP server running as a local Node.js process on your machine and another hosted on a remote API. Which transport types would you use for each?',
                 codeBlock: null,
                 options: [
-                  { label: 'stdio (local process), HTTP (streamable), and SSE (server-sent events)', correct: true, feedback: 'Correct. Copilot supports three transport types: stdio for local servers running as child processes, HTTP for streamable remote connections, and SSE for server-sent events streams.' },
-                  { label: 'Only HTTP — all servers must be remote', correct: false, feedback: 'Copilot supports local servers via stdio as well as remote servers via HTTP and SSE.' },
-                  { label: 'WebSocket and gRPC', correct: false, feedback: 'MCP uses stdio, HTTP, and SSE — not WebSocket or gRPC.' },
-                  { label: 'Only stdio — all servers must run locally', correct: false, feedback: 'While stdio is common, Copilot also supports remote servers via HTTP and SSE transports.' },
+                  { label: 'stdio for the local process (runs as a child process), HTTP or SSE for the remote server', correct: true, feedback: 'Correct. stdio launches the server as a local child process communicating via stdin/stdout. Remote servers use HTTP (streamable) or SSE (server-sent events) transports for network communication.' },
+                  { label: 'HTTP for both — it is the universal transport', correct: false, feedback: 'HTTP works for remote servers, but local processes are better served by stdio, which runs them as child processes without network overhead.' },
+                  { label: 'WebSocket for the local one, gRPC for the remote one', correct: false, feedback: 'MCP does not use WebSocket or gRPC. The supported transports are stdio, HTTP, and SSE.' },
+                  { label: 'The same transport works for both — there is no distinction', correct: false, feedback: 'Different transports serve different needs. stdio is optimized for local processes; HTTP and SSE are designed for remote servers.' },
                 ]
               },
               {
                 id: 'cop-l13-s4-q3',
-                question: 'What security feature was added for MCP servers in VS Code 1.112+?',
+                question: 'Your team is worried about a third-party MCP server accessing sensitive files on developer machines. What built-in VS Code protection addresses this?',
                 codeBlock: null,
                 options: [
-                  { label: 'Sandboxing — MCP server processes run in isolated sandboxes to limit system access', correct: true, feedback: 'Correct. VS Code 1.112+ introduced sandboxing for MCP servers, restricting what they can access on the system. This prevents malicious or buggy MCP servers from causing damage.' },
-                  { label: 'Encryption of all MCP communication', correct: false, feedback: 'While security was improved, the key 1.112+ addition was process sandboxing, not transport encryption.' },
-                  { label: 'Requiring OAuth authentication for all MCP servers', correct: false, feedback: 'The 1.112+ security feature is sandboxing, not authentication requirements.' },
-                  { label: 'Automatic virus scanning of MCP server code', correct: false, feedback: 'The security feature is process sandboxing, not virus scanning.' },
+                  { label: 'MCP server sandboxing — processes run in isolated sandboxes that limit what they can access on the system', correct: true, feedback: 'Correct. VS Code sandboxes MCP server processes, restricting their system access. This prevents a malicious or buggy server from reading sensitive files or making unauthorized system changes.' },
+                  { label: 'There is no protection — you must trust every MCP server completely', correct: false, feedback: 'VS Code provides sandboxing for MCP servers, limiting their system access as a security measure.' },
+                  { label: 'VS Code requires OAuth approval before any MCP server can access files', correct: false, feedback: 'The protection is process sandboxing, not OAuth. Sandboxing restricts what the server process can access at the OS level.' },
+                  { label: 'MCP servers cannot access the file system at all', correct: false, feedback: 'MCP servers can access files within their sandbox. The sandboxing limits the scope of that access to prevent abuse.' },
                 ]
               },
               {
                 id: 'cop-l13-s4-q4',
-                question: 'What is the maximum number of tools an MCP server can expose to Copilot?',
+                question: 'You are designing an MCP server that provides tools for a project management system. You planned 200 tools. Why is this a problem in Copilot?',
                 codeBlock: null,
                 options: [
-                  { label: '128 tools', correct: true, feedback: 'Correct. Copilot limits each MCP server to 128 tools. This prevents context window bloat from tool definitions and encourages focused, well-designed server interfaces.' },
-                  { label: 'Unlimited — there is no cap', correct: false, feedback: 'There is a hard limit of 128 tools per MCP server to manage context window usage.' },
-                  { label: '10 tools', correct: false, feedback: 'The limit is 128, not 10. But it exists to prevent tool definition overload.' },
-                  { label: '1,000 tools', correct: false, feedback: 'The limit is 128 tools per MCP server.' },
+                  { label: 'Copilot limits each MCP server to 128 tools — too many tool definitions bloat the context window and degrade AI performance', correct: true, feedback: 'Correct. The 128-tool limit exists because every tool definition consumes context window space. More tools means less room for actual code context. Design focused servers with fewer, well-composed tools.' },
+                  { label: 'There is no tool limit — 200 tools would work fine', correct: false, feedback: 'Copilot enforces a 128-tool limit per MCP server. You would need to redesign your server to stay under this limit.' },
+                  { label: 'The problem is performance — each tool adds latency', correct: false, feedback: 'The primary concern is context window consumption, not latency. Each tool definition takes up tokens that could be used for code context.' },
+                  { label: 'You can only have 10 tools per MCP server', correct: false, feedback: 'The limit is 128, not 10. But 200 exceeds it. The limit encourages focused server design.' },
                 ]
               },
               {
                 id: 'cop-l13-s4-q5',
-                question: 'How can you install an MCP server for Copilot?',
+                question: 'You configured an MCP server in `.vscode/mcp.json` for Copilot. Your teammate uses Claude Code and wants the same server. Do they use the same config file?',
                 codeBlock: null,
                 options: [
-                  { label: 'Add it to `.vscode/mcp.json`, use the VS Code MCP panel, or install via a one-click link from the server\'s documentation', correct: true, feedback: 'Correct. There are multiple methods: manually editing the JSON config, using the VS Code MCP management panel, or using one-click installation links that some MCP server authors provide.' },
-                  { label: 'Only by manually editing `.vscode/mcp.json`', correct: false, feedback: 'Manual editing works, but VS Code also provides a UI panel and one-click installation links.' },
-                  { label: 'Install it as a VS Code extension from the marketplace', correct: false, feedback: 'MCP servers are not VS Code extensions. They are configured in `.vscode/mcp.json` or via the MCP panel.' },
-                  { label: 'Run `npm install -g @copilot/mcp-server`', correct: false, feedback: 'MCP servers are configured, not installed globally via npm. Add them to `.vscode/mcp.json`.' },
+                  { label: 'No — Claude Code reads MCP config from `.claude/settings.json` or `~/.claude.json`, not `.vscode/mcp.json`', correct: true, feedback: 'Correct. Each tool has its own MCP config location. Copilot uses `.vscode/mcp.json`, Claude Code uses `.claude/settings.json` (project) or `~/.claude.json` (user). The server itself is the same, just configured in different files.' },
+                  { label: 'Yes — `.vscode/mcp.json` is the universal MCP config file', correct: false, feedback: '`.vscode/mcp.json` is Copilot-specific. Claude Code uses `.claude/settings.json` for project-level MCP config.' },
+                  { label: 'Claude Code does not support MCP servers', correct: false, feedback: 'Claude Code fully supports MCP servers, configured in `.claude/settings.json` or `~/.claude.json`.' },
+                  { label: 'They must use the same config file or the server will conflict', correct: false, feedback: 'Each tool reads its own config file independently. The same MCP server can be configured in both tools simultaneously without conflicts.' },
                 ]
               },
             ]
@@ -2282,57 +2282,57 @@ export const modules = [
             cards: [
               {
                 id: 'cop-l14-s1-q1',
-                question: 'What are the four types of Copilot agents?',
+                question: 'You want Copilot to work on a feature while you continue coding something else in the same repo. Which agent type lets you both work simultaneously without conflicts?',
                 codeBlock: null,
                 options: [
-                  { label: 'Local agent, background agent, cloud agent, and sub-agent', correct: true, feedback: 'Correct. Local runs in your VS Code. Background runs in a local worktree. Cloud runs on GitHub\'s infrastructure. Sub-agents are spawned by other agents to handle subtasks.' },
-                  { label: 'Ask agent, Edit agent, Code agent, and Review agent', correct: false, feedback: 'Those are not agent types. The four types are local, background, cloud, and sub-agent.' },
-                  { label: 'Free, Pro, Enterprise, and Custom', correct: false, feedback: 'Those are pricing tiers, not agent types. The four agent types are local, background, cloud, and sub-agent.' },
-                  { label: 'Read, Write, Execute, and Debug', correct: false, feedback: 'Those describe capabilities, not agent types. The four types are local, background, cloud, and sub-agent.' },
+                  { label: 'A background agent — it creates a separate git worktree so it works on a different branch without touching your current workspace', correct: true, feedback: 'Correct. Background agents use git worktrees for isolation. They work on a separate branch in a separate directory, so you can keep coding without conflicts or file locking issues.' },
+                  { label: 'A local agent — it pauses your work and takes over the editor', correct: false, feedback: 'Local agents run in your VS Code and share your workspace. Background agents are designed for parallel work via worktree isolation.' },
+                  { label: 'A cloud agent — it runs on GitHub servers and never touches your machine', correct: false, feedback: 'Cloud agents run remotely and create PRs, but background agents are the local solution for working in parallel on the same machine.' },
+                  { label: 'Any agent type — they all run in isolation by default', correct: false, feedback: 'Local agents share your workspace. Only background agents create a separate worktree for isolated parallel work.' },
                 ]
               },
               {
                 id: 'cop-l14-s1-q2',
-                question: 'How does a background agent isolate its work from your current workspace?',
+                question: 'Your team lead tagged a GitHub Issue with "copilot" and wants the AI to implement it without any developer opening VS Code. Which agent type handles this and what does it deliver?',
                 codeBlock: null,
                 options: [
-                  { label: 'It creates a git worktree — a separate working directory linked to the same repo but on a different branch', correct: true, feedback: 'Correct. Background agents use git worktrees to work independently. This means they can make changes on a separate branch without interfering with your current work.' },
-                  { label: 'It forks the entire repository into a new repo', correct: false, feedback: 'Background agents use git worktrees (lightweight), not full repo forks (heavyweight).' },
-                  { label: 'It runs in a Docker container with a copy of the code', correct: false, feedback: 'Background agents use git worktrees for isolation, not Docker containers.' },
-                  { label: 'It locks your workspace so no one else can edit', correct: false, feedback: 'Background agents specifically avoid locking your workspace — you can keep working while they operate in a separate worktree.' },
+                  { label: 'A cloud agent — it runs on GitHub\'s infrastructure and creates a pull request with the changes for review', correct: true, feedback: 'Correct. Cloud agents run entirely on GitHub\'s servers. They pick up Issues, implement changes, and deliver a PR. No local environment needed — the work happens in the cloud and the result is a reviewable PR.' },
+                  { label: 'A background agent — it runs locally and pushes a branch', correct: false, feedback: 'Background agents need a local machine running. Cloud agents are the fully remote option that runs on GitHub infrastructure.' },
+                  { label: 'A local agent that auto-merges the fix', correct: false, feedback: 'Local agents need VS Code open. Cloud agents are the hands-off option, and they create PRs for review — they never auto-merge.' },
+                  { label: 'This is not possible — a developer must always be involved', correct: false, feedback: 'Cloud agents can implement Issues autonomously on GitHub\'s infrastructure and deliver PRs without any developer intervention.' },
                 ]
               },
               {
                 id: 'cop-l14-s1-q3',
-                question: 'What does a cloud agent do when it finishes its work?',
+                question: 'Your project uses a specific Node.js version, requires PostgreSQL, and needs to run `npm ci` before working. How do you tell cloud agents about this environment setup?',
                 codeBlock: null,
                 options: [
-                  { label: 'Creates a pull request with its changes for review', correct: true, feedback: 'Correct. Cloud agents run on GitHub\'s infrastructure and create PRs when done. This lets you assign issues or tasks to Copilot, and it delivers the changes as a reviewable PR.' },
-                  { label: 'Merges changes directly into the main branch', correct: false, feedback: 'Cloud agents create PRs — they never merge directly. You still review and merge.' },
-                  { label: 'Sends the changes as a patch file via email', correct: false, feedback: 'Cloud agents create GitHub pull requests, not email patches.' },
-                  { label: 'Applies changes to your local workspace', correct: false, feedback: 'Cloud agents run on GitHub\'s servers and create PRs. They do not modify your local workspace.' },
+                  { label: 'Define the steps in `copilot-setup-steps.yml` — a GitHub Actions workflow that cloud agents run to prepare their environment', correct: true, feedback: 'Correct. `copilot-setup-steps.yml` tells cloud agents how to set up the dev environment. It runs as a GitHub Actions workflow, installing the right Node version, starting PostgreSQL, and running npm ci before the agent begins work.' },
+                  { label: 'Add setup instructions to `.github/copilot-instructions.md`', correct: false, feedback: 'Instruction files guide the AI\'s behavior, not its environment setup. `copilot-setup-steps.yml` is the executable workflow that actually installs dependencies and configures the environment.' },
+                  { label: 'Cloud agents automatically detect your project setup from package.json', correct: false, feedback: 'Cloud agents need explicit setup steps. They do not auto-detect environments — you define the setup in `copilot-setup-steps.yml`.' },
+                  { label: 'This is not needed — cloud agents use the same environment as GitHub Actions CI', correct: false, feedback: 'Cloud agents have their own setup workflow (`copilot-setup-steps.yml`). While the format is similar to Actions, it is a separate configuration for agent environments.' },
                 ]
               },
               {
                 id: 'cop-l14-s1-q4',
-                question: 'What is `copilot-setup-steps.yml` used for?',
+                question: 'You are building a large feature with Agent mode and realize one subtask (writing migration scripts) is independent from the main work. How do you parallelize this?',
                 codeBlock: null,
                 options: [
-                  { label: 'A GitHub Actions workflow that defines the environment setup for cloud agents (installing dependencies, building, etc.)', correct: true, feedback: 'Correct. `copilot-setup-steps.yml` tells cloud agents how to set up the development environment — which packages to install, how to build the project, and any other setup steps needed before the agent can work.' },
-                  { label: 'A configuration file for local Copilot setup in VS Code', correct: false, feedback: 'This file is specifically for cloud agents running on GitHub\'s infrastructure, not local VS Code setup.' },
-                  { label: 'A YAML file listing all custom agents in the repo', correct: false, feedback: 'Custom agents are defined as individual `.agent.md` files in `.github/agents/`, not in this YAML file.' },
-                  { label: 'A CI/CD pipeline configuration for deploying Copilot extensions', correct: false, feedback: 'It is an environment setup file for cloud agents, not a deployment pipeline.' },
+                  { label: 'Use `/delegate` to spawn a sub-agent for the migration subtask — it works independently while the main agent continues', correct: true, feedback: 'Correct. `/delegate` creates a sub-agent that handles the subtask autonomously. The main agent keeps working on the primary feature while the sub-agent writes the migration scripts in parallel.' },
+                  { label: 'Open a second VS Code window and start another Agent mode session', correct: false, feedback: 'While a second window works manually, `/delegate` is the built-in mechanism for agent-driven task decomposition without manual intervention.' },
+                  { label: 'Ask the agent to finish the current task first, then handle migrations', correct: false, feedback: 'Sequential work is slower. `/delegate` enables parallel subtask execution, which is the whole point of sub-agents.' },
+                  { label: 'Convert it to a cloud agent task by creating a GitHub Issue', correct: false, feedback: 'Cloud agents are for fully remote work. `/delegate` creates a local sub-agent for quick parallel subtask execution within your current session.' },
                 ]
               },
               {
                 id: 'cop-l14-s1-q5',
-                question: 'What does the `/delegate` command do in Copilot chat?',
+                question: 'You need to decide between a background agent and a cloud agent for a task. What is the key trade-off?',
                 codeBlock: null,
                 options: [
-                  { label: 'Spawns a sub-agent to handle a subtask while the main agent continues', correct: true, feedback: 'Correct. `/delegate` creates a sub-agent that works on a specific subtask independently. The main agent can continue with other work while the sub-agent operates.' },
-                  { label: 'Transfers the conversation to a human team member', correct: false, feedback: '`/delegate` spawns an AI sub-agent, not a handoff to a human.' },
-                  { label: 'Moves the task to a cloud agent', correct: false, feedback: '`/delegate` creates a sub-agent within the current context, not a cloud agent on GitHub\'s servers.' },
-                  { label: 'Assigns the current file to another developer', correct: false, feedback: '`/delegate` spawns a sub-agent for AI task decomposition, not developer assignment.' },
+                  { label: 'Background agents run locally with access to your full environment; cloud agents run remotely but need explicit setup via `copilot-setup-steps.yml`', correct: true, feedback: 'Correct. Background agents inherit your local environment (tools, databases, configs) but use your machine\'s resources. Cloud agents run on GitHub infrastructure (no local resource cost) but need their environment explicitly defined.' },
+                  { label: 'Cloud agents are faster because they run on powerful servers', correct: false, feedback: 'The key trade-off is environment access, not speed. Background agents have your local tools; cloud agents need explicit setup.' },
+                  { label: 'Background agents cost more because they use local compute', correct: false, feedback: 'The trade-off is not cost but environment configuration. Background agents automatically access your local setup; cloud agents need `copilot-setup-steps.yml`.' },
+                  { label: 'There is no practical difference — use whichever is available', correct: false, feedback: 'The trade-off is significant: local environment access vs. remote execution with explicit setup. Choose based on whether the task needs your local tools.' },
                 ]
               },
             ]
@@ -2465,57 +2465,57 @@ export const modules = [
             cards: [
               {
                 id: 'cop-l14-s4-q1',
-                question: 'What is Next Edit Suggestions (NES) in GitHub Copilot?',
+                question: 'You just renamed a function parameter in a React component. Now 5 other files reference the old name. How does Copilot help?',
                 codeBlock: null,
                 options: [
-                  { label: 'A feature that predicts the next location in your code you\'ll want to edit and suggests the change proactively', correct: true, feedback: 'Correct. NES goes beyond autocomplete — it predicts not just what code to write, but where you\'ll want to make your next edit, jumping you to the right location with a suggested change.' },
-                  { label: 'A list of suggested edits from code review', correct: false, feedback: 'NES is a real-time prediction feature in the editor, not a code review tool.' },
-                  { label: 'A keyboard shortcut for navigating between edit locations', correct: false, feedback: 'NES is an AI-powered prediction feature, not just a navigation shortcut.' },
-                  { label: 'A feature that auto-saves your recent edits', correct: false, feedback: 'NES predicts future edits, not saves past ones.' },
+                  { label: 'Next Edit Suggestions predicts the related changes across files and lets you Tab through each fix', correct: true, feedback: 'Correct. NES tracks your recent edits and predicts where related changes are needed. It jumps you to each location with a suggested fix — just press Tab to accept and move to the next.' },
+                  { label: 'You must use Agent mode to find and fix all references', correct: false, feedback: 'Agent mode works but is overkill for this. NES handles cascading renames efficiently by predicting each next edit location.' },
+                  { label: 'Copilot cannot help — use VS Code\'s built-in rename symbol', correct: false, feedback: 'While rename symbol works for simple renames, NES handles more complex cascading changes that go beyond simple symbol renaming.' },
+                  { label: 'Edit mode will find and fix all references in one step', correct: false, feedback: 'Edit mode requires you to select files manually. NES proactively predicts and suggests each related change.' },
                 ]
               },
               {
                 id: 'cop-l14-s4-q2',
-                question: 'How do you accept a Next Edit Suggestion?',
+                question: 'Your team uses a monorepo with 4 packages. You want Copilot instructions from the root to apply to all packages. What do you need?',
                 codeBlock: null,
                 options: [
-                  { label: 'Press Tab to accept the suggestion, just like inline completions', correct: true, feedback: 'Correct. NES uses the familiar Tab key to accept suggestions, maintaining consistency with Copilot\'s inline completion workflow.' },
-                  { label: 'Click a button in the sidebar', correct: false, feedback: 'NES suggestions appear inline in the editor and are accepted with Tab, not via sidebar buttons.' },
-                  { label: 'Type `@accept` in the chat panel', correct: false, feedback: 'NES is an editor feature, not a chat feature. Press Tab to accept.' },
-                  { label: 'Run a command from the Command Palette', correct: false, feedback: 'NES is designed for speed — just press Tab. No Command Palette needed.' },
+                  { label: 'Enable `chat.useCustomizationsInParentRepositories` so child packages inherit root instructions', correct: true, feedback: 'Correct. This setting lets Copilot discover and apply instructions, agents, and skills from parent repository directories — essential for monorepos where shared standards live at the root.' },
+                  { label: 'Copy the instructions file into each package directory', correct: false, feedback: 'That works but creates maintenance burden. The monorepo setting lets all packages inherit from the root automatically.' },
+                  { label: 'Monorepo support is not available in Copilot', correct: false, feedback: 'Copilot supports monorepos — enable parent repository customizations to share instructions across packages.' },
+                  { label: 'Use symlinks from each package to the root instructions file', correct: false, feedback: 'Symlinks can cause issues. The built-in `useCustomizationsInParentRepositories` setting is the intended solution.' },
                 ]
               },
               {
                 id: 'cop-l14-s4-q3',
-                question: 'What browser debugging capability was added in VS Code 1.112+?',
+                question: 'Your Copilot skills aren\'t triggering when expected. How do you diagnose the issue?',
                 codeBlock: null,
                 options: [
-                  { label: 'Agent mode can read browser console logs and debug web applications by observing runtime errors', correct: true, feedback: 'Correct. VS Code 1.112+ allows agent mode to interact with a browser debugger, reading console output and runtime errors to help diagnose and fix frontend issues.' },
-                  { label: 'Copilot can now render web pages inside VS Code', correct: false, feedback: 'The feature is about reading browser debug output, not rendering pages inside the editor.' },
-                  { label: 'A built-in browser replaced the need for Chrome DevTools', correct: false, feedback: 'The feature integrates with browser debugging, not replaces DevTools.' },
-                  { label: 'Copilot can now modify browser cookies and local storage', correct: false, feedback: 'The debugging feature reads console logs and errors, not modify browser storage.' },
+                  { label: 'Run `/troubleshoot` to check if skills are being loaded, and inspect the Chat Diagnostics view for matching details', correct: true, feedback: 'Correct. `/troubleshoot` diagnoses Copilot configuration issues. The Chat Diagnostics view (right-click in Chat) shows which skills and instructions are active and why others aren\'t matching.' },
+                  { label: 'Reinstall VS Code — skill loading is a known bug', correct: false, feedback: 'Skills not triggering is usually a description mismatch or path issue, not a bug. Use `/troubleshoot` to diagnose.' },
+                  { label: 'Skills always trigger — the issue must be elsewhere', correct: false, feedback: 'Skills only trigger when the description semantically matches your request. If the description doesn\'t match, the skill won\'t load.' },
+                  { label: 'Check the browser console for JavaScript errors', correct: false, feedback: 'Copilot has built-in diagnostics. `/troubleshoot` and Chat Diagnostics are the right tools, not browser console.' },
                 ]
               },
               {
                 id: 'cop-l14-s4-q4',
-                question: 'What monorepo support improvement came with recent Copilot updates?',
+                question: 'You want Copilot agent to run freely without approval prompts, including auto-responding to questions. Which permission level?',
                 codeBlock: null,
                 options: [
-                  { label: 'Copilot can now understand and work across multiple packages in a monorepo, respecting workspace boundaries', correct: true, feedback: 'Correct. Recent updates improved monorepo support so Copilot understands package boundaries, shared dependencies, and cross-package relationships within monorepo structures.' },
-                  { label: 'Copilot now requires a monorepo structure for all projects', correct: false, feedback: 'Monorepo support is optional — Copilot works with any project structure.' },
-                  { label: 'A new `/monorepo` command was added', correct: false, feedback: 'The improvement is automatic understanding of monorepo structure, not a specific command.' },
-                  { label: 'Copilot can now split monorepos into separate repositories', correct: false, feedback: 'The improvement is about understanding and working within monorepos, not splitting them.' },
+                  { label: 'Autopilot — it auto-approves all tool calls AND auto-responds to agent questions, running fully autonomously', correct: true, feedback: 'Correct. Autopilot is the highest autonomy level. Unlike Bypass (which only skips tool approvals), Autopilot also auto-responds to the agent\'s clarifying questions, enabling truly hands-off execution.' },
+                  { label: 'Bypass Approvals — it auto-approves everything', correct: false, feedback: 'Bypass auto-approves tool calls but still pauses when the agent asks clarifying questions. Autopilot handles both.' },
+                  { label: 'Default with all tools pre-approved', correct: false, feedback: 'Pre-approving tools doesn\'t handle agent questions. Autopilot is needed for fully autonomous operation.' },
+                  { label: 'There is no way to run fully autonomously', correct: false, feedback: 'Autopilot mode (Preview) enables fully autonomous operation.' },
                 ]
               },
               {
                 id: 'cop-l14-s4-q5',
-                question: 'What does the `/troubleshoot` command do in Copilot?',
+                question: 'Your MCP server works fine in development (STDIO) but you\'re worried about security when team members add servers from the gallery. What Copilot feature helps?',
                 codeBlock: null,
                 options: [
-                  { label: 'Diagnoses problems with your Copilot setup, extensions, or configuration and suggests fixes', correct: true, feedback: 'Correct. `/troubleshoot` helps debug issues with Copilot itself — checking extension status, configuration problems, authentication issues, and suggesting remediation steps.' },
-                  { label: 'Debugs runtime errors in your application code', correct: false, feedback: '`/troubleshoot` diagnoses Copilot configuration issues, not application bugs. For app debugging, use Agent mode.' },
-                  { label: 'Runs all tests and reports failures', correct: false, feedback: '`/troubleshoot` is about Copilot health, not test execution.' },
-                  { label: 'Contacts GitHub support automatically', correct: false, feedback: '`/troubleshoot` performs local diagnostics — it does not contact support.' },
+                  { label: 'MCP server sandboxing — restricts file system and network access per server with `sandboxEnabled: true`', correct: true, feedback: 'Correct. Recent VS Code versions added process-level sandboxing for MCP servers. You can restrict which directories a server can write to and which domains it can access, preventing malicious servers from harming your system.' },
+                  { label: 'Disable MCP entirely for team members', correct: false, feedback: 'That removes useful functionality. Sandboxing lets you keep MCP while limiting risk per server.' },
+                  { label: 'Only use HTTP transport — it\'s inherently more secure', correct: false, feedback: 'Transport type doesn\'t determine security. Sandboxing restricts what a server process can do regardless of transport.' },
+                  { label: 'Review each server\'s source code before installing', correct: false, feedback: 'Code review helps but doesn\'t prevent runtime misbehavior. Sandboxing provides runtime security boundaries.' },
                 ]
               },
             ]

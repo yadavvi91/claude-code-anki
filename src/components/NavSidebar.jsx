@@ -8,6 +8,7 @@ const DEFAULT_SECTIONS = [
   { id: 'insight',  label: 'The Insight' },
   { id: 'method',   label: 'The Method' },
   { id: 'modules',  label: 'Modules', divider: true },
+  { id: 'compare', label: 'Compare' },
 ]
 
 export default function NavSidebar({ sections = DEFAULT_SECTIONS }) {
