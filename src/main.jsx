@@ -17,6 +17,7 @@ import Lesson11 from './pages/lessons/Lesson11'
 import Lesson12 from './pages/lessons/Lesson12'
 import Lesson13 from './pages/lessons/Lesson13'
 import Lesson14 from './pages/lessons/Lesson14'
+import Lesson15 from './pages/lessons/Lesson15'
 import Interlude01 from './pages/interludes/Interlude01'
 import Interlude02 from './pages/interludes/Interlude02'
 import Interlude03 from './pages/interludes/Interlude03'
@@ -46,6 +47,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/claude-code/architecture" element={<Lesson01 />} />
         <Route path="/claude-code/planning" element={<Lesson02 />} />
         <Route path="/claude-code/mcp-github" element={<Lesson03 />} />
+        <Route path="/claude-code/agent-loop" element={<Lesson15 />} />
 
         {/* Interlude 1 */}
         <Route path="/interlude/1" element={<Interlude01 />} />

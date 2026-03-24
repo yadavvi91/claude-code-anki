@@ -760,6 +760,246 @@ export const modules = [
           },
         ]
       },
+      {
+        id: 'cc-l15',
+        title: 'The Agent Loop',
+        slug: 'claude-code/agent-loop',
+        cardSets: [
+          {
+            id: 'cc-l15-s1',
+            title: 'Set 1 — The Core Loop',
+            cards: [
+              {
+                id: 'cc-l15-s1-q1',
+                question: 'What is the fundamental pattern behind every AI coding agent (Claude Code, GitHub Copilot, pi, etc.)?',
+                codeBlock: null,
+                options: [
+                  { label: 'A continuous loop: receive input → call LLM → parse tool calls → execute tools → feed results back → repeat', correct: true, feedback: 'Correct. The agent loop is the core pattern: the LLM generates tool calls, the runtime executes them, results feed back as context, and the loop continues until no more tool calls are needed.' },
+                  { label: 'A single request-response cycle where the LLM generates all code at once', correct: false, feedback: 'AI agents iterate. They make tool calls, observe results, and decide next steps — not a single shot.' },
+                  { label: 'A pipeline that preprocesses code before sending it to the LLM', correct: false, feedback: 'The agent loop is iterative, not a one-way pipeline. The LLM drives the loop by requesting tool calls.' },
+                  { label: 'A queue system where tasks are processed in batch', correct: false, feedback: 'Agent loops process turns interactively, not in batch. Each LLM response can trigger new tool calls that feed back immediately.' },
+                ]
+              },
+              {
+                id: 'cc-l15-s1-q2',
+                question: 'In the agent loop, what determines whether the loop continues or terminates?',
+                codeBlock: null,
+                options: [
+                  { label: 'Whether the LLM response contains tool calls — if yes, execute and loop; if no, exit with the final text', correct: true, feedback: 'Correct. The loop\'s termination condition is simple: if the assistant response includes tool calls, execute them and continue. If it\'s just text (no tool calls), the task is done.' },
+                  { label: 'A fixed number of iterations set in configuration', correct: false, feedback: 'While some agents have max-turn limits as safety guards, the primary mechanism is the LLM deciding not to make more tool calls.' },
+                  { label: 'The user manually pressing a "stop" button', correct: false, feedback: 'Users can cancel, but normal termination happens when the LLM produces a response with no tool calls — it decides the task is complete.' },
+                  { label: 'A timer that expires after a set duration', correct: false, feedback: 'There\'s no timer-based termination. The loop ends when the LLM stops requesting tool calls.' },
+                ]
+              },
+              {
+                id: 'cc-l15-s1-q3',
+                question: 'Why do agent loops maintain the full conversation history (messages array) across turns?',
+                codeBlock: 'messages = [\n  { role: "user", content: "Fix the login bug" },\n  { role: "assistant", tool_calls: [{ name: "Read", args: { path: "auth.js" } }] },\n  { role: "tool", content: "// auth.js contents..." },\n  { role: "assistant", tool_calls: [{ name: "Edit", args: { ... } }] },\n  { role: "tool", content: "File edited successfully" },\n  { role: "assistant", content: "Fixed the bug by..." }\n]',
+                options: [
+                  { label: 'So the LLM can see what it already tried, what worked, and what the current state is — enabling multi-step reasoning', correct: true, feedback: 'Correct. The conversation history IS the agent\'s memory. Each tool result becomes context for the next decision. Without it, the LLM would repeat the same actions or lose track of progress.' },
+                  { label: 'To create an audit log for debugging', correct: false, feedback: 'While useful for debugging, the primary purpose is giving the LLM context for its next decision. The history is the agent\'s working memory.' },
+                  { label: 'For billing and token counting purposes', correct: false, feedback: 'Token counting is a side concern. The history exists so the LLM understands what has happened and can make informed next steps.' },
+                  { label: 'To replay the conversation if the agent crashes', correct: false, feedback: 'Crash recovery is a bonus. The history\'s core purpose is providing the LLM with accumulated context for multi-step reasoning.' },
+                ]
+              },
+              {
+                id: 'cc-l15-s1-q4',
+                question: 'The pi framework uses two parallel message formats: AgentMessage (app-specific) and Message (LLM-compatible). When does the conversion happen?',
+                codeBlock: 'AgentMessage[] (app-specific, flexible)\n    ↓\ntransformContext()  // optional pruning\n    ↓\nconvertToLlm()      // required conversion\n    ↓\nMessage[] (LLM-compatible: user, assistant, toolResult)\n    ↓\nLLM Provider API',
+                options: [
+                  { label: 'Only at the LLM call boundary — the app works with AgentMessages everywhere else', correct: true, feedback: 'Correct. This is a key design principle: keep rich app-specific messages throughout, and only convert to the LLM\'s simpler format right before the API call. This allows the app to track metadata the LLM doesn\'t need.' },
+                  { label: 'Immediately when any message is created', correct: false, feedback: 'Converting immediately would lose app-specific metadata. The conversion is deferred to the LLM call boundary.' },
+                  { label: 'After each tool execution', correct: false, feedback: 'Tool results are stored as AgentMessages. Conversion to LLM format only happens when calling the model.' },
+                  { label: 'When messages are saved to disk for session persistence', correct: false, feedback: 'Session persistence saves AgentMessages (the rich format). LLM Messages are ephemeral — created fresh for each API call.' },
+                ]
+              },
+              {
+                id: 'cc-l15-s1-q5',
+                question: 'What is the role of the system prompt in the agent loop?',
+                codeBlock: null,
+                options: [
+                  { label: 'It defines the agent\'s identity, available tools, coding conventions, and behavioral rules — sent with every LLM call', correct: true, feedback: 'Correct. The system prompt is the agent\'s "constitution." Claude Code loads CLAUDE.md, tool definitions, and safety rules into it. It shapes every decision the LLM makes throughout the session.' },
+                  { label: 'It\'s only used for the first message, then discarded', correct: false, feedback: 'The system prompt persists across ALL turns. It\'s sent with every LLM API call to maintain consistent behavior.' },
+                  { label: 'It contains the user\'s original task description', correct: false, feedback: 'The user\'s task goes in user messages. The system prompt contains the agent\'s identity, tools, and rules.' },
+                  { label: 'It\'s an optional optimization for faster responses', correct: false, feedback: 'The system prompt is fundamental, not optional. Without it, the agent wouldn\'t know what tools it has or how to behave.' },
+                ]
+              },
+            ]
+          },
+          {
+            id: 'cc-l15-s2',
+            title: 'Set 2 — Tool Execution Pipeline',
+            cards: [
+              {
+                id: 'cc-l15-s2-q1',
+                question: 'When the LLM returns multiple tool calls in a single response, what are the two execution strategies?',
+                codeBlock: null,
+                options: [
+                  { label: 'Sequential (one at a time, order preserved) and Parallel (all at once via Promise.all, faster for independent ops)', correct: true, feedback: 'Correct. Sequential mode is safe for dependent operations (e.g., read then edit). Parallel mode is faster when tools are independent (e.g., reading three different files). Claude Code uses parallel by default.' },
+                  { label: 'Synchronous and asynchronous', correct: false, feedback: 'Both modes are async. The distinction is whether tools run one-after-another (sequential) or concurrently (parallel).' },
+                  { label: 'Local and remote', correct: false, feedback: 'Local vs remote describes WHERE tools run, not HOW they\'re orchestrated. The key distinction is sequential vs parallel execution order.' },
+                  { label: 'Validated and unvalidated', correct: false, feedback: 'Validation (checking args against schema) happens before execution in both modes. The distinction is execution order.' },
+                ]
+              },
+              {
+                id: 'cc-l15-s2-q2',
+                question: 'What happens during the "prepare" phase before a tool actually executes?',
+                codeBlock: 'prepareToolCall()\n  → Validate arguments against JSON schema\n  → Check tool exists in registry\n  → Fire tool_execution_start event\n  → Run beforeToolCall hook (can block)\n  → If blocked: return error, skip execution\n  → If allowed: proceed to execute',
+                options: [
+                  { label: 'Arguments are validated against the tool\'s JSON schema, the tool is looked up, and a beforeToolCall hook can block execution', correct: true, feedback: 'Correct. The prepare phase is a preflight check: schema validation catches bad args, registry lookup ensures the tool exists, and the beforeToolCall hook lets the app block dangerous operations (like requiring user confirmation for destructive commands).' },
+                  { label: 'The tool\'s source code is compiled and loaded', correct: false, feedback: 'Tools are already loaded at agent startup. The prepare phase validates arguments and runs permission checks.' },
+                  { label: 'The LLM is asked to confirm the tool call', correct: false, feedback: 'The LLM initiated the tool call. The prepare phase validates it programmatically — no second LLM call needed.' },
+                  { label: 'Previous tool results are cleared from memory', correct: false, feedback: 'Previous results stay in the conversation history. The prepare phase validates the incoming tool call, not cleaning up old ones.' },
+                ]
+              },
+              {
+                id: 'cc-l15-s2-q3',
+                question: 'How are tools defined in the agent framework? What does a tool definition include?',
+                codeBlock: 'interface AgentTool<T> {\n  name: string;          // "Read", "Edit", "Bash"\n  description: string;   // What the tool does\n  parameters: JSONSchema; // Argument schema\n  execute(\n    toolCallId: string,\n    args: T,\n    signal?: AbortSignal\n  ): Promise<AgentToolResult>;\n}',
+                options: [
+                  { label: 'A name, description (for the LLM), a JSON schema for arguments, and an async execute function that returns content', correct: true, feedback: 'Correct. The name and description help the LLM choose the right tool. The JSON schema validates arguments before execution. The execute function does the actual work and returns text/image content that feeds back into the conversation.' },
+                  { label: 'Just a function name and callback', correct: false, feedback: 'Tools need more than that. The JSON schema ensures the LLM provides valid arguments, and the description helps it choose the right tool.' },
+                  { label: 'A REST API endpoint configuration', correct: false, feedback: 'Tools are local functions with structured interfaces, not REST endpoints. They execute in the agent\'s process.' },
+                  { label: 'A natural language instruction the LLM interprets', correct: false, feedback: 'Tool definitions are structured (schema + code), not natural language. The description IS natural language, but execution is programmatic.' },
+                ]
+              },
+              {
+                id: 'cc-l15-s2-q4',
+                question: 'What is the purpose of the afterToolCall hook in the execution pipeline?',
+                codeBlock: null,
+                options: [
+                  { label: 'It can transform, filter, or augment the tool\'s result before it goes back into the conversation history', correct: true, feedback: 'Correct. The afterToolCall hook is a post-processing step. You might truncate large outputs, redact sensitive data, add metadata, or convert formats — all before the result becomes part of the LLM\'s context.' },
+                  { label: 'It runs cleanup code like closing file handles', correct: false, feedback: 'Resource cleanup is the tool\'s own responsibility. The afterToolCall hook transforms the result content.' },
+                  { label: 'It sends a notification to the user', correct: false, feedback: 'UI notifications are handled by the event system. The afterToolCall hook specifically transforms the tool result.' },
+                  { label: 'It caches the result for future identical calls', correct: false, feedback: 'Caching could be implemented here, but the hook\'s primary purpose is transforming the result before it enters the conversation history.' },
+                ]
+              },
+              {
+                id: 'cc-l15-s2-q5',
+                question: 'Why does the pi framework emit events like tool_execution_start and tool_execution_end throughout the loop?',
+                codeBlock: null,
+                options: [
+                  { label: 'To enable real-time UI updates, logging, and monitoring without coupling the core loop to any specific UI framework', correct: true, feedback: 'Correct. Event-driven architecture decouples the agent loop from the presentation layer. A terminal UI, web UI, or logging system can all subscribe to the same events independently — the core loop doesn\'t need to know about any of them.' },
+                  { label: 'To synchronize multiple agents running in parallel', correct: false, feedback: 'Events are for observability (UI/logging), not inter-agent coordination.' },
+                  { label: 'To persist state to disk after each operation', correct: false, feedback: 'Persistence is a separate concern. Events enable real-time observability.' },
+                  { label: 'To rate-limit API calls', correct: false, feedback: 'Rate limiting is handled at the provider level, not through the event system.' },
+                ]
+              },
+            ]
+          },
+          {
+            id: 'cc-l15-s3',
+            title: 'Set 3 — Context Management',
+            cards: [
+              {
+                id: 'cc-l15-s3-q1',
+                question: 'As a coding session grows long, what problem does context management solve?',
+                codeBlock: null,
+                options: [
+                  { label: 'The conversation history eventually exceeds the LLM\'s context window, so older messages must be compacted or pruned to fit', correct: true, feedback: 'Correct. Every LLM has a context window limit. A long coding session with many file reads and tool results can blow past it. Context compaction summarizes older turns while preserving recent context — like a sliding window of memory.' },
+                  { label: 'It prevents the agent from accessing sensitive files', correct: false, feedback: 'File access control is a permission system concern. Context management deals with fitting conversation history into the LLM\'s token limit.' },
+                  { label: 'It speeds up the LLM response time', correct: false, feedback: 'While shorter context CAN mean faster responses, the primary motivation is fitting within the context window limit to avoid errors.' },
+                  { label: 'It organizes code by programming language', correct: false, feedback: 'Context management is about conversation history size, not code organization.' },
+                ]
+              },
+              {
+                id: 'cc-l15-s3-q2',
+                question: 'What does the transformContext function do in the agent loop pipeline?',
+                codeBlock: 'transformContext: async (messages, signal) => {\n  // Prune old messages beyond a threshold\n  // Inject external context (CLAUDE.md, etc.)\n  // Summarize early conversation turns\n  // Filter out irrelevant tool results\n  return modifiedMessages;\n}',
+                options: [
+                  { label: 'It\'s an optional middleware that can prune, inject, summarize, or filter messages before they\'re sent to the LLM', correct: true, feedback: 'Correct. transformContext is a powerful hook that runs before each LLM call. It can compress history, inject fresh context (like re-reading CLAUDE.md), drop irrelevant tool results, or implement custom compaction strategies.' },
+                  { label: 'It translates messages between programming languages', correct: false, feedback: 'It transforms the conversation context (prune/inject/summarize), not programming language translation.' },
+                  { label: 'It encrypts messages before sending to the API', correct: false, feedback: 'Encryption is handled at the transport layer. transformContext manipulates the conversation history content.' },
+                  { label: 'It formats code blocks for syntax highlighting', correct: false, feedback: 'Syntax highlighting is a UI concern. transformContext manages what the LLM sees in its context window.' },
+                ]
+              },
+              {
+                id: 'cc-l15-s3-q3',
+                question: 'What are "steering messages" in the agent loop?',
+                codeBlock: null,
+                options: [
+                  { label: 'User messages injected mid-execution that redirect the agent — like saying "Stop! Do this instead" while tools are running', correct: true, feedback: 'Correct. Steering messages let users interrupt and redirect. If the agent is mid-way through a wrong approach, you can steer it without waiting for the full loop to complete. The loop checks for steering messages after each tool execution.' },
+                  { label: 'System-generated error messages', correct: false, feedback: 'Error messages come from tool execution failures. Steering messages are user-initiated redirections.' },
+                  { label: 'Navigation commands for the UI', correct: false, feedback: 'Steering messages redirect the LLM\'s behavior, not the UI navigation.' },
+                  { label: 'Logs sent to an external monitoring service', correct: false, feedback: 'Monitoring uses the event system. Steering messages are user interruptions that change the agent\'s direction.' },
+                ]
+              },
+              {
+                id: 'cc-l15-s3-q4',
+                question: 'How does automatic session compaction work in coding agents like pi?',
+                codeBlock: null,
+                options: [
+                  { label: 'When the conversation gets too long, older turns are summarized into a condensed message while recent turns are preserved in full', correct: true, feedback: 'Correct. Compaction creates a summary of early conversation history (what was discussed, what files were changed, what decisions were made) and replaces those verbose turns with the compact summary. Recent turns stay full-fidelity.' },
+                  { label: 'All messages are deleted and the agent starts fresh', correct: false, feedback: 'That would lose all context. Compaction preserves the essence of the conversation through summarization.' },
+                  { label: 'Messages are compressed with gzip before sending to the LLM', correct: false, feedback: 'LLMs don\'t accept compressed binary data. Compaction is semantic compression — summarizing meaning, not bytes.' },
+                  { label: 'The session is split across multiple LLM calls', correct: false, feedback: 'Each LLM call needs the full relevant context. Compaction reduces history to fit in a single call.' },
+                ]
+              },
+            ]
+          },
+          {
+            id: 'cc-l15-s4',
+            title: 'Set 4 — Anatomy of a Coding Agent',
+            cards: [
+              {
+                id: 'cc-l15-s4-q1',
+                question: 'The pi coding agent ships with 4 core tools. What are they and why this minimal set?',
+                codeBlock: null,
+                options: [
+                  { label: 'Read, Write, Edit, and Bash — the minimum needed to read code, create files, modify files, and run commands', correct: true, feedback: 'Correct. These four tools cover the fundamental coding operations. Read observes, Write creates, Edit modifies, and Bash runs everything else (git, npm, tests). Additional tools like Grep and Find can be added, but these four are sufficient for most coding tasks.' },
+                  { label: 'Git, NPM, Docker, and Deploy', correct: false, feedback: 'Those are specific commands, not tools. Git/NPM/Docker run through the Bash tool. The four core tools are Read, Write, Edit, Bash.' },
+                  { label: 'Search, Replace, Compile, Test', correct: false, feedback: 'Search/Replace are subsets of Read/Edit. Compile/Test run through Bash. The four core tools are Read, Write, Edit, Bash.' },
+                  { label: 'Chat, Code, Review, Commit', correct: false, feedback: 'Those describe workflows, not tools. The four core tools are primitive operations: Read, Write, Edit, Bash.' },
+                ]
+              },
+              {
+                id: 'cc-l15-s4-q2',
+                question: 'What is the extension system in pi, and how does it differ from skills?',
+                codeBlock: 'export default function myExtension(pi) {\n  pi.registerTool({ name: "deploy", ... });\n  pi.registerCommand("stats", { ... });\n  pi.on("tool_call", async (event) => { ... });\n}',
+                options: [
+                  { label: 'Extensions are TypeScript modules that register new tools, commands, and event handlers; skills are Markdown files that add domain knowledge to the system prompt', correct: true, feedback: 'Correct. Extensions add capabilities (code that runs), while skills add knowledge (context the LLM reads). An extension might add a "deploy" tool; a skill might describe your team\'s deployment conventions.' },
+                  { label: 'They are the same thing with different names', correct: false, feedback: 'Extensions add executable functionality (new tools, commands). Skills add knowledge through Markdown files that augment the system prompt.' },
+                  { label: 'Extensions are for the UI, skills are for the LLM', correct: false, feedback: 'Extensions can affect both UI and LLM (they register tools the LLM uses). Skills specifically augment the LLM\'s context with domain knowledge.' },
+                  { label: 'Skills are more powerful than extensions', correct: false, feedback: 'Extensions are more powerful — they can register tools, commands, and event handlers. Skills are simpler: Markdown files that add context.' },
+                ]
+              },
+              {
+                id: 'cc-l15-s4-q3',
+                question: 'How does pi\'s Edit tool handle the case where the text to replace appears multiple times in a file?',
+                codeBlock: null,
+                options: [
+                  { label: 'It fails and asks for a more unique match — the old text must appear exactly once to prevent ambiguous edits', correct: true, feedback: 'Correct. This is a safety feature shared with Claude Code\'s Edit tool. If the match isn\'t unique, the edit is rejected. You must provide more surrounding context to make the match unambiguous.' },
+                  { label: 'It replaces all occurrences', correct: false, feedback: 'Replacing all occurrences would be dangerous — you might change code you didn\'t intend to. The tool requires a unique match.' },
+                  { label: 'It replaces only the first occurrence', correct: false, feedback: 'Silently picking the first match could edit the wrong location. Requiring uniqueness ensures the right spot is edited.' },
+                  { label: 'It asks the LLM to choose which occurrence', correct: false, feedback: 'The tool doesn\'t do a second LLM call. It fails fast, and the LLM can retry with a more specific match string.' },
+                ]
+              },
+              {
+                id: 'cc-l15-s4-q4',
+                question: 'Both Claude Code and pi support multiple LLM providers. What abstraction makes this possible?',
+                codeBlock: null,
+                options: [
+                  { label: 'A unified LLM API layer that normalizes streaming, tool calls, and message formats across providers (Anthropic, OpenAI, Google, etc.)', correct: true, feedback: 'Correct. Pi\'s @mariozechner/pi-ai package and Claude Code\'s internal model layer both abstract away provider differences. Tool call formats, streaming events, and message schemas vary between providers — the abstraction normalizes them into a consistent interface.' },
+                  { label: 'Each provider has its own completely separate agent loop', correct: false, feedback: 'The agent loop is provider-agnostic. The LLM abstraction layer handles provider differences so the loop doesn\'t need to change.' },
+                  { label: 'They only support one provider each', correct: false, feedback: 'Both support multiple providers. Pi explicitly supports 18+ providers through its pi-ai abstraction layer.' },
+                  { label: 'The tools translate between provider formats', correct: false, feedback: 'Tools don\'t know about providers. The abstraction layer sits between the agent loop and the LLM API, handling format translation.' },
+                ]
+              },
+              {
+                id: 'cc-l15-s4-q5',
+                question: 'What design philosophy does pi follow that differs from Claude Code\'s approach?',
+                codeBlock: null,
+                options: [
+                  { label: '"Minimal core, maximum extensibility" — deliberately omitting features like MCP and sub-agents, expecting users to add them via extensions', correct: true, feedback: 'Correct. Pi ships lean (4 core tools) and expects customization through extensions. Claude Code ships feature-rich (7 tools, MCP, subagents, skills, hooks built-in). Both are valid philosophies — pi prioritizes flexibility, Claude Code prioritizes out-of-box completeness.' },
+                  { label: 'Pi is more feature-rich than Claude Code', correct: false, feedback: 'It\'s the opposite. Pi is deliberately minimal; Claude Code is feature-rich out of the box.' },
+                  { label: 'Pi only works with one LLM provider', correct: false, feedback: 'Pi supports 18+ providers through its pi-ai abstraction layer — more than Claude Code.' },
+                  { label: 'Pi doesn\'t use the agent loop pattern', correct: false, feedback: 'Pi is built entirely around the agent loop pattern — its pi-agent-core package IS the loop implementation.' },
+                ]
+              },
+            ]
+          },
+        ]
+      },
     ]
   },
   {

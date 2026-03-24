@@ -32,6 +32,17 @@ export default function App() {
         </Reveal>
       </section>
 
+      <section id="resources" style={styles.resourcesSection}>
+        <Reveal>
+          <div style={styles.resourcesInner}>
+            <span style={styles.compareLabel}>Online Resources</span>
+            <p style={styles.resourcesProse}>
+              Keep a cheat sheet handy while you work. The <a href="https://cc.storyfox.cz/" target="_blank" rel="noopener noreferrer" style={styles.resourceLink}>Claude Code Cheat Sheet</a> covers keyboard shortcuts, MCP servers, slash commands, skills & agents, CLI flags, and more — updated to v2.1.
+            </p>
+          </div>
+        </Reveal>
+      </section>
+
       <footer style={styles.footer}>
         <p style={styles.footerText}>
           Built with spaced repetition &middot; Powered by SM-2 algorithm
@@ -91,6 +102,27 @@ const styles = {
     color: T.color.ink3,
     lineHeight: 1.6,
     marginBottom: '1.25rem',
+  },
+  resourcesSection: {
+    padding: '2rem 2rem 1.5rem',
+    borderTop: `1px solid ${T.color.border}`,
+  },
+  resourcesInner: {
+    maxWidth: '640px',
+    margin: '0 auto',
+    textAlign: 'center',
+  },
+  resourcesProse: {
+    fontFamily: T.font.prose,
+    fontSize: '0.9rem',
+    color: T.color.ink3,
+    lineHeight: 1.6,
+    marginTop: '0.5rem',
+  },
+  resourceLink: {
+    color: T.color.accent,
+    textDecoration: 'none',
+    fontWeight: 500,
   },
   compareBtn: {
     display: 'inline-block',

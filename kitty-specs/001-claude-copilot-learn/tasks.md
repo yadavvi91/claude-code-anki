@@ -428,6 +428,8 @@
 | T094-T099 | Fix mismatched images and alt text | WP37 | P0 | ✅ |
 | T100-T103 | Collapsible MCQ practice sections | WP38 | P0 | ✅ |
 | T104 | Tone down scroll animations | WP39 | P0 | ✅ |
+| T105 | Online Resources section on home page | WP40 | P0 | ✅ |
+| T106-T110 | Lesson 15: The Agent Loop | WP41 | P0 | ✅ |
 
 ---
 
@@ -598,3 +600,33 @@
 
 ### Dependencies
 - Depends on WP03 (Reveal component)
+
+---
+
+## Work Package WP40: Online Resources section on home page (Priority: P0) ✅ DONE
+
+**Goal**: Add an "Online Resources" section to the home page linking to the Claude Code Cheat Sheet at cc.storyfox.cz.
+**Independent Test**: Home page shows "Online Resources" section with working link before the footer.
+
+### Included Subtasks
+- [x] T105 Add resources section to App.jsx with link to cc.storyfox.cz cheat sheet
+
+### Dependencies
+- None
+
+---
+
+## Work Package WP41: Lesson 15 — The Agent Loop (Priority: P0) ✅ DONE
+
+**Goal**: Create a new deep-dive lesson explaining how AI coding agents work under the hood — the agent loop pattern, tool execution pipeline, context management, and real-world anatomy of a coding agent. Content sourced from the pi-mono open-source framework (github.com/badlogic/pi-mono) including its coding-agent package.
+**Independent Test**: Lesson 15 renders at /claude-code/agent-loop with 4 sets (19 MCQ cards), correct nav chain (L3 → L15 → Interlude 1), and appears in Module 1 on the home page.
+
+### Included Subtasks
+- [x] T106 Research pi-mono repo: agent loop architecture, coding-agent tools, extension system
+- [x] T107 Add L15 card data to cardSets.js (4 sets, 19 cards across core loop, tool execution, context, anatomy)
+- [x] T108 Create Lesson15.jsx with prose, code blocks, comparison tables, and MCQSection wrappers
+- [x] T109 Wire L15 into router (main.jsx) and update L3 → L15 → Interlude 1 nav chain
+- [x] T110 Verify build and browser rendering
+
+### Dependencies
+- Depends on WP02 (card infrastructure), WP38 (MCQSection)
