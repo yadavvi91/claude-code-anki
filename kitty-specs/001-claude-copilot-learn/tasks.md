@@ -422,6 +422,9 @@
 | T084 | Worktree/subagent guide | WP30 | P1 | ⬜ |
 | T085 | Deploy to GitHub Pages | WP31 | P0 | ✅ |
 | T080 | Fix Hero gradient | WP26 | P1 | ✅ |
+| T086 | NavSidebar on all pages | WP32 | P0 | ✅ |
+| T087-T089 | Syntax highlighting (Prism.js) | WP33 | P0 | ✅ |
+| T090-T093 | Course images overhaul (70+ HD) | WP34 | P0 | ✅ |
 
 ---
 
@@ -513,3 +516,35 @@
 
 ### Dependencies
 - None
+
+---
+
+## Work Package WP32: NavSidebar on all pages (Priority: P0) ✅ DONE
+
+**Goal**: Add section-aware scroll-tracking sidebar to all lesson and interlude pages.
+
+### Included Subtasks
+- [x] T086 Add NavSidebar to 11 lessons + 3 interludes with IntersectionObserver tracking
+
+---
+
+## Work Package WP33: Syntax highlighting with Prism.js (Priority: P0) ✅ DONE
+
+**Goal**: Add code syntax highlighting to CodeBlock and MCQCard components.
+
+### Included Subtasks
+- [x] T087 Install Prism.js, add auto-detection for Python/JSON/YAML/JSX/Bash
+- [x] T088 Add Prism highlighting to MCQCard code blocks
+- [x] T089 Create non-purple custom theme (orange/blue/yellow/amber)
+
+---
+
+## Work Package WP34: Course images overhaul (Priority: P0) ✅ DONE
+
+**Goal**: Replace 320x180 thumbnails with 1920x1080 HD screenshots, add 70+ images across L1-L7.
+
+### Included Subtasks
+- [x] T090 Extract 260 HD images from Chrome-scraped course videos
+- [x] T091 Fix 7 timestamp mismatches in L1-L3
+- [x] T092 Restore 29 skills/subagents images for L8-L11
+- [x] T093 Add 70+ course images across L1-L7 (8-15 per lesson)
