@@ -14,6 +14,7 @@ const DEFAULT_SECTIONS = [
 export default function NavSidebar({ sections = DEFAULT_SECTIONS }) {
   const [active, setActive] = useState(sections[0]?.id || '')
   const [show, setShow]     = useState(false)
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -27,10 +28,13 @@ export default function NavSidebar({ sections = DEFAULT_SECTIONS }) {
       if (el) observer.observe(el)
     })
     const onScroll = () => setShow(window.scrollY > 80)
+    const onResize = () => setIsMobile(window.innerWidth < 768)
     window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onResize, { passive: true })
     return () => {
       observer.disconnect()
       window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onResize)
     }
   }, [sections])
 
@@ -40,7 +44,7 @@ export default function NavSidebar({ sections = DEFAULT_SECTIONS }) {
   return (
     <nav
       aria-label="Page sections"
-      style={{ ...s.nav, opacity: show ? 1 : 0, pointerEvents: show ? 'auto' : 'none' }}
+      style={{ ...s.nav, opacity: show && !isMobile ? 1 : 0, pointerEvents: show && !isMobile ? 'auto' : 'none' }}
     >
       {sections.map(sec => {
         const isActive = active === sec.id
