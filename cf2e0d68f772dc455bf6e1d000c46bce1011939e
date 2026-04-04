@@ -1,0 +1,23 @@
+src/components/NavSidebar.jsx
+  68098c85b7fbaece 17,41,43-44,46-100,104,140,187-264
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.5",
+  "base_commit_sha": "cf2e0d68f772dc455bf6e1d000c46bce1011939e",
+  "prompts": {
+    "68098c85b7fbaece": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "36c2fc92-8520-4531-b2b6-87112da3000e",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Vishal",
+      "messages": [],
+      "total_additions": 141,
+      "total_deletions": 3,
+      "accepted_lines": 141,
+      "overriden_lines": 0
+    }
+  }
+}
