@@ -45,9 +45,8 @@ export default function NavSidebar({ sections = DEFAULT_SECTIONS }) {
 
   const activeLabel = sections.find(s => s.id === active)?.label || 'Sections'
 
-  // Mobile: floating bottom pill
+  // Mobile: floating bottom pill (always visible once mounted)
   if (isMobile) {
-    if (!show) return null
     return (
       <>
         {/* Backdrop when menu is open */}
