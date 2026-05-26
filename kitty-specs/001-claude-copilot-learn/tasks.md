@@ -436,6 +436,12 @@
 | T114 | Create Lesson16.jsx component | WP43 | P0 | ✅ |
 | T115 | Route, nav links, sitemap update | WP43 | P0 | ✅ |
 | T116 | Set 5: Copilot Code Review (cards + prose) | WP43 | P0 | ✅ |
+| T117 | Research AI Fluency Skilljar course content | WP44 | P0 | ✅ |
+| T118 | Card data for L17-L19 in cardSets.js (6 sets, 30 cards) | WP44 | P0 | ✅ |
+| T119 | Create Lesson17.jsx (4D Framework & Gen AI) | WP44 | P0 | ✅ |
+| T120 | Create Lesson18.jsx (Delegation & Description) | WP44 | P0 | ✅ |
+| T121 | Create Lesson19.jsx (Discernment & Diligence) | WP44 | P0 | ✅ |
+| T122 | Routes, nav links, sitemap for Module 7 | WP44 | P0 | ✅ |
 
 ---
 
@@ -666,3 +672,18 @@
 
 ### Dependencies
 - WP30 (Lesson 14 must exist)
+
+## Work Package WP44: Module 7 — AI Fluency (4D Framework) (Priority: P0) ✅ DONE
+
+**Goal:** Create Module 7 from Anthropic's AI Fluency Skilljar course. Three lessons covering the 4D Framework (Delegation, Description, Discernment, Diligence), three collaboration modes (Automation, Augmentation, Agency), and Gen AI foundations.
+
+### Included Subtasks
+- [x] T117 Research all 10 Skilljar lessons via Claude in Chrome, extract key concepts
+- [x] T118 Add Module 7 (ai-fluency) card data to cardSets.js — 3 lessons, 6 sets, 30 MCQ cards
+- [x] T119 Create Lesson17.jsx — The 4D Framework & Gen AI (2 sets: AI Fluency & 4Ds, Gen AI Foundations)
+- [x] T120 Create Lesson18.jsx — Delegation & Description (2 sets: Delegation components, Description components)
+- [x] T121 Create Lesson19.jsx — Discernment & Diligence (2 sets: Discernment types, Diligence components)
+- [x] T122 Add routes in main.jsx, update L16 nav chain, add Module 7 to sitemap
+
+### Dependencies
+- WP43 (Lesson 16 must exist for nav chaining)

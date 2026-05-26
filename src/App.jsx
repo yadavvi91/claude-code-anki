@@ -86,6 +86,12 @@ export default function App() {
                 <Link to="/copilot/coding-agent" style={styles.sitemapLink}>L16: The Coding Agent</Link>
               </div>
               <div style={styles.sitemapCol}>
+                <div style={{ ...styles.sitemapModTitle, color: '#10b981' }}>Module 7 — AI Fluency</div>
+                <Link to="/ai-fluency/framework" style={styles.sitemapLink}>L17: The 4D Framework & Gen AI</Link>
+                <Link to="/ai-fluency/delegation-description" style={styles.sitemapLink}>L18: Delegation & Description</Link>
+                <Link to="/ai-fluency/discernment-diligence" style={styles.sitemapLink}>L19: Discernment & Diligence</Link>
+              </div>
+              <div style={styles.sitemapCol}>
                 <div style={{ ...styles.sitemapModTitle, color: T.color.ink3 }}>Reference</div>
                 <Link to="/comparison" style={styles.sitemapLink}>Claude Code vs GitHub Copilot</Link>
                 <Link to="/review" style={styles.sitemapLink}>Review & Practice</Link>

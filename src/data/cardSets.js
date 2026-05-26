@@ -3076,6 +3076,400 @@ export const modules = [
       },
     ]
   },
+  {
+    id: 'ai-fluency',
+    title: 'AI Fluency (4D Framework)',
+    color: '#10b981',
+    lessons: [
+      {
+        id: 'aif-l17',
+        title: 'The 4D Framework & Gen AI',
+        slug: 'ai-fluency/framework',
+        cardSets: [
+          {
+            id: 'aif-l17-s1',
+            title: 'Set 1 — AI Fluency & the 4Ds',
+            cards: [
+              {
+                id: 'aif-l17-s1-q1',
+                question: 'Anthropic defines "AI Fluency" as the ability to collaborate with AI systems in ways that satisfy four qualities. What are they?',
+                codeBlock: null,
+                options: [
+                  { label: 'Effective, Efficient, Ethical, and Safe', correct: true, feedback: 'Correct. AI Fluency is not just about getting results (effective/efficient) — it also demands responsible use (ethical/safe). All four qualities work together.' },
+                  { label: 'Fast, Accurate, Scalable, and Cheap', correct: false, feedback: 'Those are operational metrics. AI Fluency explicitly includes ethical and safety dimensions alongside effectiveness and efficiency.' },
+                  { label: 'Creative, Analytical, Productive, and Secure', correct: false, feedback: 'AI Fluency\'s four qualities are Effective, Efficient, Ethical, and Safe — balancing outcomes with responsibility.' },
+                  { label: 'Intelligent, Autonomous, Reliable, and Transparent', correct: false, feedback: 'Those describe AI system properties. AI Fluency describes human competencies: Effective, Efficient, Ethical, Safe.' },
+                ]
+              },
+              {
+                id: 'aif-l17-s1-q2',
+                question: 'The AI Fluency Framework identifies three primary ways people engage with AI. Your marketing team uses AI to auto-generate social media posts from a template. Which mode is this?',
+                codeBlock: null,
+                options: [
+                  { label: 'Automation — the AI completes specific tasks based on your instructions', correct: true, feedback: 'Correct. Automation is when AI executes tasks you define. Template-based post generation is a clear automation use case — you provide the structure, AI fills it in.' },
+                  { label: 'Augmentation — you and AI collaborate as creative partners', correct: false, feedback: 'Augmentation involves back-and-forth collaboration. Auto-generating from templates is task execution (Automation), not creative partnership.' },
+                  { label: 'Agency — AI works independently on your behalf', correct: false, feedback: 'Agency is when AI operates with established patterns and autonomy. Template-based generation is structured Automation, not independent Agency.' },
+                  { label: 'Delegation — you assign the task to AI', correct: false, feedback: 'Delegation is one of the 4D competencies, not a collaboration mode. The three modes are Automation, Augmentation, and Agency.' },
+                ]
+              },
+              {
+                id: 'aif-l17-s1-q3',
+                question: 'You\'re brainstorming product names with Claude — you suggest ideas, Claude builds on them, you refine together. Which collaboration mode?',
+                codeBlock: null,
+                options: [
+                  { label: 'Augmentation — you and AI collaborate as creative thinking and task execution partners', correct: true, feedback: 'Correct. Augmentation is the collaborative mode where both human and AI contribute creatively. Brainstorming together is the classic augmentation scenario.' },
+                  { label: 'Automation — AI generates names on command', correct: false, feedback: 'If you just said "generate 10 names" that would be Automation. Back-and-forth creative brainstorming is Augmentation.' },
+                  { label: 'Agency — AI independently creates names', correct: false, feedback: 'Agency is when AI works independently with established patterns. Interactive brainstorming is collaborative Augmentation.' },
+                  { label: 'Description — you\'re describing what you want', correct: false, feedback: 'Description is a 4D competency (how you communicate with AI), not a collaboration mode. This is Augmentation.' },
+                ]
+              },
+              {
+                id: 'aif-l17-s1-q4',
+                question: 'What are the four core competencies (the "4Ds") of the AI Fluency Framework?',
+                codeBlock: null,
+                options: [
+                  { label: 'Delegation, Description, Discernment, Diligence', correct: true, feedback: 'Correct. Delegation (what to hand off), Description (how to communicate), Discernment (how to evaluate outputs), Diligence (how to be responsible). Together they cover the full cycle of working with AI.' },
+                  { label: 'Design, Develop, Deploy, Debug', correct: false, feedback: 'Those are software engineering phases. The 4Ds of AI Fluency are Delegation, Description, Discernment, Diligence.' },
+                  { label: 'Define, Describe, Deliver, Document', correct: false, feedback: 'The 4Ds are Delegation, Description, Discernment, Diligence — covering task assignment, communication, evaluation, and responsibility.' },
+                  { label: 'Data, Direction, Dialogue, Decisions', correct: false, feedback: 'The 4Ds are Delegation, Description, Discernment, Diligence — a framework for effective, responsible AI collaboration.' },
+                ]
+              },
+              {
+                id: 'aif-l17-s1-q5',
+                question: 'You configure an AI coding agent to independently handle bug reports — it triages issues, writes fixes, and opens PRs without your involvement. Which collaboration mode?',
+                codeBlock: null,
+                options: [
+                  { label: 'Agency — you configure AI to work independently on your behalf, establishing its knowledge and behavior patterns', correct: true, feedback: 'Correct. Agency is when you set up AI to operate autonomously with established patterns. You\'re not giving specific task instructions — you\'re establishing behavior patterns the AI follows independently.' },
+                  { label: 'Automation — AI executes tasks on instructions', correct: false, feedback: 'Automation is task-specific execution. Agency goes further — the AI operates with established behavior patterns, making decisions independently.' },
+                  { label: 'Augmentation — you collaborate with AI', correct: false, feedback: 'Augmentation requires active collaboration. Agency means the AI works independently based on patterns you\'ve established.' },
+                  { label: 'Delegation — you assigned the work to AI', correct: false, feedback: 'Delegation is a 4D competency (the decision of what to hand off). The collaboration mode here is Agency — independent AI operation.' },
+                ]
+              },
+            ]
+          },
+          {
+            id: 'aif-l17-s2',
+            title: 'Set 2 — Generative AI Foundations',
+            cards: [
+              {
+                id: 'aif-l17-s2-q1',
+                question: 'What distinguishes generative AI from traditional AI systems?',
+                codeBlock: null,
+                options: [
+                  { label: 'Generative AI creates new content (text, images, code) rather than just analyzing or classifying existing data', correct: true, feedback: 'Correct. Traditional AI analyzes, classifies, or predicts based on existing data. Generative AI produces novel outputs — text, images, code, music — that didn\'t exist before.' },
+                  { label: 'Generative AI is faster than traditional AI', correct: false, feedback: 'Speed isn\'t the distinction. Generative AI\'s defining feature is creating new content, not just analyzing existing data.' },
+                  { label: 'Generative AI doesn\'t need training data', correct: false, feedback: 'Generative AI requires massive training data. What\'s different is that it produces new content rather than just analyzing existing data.' },
+                  { label: 'Generative AI is always more accurate', correct: false, feedback: 'Generative AI can hallucinate and make errors. Its distinction is creating new content, not superior accuracy.' },
+                ]
+              },
+              {
+                id: 'aif-l17-s2-q2',
+                question: 'Three key developments made modern large language models possible. Which combination is correct?',
+                codeBlock: null,
+                options: [
+                  { label: 'Algorithmic breakthroughs (transformer architecture), vast digital training data, and dramatic increases in computational power', correct: true, feedback: 'Correct. The transformer architecture (2017) was the algorithmic leap, billions of text examples provided the training data, and GPU clusters provided the compute. All three had to come together.' },
+                  { label: 'Faster internet, bigger databases, and cheaper storage', correct: false, feedback: 'Those are infrastructure improvements. LLMs required specific advances: the transformer architecture, massive training corpora, and GPU compute at scale.' },
+                  { label: 'Better programming languages, cloud computing, and open source', correct: false, feedback: 'The three key developments were the transformer architecture, vast training data, and massive computational power.' },
+                  { label: 'Neural networks, reinforcement learning, and quantum computing', correct: false, feedback: 'Quantum computing is not involved. The three developments are transformer architecture, vast training data, and computational scale.' },
+                ]
+              },
+              {
+                id: 'aif-l17-s2-q3',
+                question: 'LLMs learn through two stages. What are they and what happens in each?',
+                codeBlock: null,
+                options: [
+                  { label: 'Pre-training (analyzing patterns across billions of examples) followed by fine-tuning (learning to follow instructions and provide helpful responses)', correct: true, feedback: 'Correct. Pre-training builds the broad knowledge base from massive text data. Fine-tuning then teaches the model to be helpful, harmless, and honest in conversations — turning raw pattern knowledge into a useful assistant.' },
+                  { label: 'Coding (writing the model) followed by testing (checking for bugs)', correct: false, feedback: 'Those are software development steps. LLM learning stages are pre-training (pattern learning) and fine-tuning (instruction following).' },
+                  { label: 'Memorization (storing facts) followed by retrieval (looking them up)', correct: false, feedback: 'LLMs don\'t memorize and retrieve like databases. They pre-train on patterns, then fine-tune to follow instructions.' },
+                  { label: 'Supervised learning followed by unsupervised learning', correct: false, feedback: 'It\'s actually closer to the reverse: pre-training is largely unsupervised (pattern learning), while fine-tuning uses supervised and reinforcement techniques.' },
+                ]
+              },
+              {
+                id: 'aif-l17-s2-q4',
+                question: 'Which of these is a well-known limitation of current generative AI systems?',
+                codeBlock: null,
+                options: [
+                  { label: 'Hallucinations — generating factually incorrect outputs that sound confident and plausible', correct: true, feedback: 'Correct. Hallucinations are a core limitation. AI can produce fluent, confident-sounding text that is factually wrong. This is why Discernment (evaluating AI outputs) is a critical AI Fluency competency.' },
+                  { label: 'Inability to process natural language', correct: false, feedback: 'Natural language processing is generative AI\'s core strength. Hallucinations — confident but incorrect outputs — are the well-known limitation.' },
+                  { label: 'Requiring manual programming for each new task', correct: false, feedback: 'Generative AI is versatile across tasks without reprogramming. Hallucinations are the key limitation to watch for.' },
+                  { label: 'Only working with English text', correct: false, feedback: 'Modern LLMs work across many languages. The well-known limitation is hallucinations — plausible but incorrect outputs.' },
+                ]
+              },
+              {
+                id: 'aif-l17-s2-q5',
+                question: 'The course emphasizes that the most effective AI applications combine human and AI strengths. What do humans uniquely contribute?',
+                codeBlock: null,
+                options: [
+                  { label: 'Critical thinking, judgment, creativity, and ethical oversight', correct: true, feedback: 'Correct. AI brings speed, scale, and pattern recognition. Humans bring critical thinking, nuanced judgment, genuine creativity, and ethical oversight. The best outcomes emerge from combining both.' },
+                  { label: 'Faster processing and larger memory', correct: false, feedback: 'Those are AI strengths. Humans uniquely contribute critical thinking, judgment, creativity, and ethical oversight.' },
+                  { label: 'More training data and better algorithms', correct: false, feedback: 'Those are technical AI components. The human contribution is critical thinking, judgment, creativity, and ethical oversight.' },
+                  { label: 'Nothing — AI can do everything better', correct: false, feedback: 'The course explicitly rejects this view. Humans contribute irreplaceable critical thinking, judgment, creativity, and ethical oversight.' },
+                ]
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'aif-l18',
+        title: 'Delegation & Description',
+        slug: 'ai-fluency/delegation-description',
+        cardSets: [
+          {
+            id: 'aif-l18-s1',
+            title: 'Set 1 — Delegation',
+            cards: [
+              {
+                id: 'aif-l18-s1-q1',
+                question: 'Delegation has three components. Your colleague says "I just ask AI to do everything." What component are they skipping?',
+                codeBlock: null,
+                options: [
+                  { label: 'Problem Awareness — understanding your goals and the work involved before involving AI', correct: true, feedback: 'Correct. Problem Awareness means clearly understanding what you\'re trying to achieve before deciding what to delegate. Without it, you\'re blindly handing off work without knowing what "good" looks like.' },
+                  { label: 'Platform Awareness — knowing what AI can do', correct: false, feedback: 'Platform Awareness matters, but the first missing step is Problem Awareness — understanding the goal before deciding what to delegate.' },
+                  { label: 'Task Delegation — dividing work effectively', correct: false, feedback: 'Task Delegation is the final step. First you need Problem Awareness — understanding the goal and the work involved.' },
+                  { label: 'Description — communicating clearly with AI', correct: false, feedback: 'Description is a separate competency. Within Delegation, the missing component is Problem Awareness.' },
+                ]
+              },
+              {
+                id: 'aif-l18-s1-q2',
+                question: 'What are the three components of the Delegation competency?',
+                codeBlock: null,
+                options: [
+                  { label: 'Problem Awareness (understanding goals), Platform Awareness (knowing AI capabilities), and Task Delegation (distributing work strategically)', correct: true, feedback: 'Correct. First understand what you need (Problem Awareness), then what AI can do (Platform Awareness), then decide who does what (Task Delegation). This sequence ensures thoughtful delegation rather than reflexive offloading.' },
+                  { label: 'Planning, Prompting, and Publishing', correct: false, feedback: 'Delegation\'s three components are Problem Awareness, Platform Awareness, and Task Delegation.' },
+                  { label: 'Assigning, Monitoring, and Reviewing', correct: false, feedback: 'Those are management steps. Delegation\'s components are Problem Awareness, Platform Awareness, and Task Delegation.' },
+                  { label: 'Input, Processing, and Output', correct: false, feedback: 'Those describe computation. Delegation\'s components are Problem Awareness, Platform Awareness, and Task Delegation.' },
+                ]
+              },
+              {
+                id: 'aif-l18-s1-q3',
+                question: 'You\'re planning a research report. What does the course say about the goal of Delegation?',
+                codeBlock: null,
+                options: [
+                  { label: 'Not to automate everything, but to create the most effective human-AI partnership for the task', correct: true, feedback: 'Correct. Delegation is strategic, not maximal. Some tasks benefit from human expertise, others from AI speed, and some from collaboration. The goal is the right mix, not the most automation.' },
+                  { label: 'To automate as much as possible to save time', correct: false, feedback: 'The course explicitly says the goal is NOT to automate everything. It\'s about creating the most effective partnership.' },
+                  { label: 'To keep humans in control of every step', correct: false, feedback: 'Some tasks benefit from AI independence (Agency). The goal is the most effective partnership, which may include AI autonomy where appropriate.' },
+                  { label: 'To replace human workers with AI', correct: false, feedback: 'Delegation is about partnership, not replacement. The goal is combining human and AI strengths effectively.' },
+                ]
+              },
+              {
+                id: 'aif-l18-s1-q4',
+                question: 'Platform Awareness means knowing what different AI systems can do. Why does this matter for Delegation?',
+                codeBlock: null,
+                options: [
+                  { label: 'Without knowing AI capabilities and limitations, you can\'t make informed decisions about which tasks to delegate vs. keep', correct: true, feedback: 'Correct. If you don\'t know an AI\'s strengths (speed, breadth, pattern recognition) and limitations (hallucinations, reasoning gaps, knowledge cutoffs), you\'ll either under-delegate or over-delegate.' },
+                  { label: 'So you can pick the cheapest AI service', correct: false, feedback: 'Platform Awareness is about capabilities and limitations, not pricing. It informs which tasks AI can handle well.' },
+                  { label: 'To impress colleagues with your AI knowledge', correct: false, feedback: 'Platform Awareness serves a practical purpose: making informed delegation decisions based on what AI can and cannot do.' },
+                  { label: 'It doesn\'t matter — all AI systems are the same', correct: false, feedback: 'AI systems vary significantly in capabilities. Platform Awareness helps you match tasks to the right system.' },
+                ]
+              },
+              {
+                id: 'aif-l18-s1-q5',
+                question: 'The course recommends using AI itself as a planning partner. For a multi-step project, what approach do they suggest?',
+                codeBlock: null,
+                options: [
+                  { label: 'Share your project idea with Claude, let it ask questions to refine the vision, then collaboratively identify tasks and decide which benefit from human vs. AI strengths', correct: true, feedback: 'Correct. The course treats delegation as a collaborative conversation, not a solo planning exercise. Claude can help identify tasks, surface considerations you might miss, and challenge your assumptions about what to delegate.' },
+                  { label: 'Write a detailed plan first, then hand every task to AI', correct: false, feedback: 'The course recommends collaborative planning with AI, not solo planning followed by full delegation.' },
+                  { label: 'Only delegate tasks you don\'t want to do yourself', correct: false, feedback: 'Delegation should be strategic (based on strengths), not based on personal preference. The course recommends collaborative task analysis.' },
+                  { label: 'Never use AI for planning — only for execution', correct: false, feedback: 'The course explicitly uses AI as a planning partner, having conversations about delegation strategy with Claude.' },
+                ]
+              },
+            ]
+          },
+          {
+            id: 'aif-l18-s2',
+            title: 'Set 2 — Description',
+            cards: [
+              {
+                id: 'aif-l18-s2-q1',
+                question: 'Description has three components. You tell Claude "Write me a blog post." Which component(s) are you missing?',
+                codeBlock: null,
+                options: [
+                  { label: 'All three — Product Description (what format/audience/style), Process Description (how to approach it), and Performance Description (how to behave during collaboration)', correct: true, feedback: 'Correct. "Write me a blog post" has no Product spec (topic? audience? length?), no Process guidance (research first? outline?), and no Performance direction (concise? detailed? challenging?). Clear Description across all three saves iteration time.' },
+                  { label: 'Only Product Description — you didn\'t specify the topic', correct: false, feedback: 'Topic is one gap, but you\'re also missing Process Description (approach) and Performance Description (behavior style). All three matter.' },
+                  { label: 'None — this is a clear enough prompt', correct: false, feedback: 'This prompt is severely underspecified. Description requires Product (what), Process (how), and Performance (behavior) clarity.' },
+                  { label: 'Only Performance Description — you didn\'t say "be creative"', correct: false, feedback: 'You\'re missing all three: Product (format/audience/style), Process (approach/steps), and Performance (behavior/tone).' },
+                ]
+              },
+              {
+                id: 'aif-l18-s2-q2',
+                question: 'What is Product Description?',
+                codeBlock: null,
+                options: [
+                  { label: 'Clearly defining what you want the AI to create — outputs, format, audience, and style', correct: true, feedback: 'Correct. Product Description is the "what" — specifying the deliverable. Include format (email? report?), audience (technical? executive?), style (formal? conversational?), and any other output requirements.' },
+                  { label: 'Describing a product you want to sell', correct: false, feedback: 'Product Description in the 4D Framework means defining the output you want AI to create — format, audience, style, length.' },
+                  { label: 'Writing product documentation', correct: false, feedback: 'Product Description means specifying what AI should create for you — the deliverable definition, not documentation.' },
+                  { label: 'Telling AI about your company\'s products', correct: false, feedback: 'Product Description is about defining the AI\'s output — what you want created, in what format, for what audience.' },
+                ]
+              },
+              {
+                id: 'aif-l18-s2-q3',
+                question: 'You want Claude to write a technical guide but find it\'s being too verbose and not challenging your assumptions. Which Description component addresses this?',
+                codeBlock: null,
+                options: [
+                  { label: 'Performance Description — defining how you want the AI to behave (concise vs. detailed, challenging vs. supportive)', correct: true, feedback: 'Correct. Performance Description shapes the AI\'s behavior during collaboration. Tell it to be concise, push back on weak arguments, or ask probing questions. It\'s not about what to create (Product) but how to interact.' },
+                  { label: 'Product Description — specifying the output format', correct: false, feedback: 'Product Description defines the deliverable. The AI\'s verbosity and passivity are behavioral issues — that\'s Performance Description.' },
+                  { label: 'Process Description — guiding the approach', correct: false, feedback: 'Process Description guides methodology. How the AI communicates (verbose/concise, challenging/supportive) is Performance Description.' },
+                  { label: 'Delegation — you should do it yourself instead', correct: false, feedback: 'The fix is better Performance Description — tell the AI to be concise and challenge your thinking.' },
+                ]
+              },
+              {
+                id: 'aif-l18-s2-q4',
+                question: 'The course describes AI systems as "interactive partners, not databases or vending machines." What does this mean for Description?',
+                codeBlock: null,
+                options: [
+                  { label: 'You should communicate with AI the way you\'d brief a skilled colleague — providing context, goals, and expectations — not just input a query and expect a perfect answer', correct: true, feedback: 'Correct. Treating AI as a partner means giving it Product (what to create), Process (how to approach it), and Performance (how to interact) context. A vending machine needs a button press; a partner needs a briefing.' },
+                  { label: 'AI will always ask follow-up questions before starting', correct: false, feedback: 'AI can be prompted to ask questions, but the insight is about YOUR approach — treating AI as a partner worth briefing, not a tool worth commanding.' },
+                  { label: 'You should keep prompts as short as possible', correct: false, feedback: 'The opposite — treating AI as a partner means providing rich context (Product, Process, Performance Description), not minimal commands.' },
+                  { label: 'AI has feelings and should be treated politely', correct: false, feedback: 'The point is about communication strategy, not sentiment. Brief AI like a colleague — with context, goals, and expectations.' },
+                ]
+              },
+              {
+                id: 'aif-l18-s2-q5',
+                question: 'The course lists six foundational prompting techniques. Which is called the "secret weapon"?',
+                codeBlock: null,
+                options: [
+                  { label: 'Asking the AI itself to help improve your prompt', correct: true, feedback: 'Correct. The "meta-prompting" technique — asking AI to critique and improve your prompt before you use it — is called the secret weapon. It leverages the AI\'s understanding of what makes a good prompt.' },
+                  { label: 'Giving context about what you want', correct: false, feedback: 'Context is foundational but not the "secret weapon." The secret weapon is asking AI to help improve your prompt.' },
+                  { label: 'Breaking complex tasks into steps', correct: false, feedback: 'Step decomposition is one of the six techniques. The "secret weapon" is asking AI to help refine your prompt.' },
+                  { label: 'Defining the AI\'s role or tone', correct: false, feedback: 'Role/tone setting is one technique. The "secret weapon" is meta-prompting — asking AI to improve your prompt itself.' },
+                ]
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'aif-l19',
+        title: 'Discernment & Diligence',
+        slug: 'ai-fluency/discernment-diligence',
+        cardSets: [
+          {
+            id: 'aif-l19-s1',
+            title: 'Set 1 — Discernment',
+            cards: [
+              {
+                id: 'aif-l19-s1-q1',
+                question: 'Discernment is the "flip side" of which other competency?',
+                codeBlock: null,
+                options: [
+                  { label: 'Description — Description helps you communicate intentions, Discernment helps you evaluate whether outputs meet those intentions', correct: true, feedback: 'Correct. Description and Discernment form a natural loop. You describe what you want, evaluate what you get, then refine your description based on what you learned. They\'re two halves of the same cycle.' },
+                  { label: 'Delegation — Discernment evaluates what you delegated', correct: false, feedback: 'While Discernment can inform future Delegation decisions, the course specifically pairs Discernment as the flip side of Description.' },
+                  { label: 'Diligence — Discernment is the ethical check', correct: false, feedback: 'Diligence handles ethics. Discernment is paired with Description as two sides of the communication-evaluation cycle.' },
+                  { label: 'It\'s independent — it doesn\'t pair with any other competency', correct: false, feedback: 'The course explicitly calls Discernment the flip side of Description. They form a continuous feedback loop.' },
+                ]
+              },
+              {
+                id: 'aif-l19-s1-q2',
+                question: 'Claude generated a market analysis for you. You notice the data supports your hypothesis but some statistics seem too convenient. Which type of Discernment are you applying?',
+                codeBlock: null,
+                options: [
+                  { label: 'Product Discernment — evaluating the quality of AI outputs for accuracy, appropriateness, coherence, and relevance', correct: true, feedback: 'Correct. Product Discernment focuses on the output itself. Questioning suspicious statistics is evaluating accuracy and relevance — classic Product Discernment.' },
+                  { label: 'Process Discernment — assessing how AI approached the task', correct: false, feedback: 'Process Discernment examines the AI\'s methodology. Checking whether specific statistics are accurate is Product Discernment — evaluating the output quality.' },
+                  { label: 'Performance Discernment — evaluating how AI behaved', correct: false, feedback: 'Performance Discernment evaluates communication style and responsiveness. Checking data accuracy is Product Discernment.' },
+                  { label: 'Delegation Discernment — deciding if you should have done it yourself', correct: false, feedback: 'There\'s no "Delegation Discernment." The three types are Product, Process, and Performance Discernment.' },
+                ]
+              },
+              {
+                id: 'aif-l19-s1-q3',
+                question: 'You asked Claude to analyze a problem step-by-step, but it skipped a critical logical step and jumped to a conclusion. Which Discernment type catches this?',
+                codeBlock: null,
+                options: [
+                  { label: 'Process Discernment — assessing how the AI approached the task, looking for logical errors, attention gaps, or inappropriate reasoning', correct: true, feedback: 'Correct. Process Discernment examines the AI\'s reasoning path. A skipped logical step is a process failure — the methodology was flawed even if the conclusion happened to be right.' },
+                  { label: 'Product Discernment — the final answer might still be correct', correct: false, feedback: 'Even if the answer is correct, a flawed reasoning process is a Process Discernment issue. Skipped logic means the conclusion isn\'t trustworthy.' },
+                  { label: 'Performance Discernment — the AI wasn\'t thorough enough', correct: false, feedback: 'Thoroughness of reasoning is Process Discernment. Performance Discernment is about communication style and behavior.' },
+                  { label: 'This isn\'t a Discernment issue — just ask it to try again', correct: false, feedback: 'This is exactly what Process Discernment catches — flawed reasoning that needs to be identified before you can improve your Description.' },
+                ]
+              },
+              {
+                id: 'aif-l19-s1-q4',
+                question: 'What is the Description-Discernment loop?',
+                codeBlock: null,
+                options: [
+                  { label: 'An iterative cycle: describe what you want → evaluate what you get → refine your description → evaluate again, creating results that exceed what either human or AI could achieve alone', correct: true, feedback: 'Correct. The loop is the core workflow of AI collaboration. Each cycle improves both your Description skills and the AI\'s output. The course claims this loop can produce results beyond what either party could achieve independently.' },
+                  { label: 'A one-time quality check before publishing AI output', correct: false, feedback: 'It\'s iterative, not one-time. The loop means continuous refinement through describe-evaluate-refine cycles.' },
+                  { label: 'A tool that automatically checks AI responses', correct: false, feedback: 'The loop is a human practice, not an automated tool. You actively describe, evaluate, and refine in cycles.' },
+                  { label: 'A way to train AI on your preferences', correct: false, feedback: 'The loop improves each interaction through iterative refinement, but it\'s not about training the AI permanently.' },
+                ]
+              },
+              {
+                id: 'aif-l19-s1-q5',
+                question: 'The course says "even the most advanced AI systems benefit from human judgment and oversight." What makes human Discernment irreplaceable?',
+                codeBlock: null,
+                options: [
+                  { label: 'Humans bring domain expertise, contextual understanding, ethical judgment, and the ability to catch subtle errors that AI cannot self-detect', correct: true, feedback: 'Correct. AI can\'t reliably evaluate its own outputs — it doesn\'t "know what it doesn\'t know." Human domain expertise catches factual errors, contextual mismatches, and ethical issues that AI would miss or generate confidently.' },
+                  { label: 'Humans are smarter than AI in every way', correct: false, feedback: 'AI excels at many tasks. Human Discernment is irreplaceable specifically because of domain expertise, context, and ethical judgment — not general superiority.' },
+                  { label: 'AI never makes mistakes when properly prompted', correct: false, feedback: 'AI regularly makes mistakes (hallucinations, reasoning errors) regardless of prompt quality. That\'s exactly why human Discernment matters.' },
+                  { label: 'Discernment is optional for experienced AI users', correct: false, feedback: 'The course says even the most advanced AI needs human oversight. Discernment is essential regardless of experience level.' },
+                ]
+              },
+            ]
+          },
+          {
+            id: 'aif-l19-s2',
+            title: 'Set 2 — Diligence',
+            cards: [
+              {
+                id: 'aif-l19-s2-q1',
+                question: 'Diligence addresses a different dimension than the other three competencies. What does it focus on?',
+                codeBlock: null,
+                options: [
+                  { label: 'The ethical and safety aspects — while Delegation, Description, and Discernment address effectiveness and efficiency, Diligence ensures responsible AI use', correct: true, feedback: 'Correct. Diligence is the "ethical and safe" half of the AI Fluency definition. The other 3Ds make you effective and efficient; Diligence makes you responsible and trustworthy.' },
+                  { label: 'Speed and productivity optimization', correct: false, feedback: 'Speed is about efficiency (covered by the other 3Ds). Diligence specifically addresses ethics, safety, and responsibility.' },
+                  { label: 'Technical accuracy of AI outputs', correct: false, feedback: 'Technical accuracy falls under Discernment. Diligence focuses on ethical responsibility, transparency, and accountability.' },
+                  { label: 'Learning more about AI technology', correct: false, feedback: 'Diligence is about responsible practice — ethics, transparency, and accountability in AI collaboration.' },
+                ]
+              },
+              {
+                id: 'aif-l19-s2-q2',
+                question: 'What are the three components of Diligence?',
+                codeBlock: null,
+                options: [
+                  { label: 'Creation Diligence (choosing AI systems thoughtfully), Transparency Diligence (being open about AI\'s role), and Deployment Diligence (taking ownership of AI-assisted outputs)', correct: true, feedback: 'Correct. Creation = thoughtful tool choice and data sharing. Transparency = honest disclosure. Deployment = taking responsibility for verifying and vouching for outputs you share.' },
+                  { label: 'Legal, Ethical, and Technical diligence', correct: false, feedback: 'Diligence\'s three components are Creation (tool choice), Transparency (disclosure), and Deployment (output responsibility).' },
+                  { label: 'Input, Process, and Output diligence', correct: false, feedback: 'The three components are Creation Diligence, Transparency Diligence, and Deployment Diligence.' },
+                  { label: 'Privacy, Security, and Compliance', correct: false, feedback: 'Those are related concerns, but Diligence\'s specific components are Creation, Transparency, and Deployment.' },
+                ]
+              },
+              {
+                id: 'aif-l19-s2-q3',
+                question: 'You used Claude to help write a report and are about to submit it to your team. Deployment Diligence requires you to:',
+                codeBlock: null,
+                options: [
+                  { label: 'Take ownership by verifying facts, checking for biases, ensuring accuracy, and checking usage rights before sharing — you vouch for the output', correct: true, feedback: 'Correct. Deployment Diligence means you\'re personally responsible for AI-assisted outputs you share. Verify facts, check biases, ensure accuracy — if your name is on it, you own it.' },
+                  { label: 'Just add a disclaimer saying "AI-generated"', correct: false, feedback: 'A disclaimer addresses Transparency but not Deployment Diligence. You must also verify facts, check biases, and take responsibility for quality.' },
+                  { label: 'Submit it as-is — AI outputs are reliable enough', correct: false, feedback: 'Deployment Diligence requires active verification. AI outputs can contain errors, biases, and hallucinations that need human checking.' },
+                  { label: 'Have another AI check the first AI\'s work', correct: false, feedback: 'AI checking AI doesn\'t fulfill your responsibility. Deployment Diligence means YOU verify and take ownership of what you share.' },
+                ]
+              },
+              {
+                id: 'aif-l19-s2-q4',
+                question: 'Your company has no AI disclosure policy. Transparency Diligence says you should:',
+                codeBlock: null,
+                options: [
+                  { label: 'Be honest about AI\'s role in your work with everyone who needs to know — different contexts may have different expectations, but default to transparency', correct: true, feedback: 'Correct. Transparency Diligence means proactive honesty about AI\'s involvement. Even without a formal policy, disclose to stakeholders. Context matters — academic, professional, and personal settings may have different norms.' },
+                  { label: 'Keep AI use private since there\'s no policy requiring disclosure', correct: false, feedback: 'The absence of a policy doesn\'t justify secrecy. Transparency Diligence means defaulting to honest disclosure.' },
+                  { label: 'Wait until someone asks before disclosing', correct: false, feedback: 'Transparency Diligence is proactive, not reactive. Be open about AI\'s role without waiting to be asked.' },
+                  { label: 'Only disclose if AI wrote more than 50% of the content', correct: false, feedback: 'There\'s no percentage threshold. Transparency Diligence means being honest about AI\'s role regardless of degree.' },
+                ]
+              },
+              {
+                id: 'aif-l19-s2-q5',
+                question: 'Creation Diligence involves being thoughtful about which AI systems you choose. What considerations does this include?',
+                codeBlock: null,
+                options: [
+                  { label: 'Privacy, security, and ethical considerations — being thoughtful about what data you share with AI and which systems you trust', correct: true, feedback: 'Correct. Creation Diligence means considering: Does this system protect my data? Am I sharing sensitive information appropriately? Does this vendor\'s ethics align with my values? The choice of tool is itself an ethical decision.' },
+                  { label: 'Only which AI gives the fastest responses', correct: false, feedback: 'Speed is a practical consideration, not a Diligence one. Creation Diligence focuses on privacy, security, and ethical implications of tool choice.' },
+                  { label: 'Whichever AI is cheapest', correct: false, feedback: 'Cost is practical, not ethical. Creation Diligence considers privacy, security, and ethical factors in tool selection.' },
+                  { label: 'Using as many different AI systems as possible', correct: false, feedback: 'Creation Diligence is about thoughtful selection, not variety. Consider privacy, security, and ethics for each system.' },
+                ]
+              },
+            ]
+          },
+        ]
+      },
+    ]
+  },
 ]
 
 // Flat list of all cards (computed from modules)

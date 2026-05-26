@@ -19,6 +19,9 @@ import Lesson13 from './pages/lessons/Lesson13'
 import Lesson14 from './pages/lessons/Lesson14'
 import Lesson15 from './pages/lessons/Lesson15'
 import Lesson16 from './pages/lessons/Lesson16'
+import Lesson17 from './pages/lessons/Lesson17'
+import Lesson18 from './pages/lessons/Lesson18'
+import Lesson19 from './pages/lessons/Lesson19'
 import Interlude01 from './pages/interludes/Interlude01'
 import Interlude02 from './pages/interludes/Interlude02'
 import Interlude03 from './pages/interludes/Interlude03'
@@ -80,6 +83,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/copilot/customization" element={<Lesson13 />} />
         <Route path="/copilot/cloud-agents" element={<Lesson14 />} />
         <Route path="/copilot/coding-agent" element={<Lesson16 />} />
+
+        {/* Module 7: AI Fluency */}
+        <Route path="/ai-fluency/framework" element={<Lesson17 />} />
+        <Route path="/ai-fluency/delegation-description" element={<Lesson18 />} />
+        <Route path="/ai-fluency/discernment-diligence" element={<Lesson19 />} />
 
         {/* Reference */}
         <Route path="/comparison" element={<Comparison />} />

@@ -36,7 +36,7 @@ const NAV_SECTIONS = [
 
 export default function Lesson16() {
   return (
-    <div style={styles.page}><NavSidebar sections={NAV_SECTIONS} /><LessonNav moduleTitle="GitHub Copilot" moduleColor={mod.color} prevLink="/copilot/cloud-agents" prevLabel="L14: Advanced" nextLink="/" nextLabel="Home" />
+    <div style={styles.page}><NavSidebar sections={NAV_SECTIONS} /><LessonNav moduleTitle="GitHub Copilot" moduleColor={mod.color} prevLink="/copilot/cloud-agents" prevLabel="L14: Advanced" nextLink="/ai-fluency/framework" nextLabel="L17: 4D Framework & Gen AI" />
       <main style={styles.main}>
         <Reveal><div style={styles.lessonLabel}>Lesson 16</div><h1 style={styles.h1}>The Coding Agent</h1>
           <p style={styles.subtitle}>Assign an issue to Copilot, get a pull request back — the fully autonomous cloud agent workflow</p></Reveal>
@@ -174,7 +174,7 @@ For every change:
         <div style={styles.divider}>· · ·</div>
         <Reveal id="summary"><div style={styles.endSection}><div style={styles.endLabel}>End of Lesson 16</div>
           <p style={styles.endProse}>You now understand how to invoke the coding agent (issue assignment, VS Code chat, CLI), how it delivers work (draft PRs with session logs), its security model (CodeQL, secret scanning, dependency checks, self-review), how to create custom agents for specialized workflows, the spectrum from interactive Agent Mode to autonomous cloud coding agent, and how Copilot code review works across github.com, VS Code, and the CLI. This completes Module 6: GitHub Copilot.</p>
-          <a href="/claude-code-anki/" style={styles.nextBtn}>← Back to Home</a></div></Reveal>
+          <a href="/claude-code-anki/ai-fluency/framework" style={styles.nextBtn}>Next → Lesson 17: The 4D Framework & Gen AI</a></div></Reveal>
       </main>
     </div>
   )
