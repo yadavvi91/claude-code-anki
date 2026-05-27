@@ -14,7 +14,7 @@ export default function Interlude01() {
   return (
     <div style={styles.page}>
       <NavSidebar sections={NAV_SECTIONS} />
-      <LessonNav moduleTitle="Interlude" moduleColor="#6366f1" prevLink="/claude-code/agent-loop" prevLabel="L15: Agent Loop" nextLink="/mcp/architecture" nextLabel="L4: MCP Architecture" />
+      <LessonNav moduleTitle="Interlude" moduleColor="#6366f1" prevLink="/claude-code/mcp-github" prevLabel="L3: MCP & GitHub" nextLink="/mcp/architecture" nextLabel="L4: MCP Architecture" />
       <main style={styles.main}>
         <Reveal><div style={styles.label}>Interlude 1</div><h1 style={styles.h1}>Claude Code Reflections</h1></Reveal>
 

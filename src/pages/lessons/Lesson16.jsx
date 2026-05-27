@@ -36,7 +36,7 @@ const NAV_SECTIONS = [
 
 export default function Lesson16() {
   return (
-    <div style={styles.page}><NavSidebar sections={NAV_SECTIONS} /><LessonNav moduleTitle="GitHub Copilot" moduleColor={mod.color} prevLink="/copilot/cloud-agents" prevLabel="L14: Advanced" nextLink="/ai-fluency/framework" nextLabel="L17: 4D Framework & Gen AI" />
+    <div style={styles.page}><NavSidebar sections={NAV_SECTIONS} /><LessonNav moduleTitle="GitHub Copilot" moduleColor={mod.color} prevLink="/claude-code/agent-loop" prevLabel="L15: Agent Loop" nextLink="/ai-fluency/framework" nextLabel="L17: 4D Framework & Gen AI" />
       <main style={styles.main}>
         <Reveal><div style={styles.lessonLabel}>Lesson 16</div><h1 style={styles.h1}>The Coding Agent</h1>
           <p style={styles.subtitle}>Assign an issue to Copilot, get a pull request back — the fully autonomous cloud agent workflow</p></Reveal>

@@ -33,7 +33,7 @@ const NAV_SECTIONS = [
 
 export default function Lesson15() {
   return (
-    <div style={styles.page}><NavSidebar sections={NAV_SECTIONS} /><LessonNav moduleTitle="Claude Code Fundamentals" moduleColor={mod.color} prevLink="/claude-code/mcp-github" prevLabel="L3: MCP & GitHub" nextLink="/interlude/1" nextLabel="Interlude 1" />
+    <div style={styles.page}><NavSidebar sections={NAV_SECTIONS} /><LessonNav moduleTitle="Claude Code Fundamentals" moduleColor={mod.color} prevLink="/copilot/cloud-agents" prevLabel="L14: Advanced" nextLink="/copilot/coding-agent" nextLabel="L16: Coding Agent" />
       <main style={styles.main}>
         <Reveal><div style={styles.lessonLabel}>Lesson 15</div><h1 style={styles.h1}>The Agent Loop</h1>
           <p style={styles.subtitle}>How AI coding agents actually work under the hood — the universal pattern behind Claude Code, GitHub Copilot, pi, and every agentic coding tool</p></Reveal>
@@ -237,7 +237,7 @@ export default function myExtension(pi) {
         <Reveal id="summary"><div style={styles.endSection}><div style={styles.endLabel}>End of Lesson 15</div>
           <p style={styles.endProse}>You now understand the agent loop — the universal pattern powering every AI coding agent. The LLM decides, tools execute, results feed back, and the loop continues until the task is done. You've seen how tools are defined and validated, how context compaction keeps long sessions alive, and how real coding agents like pi are architected on top of this loop.</p>
           <p style={styles.endProse}>This mental model transfers everywhere. Whether you're using Claude Code, building custom agents with the SDK, or evaluating new tools — they all implement this same loop. The differences are in the tools, the UI, and the extensibility model.</p>
-          <a href="/claude-code-anki/interlude/1" style={styles.nextBtn}>Next → Interlude 1</a></div></Reveal>
+          <a href="/claude-code-anki/copilot/coding-agent" style={styles.nextBtn}>Next → Lesson 16: The Coding Agent</a></div></Reveal>
       </main>
     </div>
   )

@@ -44,8 +44,8 @@ export default function Lesson03() {
         moduleColor={mod.color}
         prevLink="/claude-code/planning"
         prevLabel="L2: Context"
-        nextLink="/claude-code/agent-loop"
-        nextLabel="L15: Agent Loop"
+        nextLink="/interlude/1"
+        nextLabel="Interlude 1"
       />
 
       <main style={styles.main}>
@@ -436,8 +436,8 @@ for await (const message of query({
               This completes Module 1: Claude Code Fundamentals. Next up is a reflective
               interlude before diving into MCP in depth.
             </p>
-            <a href="/claude-code-anki/claude-code/agent-loop" style={styles.nextBtn}>
-              Next → Lesson 15: The Agent Loop
+            <a href="/claude-code-anki/interlude/1" style={styles.nextBtn}>
+              Next → Interlude 1
             </a>
           </div>
         </Reveal>
