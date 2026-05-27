@@ -53,7 +53,6 @@ export default function App() {
                 <Link to="/claude-code/architecture" style={styles.sitemapLink}>L1: Architecture & Tools</Link>
                 <Link to="/claude-code/planning" style={styles.sitemapLink}>L2: Context, Planning & Commands</Link>
                 <Link to="/claude-code/mcp-github" style={styles.sitemapLink}>L3: MCP Integration & GitHub</Link>
-                <Link to="/claude-code/agent-loop" style={styles.sitemapLink}>L15: The Agent Loop</Link>
                 <Link to="/interlude/1" style={styles.sitemapInterlude}>Interlude 1</Link>
               </div>
               <div style={styles.sitemapCol}>
@@ -83,6 +82,7 @@ export default function App() {
                 <Link to="/copilot/core-modes" style={styles.sitemapLink}>L12: Core Modes</Link>
                 <Link to="/copilot/customization" style={styles.sitemapLink}>L13: Customization</Link>
                 <Link to="/copilot/cloud-agents" style={styles.sitemapLink}>L14: Advanced Features</Link>
+                <Link to="/claude-code/agent-loop" style={styles.sitemapLink}>L15: The Agent Loop</Link>
                 <Link to="/copilot/coding-agent" style={styles.sitemapLink}>L16: The Coding Agent</Link>
               </div>
               <div style={styles.sitemapCol}>
