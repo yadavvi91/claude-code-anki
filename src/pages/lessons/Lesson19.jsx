@@ -9,6 +9,7 @@ import ComparisonTable from '../../components/ComparisonTable'
 import TipCallout from '../../components/TipCallout'
 import { T } from '../../theme'
 
+const base = '/claude-code-anki/images/'
 const mod = modules[6]
 const lesson = mod.lessons[2]
 const sets = lesson.cardSets
@@ -42,6 +43,7 @@ export default function Lesson19() {
           ['Process', 'Reasoning path — logical steps, methodology', 'Skipped a critical step, jumped to conclusions'],
           ['Performance', 'Behavior style — tone, challenge level, responsiveness', 'Too agreeable when you asked for pushback'],
         ]} /></Reveal>
+        <Reveal><img src={`${base}aif_discernment.jpg`} alt="Discernment types — Product, Process, Performance with Description-Discernment loop" style={styles.img} /></Reveal>
         <Reveal><p style={styles.prose}>The <strong>Description-Discernment loop</strong> is the core workflow of AI collaboration. Each cycle improves both your Description skills and the AI's output. The course claims this iterative process can produce results that exceed what either human or AI could achieve independently — the whole is greater than the sum of its parts.</p></Reveal>
         <Reveal><TipCallout variant="warning">AI can't reliably evaluate its own outputs — it doesn't "know what it doesn't know." Your domain expertise, contextual understanding, and ethical judgment are what catch subtle errors, factual inaccuracies, and confident-sounding hallucinations.</TipCallout></Reveal>
 
@@ -59,6 +61,7 @@ export default function Lesson19() {
           ['Transparency', 'Be open about AI\'s role', 'Would I be comfortable if my team knew how much AI contributed?'],
           ['Deployment', 'Take ownership of outputs', 'Have I verified facts, checked biases, and ensured accuracy before sharing?'],
         ]} /></Reveal>
+        <Reveal><img src={`${base}aif_diligence.jpg`} alt="Diligence components — Creation, Transparency, Deployment with ownership principle" style={styles.img} /></Reveal>
         <Reveal><p style={styles.prose}>Deployment Diligence carries a clear principle: <strong>if your name is on it, you own it</strong>. AI-assisted work is still your responsibility. A disclaimer saying "AI-generated" addresses Transparency but not Deployment — you must still verify facts, check for biases, ensure accuracy, and confirm usage rights before sharing.</p></Reveal>
         <Reveal><TipCallout variant="tip">When in doubt about Transparency, default to disclosure. Even without a formal AI policy, proactive honesty builds trust. Different contexts (academic, professional, personal) may have different norms, but transparency is always the safer default.</TipCallout></Reveal>
 
@@ -87,5 +90,6 @@ const styles = {
   endSection: { textAlign: 'center', padding: '2rem 0' },
   endLabel: { fontFamily: T.font.label, fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.3em', textTransform: 'uppercase', color: T.color.ink4, marginBottom: '1.5rem' },
   endProse: { fontFamily: T.font.prose, fontSize: '1rem', lineHeight: 1.8, color: T.color.ink3, marginBottom: '1rem', maxWidth: '55ch', marginLeft: 'auto', marginRight: 'auto', textAlign: 'left' },
+  img: { width: '100%', maxWidth: '720px', borderRadius: '8px', margin: '1rem auto', display: 'block' },
   nextBtn: { display: 'inline-block', marginTop: '1.5rem', padding: '0.85rem 2.5rem', border: `1px solid ${T.color.accent}`, borderRadius: '4px', fontFamily: T.font.label, fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', textDecoration: 'none', color: T.color.accent, transition: 'background 0.25s, color 0.25s' },
 }

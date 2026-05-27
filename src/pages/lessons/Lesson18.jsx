@@ -9,6 +9,7 @@ import ComparisonTable from '../../components/ComparisonTable'
 import TipCallout from '../../components/TipCallout'
 import { T } from '../../theme'
 
+const base = '/claude-code-anki/images/'
 const mod = modules[6]
 const lesson = mod.lessons[1]
 const sets = lesson.cardSets
@@ -42,6 +43,7 @@ export default function Lesson18() {
           ['Platform Awareness', 'What can this AI system do well (and poorly)?', 'Over-delegating or under-delegating'],
           ['Task Delegation', 'Who should do what — human, AI, or together?', 'Inefficient allocation of effort'],
         ]} /></Reveal>
+        <Reveal><img src={`${base}aif_delegation.jpg`} alt="Delegation components — Problem Awareness, Platform Awareness, Task Delegation vertical flow" style={styles.img} /></Reveal>
         <Reveal><p style={styles.prose}>The course recommends using <strong>AI itself as a planning partner</strong>. Share your project idea with Claude, let it ask questions to refine the vision, then collaboratively identify tasks and decide which benefit from human vs. AI strengths. Delegation becomes a conversation, not a solo planning exercise.</p></Reveal>
         <Reveal><TipCallout variant="tip">Before delegating, ask yourself: "Do I understand this well enough to evaluate the result?" If not, build Problem Awareness first — even if that means using AI to help you understand the problem before using AI to solve it.</TipCallout></Reveal>
 
@@ -58,6 +60,7 @@ export default function Lesson18() {
           ['Process Description', 'How to approach it — methodology, steps, constraints', '"Research first, outline, then draft. Cite primary sources only"'],
           ['Performance Description', 'How to behave — tone, challenge level, interaction style', '"Be concise. Push back on weak arguments. Ask probing questions"'],
         ]} /></Reveal>
+        <Reveal><img src={`${base}aif_description.jpg`} alt="Description components — Product, Process, Performance cards with six prompting techniques" style={styles.img} /></Reveal>
         <Reveal><p style={styles.prose}>A vague prompt like "Write me a blog post" is missing all three. It has no Product spec (topic? audience? length?), no Process guidance (research first? outline?), and no Performance direction (concise? detailed? challenging?). Clear Description across all three components saves iteration time.</p></Reveal>
         <Reveal><p style={styles.prose}>The course identifies <strong>six foundational prompting techniques</strong>: giving context, breaking complex tasks into steps, defining role or tone, providing examples, specifying output format, and the "secret weapon" — <strong>asking AI to help improve your prompt</strong>. This meta-prompting technique leverages the AI's understanding of what makes a good prompt.</p></Reveal>
         <Reveal><TipCallout variant="tip">Performance Description is the most overlooked component. If Claude is too verbose, too agreeable, or not challenging enough — that's a Performance Description gap. Tell it explicitly how you want it to behave.</TipCallout></Reveal>
@@ -87,5 +90,6 @@ const styles = {
   endSection: { textAlign: 'center', padding: '2rem 0' },
   endLabel: { fontFamily: T.font.label, fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.3em', textTransform: 'uppercase', color: T.color.ink4, marginBottom: '1.5rem' },
   endProse: { fontFamily: T.font.prose, fontSize: '1rem', lineHeight: 1.8, color: T.color.ink3, marginBottom: '1rem', maxWidth: '55ch', marginLeft: 'auto', marginRight: 'auto', textAlign: 'left' },
+  img: { width: '100%', maxWidth: '720px', borderRadius: '8px', margin: '1rem auto', display: 'block' },
   nextBtn: { display: 'inline-block', marginTop: '1.5rem', padding: '0.85rem 2.5rem', border: `1px solid ${T.color.accent}`, borderRadius: '4px', fontFamily: T.font.label, fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', textDecoration: 'none', color: T.color.accent, transition: 'background 0.25s, color 0.25s' },
 }
