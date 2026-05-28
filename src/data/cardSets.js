@@ -3470,6 +3470,709 @@ export const modules = [
       },
     ]
   },
+  {
+    id: 'anthropic-api',
+    title: 'Anthropic API',
+    color: '#e11d48',
+    lessons: [
+      {
+        id: 'api-l20',
+        title: 'API Fundamentals',
+        slug: 'api/fundamentals',
+        cardSets: [
+          {
+            id: 'api-l20-s1',
+            title: 'Set 1 — Models & API Access',
+            cards: [
+              {
+                id: 'api-l20-s1-q1', question: 'What are the three Claude model families and their primary trade-offs?', codeBlock: null, options: [
+                  { label: 'Haiku (fast, cheap), Sonnet (balanced), Opus (most capable but slower and costlier)', correct: true, feedback: 'Correct. Haiku optimizes for speed and cost, Sonnet balances capability with efficiency, and Opus delivers maximum intelligence for complex tasks.' },
+                  { label: 'Mini (small context), Standard (medium context), Max (largest context)', correct: false, feedback: 'Not quite. The families differ in capability and cost, not context window size. All models support large context windows.' },
+                  { label: 'Chat (conversations), Code (programming), Vision (images)', correct: false, feedback: 'Incorrect. All Claude models handle chat, code, and vision. The families are Haiku, Sonnet, and Opus.' },
+                  { label: 'Free (rate-limited), Pro (paid), Enterprise (custom)', correct: false, feedback: 'No. Haiku, Sonnet, and Opus are capability tiers, not pricing plans.' },
+                ]},
+              {
+                id: 'api-l20-s1-q2', question: 'What is the base URL for the Anthropic Messages API, and what required header authenticates requests?', codeBlock: 'POST https://api.anthropic.com/v1/messages\n\nHeaders:\n  x-api-key: sk-ant-...\n  anthropic-version: 2023-06-01\n  content-type: application/json', options: [
+                  { label: 'https://api.anthropic.com/v1/messages with the x-api-key header', correct: true, feedback: 'Correct. The x-api-key header carries your API key. The anthropic-version header is also required to specify the API version.' },
+                  { label: 'https://api.anthropic.com/v1/chat with the Authorization: Bearer header', correct: false, feedback: 'Not quite. The endpoint is /v1/messages (not /chat), and Anthropic uses x-api-key, not Bearer tokens.' },
+                  { label: 'https://claude.anthropic.com/api with the api-token header', correct: false, feedback: 'Incorrect. The base URL is api.anthropic.com/v1/messages and authentication uses x-api-key.' },
+                  { label: 'https://api.anthropic.com/v2/completions with the x-api-key header', correct: false, feedback: 'No. The current API uses /v1/messages. The older completions API has been deprecated.' },
+                ]},
+              {
+                id: 'api-l20-s1-q3', question: 'What are the minimum required fields in a Messages API request body?', codeBlock: '{\n  "model": "claude-sonnet-4-20250514",\n  "max_tokens": 1024,\n  "messages": [\n    {"role": "user", "content": "Hello, Claude"}\n  ]\n}', options: [
+                  { label: 'model, max_tokens, and messages', correct: true, feedback: 'Correct. model specifies which Claude to use, max_tokens caps the response length, and messages contains the conversation history.' },
+                  { label: 'model, messages, and temperature', correct: false, feedback: 'Close but temperature is optional (defaults to 1.0). max_tokens is the required field you\'re missing.' },
+                  { label: 'model, prompt, and max_tokens', correct: false, feedback: 'Not quite. The Messages API uses messages (an array of role/content objects), not a single prompt string.' },
+                  { label: 'model, messages, system, and max_tokens', correct: false, feedback: 'Almost — system is optional. The three required fields are model, max_tokens, and messages.' },
+                ]},
+              {
+                id: 'api-l20-s1-q4', question: 'How does the Anthropic SDK differ from making raw HTTP requests to the API?', codeBlock: '# SDK approach\nimport anthropic\nclient = anthropic.Anthropic()  # reads ANTHROPIC_API_KEY env var\nresponse = client.messages.create(\n    model="claude-sonnet-4-20250514",\n    max_tokens=1024,\n    messages=[{"role": "user", "content": "Hi"}]\n)', options: [
+                  { label: 'The SDK handles auth from environment variables, provides typed responses, manages retries, and validates parameters automatically', correct: true, feedback: 'Correct. The SDK reads ANTHROPIC_API_KEY from the environment, returns typed objects instead of raw JSON, handles transient errors with retries, and validates inputs before sending.' },
+                  { label: 'The SDK uses a completely different protocol than the HTTP API', correct: false, feedback: 'No — the SDK wraps the same HTTP API underneath. It provides convenience, not a different protocol.' },
+                  { label: 'The SDK only works with Python; other languages must use raw HTTP', correct: false, feedback: 'Incorrect. Anthropic provides official SDKs for Python and TypeScript/JavaScript, and community SDKs exist for other languages.' },
+                  { label: 'The SDK is faster because it uses a direct connection to Anthropic servers', correct: false, feedback: 'Not true. The SDK makes the same HTTP requests — it just wraps them in a more ergonomic interface.' },
+                ]},
+              {
+                id: 'api-l20-s1-q5', question: 'What is the structure of a Messages API response, and how do you extract the text?', codeBlock: '{\n  "id": "msg_01XFDUDYJgAACzvnptvVoYEL",\n  "type": "message",\n  "role": "assistant",\n  "content": [\n    {"type": "text", "text": "Hello! How can I help?"}\n  ],\n  "model": "claude-sonnet-4-20250514",\n  "stop_reason": "end_turn",\n  "usage": {"input_tokens": 12, "output_tokens": 8}\n}', options: [
+                  { label: 'response.content is an array of content blocks; extract text via response.content[0].text', correct: true, feedback: 'Correct. The content field is always an array — it can contain text blocks, tool_use blocks, or thinking blocks. The usage field tracks token counts for billing.' },
+                  { label: 'response.text contains the full response as a plain string', correct: false, feedback: 'No. The response uses a content array of typed blocks, not a single text string. This design supports mixed content like text + tool calls.' },
+                  { label: 'response.message.content is a string you can use directly', correct: false, feedback: 'Incorrect. content is an array of blocks (each with type and text fields), not a plain string.' },
+                  { label: 'response.choices[0].message.content like the OpenAI format', correct: false, feedback: 'That\'s the OpenAI response format, not Anthropic\'s. Anthropic uses content (an array of blocks) directly on the response object.' },
+                ]},
+            ]},
+          {
+            id: 'api-l20-s2',
+            title: 'Set 2 — Conversations, System Prompts & Output Control',
+            cards: [
+              {
+                id: 'api-l20-s2-q1', question: 'How do you implement multi-turn conversations with the Messages API?', codeBlock: 'messages = [\n  {"role": "user", "content": "What is Python?"},\n  {"role": "assistant", "content": "Python is a programming language..."},\n  {"role": "user", "content": "What makes it popular?"}\n]', options: [
+                  { label: 'Send the full conversation history in the messages array, alternating user and assistant roles', correct: true, feedback: 'Correct. The API is stateless — each request must include the complete conversation. Messages must alternate between user and assistant roles. You typically append the previous response to the array before sending the next user message.' },
+                  { label: 'Use a session ID that the API provides to continue the conversation', correct: false, feedback: 'No. The Messages API is stateless — there are no session IDs. You must send the full history each time.' },
+                  { label: 'Call a separate /v1/conversations endpoint to maintain state', correct: false, feedback: 'Incorrect. There is no conversations endpoint. The API is stateless; you manage conversation history client-side.' },
+                  { label: 'Set a conversation_id parameter in the request body', correct: false, feedback: 'No such parameter exists. The API is stateless by design — you pass the full message history each time.' },
+                ]},
+              {
+                id: 'api-l20-s2-q2', question: 'Where does the system prompt go in a Messages API request, and what is it for?', codeBlock: '{\n  "model": "claude-sonnet-4-20250514",\n  "max_tokens": 1024,\n  "system": "You are a helpful coding assistant...",\n  "messages": [...]\n}', options: [
+                  { label: 'It\'s a top-level "system" field (not inside messages) that sets Claude\'s persona, instructions, and behavioral constraints', correct: true, feedback: 'Correct. The system prompt is a top-level parameter, separate from the messages array. It\'s processed before any messages and is ideal for persistent instructions, persona definition, and output format requirements.' },
+                  { label: 'It goes as the first message with role "system" in the messages array', correct: false, feedback: 'Not in the Anthropic API. Unlike some other APIs, Anthropic uses a dedicated top-level system field, not a system role in messages.' },
+                  { label: 'It\'s set once per API key and applies to all requests automatically', correct: false, feedback: 'Incorrect. The system prompt is per-request — you include it in each API call where you want it applied.' },
+                  { label: 'It replaces the first user message and uses a special "instruction" role', correct: false, feedback: 'No. The system prompt is a separate top-level field, and the messages array only supports "user" and "assistant" roles.' },
+                ]},
+              {
+                id: 'api-l20-s2-q3', question: 'What does the temperature parameter control, and what are appropriate values for different use cases?', codeBlock: null, options: [
+                  { label: 'It controls randomness: 0.0 for deterministic/analytical tasks, ~0.7 for creative tasks, up to 1.0 for maximum variety', correct: true, feedback: 'Correct. Temperature 0 makes output nearly deterministic (best for code, math, classification). Higher values increase randomness and creativity. The range is 0.0–1.0, defaulting to 1.0.' },
+                  { label: 'It controls response length: lower values produce shorter responses, higher values produce longer ones', correct: false, feedback: 'No — that\'s max_tokens. Temperature controls randomness in token selection, not length.' },
+                  { label: 'It controls thinking depth: 0 for quick answers, 1.0 for deep reasoning', correct: false, feedback: 'Incorrect. Temperature affects randomness in word choice, not reasoning depth. For deeper reasoning, use extended thinking.' },
+                  { label: 'It ranges from -1.0 to 1.0, where negative values make responses more concise', correct: false, feedback: 'Not true. Temperature ranges from 0.0 to 1.0 only, controlling sampling randomness.' },
+                ]},
+              {
+                id: 'api-l20-s2-q4', question: 'How does response streaming work with the Messages API?', codeBlock: 'with client.messages.stream(\n    model="claude-sonnet-4-20250514",\n    max_tokens=1024,\n    messages=[...]\n) as stream:\n    for text in stream.text_stream:\n        print(text, end="", flush=True)', options: [
+                  { label: 'Use the streaming endpoint or SDK stream method to receive server-sent events (SSE) that deliver tokens incrementally as they\'re generated', correct: true, feedback: 'Correct. Streaming uses SSE to send partial responses in real-time. Events include message_start, content_block_delta (with text chunks), and message_stop. The SDK provides convenient helpers like text_stream.' },
+                  { label: 'Set stream=true in the regular request and poll a separate status endpoint', correct: false, feedback: 'No polling needed. Streaming uses server-sent events — the server pushes tokens to you over a persistent connection.' },
+                  { label: 'Use WebSocket connections to receive tokens bidirectionally', correct: false, feedback: 'Incorrect. The API uses server-sent events (SSE) over HTTP, not WebSockets.' },
+                  { label: 'Streaming is automatic — all API responses arrive token by token', correct: false, feedback: 'No. Streaming must be explicitly requested. By default, the API returns the complete response in a single JSON object.' },
+                ]},
+              {
+                id: 'api-l20-s2-q5', question: 'How do you get Claude to return structured data (like JSON) reliably?', codeBlock: null, options: [
+                  { label: 'Describe the desired format in the system prompt or user message, optionally use XML tags to mark sections, and prefill the assistant response with the opening character', correct: true, feedback: 'Correct. Tell Claude the exact format you want (e.g., "Respond with valid JSON"), use XML tags to delimit structured sections, and you can prefill the assistant turn with "{" to force JSON output. This combination yields highly reliable structured output.' },
+                  { label: 'Set response_format: "json" in the request parameters', correct: false, feedback: 'The Anthropic API does not have a response_format parameter like some other APIs. You guide structure through prompting and optional prefilling.' },
+                  { label: 'Use a separate /v1/structured endpoint designed for JSON responses', correct: false, feedback: 'No such endpoint exists. Structured output is achieved through prompt design and prefilling techniques.' },
+                  { label: 'Include a JSON schema in the request and Claude validates against it automatically', correct: false, feedback: 'The Messages API doesn\'t accept output schemas directly. Use prompting + prefilling, or use tool use (which does enforce JSON schemas for tool inputs).' },
+                ]},
+            ]},
+        ]
+      },
+      {
+        id: 'api-l21',
+        title: 'Prompt Evaluation',
+        slug: 'api/prompt-eval',
+        cardSets: [
+          {
+            id: 'api-l21-s1',
+            title: 'Set 1 — Eval Workflows & Test Datasets',
+            cards: [
+              {
+                id: 'api-l21-s1-q1', question: 'Why is prompt evaluation essential, and what problem does it solve?', codeBlock: null, options: [
+                  { label: 'It provides systematic, repeatable measurement of prompt quality — replacing subjective "does this feel right?" with quantitative scoring across diverse test cases', correct: true, feedback: 'Correct. Without evals, you\'re guessing. A change that improves one response might degrade ten others. Evals let you measure the impact of prompt changes across a representative dataset before deploying.' },
+                  { label: 'It prevents Claude from hallucinating by validating all outputs against a database', correct: false, feedback: 'Evals measure prompt quality, not prevent hallucination directly. They help you detect when hallucination rates increase due to prompt changes.' },
+                  { label: 'It\'s required by Anthropic before you can use the API in production', correct: false, feedback: 'Evals are not required by Anthropic. They\'re a best practice for building reliable AI applications.' },
+                  { label: 'It automatically optimizes your prompts using machine learning', correct: false, feedback: 'Evals measure performance — they don\'t automatically optimize. You use eval results to guide manual prompt improvements.' },
+                ]},
+              {
+                id: 'api-l21-s1-q2', question: 'What are the key steps in a typical prompt evaluation workflow?', codeBlock: null, options: [
+                  { label: 'Define the task → create test dataset (inputs + expected outputs) → run the prompt against all test cases → grade results → analyze scores → iterate', correct: true, feedback: 'Correct. The workflow is: clearly define what "good" looks like, build a representative test dataset with golden answers, run your prompt across all cases, apply grading (human, model-based, or code-based), then use the results to improve your prompt.' },
+                  { label: 'Write a prompt → test it once → ship to production → monitor for errors', correct: false, feedback: 'This skips the systematic evaluation step. A single test doesn\'t catch edge cases or regressions across diverse inputs.' },
+                  { label: 'A/B test two prompts in production and pick the one users prefer', correct: false, feedback: 'A/B testing in production is too late and risky. Evals let you compare prompts offline before deployment.' },
+                  { label: 'Send your prompt to Anthropic\'s eval service and receive an automated score', correct: false, feedback: 'Anthropic doesn\'t provide an eval service. You build and run your own evals tailored to your specific use case.' },
+                ]},
+              {
+                id: 'api-l21-s1-q3', question: 'How can you generate test datasets for prompt evaluation?', codeBlock: null, options: [
+                  { label: 'Use Claude itself to generate diverse test cases, then manually review and curate them — supplementing with real-world examples from your application', correct: true, feedback: 'Correct. Claude can rapidly generate varied test inputs covering edge cases, different formats, and challenging scenarios. Always review generated data for quality, and mix in real examples from production to ensure the dataset is representative.' },
+                  { label: 'Only use real production data — synthetic data is unreliable for evaluation', correct: false, feedback: 'Synthetic data generated by Claude is very useful, especially for covering edge cases you haven\'t seen in production yet. Best practice is to combine both.' },
+                  { label: 'Use random strings as inputs since the goal is testing robustness', correct: false, feedback: 'Random strings don\'t test meaningful behavior. Test cases should represent realistic inputs your prompt will actually encounter.' },
+                  { label: 'Download pre-made datasets from Anthropic\'s eval library', correct: false, feedback: 'Anthropic doesn\'t provide pre-made eval datasets for your specific use case. You need to create datasets tailored to your application.' },
+                ]},
+              {
+                id: 'api-l21-s1-q4', question: 'What makes a good test dataset for prompt evaluation?', codeBlock: null, options: [
+                  { label: 'Diverse inputs covering normal cases, edge cases, and adversarial inputs — each paired with a clear expected output or grading criteria', correct: true, feedback: 'Correct. Good datasets include: variety (different topics, lengths, formats), edge cases (ambiguous inputs, boundary conditions), adversarial examples (attempts to break the prompt), and clear "golden" answers or rubrics for grading.' },
+                  { label: 'At least 10,000 examples to ensure statistical significance', correct: false, feedback: 'Quality matters more than quantity. A well-curated set of 50-100 diverse examples often outperforms a large homogeneous dataset.' },
+                  { label: 'Only examples where the current prompt fails, so you can fix weaknesses', correct: false, feedback: 'You also need examples where the prompt succeeds — to catch regressions when you make changes.' },
+                  { label: 'Identical inputs repeated multiple times to test consistency', correct: false, feedback: 'Repetition tests temperature variance, not prompt quality. Diverse inputs are more valuable for evaluation.' },
+                ]},
+              {
+                id: 'api-l21-s1-q5', question: 'What is the difference between running an eval in development vs. production?', codeBlock: null, options: [
+                  { label: 'Development evals use curated test datasets to compare prompt versions before deployment; production evals monitor live outputs for quality degradation', correct: true, feedback: 'Correct. In development, you run controlled experiments: same inputs, different prompts, compare scores. In production, you sample real outputs and grade them to detect drift, regressions, or emerging failure patterns.' },
+                  { label: 'Development evals are faster because they use smaller models', correct: false, feedback: 'Both should use the same model you\'ll deploy with. Using a different model gives misleading results.' },
+                  { label: 'Production evals are unnecessary if your development evals pass', correct: false, feedback: 'Production data can differ from test datasets in unexpected ways. Continuous monitoring catches issues that offline evals miss.' },
+                  { label: 'Development evals use human graders; production evals are fully automated', correct: false, feedback: 'Both can use either approach. Development evals are often automated too (model-based or code-based grading).' },
+                ]},
+            ]},
+          {
+            id: 'api-l21-s2',
+            title: 'Set 2 — Grading Strategies',
+            cards: [
+              {
+                id: 'api-l21-s2-q1', question: 'What is model-based grading and when should you use it?', codeBlock: null, options: [
+                  { label: 'Using Claude (or another LLM) as an automated grader to score outputs against rubrics — best for subjective quality assessment where exact-match checking is too rigid', correct: true, feedback: 'Correct. Model-based grading uses an LLM to evaluate responses against defined criteria (accuracy, tone, completeness). It excels at nuanced judgment: "Is this summary faithful to the source?" or "Is this response helpful?"' },
+                  { label: 'Training a custom ML model specifically to grade Claude\'s outputs', correct: false, feedback: 'No custom training needed. You use an existing LLM (often Claude itself) with a grading prompt to evaluate outputs.' },
+                  { label: 'Using Claude to rewrite the expected output and comparing similarity', correct: false, feedback: 'Model-based grading evaluates the output against criteria, not rewriting expected outputs. It\'s a judge, not a paraphraser.' },
+                  { label: 'Only useful for binary pass/fail grading of factual responses', correct: false, feedback: 'Model-based grading excels at nuanced scoring (1-5 scales, multi-criteria rubrics), not just binary pass/fail.' },
+                ]},
+              {
+                id: 'api-l21-s2-q2', question: 'What is code-based grading and when is it preferred over model-based grading?', codeBlock: 'def grade_response(output, expected):\n    # Exact match\n    if output.strip() == expected.strip():\n        return 1.0\n    # Contains required keywords\n    keywords = ["API key", "authentication"]\n    found = sum(1 for k in keywords if k.lower() in output.lower())\n    return found / len(keywords)', options: [
+                  { label: 'Using deterministic code (exact match, regex, keyword checks, JSON validation) to score outputs — preferred when correctness is objectively verifiable', correct: true, feedback: 'Correct. Code-based grading is fast, cheap, deterministic, and perfect for: exact-match answers, structured output validation (valid JSON? correct schema?), keyword presence, numerical accuracy, and format compliance.' },
+                  { label: 'Writing unit tests for the prompt itself rather than its outputs', correct: false, feedback: 'Code-based grading evaluates outputs, not the prompt. It\'s output validation, not prompt testing.' },
+                  { label: 'Always preferred because it\'s more reliable than model-based grading', correct: false, feedback: 'Not always. Code-based grading can\'t assess subjective qualities like helpfulness, tone, or summary faithfulness. Use it when there\'s an objectively "right" answer.' },
+                  { label: 'Running Claude\'s output as code to see if it executes without errors', correct: false, feedback: 'That\'s one specific type of code-based eval (for code generation tasks), but code-based grading is broader — any deterministic programmatic check on the output.' },
+                ]},
+              {
+                id: 'api-l21-s2-q3', question: 'How do you design an effective model-based grading prompt?', codeBlock: null, options: [
+                  { label: 'Give the grading model the original input, the output to grade, the expected answer or rubric, and clear scoring criteria with examples of each score level', correct: true, feedback: 'Correct. A good grading prompt includes: the original question, Claude\'s response, the ideal answer or rubric, and explicit criteria (e.g., "Score 5 = fully accurate with evidence, Score 1 = factually incorrect"). Examples of each score level calibrate the grader.' },
+                  { label: 'Simply ask "Is this response good? Yes or No" to keep grading simple', correct: false, feedback: 'Too vague. Without criteria, the grader\'s judgment is inconsistent. Define what "good" means with specific, measurable criteria.' },
+                  { label: 'Use the same model and temperature for grading as for generating responses', correct: false, feedback: 'You should typically use temperature 0 for grading (deterministic judgment) even if the generation used higher temperature. Using a stronger model for grading can also improve accuracy.' },
+                  { label: 'Let the model grade its own outputs for maximum efficiency', correct: false, feedback: 'Self-grading creates bias — models tend to rate their own outputs more favorably. Use a separate call with a grading-specific prompt, or use a different model.' },
+                ]},
+              {
+                id: 'api-l21-s2-q4', question: 'What metrics should you track across an eval run?', codeBlock: null, options: [
+                  { label: 'Average score, score distribution, worst-case failures, per-category breakdowns, and comparison against baseline (previous prompt version)', correct: true, feedback: 'Correct. Average score shows overall quality. Distribution reveals consistency. Worst-case failures highlight critical risks. Category breakdowns identify weak areas. Baseline comparison shows whether changes actually improved things.' },
+                  { label: 'Only the pass/fail rate — either the prompt works or it doesn\'t', correct: false, feedback: 'Binary pass/fail loses nuance. A prompt scoring 4.2/5 vs 3.8/5 both "pass" but differ meaningfully in quality.' },
+                  { label: 'Response latency and token count, since those affect cost', correct: false, feedback: 'Those are operational metrics, not eval quality metrics. Eval metrics measure output quality against your success criteria.' },
+                  { label: 'The number of test cases that exactly match the expected output', correct: false, feedback: 'Exact match is just one metric and often too strict. Semantic correctness, format compliance, and completeness matter too.' },
+                ]},
+              {
+                id: 'api-l21-s2-q5', question: 'What is the recommended approach when an eval reveals that a prompt change improves some cases but degrades others?', codeBlock: null, options: [
+                  { label: 'Analyze the degraded cases to understand why, try to fix the prompt to handle both, and if you can\'t — decide based on which cases are higher priority for your use case', correct: true, feedback: 'Correct. Evals reveal trade-offs. Look at what specifically degraded: are those edge cases you care about? Can you add instructions that cover both patterns? Sometimes you need different prompts for different input types (routing).' },
+                  { label: 'Always keep the change if the average score improved', correct: false, feedback: 'Average improvement can mask critical regressions. If the degraded cases are high-stakes (e.g., medical or financial), you can\'t ignore them.' },
+                  { label: 'Revert the change — any degradation means the prompt is worse', correct: false, feedback: 'Not necessarily. If minor cases degrade slightly while critical cases improve significantly, the change may be worthwhile.' },
+                  { label: 'Run more eval iterations until both improve simultaneously', correct: false, feedback: 'Just re-running won\'t help if there\'s a fundamental tension in the prompt. You need to analyze and strategize, not retry blindly.' },
+                ]},
+            ]},
+        ]
+      },
+      {
+        id: 'api-l22',
+        title: 'Prompt Engineering',
+        slug: 'api/prompt-engineering',
+        cardSets: [
+          {
+            id: 'api-l22-s1',
+            title: 'Set 1 — Core Techniques',
+            cards: [
+              {
+                id: 'api-l22-s1-q1', question: 'What does "being clear and direct" mean in prompt engineering, and why is it the most impactful technique?', codeBlock: null, options: [
+                  { label: 'State exactly what you want Claude to do, with no ambiguity — specify the task, format, constraints, and audience upfront rather than hoping Claude infers them', correct: true, feedback: 'Correct. Ambiguity forces Claude to guess your intent. "Summarize this for a technical audience in 3 bullet points, each under 20 words" beats "Summarize this." Being direct eliminates entire categories of unwanted outputs.' },
+                  { label: 'Use short, simple prompts because Claude works better with less text', correct: false, feedback: 'Length isn\'t the issue — clarity is. A long, specific prompt outperforms a short, vague one. Add detail where it removes ambiguity.' },
+                  { label: 'Use formal language and avoid contractions', correct: false, feedback: 'Formality is irrelevant. Claude understands casual and formal language equally well. What matters is precision about what you want.' },
+                  { label: 'Always start prompts with "Please" to get better responses', correct: false, feedback: 'Politeness doesn\'t affect output quality. Specificity and clarity do.' },
+                ]},
+              {
+                id: 'api-l22-s1-q2', question: 'How does "being specific" differ from "being clear and direct"?', codeBlock: null, options: [
+                  { label: 'Clear and direct tells Claude what to do; being specific constrains how — with details about format, length, style, audience, scope, and edge case handling', correct: true, feedback: 'Correct. Clarity is the task definition ("classify this email"). Specificity is the constraint system ("use exactly these 5 categories, output JSON, include confidence 0-1, handle empty emails by returning \'unclassifiable\'").' },
+                  { label: 'They\'re the same technique described differently', correct: false, feedback: 'They\'re complementary. You can be clear ("summarize this") without being specific (how long? what format? for whom?). The best prompts are both.' },
+                  { label: 'Being specific means using technical vocabulary so Claude understands the domain', correct: false, feedback: 'Domain terminology helps but isn\'t what "being specific" means. It means constraining format, scope, length, audience, and behavior for edge cases.' },
+                  { label: 'Being specific means providing the full context document with every prompt', correct: false, feedback: 'Context is important, but specificity is about constraining the output — format, length, style, scope — not just providing more input.' },
+                ]},
+              {
+                id: 'api-l22-s1-q3', question: 'Why are XML tags a powerful structuring tool for Claude prompts?', codeBlock: '<instructions>\nSummarize the article below for a non-technical reader.\nKeep it under 100 words.\n</instructions>\n\n<article>\n{{ARTICLE_TEXT}}\n</article>\n\n<output_format>\nReturn a JSON object with "summary" and "key_takeaway" fields.\n</output_format>', options: [
+                  { label: 'XML tags create clear visual boundaries between instructions, data, and format requirements — Claude was trained to understand them as semantic delimiters', correct: true, feedback: 'Correct. Claude reliably recognizes XML tags as structural markers. They prevent instructions from bleeding into data, make variable injection safe, and let you reference sections by tag name. They\'re especially useful for complex prompts with multiple components.' },
+                  { label: 'XML is the only format Claude can parse for structured input', correct: false, feedback: 'Claude handles many formats (JSON, YAML, markdown). XML tags are preferred for prompt structuring specifically because they\'re unambiguous delimiters, not because they\'re the only option.' },
+                  { label: 'They\'re required by the API — prompts without XML tags are rejected', correct: false, feedback: 'XML tags are entirely optional. They\'re a prompt engineering technique, not an API requirement.' },
+                  { label: 'They force Claude to respond in XML format automatically', correct: false, feedback: 'Not at all. XML tags in the prompt organize your input — they don\'t dictate the response format. You can use XML input tags and request JSON output.' },
+                ]},
+              {
+                id: 'api-l22-s1-q4', question: 'How do you use few-shot examples effectively in prompts?', codeBlock: '<examples>\n<example>\n<input>The food was great but the service was slow.</input>\n<output>{"sentiment": "mixed", "food": "positive", "service": "negative"}</output>\n</example>\n<example>\n<input>Everything was perfect!</input>\n<output>{"sentiment": "positive", "food": "positive", "service": "positive"}</output>\n</example>\n</examples>', options: [
+                  { label: 'Provide 2-5 representative input/output pairs that demonstrate the exact format, logic, and edge cases you expect — diverse examples are better than many similar ones', correct: true, feedback: 'Correct. Few-shot examples show Claude exactly what you want by demonstration. Include: a typical case, an edge case, and a tricky case. Wrap in XML tags for clarity. 2-5 examples usually suffice — more can waste tokens without improving quality.' },
+                  { label: 'Include at least 20 examples to ensure Claude learns the pattern', correct: false, feedback: 'More isn\'t always better. 2-5 diverse, well-chosen examples usually outperform 20 similar ones, while using far fewer tokens.' },
+                  { label: 'Only include positive examples — never show Claude incorrect outputs', correct: false, feedback: 'Showing both correct and incorrect examples (with labels) can be very effective for classification tasks: "This is correct: X. This is incorrect: Y."' },
+                  { label: 'Put examples after your question so Claude sees them last', correct: false, feedback: 'Examples should come before the actual input — they set the pattern Claude follows. The actual input should come last.' },
+                ]},
+              {
+                id: 'api-l22-s1-q5', question: 'What is prompt prefilling and how does it steer Claude\'s response format?', codeBlock: 'response = client.messages.create(\n    model="claude-sonnet-4-20250514",\n    max_tokens=1024,\n    messages=[\n        {"role": "user", "content": "List 3 benefits of Python as JSON"},\n        {"role": "assistant", "content": "{"}\n    ]\n)', options: [
+                  { label: 'Pre-populating the start of Claude\'s response in the messages array forces it to continue from that point — putting "{" makes it output JSON, putting "<answer>" makes it use that tag', correct: true, feedback: 'Correct. By including a partial assistant message, you constrain Claude\'s response format from the very first character. This is extremely reliable for forcing JSON, XML, or any specific format. Claude continues naturally from where you left off.' },
+                  { label: 'It only works with JSON — prefilling other formats is unreliable', correct: false, feedback: 'Prefilling works with any format: JSON ({), XML (<tag>), markdown (##), code (def/function), or any text pattern.' },
+                  { label: 'It\'s the same as putting format instructions in the system prompt', correct: false, feedback: 'Prefilling is stronger — it physically starts the response in your chosen format, while system prompt instructions can still be overridden. They\'re complementary: use both for maximum reliability.' },
+                  { label: 'It requires a special API parameter called "prefill"', correct: false, feedback: 'No special parameter. You simply add a partial assistant message to the messages array. The API continues from where it left off.' },
+                ]},
+            ]},
+          {
+            id: 'api-l22-s2',
+            title: 'Set 2 — Advanced Patterns',
+            cards: [
+              {
+                id: 'api-l22-s2-q1', question: 'What is chain-of-thought prompting and when should you use it?', codeBlock: null, options: [
+                  { label: 'Asking Claude to "think step by step" or show its reasoning before answering — improves accuracy on complex reasoning, math, and multi-step logic tasks', correct: true, feedback: 'Correct. Chain-of-thought makes Claude\'s reasoning process explicit, reducing errors on complex tasks. Use it for math, logic puzzles, code debugging, multi-step analysis. Phrases like "Think step by step" or "Explain your reasoning" trigger this behavior.' },
+                  { label: 'Breaking your prompt into multiple separate API calls, one step at a time', correct: false, feedback: 'That\'s prompt chaining (a workflow pattern), not chain-of-thought. CoT happens within a single response where Claude reasons before answering.' },
+                  { label: 'Providing a chain of examples that build on each other progressively', correct: false, feedback: 'That\'s progressive few-shot prompting. Chain-of-thought is about asking Claude to show its reasoning process before giving a final answer.' },
+                  { label: 'Using it for every prompt to maximize quality regardless of task type', correct: false, feedback: 'CoT adds latency and tokens. For simple tasks (translation, formatting), it\'s unnecessary overhead. Reserve it for tasks where reasoning matters.' },
+                ]},
+              {
+                id: 'api-l22-s2-q2', question: 'What is role prompting and how does it affect Claude\'s outputs?', codeBlock: 'system = """You are a senior security engineer performing\na code review. Focus on:\n- SQL injection vulnerabilities\n- Authentication bypasses\n- Data exposure risks\nBe thorough and cite specific line numbers."""', options: [
+                  { label: 'Assigning Claude a specific role or persona in the system prompt changes its vocabulary, depth, perspective, and what it prioritizes in responses', correct: true, feedback: 'Correct. "You are a senior security engineer" makes Claude use security terminology, prioritize vulnerabilities, and apply domain expertise. Roles are especially powerful combined with specific instructions about what the role should focus on.' },
+                  { label: 'Role prompting creates a separate AI agent with different capabilities', correct: false, feedback: 'No separate agent is created. It\'s the same model — the role just biases its framing, vocabulary, and priorities.' },
+                  { label: 'You must use predefined roles from Anthropic\'s role library', correct: false, feedback: 'No role library exists. You can define any role — real or fictional — that suits your task.' },
+                  { label: 'Role prompting only works in the system prompt, never in user messages', correct: false, feedback: 'You can assign roles in either place, though system prompts are the convention since roles typically persist across the conversation.' },
+                ]},
+              {
+                id: 'api-l22-s2-q3', question: 'How do you handle variable data injection in prompts safely?', codeBlock: '<task>\nClassify the customer feedback below into one of:\npositive, negative, neutral, or mixed.\n</task>\n\n<feedback>\n{{USER_FEEDBACK}}\n</feedback>\n\nClassify the feedback above.', options: [
+                  { label: 'Wrap variable data in XML tags and reference it by tag name — this prevents user input from being interpreted as instructions (prompt injection defense)', correct: true, feedback: 'Correct. XML tags create a clear boundary between your instructions and the variable data. Claude treats <feedback>...</feedback> as data to process, not instructions to follow. This is a key defense against prompt injection where users try to embed instructions in their input.' },
+                  { label: 'Sanitize the input by removing all special characters before injection', correct: false, feedback: 'Over-sanitization can damage legitimate input. XML delimiters are more effective — they preserve the data while clearly separating it from instructions.' },
+                  { label: 'Never include user data in prompts — always process it separately', correct: false, feedback: 'That\'s impractical. Most useful applications need to process user data. The key is structuring it safely with clear delimiters.' },
+                  { label: 'Use string concatenation to insert variables directly into the prompt text', correct: false, feedback: 'Direct concatenation without delimiters is dangerous — user input can contain text that looks like instructions, confusing Claude.' },
+                ]},
+              {
+                id: 'api-l22-s2-q4', question: 'What is prompt chaining and when is it better than a single complex prompt?', codeBlock: null, options: [
+                  { label: 'Breaking a complex task into sequential API calls where each call\'s output feeds the next — better when accuracy on each sub-step matters more than latency', correct: true, feedback: 'Correct. Chaining works well for: multi-step analysis (extract → classify → summarize), tasks requiring different system prompts per step, or when intermediate results need validation. Each step gets Claude\'s full attention, reducing errors on complex pipelines.' },
+                  { label: 'Always better than single prompts because it reduces hallucination', correct: false, feedback: 'Not always better. Chaining adds latency and cost (multiple API calls). For simple tasks, a well-crafted single prompt is faster and cheaper.' },
+                  { label: 'Sending the same prompt multiple times and picking the best response', correct: false, feedback: 'That\'s best-of-N sampling, not chaining. Chaining is sequential: step 1\'s output feeds step 2.' },
+                  { label: 'A technique that only works with Claude Opus because it needs more reasoning', correct: false, feedback: 'Chaining works with any model. It\'s a workflow pattern, not a model-specific feature.' },
+                ]},
+              {
+                id: 'api-l22-s2-q5', question: 'What are the key principles for iterating on prompts effectively?', codeBlock: null, options: [
+                  { label: 'Change one thing at a time, test against your eval dataset, compare against baseline, and document what worked and what didn\'t', correct: true, feedback: 'Correct. Systematic iteration: make a single change, run evals, compare scores against the previous version. If multiple changes are needed, make them sequentially so you know which change had which effect. Keep a prompt changelog.' },
+                  { label: 'Rewrite the entire prompt from scratch each time to avoid bias from previous versions', correct: false, feedback: 'Starting from scratch discards what\'s working. Incremental changes with measurement let you build on proven foundations.' },
+                  { label: 'Use Claude to rewrite your prompt — AI writes better prompts than humans', correct: false, feedback: 'Claude can help brainstorm improvements, but you need to evaluate the results. AI-generated prompts aren\'t automatically better — they must be tested.' },
+                  { label: 'Once a prompt scores above 80%, it\'s good enough — stop iterating', correct: false, feedback: 'There\'s no universal threshold. Whether 80% is acceptable depends entirely on your use case and the cost of errors.' },
+                ]},
+            ]},
+        ]
+      },
+      {
+        id: 'api-l23',
+        title: 'Tool Use',
+        slug: 'api/tool-use',
+        cardSets: [
+          {
+            id: 'api-l23-s1',
+            title: 'Set 1 — Tool Definitions & Execution',
+            cards: [
+              {
+                id: 'api-l23-s1-q1', question: 'How do you define a tool for the Messages API?', codeBlock: '{\n  "name": "get_weather",\n  "description": "Get current weather for a city",\n  "input_schema": {\n    "type": "object",\n    "properties": {\n      "city": {\n        "type": "string",\n        "description": "City name, e.g. San Francisco"\n      }\n    },\n    "required": ["city"]\n  }\n}', options: [
+                  { label: 'A tool has a name, description (tells Claude when/why to use it), and input_schema (JSON Schema defining the parameters Claude must provide)', correct: true, feedback: 'Correct. The name identifies the tool, the description guides Claude on when to call it, and the input_schema validates the arguments. The description is crucial — it\'s how Claude decides which tool to use.' },
+                  { label: 'You register tools on Anthropic\'s server and reference them by ID', correct: false, feedback: 'Tools are defined in each API request, not registered centrally. You send the tool definitions with every call where you want them available.' },
+                  { label: 'Tools are defined as Python functions with decorators', correct: false, feedback: 'That\'s how MCP servers define tools. The raw Messages API uses JSON tool definitions sent in the request body.' },
+                  { label: 'You provide the actual function code and Claude executes it', correct: false, feedback: 'Claude never executes code. It returns tool_use blocks with the tool name and arguments — your code runs the actual function.' },
+                ]},
+              {
+                id: 'api-l23-s1-q2', question: 'What happens when Claude decides to use a tool?', codeBlock: '# Claude\'s response includes a tool_use block:\n{\n  "content": [\n    {"type": "text", "text": "Let me check the weather."},\n    {\n      "type": "tool_use",\n      "id": "toolu_01A09q90qw90lq917835lq9",\n      "name": "get_weather",\n      "input": {"city": "San Francisco"}\n    }\n  ],\n  "stop_reason": "tool_use"\n}', options: [
+                  { label: 'Claude returns a tool_use content block with the tool name and arguments, stop_reason becomes "tool_use", and you must execute the tool and send results back', correct: true, feedback: 'Correct. The flow is: Claude returns tool_use → you extract name and input → you execute the actual function → you send a tool_result message back → Claude incorporates the result into its response.' },
+                  { label: 'Claude makes an HTTP request to your tool endpoint automatically', correct: false, feedback: 'Claude doesn\'t make external calls. It returns structured tool_use blocks that your code must intercept and execute.' },
+                  { label: 'The API pauses and waits for you to provide the tool result via a webhook', correct: false, feedback: 'No webhooks or pausing. The response completes with stop_reason "tool_use" — you make a new API call with the tool result.' },
+                  { label: 'Claude returns the tool result directly without needing your intervention', correct: false, feedback: 'Claude can\'t execute tools. It proposes tool calls — you execute them and return results.' },
+                ]},
+              {
+                id: 'api-l23-s1-q3', question: 'How do you send tool results back to Claude?', codeBlock: 'messages = [\n  {"role": "user", "content": "What\'s the weather in SF?"},\n  {"role": "assistant", "content": [...]},  # includes tool_use\n  {\n    "role": "user",\n    "content": [{\n      "type": "tool_result",\n      "tool_use_id": "toolu_01A09q90qw90lq917835lq9",\n      "content": "72°F, sunny, humidity 45%"\n    }]\n  }\n]', options: [
+                  { label: 'Add a user message with a tool_result content block that matches the tool_use_id — then Claude generates a natural language response incorporating the data', correct: true, feedback: 'Correct. The tool_result must reference the exact tool_use_id from Claude\'s response. After receiving the result, Claude synthesizes a final response using the tool output. The tool_result is role "user" because it\'s your code providing data to Claude.' },
+                  { label: 'Call a separate /v1/tool-results endpoint with the data', correct: false, feedback: 'No separate endpoint. Tool results go in the regular messages array as a user message with tool_result content blocks.' },
+                  { label: 'Add the result as a system message so Claude treats it as ground truth', correct: false, feedback: 'Tool results go as user messages with type "tool_result", not system messages. The system prompt is for instructions, not data.' },
+                  { label: 'Set the result in a "tool_output" parameter on the next API call', correct: false, feedback: 'No such parameter. Results go inside the messages array as tool_result content blocks matching the tool_use_id.' },
+                ]},
+              {
+                id: 'api-l23-s1-q4', question: 'What role does the tool description play in Claude\'s decision-making?', codeBlock: null, options: [
+                  { label: 'The description tells Claude when and why to use the tool — a vague description leads to incorrect tool selection; a precise one ensures Claude calls the right tool with the right arguments', correct: true, feedback: 'Correct. Claude reads descriptions to decide: should I use this tool? With what arguments? A description like "Get weather" is far less effective than "Get current weather conditions for a specific city. Returns temperature, conditions, and humidity. Use when the user asks about weather."' },
+                  { label: 'The description is only shown to users in the API documentation', correct: false, feedback: 'The description is sent to Claude and directly influences its tool-calling decisions. It\'s the primary guide for when and how Claude uses the tool.' },
+                  { label: 'Claude ignores the description and decides based only on the tool name', correct: false, feedback: 'Claude uses both, but the description is far more important. A well-described tool with a generic name works better than a perfectly-named tool with no description.' },
+                  { label: 'The description is optional and only needed for complex tools', correct: false, feedback: 'While technically optional, omitting the description severely degrades Claude\'s ability to use tools correctly. Always include one.' },
+                ]},
+              {
+                id: 'api-l23-s1-q5', question: 'How does the tool use loop work for multi-step tasks?', codeBlock: 'while response.stop_reason == "tool_use":\n    tool_block = next(b for b in response.content\n                       if b.type == "tool_use")\n    result = execute_tool(tool_block.name, tool_block.input)\n    messages.append({"role": "assistant", "content": response.content})\n    messages.append({"role": "user", "content": [\n        {"type": "tool_result",\n         "tool_use_id": tool_block.id,\n         "content": str(result)}\n    ]})\n    response = client.messages.create(..., messages=messages)', options: [
+                  { label: 'Loop while stop_reason is "tool_use": extract the tool call, execute it, append assistant response and tool result to messages, then call the API again', correct: true, feedback: 'Correct. This agentic loop lets Claude chain multiple tool calls: check weather → look up restaurant → book a table. Each iteration: extract tool call, run it, feed result back. The loop ends when Claude responds with text only (stop_reason "end_turn").' },
+                  { label: 'Claude handles the looping internally — you only need one API call', correct: false, feedback: 'No — the API is stateless. Each tool result requires a new API call with the full conversation history including all prior tool interactions.' },
+                  { label: 'Set max_tool_calls=5 and Claude will chain up to 5 tools automatically', correct: false, feedback: 'No such parameter. You implement the loop in your code, deciding whether to continue based on stop_reason.' },
+                  { label: 'Use the /v1/agents endpoint which handles tool loops automatically', correct: false, feedback: 'No agents endpoint exists in the base API. You implement the tool loop yourself (though frameworks like the Agent SDK can help).' },
+                ]},
+            ]},
+          {
+            id: 'api-l23-s2',
+            title: 'Set 2 — Advanced Tool Patterns',
+            cards: [
+              {
+                id: 'api-l23-s2-q1', question: 'How do you handle multiple tools in a single conversation?', codeBlock: null, options: [
+                  { label: 'Pass all tool definitions in the tools array — Claude can call multiple tools in a single response, and you process all tool_use blocks and return all tool_results together', correct: true, feedback: 'Correct. Send all available tools in every request. Claude may return multiple tool_use blocks in one response (parallel tool calls). You execute all of them and return all tool_results in a single user message, each matching its tool_use_id.' },
+                  { label: 'You can only pass one tool at a time to avoid confusion', correct: false, feedback: 'Claude handles multiple tools well. The tools array can contain many definitions. Claude selects the appropriate one(s) based on context.' },
+                  { label: 'Create separate API clients for each tool', correct: false, feedback: 'One client, one request. All tools go in the same tools array, and Claude picks which to call.' },
+                  { label: 'Claude will always use tools one at a time in sequence', correct: false, feedback: 'Claude can make parallel tool calls — returning multiple tool_use blocks in a single response when tasks are independent.' },
+                ]},
+              {
+                id: 'api-l23-s2-q2', question: 'What is fine-grained tool calling and how do you control when Claude uses tools?', codeBlock: '# Force Claude to use a specific tool\ntool_choice={"type": "tool", "name": "get_weather"}\n\n# Force Claude to use any tool (must call one)\ntool_choice={"type": "any"}\n\n# Let Claude decide (default)\ntool_choice={"type": "auto"}', options: [
+                  { label: 'The tool_choice parameter controls whether Claude must use tools: "auto" (Claude decides), "any" (must use at least one), or {"type": "tool", "name": "..."} (must use a specific tool)', correct: true, feedback: 'Correct. "auto" is the default — Claude decides whether to use tools. "any" forces a tool call (useful when you know a tool is needed). Naming a specific tool forces that exact tool (useful for structured extraction where you always want a particular schema).' },
+                  { label: 'You can\'t control this — Claude always decides on its own', correct: false, feedback: 'The tool_choice parameter gives you fine-grained control over tool-calling behavior.' },
+                  { label: 'Add "You MUST use the get_weather tool" to the system prompt', correct: false, feedback: 'While prompt instructions can influence behavior, the tool_choice parameter is the reliable, structured way to force or prevent tool use.' },
+                  { label: 'Set required: true in the tool definition to force Claude to use it', correct: false, feedback: 'No required field on tool definitions. Use the tool_choice parameter on the request to control tool calling behavior.' },
+                ]},
+              {
+                id: 'api-l23-s2-q3', question: 'What is the text editor tool and what unique capability does it provide?', codeBlock: null, options: [
+                  { label: 'A built-in Anthropic tool that lets Claude read and edit files via structured commands (view, create, str_replace, insert) — enabling code modification without full file rewrites', correct: true, feedback: 'Correct. The text editor tool provides file operations through Anthropic\'s tool use system. str_replace lets Claude make surgical edits by specifying old and new text. This is more reliable than asking Claude to output entire modified files.' },
+                  { label: 'A VS Code extension that connects Claude to your editor', correct: false, feedback: 'It\'s an API tool, not a VS Code extension. It gives Claude file editing capabilities through the Messages API.' },
+                  { label: 'An API feature that formats Claude\'s text output with syntax highlighting', correct: false, feedback: 'It\'s about file editing (read, create, replace), not output formatting.' },
+                  { label: 'A parameter that lets Claude edit its previous responses in a conversation', correct: false, feedback: 'No — it\'s for editing files, not conversation history. Claude can read, create, and modify files through structured commands.' },
+                ]},
+              {
+                id: 'api-l23-s2-q4', question: 'What is the web search tool and how does it extend Claude\'s capabilities?', codeBlock: null, options: [
+                  { label: 'An Anthropic-provided tool that lets Claude search the web for real-time information, returning cited results — extending Claude beyond its training data cutoff', correct: true, feedback: 'Correct. The web search tool gives Claude access to current information. It performs searches, retrieves relevant results with citations, and lets Claude synthesize up-to-date answers. Results include source URLs for verification.' },
+                  { label: 'A Chrome extension that lets Claude browse the web while you chat', correct: false, feedback: 'It\'s an API tool, not a browser extension. It performs web searches and returns results through the tool use system.' },
+                  { label: 'A feature that caches popular web pages to speed up Claude\'s responses', correct: false, feedback: 'It performs live web searches, not cached lookups. The results are current, not pre-cached.' },
+                  { label: 'A tool that only works with Claude Opus because it needs advanced reasoning', correct: false, feedback: 'Web search is available across Claude models, not limited to Opus.' },
+                ]},
+              {
+                id: 'api-l23-s2-q5', question: 'What are best practices for designing tool schemas?', codeBlock: null, options: [
+                  { label: 'Use descriptive names, detailed descriptions for each parameter, mark required fields, provide enum values where applicable, and keep schemas focused on single responsibilities', correct: true, feedback: 'Correct. Good schemas: descriptive parameter names (not "x" or "input"), helpful descriptions explaining valid values, required vs optional clarity, enums for fixed choices. One tool per responsibility — don\'t create a "do_everything" tool.' },
+                  { label: 'Make all parameters optional to give Claude maximum flexibility', correct: false, feedback: 'Making everything optional increases errors. Required parameters ensure Claude provides essential data. Optional parameters should have sensible defaults.' },
+                  { label: 'Keep descriptions minimal to reduce token usage', correct: false, feedback: 'Detailed descriptions are worth the tokens. They dramatically improve Claude\'s tool selection accuracy and argument quality.' },
+                  { label: 'Use deeply nested schemas to organize parameters hierarchically', correct: false, feedback: 'Keep schemas as flat as practical. Deep nesting makes it harder for Claude to construct correct arguments.' },
+                ]},
+            ]},
+        ]
+      },
+      {
+        id: 'api-l24',
+        title: 'RAG & Agentic Search',
+        slug: 'api/rag',
+        cardSets: [
+          {
+            id: 'api-l24-s1',
+            title: 'Set 1 — RAG Pipeline & Chunking',
+            cards: [
+              {
+                id: 'api-l24-s1-q1', question: 'What is Retrieval Augmented Generation (RAG) and why is it needed?', codeBlock: null, options: [
+                  { label: 'RAG retrieves relevant documents from a knowledge base and includes them in Claude\'s context — grounding responses in your specific data rather than just training knowledge', correct: true, feedback: 'Correct. RAG solves two problems: Claude\'s knowledge cutoff (it can\'t know about your private data) and hallucination (retrieved documents provide factual anchoring). The pipeline: query → retrieve relevant chunks → inject into prompt → generate grounded response.' },
+                  { label: 'RAG fine-tunes Claude on your data so it permanently learns new information', correct: false, feedback: 'RAG doesn\'t fine-tune anything. It retrieves and injects relevant context at query time. The model itself doesn\'t change.' },
+                  { label: 'RAG is a database that Claude can query directly without API calls', correct: false, feedback: 'RAG is a pipeline you build. Claude doesn\'t directly access databases — you retrieve relevant data and include it in the prompt.' },
+                  { label: 'RAG replaces the need for system prompts by providing all instructions through retrieved documents', correct: false, feedback: 'RAG provides data context, not instructions. You still need system prompts for behavioral instructions; RAG supplies the knowledge base.' },
+                ]},
+              {
+                id: 'api-l24-s1-q2', question: 'What is text chunking and why can\'t you just send entire documents to Claude?', codeBlock: null, options: [
+                  { label: 'Chunking splits documents into smaller pieces for embedding and retrieval — because you need to retrieve only relevant sections, not waste context window space with irrelevant content', correct: true, feedback: 'Correct. Even with large context windows, sending everything is wasteful and can dilute relevance. Chunking lets you embed individual sections, retrieve only the most relevant ones, and pack the context window with high-signal information.' },
+                  { label: 'Claude can only process 500 tokens at a time, so you must split documents', correct: false, feedback: 'Claude supports very large context windows (200K+ tokens). Chunking is about retrieval precision, not API limits.' },
+                  { label: 'Chunking is only needed for documents over 1MB in size', correct: false, feedback: 'Size doesn\'t determine chunking need. Even small documents benefit from chunking when you want precise retrieval across many documents.' },
+                  { label: 'Chunking converts text to a format Claude can understand', correct: false, feedback: 'Claude understands raw text fine. Chunking is about creating meaningful units for embedding and precise retrieval, not format conversion.' },
+                ]},
+              {
+                id: 'api-l24-s1-q3', question: 'What are the main text chunking strategies and their trade-offs?', codeBlock: null, options: [
+                  { label: 'Fixed-size (simple, fast, may break mid-sentence), semantic (respects section boundaries, preserves meaning), and overlapping (adds context at chunk borders, reduces information loss)', correct: true, feedback: 'Correct. Fixed-size chunks (e.g., 500 tokens) are simple but can split mid-thought. Semantic chunking (by paragraph, section, or topic) preserves meaning but produces variable sizes. Overlapping chunks (e.g., 50-token overlap) ensure context isn\'t lost at boundaries.' },
+                  { label: 'Only one strategy exists: split by sentences since Claude processes text sentence by sentence', correct: false, feedback: 'Multiple strategies exist for different use cases. Claude processes full context, not sentence by sentence.' },
+                  { label: 'Always use the largest possible chunks to preserve maximum context', correct: false, feedback: 'Larger chunks reduce retrieval precision. If only one paragraph is relevant, a large chunk brings in irrelevant content that may confuse the response.' },
+                  { label: 'Chunk size doesn\'t matter — embeddings capture meaning regardless of length', correct: false, feedback: 'Chunk size significantly affects both embedding quality and retrieval precision. Very long chunks produce diluted embeddings; very short ones lose context.' },
+                ]},
+              {
+                id: 'api-l24-s1-q4', question: 'What are text embeddings and how are they used in RAG?', codeBlock: null, options: [
+                  { label: 'Dense vector representations of text that capture semantic meaning — similar texts have similar vectors, enabling retrieval by meaning rather than keyword matching', correct: true, feedback: 'Correct. Embeddings convert text into numerical vectors (e.g., 1536 dimensions). Semantically similar texts cluster together in vector space. You embed your chunks, store them in a vector database, then embed the query and find the closest chunks by cosine similarity.' },
+                  { label: 'A way to compress text so it takes fewer tokens in the API request', correct: false, feedback: 'Embeddings don\'t compress text for the API. They create vector representations for similarity search. The original text is still sent to Claude.' },
+                  { label: 'The same as tokenization — converting words to numbers for the model', correct: false, feedback: 'Tokenization splits text into tokens for processing. Embeddings create holistic semantic vectors of entire text passages for similarity search.' },
+                  { label: 'Claude generates embeddings internally — you don\'t need a separate model', correct: false, feedback: 'You need a dedicated embedding model (like Voyage AI, OpenAI Ada, etc.) to create vectors. Claude\'s Messages API doesn\'t provide an embedding endpoint.' },
+                ]},
+              {
+                id: 'api-l24-s1-q5', question: 'What is the full RAG flow from user query to response?', codeBlock: 'query = "What is our refund policy?"\n\n# 1. Embed the query\nquery_vector = embed(query)\n\n# 2. Retrieve top-k similar chunks\nchunks = vector_db.search(query_vector, top_k=5)\n\n# 3. Build the prompt with retrieved context\nprompt = f"""Answer based on this context:\n{chunks}\n\nQuestion: {query}"""\n\n# 4. Generate response\nresponse = client.messages.create(..., messages=[...])', options: [
+                  { label: 'Embed the query → search vector DB for similar chunks → inject top-k chunks into the prompt as context → Claude generates a grounded response', correct: true, feedback: 'Correct. The four-step pipeline: (1) convert query to vector, (2) find most similar chunk vectors (cosine similarity), (3) include retrieved chunks in Claude\'s prompt as context, (4) Claude answers using the provided context. This grounds responses in your data.' },
+                  { label: 'Send the query directly to the vector database which returns the final answer', correct: false, feedback: 'The vector DB retrieves relevant chunks — it doesn\'t generate answers. Claude generates the response using the retrieved context.' },
+                  { label: 'Claude searches the vector database directly using an internal connection', correct: false, feedback: 'Claude has no database access. Your code handles retrieval and passes the results to Claude as prompt context.' },
+                  { label: 'Fine-tune Claude on your documents, then query it without retrieval', correct: false, feedback: 'RAG specifically avoids fine-tuning. It retrieves relevant context at query time, which is more flexible and doesn\'t require model retraining.' },
+                ]},
+            ]},
+          {
+            id: 'api-l24-s2',
+            title: 'Set 2 — Search Strategies',
+            cards: [
+              {
+                id: 'api-l24-s2-q1', question: 'What is BM25 lexical search and how does it differ from vector search?', codeBlock: null, options: [
+                  { label: 'BM25 ranks documents by keyword frequency and inverse document frequency — it finds exact term matches while vector search finds semantic similarity, and they\'re complementary', correct: true, feedback: 'Correct. BM25 excels at finding exact keywords (product names, error codes, specific terms). Vector search excels at semantic similarity ("What\'s your return policy?" matching "refund procedure"). Combining both gives the best results.' },
+                  { label: 'BM25 is an older, inferior technique replaced by vector search', correct: false, feedback: 'BM25 isn\'t inferior — it\'s complementary. It catches exact-match queries that vector search can miss, and vice versa.' },
+                  { label: 'BM25 uses embeddings internally, just a different model', correct: false, feedback: 'BM25 is a statistical algorithm based on term frequency — it doesn\'t use embeddings or neural networks at all.' },
+                  { label: 'BM25 only works with English text', correct: false, feedback: 'BM25 is language-agnostic — it works on any tokenizable text based on term frequency statistics.' },
+                ]},
+              {
+                id: 'api-l24-s2-q2', question: 'What is a multi-index RAG pipeline?', codeBlock: null, options: [
+                  { label: 'A pipeline that queries multiple retrieval strategies (vector search + BM25 + metadata filters) in parallel, then merges and re-ranks the results before sending to Claude', correct: true, feedback: 'Correct. Multi-index combines retrieval methods: vector search for semantic relevance, BM25 for keyword matching, metadata filters for structured constraints (date, author, category). Results are merged using reciprocal rank fusion or similar techniques.' },
+                  { label: 'Storing documents in multiple vector databases for redundancy', correct: false, feedback: 'It\'s not about redundancy — it\'s about using different retrieval strategies that have complementary strengths.' },
+                  { label: 'Creating separate Claude conversations for each document chunk', correct: false, feedback: 'Multi-index is about retrieval diversity, not conversation management. Results feed into a single Claude prompt.' },
+                  { label: 'Indexing the same document at multiple chunk sizes', correct: false, feedback: 'While multi-resolution chunking exists, multi-index specifically means using multiple retrieval algorithms (semantic, lexical, metadata) together.' },
+                ]},
+              {
+                id: 'api-l24-s2-q3', question: 'What is reciprocal rank fusion and why is it used in multi-index retrieval?', codeBlock: null, options: [
+                  { label: 'A technique that combines ranked results from multiple search methods by assigning scores based on rank position, producing a single merged ranking that leverages each method\'s strengths', correct: true, feedback: 'Correct. RRF assigns each result a score of 1/(k + rank) for each retrieval method, then sums scores across methods. A document ranked #1 by vector search and #3 by BM25 gets a higher combined score than one ranked #2 by both. This naturally balances diverse retrieval signals.' },
+                  { label: 'A machine learning model trained to predict the best ranking', correct: false, feedback: 'RRF is a simple mathematical formula, not a trained model. It combines rankings using rank-based scoring without any training.' },
+                  { label: 'A way to remove duplicate results from multiple search engines', correct: false, feedback: 'Deduplication is a side effect, not the purpose. RRF\'s goal is to combine rankings from different retrieval methods into a single, better ranking.' },
+                  { label: 'An Anthropic API feature for optimizing RAG results automatically', correct: false, feedback: 'RRF is a general technique you implement in your code. It\'s not an Anthropic API feature.' },
+                ]},
+              {
+                id: 'api-l24-s2-q4', question: 'How do you evaluate RAG system quality?', codeBlock: null, options: [
+                  { label: 'Measure both retrieval quality (are the right chunks found?) and generation quality (does Claude\'s answer correctly use the retrieved context?) — using metrics like precision, recall, and faithfulness', correct: true, feedback: 'Correct. Two dimensions: retrieval metrics (precision: are returned chunks relevant? recall: are all relevant chunks found?) and generation metrics (faithfulness: does the answer accurately reflect the sources? relevance: does it answer the question?).' },
+                  { label: 'Only measure Claude\'s final answer — retrieval quality doesn\'t matter', correct: false, feedback: 'Retrieval quality directly affects answer quality. If the wrong chunks are retrieved, even a perfect generation step produces bad answers. Measure both.' },
+                  { label: 'Use the same eval approach as non-RAG prompts — test datasets and grading', correct: false, feedback: 'Partially right (you still need evals), but RAG adds retrieval-specific metrics. You need to evaluate the retrieval step independently.' },
+                  { label: 'Count the number of chunks retrieved — more chunks means better results', correct: false, feedback: 'More chunks can actually hurt by introducing irrelevant context. Precision (are chunks relevant?) matters more than quantity.' },
+                ]},
+              {
+                id: 'api-l24-s2-q5', question: 'What are common failure modes in RAG systems and how do you address them?', codeBlock: null, options: [
+                  { label: 'Poor chunking (losing context), irrelevant retrieval (wrong chunks), context stuffing (too many chunks diluting relevance), and unfaithful generation (Claude ignoring or contradicting sources)', correct: true, feedback: 'Correct. Fixes: improve chunk boundaries (semantic chunking), tune similarity thresholds, limit top-k and re-rank, and add instructions like "Only answer based on the provided context. If the context doesn\'t contain the answer, say so."' },
+                  { label: 'RAG systems are reliable once set up — they don\'t have systematic failure modes', correct: false, feedback: 'RAG has many failure modes at each pipeline stage. Continuous monitoring and tuning are essential.' },
+                  { label: 'The only failure mode is using too small a vector database', correct: false, feedback: 'Database size is rarely the issue. Chunking strategy, retrieval accuracy, and context integration are more common failure points.' },
+                  { label: 'Failures are always caused by Claude hallucinating despite having the right context', correct: false, feedback: 'Hallucination is one failure mode, but poor retrieval (feeding Claude wrong context) is often the root cause. Fix retrieval first.' },
+                ]},
+            ]},
+        ]
+      },
+      {
+        id: 'api-l25',
+        title: 'Claude Features',
+        slug: 'api/features',
+        cardSets: [
+          {
+            id: 'api-l25-s1',
+            title: 'Set 1 — Thinking, Vision & Documents',
+            cards: [
+              {
+                id: 'api-l25-s1-q1', question: 'What is extended thinking and how do you enable it?', codeBlock: '{\n  "model": "claude-sonnet-4-20250514",\n  "max_tokens": 16000,\n  "thinking": {\n    "type": "enabled",\n    "budget_tokens": 10000\n  },\n  "messages": [...]\n}', options: [
+                  { label: 'Extended thinking gives Claude a private scratchpad to reason through complex problems before responding — enabled via the thinking parameter with a token budget', correct: true, feedback: 'Correct. With thinking enabled, Claude\'s response includes thinking blocks (its internal reasoning) followed by text blocks (its answer). budget_tokens caps how much reasoning Claude can do. It improves accuracy on math, coding, analysis, and multi-step problems.' },
+                  { label: 'It makes Claude respond more slowly to produce higher quality output', correct: false, feedback: 'It does take longer, but the mechanism isn\'t "going slower" — it\'s giving Claude space to explicitly reason before answering. The thinking content is visible in the response.' },
+                  { label: 'It\'s only available for Claude Opus', correct: false, feedback: 'Extended thinking is available on multiple Claude models, not just Opus.' },
+                  { label: 'It doubles the max_tokens for the response', correct: false, feedback: 'Thinking tokens come from the budget_tokens allocation, not max_tokens. max_tokens still controls the response length.' },
+                ]},
+              {
+                id: 'api-l25-s1-q2', question: 'How do you send images to Claude via the API?', codeBlock: '{"role": "user", "content": [\n  {\n    "type": "image",\n    "source": {\n      "type": "base64",\n      "media_type": "image/jpeg",\n      "data": "<base64_encoded_data>"\n    }\n  },\n  {"type": "text", "text": "What\'s in this image?"}\n]}', options: [
+                  { label: 'Include an image content block with base64-encoded data or a URL source, alongside text blocks in the same message — Claude can analyze, describe, and reason about images', correct: true, feedback: 'Correct. Images go as content blocks with type "image". Source can be base64 (inline data) or url (publicly accessible URL). Claude handles JPEG, PNG, GIF, and WebP. You can send multiple images in one message and reference them in your text.' },
+                  { label: 'Upload images to Anthropic\'s server first, then reference by upload ID', correct: false, feedback: 'No upload step needed. Images are sent inline as base64 or referenced by URL directly in the message content.' },
+                  { label: 'Only JPEG images are supported via the API', correct: false, feedback: 'Claude supports JPEG, PNG, GIF, and WebP image formats.' },
+                  { label: 'Image support requires a separate vision API endpoint', correct: false, feedback: 'No separate endpoint. Images are sent through the same Messages API as regular text — just use image content blocks.' },
+                ]},
+              {
+                id: 'api-l25-s1-q3', question: 'How does Claude handle PDF documents via the API?', codeBlock: '{"role": "user", "content": [\n  {\n    "type": "document",\n    "source": {\n      "type": "base64",\n      "media_type": "application/pdf",\n      "data": "<base64_pdf>"\n    }\n  },\n  {"type": "text", "text": "Summarize this document"}\n]}', options: [
+                  { label: 'Send PDFs as document content blocks with base64 encoding — Claude can read text, analyze tables, interpret charts, and process multi-page documents natively', correct: true, feedback: 'Correct. Claude processes PDFs natively, understanding both textual content and visual elements (tables, charts, diagrams). It handles multi-page documents and can reference specific pages. This eliminates the need for external PDF parsing libraries for many use cases.' },
+                  { label: 'You must convert PDFs to text first using an external library', correct: false, feedback: 'Claude reads PDFs natively — no conversion needed. It can even understand visual elements that text extraction would miss.' },
+                  { label: 'Only single-page PDFs are supported', correct: false, feedback: 'Claude handles multi-page PDFs and can reference specific pages in its response.' },
+                  { label: 'PDF support is a beta feature that requires special API access', correct: false, feedback: 'PDF support is generally available through the standard Messages API.' },
+                ]},
+              {
+                id: 'api-l25-s1-q4', question: 'What is the citations feature and how does it improve trustworthiness?', codeBlock: null, options: [
+                  { label: 'Claude can cite specific passages from source documents in its responses, linking claims to exact locations in the provided context — enabling verification of every statement', correct: true, feedback: 'Correct. With citations enabled, Claude\'s responses include references to specific passages in the source documents. This makes claims verifiable, reduces hallucination risk, and builds trust — users can click through to verify any claim against the original source.' },
+                  { label: 'Citations automatically add footnotes in MLA format to Claude\'s responses', correct: false, feedback: 'Citations reference specific passages in the provided context, not external academic sources. The format is structured data, not MLA footnotes.' },
+                  { label: 'Claude searches the web for citations to support its claims', correct: false, feedback: 'Citations reference documents you provide in the prompt, not web searches. For web-backed citations, you\'d combine web search with citations.' },
+                  { label: 'A formatting option that bolds key claims in the response', correct: false, feedback: 'Citations are structured references to source material, not text formatting. They enable traceability from claims to evidence.' },
+                ]},
+              {
+                id: 'api-l25-s1-q5', question: 'What is the code execution feature and when would you use it?', codeBlock: null, options: [
+                  { label: 'Claude can write and run Python code in a sandboxed environment during a conversation — useful for data analysis, math verification, chart generation, and testing code logic', correct: true, feedback: 'Correct. Code execution lets Claude run Python code and see the results, enabling it to: verify calculations, analyze data, generate visualizations, test regex patterns, and more. The sandbox is secure — no network access or persistent state.' },
+                  { label: 'A feature that lets Claude execute any language in your local environment', correct: false, feedback: 'Execution happens in Anthropic\'s sandboxed environment (Python only), not your local machine. This ensures security.' },
+                  { label: 'The same as tool use — just another way for Claude to call functions', correct: false, feedback: 'Code execution is different from tool use. Tool use calls your predefined functions. Code execution lets Claude write and run arbitrary Python code in a sandbox.' },
+                  { label: 'A debugging mode that shows Claude\'s internal processing steps', correct: false, feedback: 'That\'s extended thinking. Code execution runs actual Python code and returns real results — it\'s computation, not introspection.' },
+                ]},
+            ]},
+          {
+            id: 'api-l25-s2',
+            title: 'Set 2 — Caching & Files API',
+            cards: [
+              {
+                id: 'api-l25-s2-q1', question: 'What is prompt caching and what problem does it solve?', codeBlock: null, options: [
+                  { label: 'Prompt caching stores processed prefixes of your prompts on Anthropic\'s servers, so repeated requests with the same prefix skip re-processing — reducing latency and cost by up to 90%', correct: true, feedback: 'Correct. When you send the same system prompt, tools, or context prefix across many requests, prompt caching avoids re-processing those tokens each time. Cached tokens are 10x cheaper and much faster. Ideal for: long system prompts, large document context, or repeated tool definitions.' },
+                  { label: 'A client-side cache that stores Claude\'s previous responses for identical prompts', correct: false, feedback: 'Prompt caching is server-side and caches the processed input prefix, not the output. Different questions with the same context prefix all benefit from the cache.' },
+                  { label: 'A feature that compresses prompts to use fewer tokens', correct: false, feedback: 'Caching doesn\'t compress anything. It stores the processed representation of your prompt prefix so it doesn\'t need to be re-processed.' },
+                  { label: 'Automatic — the API caches everything without any configuration', correct: false, feedback: 'You must explicitly mark cache breakpoints in your request to tell Anthropic what to cache.' },
+                ]},
+              {
+                id: 'api-l25-s2-q2', question: 'What are the rules for prompt caching to work effectively?', codeBlock: '# Mark a cache breakpoint\n{"role": "user", "content": [\n  {\n    "type": "text",\n    "text": "<long context here...>",\n    "cache_control": {"type": "ephemeral"}\n  }\n]}', options: [
+                  { label: 'The cached prefix must be identical across requests, at least 1024 tokens for Sonnet/Opus (2048 for Haiku), marked with cache_control, and cached content must come before dynamic content', correct: true, feedback: 'Correct. Rules: exact prefix match (any change invalidates), minimum token threshold, explicit cache_control markers, and ordering matters — put static content (system prompt, tools, reference docs) before dynamic content (conversation history, current question).' },
+                  { label: 'Any prompt over 100 tokens is automatically cached', correct: false, feedback: 'Caching requires explicit opt-in via cache_control markers and has minimum token thresholds (1024 for Sonnet/Opus).' },
+                  { label: 'Cached prompts persist forever once created', correct: false, feedback: 'Caches are ephemeral — they expire after a short TTL (typically 5 minutes). They\'re refreshed on each use but not permanent.' },
+                  { label: 'You can cache up to 10 different prompts per API key', correct: false, feedback: 'There\'s no hard limit on cached prefixes. Caching is based on content matching, not slots.' },
+                ]},
+              {
+                id: 'api-l25-s2-q3', question: 'How should you structure prompts to maximize cache hit rates?', codeBlock: '# Good: static content first, dynamic last\nsystem: "You are..." (cached)\ntools: [...] (cached)\nlong_context: "..." (cached)\nmessages: [\n  ...conversation history... (dynamic)\n  {"role": "user", "content": "new question"} (dynamic)\n]', options: [
+                  { label: 'Put stable content first (system prompt → tools → reference docs → cache breakpoint → conversation history → current query) — the prefix must match exactly for cache hits', correct: true, feedback: 'Correct. Order by stability: most stable content first, most dynamic last. System prompt rarely changes → tool definitions change occasionally → reference docs may vary → conversation grows each turn → current query is always new. Cache breakpoints go after the stable prefix.' },
+                  { label: 'Put the user\'s question first so it\'s always cached', correct: false, feedback: 'The user\'s question changes every time, so it would never cache-hit. Put stable content first.' },
+                  { label: 'Cache everything including the conversation history', correct: false, feedback: 'Conversation history grows each turn, changing the prefix. Cache the stable parts (system prompt, tools, context) and let history be dynamic.' },
+                  { label: 'Use shorter system prompts to maximize the cacheable ratio', correct: false, feedback: 'Longer system prompts benefit MORE from caching because you save more tokens per request. Don\'t sacrifice prompt quality for cache optimization.' },
+                ]},
+              {
+                id: 'api-l25-s2-q4', question: 'What is the Files API and how does it relate to code execution?', codeBlock: null, options: [
+                  { label: 'The Files API lets you upload files that persist across conversation turns and are accessible to Claude\'s code execution sandbox — enabling multi-step data analysis workflows', correct: true, feedback: 'Correct. Files uploaded via the Files API are available in Claude\'s sandbox environment. This enables workflows like: upload a CSV → Claude writes analysis code → executes it → generates a chart → you download the output. Files persist across turns within a session.' },
+                  { label: 'A storage service for archiving Claude\'s responses as files', correct: false, feedback: 'The Files API is for uploading your files for Claude to process, not for storing Claude\'s outputs.' },
+                  { label: 'The same as sending base64-encoded files in messages', correct: false, feedback: 'Base64 in messages is for inline document/image content. The Files API provides persistent file storage accessible to the code execution sandbox.' },
+                  { label: 'An API for managing prompt template files on Anthropic\'s servers', correct: false, feedback: 'It\'s for data files (CSVs, images, etc.) that Claude can process in its code execution sandbox, not prompt templates.' },
+                ]},
+              {
+                id: 'api-l25-s2-q5', question: 'How does prompt caching interact with tool definitions?', codeBlock: null, options: [
+                  { label: 'Tool definitions can be cached as part of the prefix — since tools rarely change between requests, this is one of the most effective caching strategies for tool-heavy applications', correct: true, feedback: 'Correct. If you send the same 10 tool definitions with every request, caching them avoids re-processing those tokens each time. Place tools before the messages array and add a cache_control breakpoint after them. This is especially impactful when tool schemas are large.' },
+                  { label: 'Tools can\'t be cached because they need to be validated each request', correct: false, feedback: 'Tools can absolutely be cached. The validation happens on the cached representation, not by re-processing the raw definitions.' },
+                  { label: 'Caching tools requires a separate caching API endpoint', correct: false, feedback: 'Same endpoint, same cache_control mechanism. Tools are cached as part of the prompt prefix like any other content.' },
+                  { label: 'Each tool must be cached individually with its own cache_control marker', correct: false, feedback: 'Cache breakpoints work on the entire prefix up to that point. One breakpoint after all tool definitions caches them all together.' },
+                ]},
+            ]},
+        ]
+      },
+      {
+        id: 'api-l26',
+        title: 'MCP with the API',
+        slug: 'api/mcp',
+        cardSets: [
+          {
+            id: 'api-l26-s1',
+            title: 'Set 1 — MCP Architecture & Server Tools',
+            cards: [
+              {
+                id: 'api-l26-s1-q1', question: 'How does MCP relate to the Messages API\'s tool use feature?', codeBlock: null, options: [
+                  { label: 'MCP standardizes how tools are defined and served — an MCP server exposes tools via a protocol, and the client translates them into the Messages API\'s tool format before sending to Claude', correct: true, feedback: 'Correct. MCP provides the infrastructure layer. An MCP server defines tools in a standard format. The MCP client discovers these tools, converts them to the Messages API\'s tool schema format, and includes them in API requests. Claude doesn\'t know about MCP — it just sees tool definitions.' },
+                  { label: 'MCP replaces the Messages API with a more powerful protocol', correct: false, feedback: 'MCP doesn\'t replace the Messages API. It\'s a standardization layer on top of it — tools defined via MCP are ultimately sent to Claude through the regular Messages API.' },
+                  { label: 'MCP tools are different from API tools — they have special capabilities', correct: false, feedback: 'MCP tools become regular API tools. The MCP client converts them to the same format. Claude processes them identically.' },
+                  { label: 'You need MCP to use tools with Claude — raw tool definitions are deprecated', correct: false, feedback: 'Raw tool definitions in the API work fine and aren\'t deprecated. MCP is optional — it adds standardization and reusability for tool ecosystems.' },
+                ]},
+              {
+                id: 'api-l26-s1-q2', question: 'How do you define tools in an MCP server?', codeBlock: 'from mcp.server.fastmcp import FastMCP\n\nmcp = FastMCP("weather")\n\n@mcp.tool()\ndef get_weather(city: str) -> str:\n    """Get current weather for a city.\n    \n    Args:\n        city: The city name, e.g. "San Francisco"\n    """\n    return f"72°F, sunny in {city}"', options: [
+                  { label: 'Use the @mcp.tool() decorator on Python functions — the function name becomes the tool name, type hints become the schema, and the docstring becomes the description', correct: true, feedback: 'Correct. FastMCP introspects your function: name → tool name, type hints → JSON Schema parameters, docstring → description. This is dramatically simpler than writing raw JSON tool schemas. The server handles all protocol communication automatically.' },
+                  { label: 'Write a JSON configuration file listing all tools and their schemas', correct: false, feedback: 'While you could write raw schemas, FastMCP\'s decorator approach is the recommended way — it derives schemas automatically from your Python functions.' },
+                  { label: 'Register tools through the MCP web dashboard', correct: false, feedback: 'There\'s no web dashboard. Tools are defined in code using decorators and served by the MCP server process.' },
+                  { label: 'Use the same format as the Messages API tools parameter', correct: false, feedback: 'MCP uses a different format (Python decorators with type hints) that\'s more developer-friendly. The MCP client handles conversion to the API format.' },
+                ]},
+              {
+                id: 'api-l26-s1-q3', question: 'What is the MCP server inspector and what is it used for?', codeBlock: null, options: [
+                  { label: 'A testing tool that lets you browse an MCP server\'s tools, resources, and prompts, call them interactively, and verify they work — without needing a full client implementation', correct: true, feedback: 'Correct. The inspector connects to your MCP server and provides a UI to: list all exposed tools/resources/prompts, test tool calls with sample arguments, view response formats, and debug issues — essential during development before connecting a real client.' },
+                  { label: 'A monitoring dashboard for production MCP servers', correct: false, feedback: 'The inspector is a development tool for testing and debugging, not a production monitoring system.' },
+                  { label: 'A security scanner that checks MCP servers for vulnerabilities', correct: false, feedback: 'It\'s a functional testing tool, not a security scanner. It lets you interactively call and test your MCP server\'s capabilities.' },
+                  { label: 'An automated test runner that validates all tool schemas', correct: false, feedback: 'It\'s interactive, not automated. You manually explore and test tools through its interface.' },
+                ]},
+              {
+                id: 'api-l26-s1-q4', question: 'What are the two main transport mechanisms for MCP, and when do you use each?', codeBlock: null, options: [
+                  { label: 'stdio (standard I/O for local processes — simple, no network) and StreamableHTTP (HTTP-based for remote servers — supports network access and multiple clients)', correct: true, feedback: 'Correct. stdio: MCP client spawns the server as a subprocess and communicates via stdin/stdout. Simple, secure, local only. StreamableHTTP: client connects to the server over HTTP, enabling remote access, cloud deployment, and multiple concurrent clients.' },
+                  { label: 'WebSocket and gRPC', correct: false, feedback: 'MCP uses stdio and StreamableHTTP (formerly SSE), not WebSocket or gRPC.' },
+                  { label: 'REST API and GraphQL', correct: false, feedback: 'MCP has its own protocol — it doesn\'t use REST or GraphQL. The two transports are stdio and StreamableHTTP.' },
+                  { label: 'TCP sockets for local and UDP for remote communication', correct: false, feedback: 'MCP uses stdio (process pipes) and StreamableHTTP (HTTP), not raw TCP/UDP sockets.' },
+                ]},
+              {
+                id: 'api-l26-s1-q5', question: 'How does an MCP client discover and use tools from a server?', codeBlock: null, options: [
+                  { label: 'The client connects to the server, calls tools/list to discover available tools, converts their schemas to the Messages API format, and includes them in API requests to Claude', correct: true, feedback: 'Correct. Discovery flow: connect → tools/list → get tool names, descriptions, and schemas → convert to Messages API tool format → include in the tools parameter of API calls. When Claude returns a tool_use, the client routes it back to the MCP server for execution.' },
+                  { label: 'The client must know all tool names in advance — there\'s no discovery', correct: false, feedback: 'MCP\'s key feature is dynamic discovery. The client asks the server what tools are available at runtime via tools/list.' },
+                  { label: 'Claude directly connects to MCP servers to discover tools', correct: false, feedback: 'Claude has no network access. The MCP client handles all server communication and translates tools into API format for Claude.' },
+                  { label: 'Tools are registered in a global MCP registry that all clients query', correct: false, feedback: 'There\'s no global registry. Each client connects to specific servers and discovers their tools individually.' },
+                ]},
+            ]},
+          {
+            id: 'api-l26-s2',
+            title: 'Set 2 — Resources, Prompts & Client Implementation',
+            cards: [
+              {
+                id: 'api-l26-s2-q1', question: 'What are MCP resources and how do they differ from tools?', codeBlock: '@mcp.resource("config://app")\ndef get_app_config() -> str:\n    """Current application configuration"""\n    return json.dumps(config)\n\n@mcp.resource("file://{path}")\ndef read_file(path: str) -> str:\n    """Read a file from the project"""\n    return open(path).read()', options: [
+                  { label: 'Resources are read-only data sources (files, configs, DB records) that provide context to Claude — tools perform actions, resources provide information', correct: true, feedback: 'Correct. Resources follow the URI pattern (config://app, file://path) and are read-only. Tools execute actions with side effects. Resources are ideal for: configuration data, file contents, database records, or any contextual information Claude needs to reference.' },
+                  { label: 'Resources and tools are the same thing with different names', correct: false, feedback: 'Key difference: resources are read-only data providers, tools perform actions (potentially with side effects). Resources provide context; tools do work.' },
+                  { label: 'Resources are cached versions of tool outputs', correct: false, feedback: 'Resources are independent data sources, not cached tool outputs. They serve different purposes in the MCP architecture.' },
+                  { label: 'Resources can only serve static files, not dynamic data', correct: false, feedback: 'Resources can serve dynamic data — database queries, API responses, computed values. They\'re "read-only" in that they don\'t cause side effects, but the data can be dynamic.' },
+                ]},
+              {
+                id: 'api-l26-s2-q2', question: 'What are MCP prompts and how do they help standardize AI interactions?', codeBlock: '@mcp.prompt()\ndef code_review(code: str, language: str) -> str:\n    """Generate a thorough code review prompt"""\n    return f"""Review this {language} code for:\n- Security vulnerabilities\n- Performance issues\n- Best practice violations\n\n```{language}\n{code}\n```"""', options: [
+                  { label: 'MCP prompts are reusable prompt templates exposed by servers — clients can discover and use them to standardize how specific tasks are prompted across different applications', correct: true, feedback: 'Correct. Prompts encapsulate domain expertise into reusable templates. A code review server exposes a code_review prompt template. Any MCP client can discover and use it, ensuring consistent, expert-designed prompting across all applications that connect to that server.' },
+                  { label: 'The same as system prompts in the Messages API', correct: false, feedback: 'MCP prompts are templates that can be discovered and parameterized. System prompts are static text in API requests. MCP prompts are a distribution mechanism for prompt expertise.' },
+                  { label: 'Pre-written Claude responses that the server returns instead of calling Claude', correct: false, feedback: 'MCP prompts generate prompt text for Claude to process — they don\'t replace Claude\'s responses.' },
+                  { label: 'A way to fine-tune Claude\'s behavior through the MCP protocol', correct: false, feedback: 'MCP prompts are templates, not fine-tuning. They provide well-crafted prompts to use with Claude, but don\'t change the model itself.' },
+                ]},
+              {
+                id: 'api-l26-s2-q3', question: 'What are the key components of an MCP client implementation?', codeBlock: null, options: [
+                  { label: 'Transport setup (stdio or HTTP), server connection management, tool/resource/prompt discovery, conversion to Messages API format, tool call routing back to the server, and the conversation loop', correct: true, feedback: 'Correct. A client: (1) establishes transport connection, (2) discovers available capabilities, (3) converts MCP tools to API format, (4) includes them in Claude requests, (5) routes tool_use responses back to the MCP server, (6) feeds results back to Claude.' },
+                  { label: 'Just an HTTP client that sends requests to the MCP server', correct: false, feedback: 'An MCP client does much more than HTTP — it handles discovery, schema conversion, tool call routing, and orchestrates the entire conversation loop with Claude.' },
+                  { label: 'A pre-built component from Anthropic that needs no custom code', correct: false, feedback: 'While SDKs provide client libraries, you still need custom code for your specific conversation loop, tool call handling, and application logic.' },
+                  { label: 'A browser extension that connects web apps to MCP servers', correct: false, feedback: 'MCP clients are typically backend processes, not browser extensions. They manage server connections and Claude API interactions programmatically.' },
+                ]},
+              {
+                id: 'api-l26-s2-q4', question: 'How do you access MCP resources from a client?', codeBlock: null, options: [
+                  { label: 'Call resources/list to discover available resources, then resources/read with the resource URI to fetch content — inject the content into Claude\'s context as needed', correct: true, feedback: 'Correct. The client: (1) resources/list → gets available URIs and descriptions, (2) resources/read(uri) → fetches the resource content, (3) includes the content in Claude\'s prompt as context. Resources can be fetched on-demand or pre-loaded at conversation start.' },
+                  { label: 'Resources are automatically included in every Claude request', correct: false, feedback: 'You must explicitly fetch and include resources. The client decides which resources are relevant and when to inject them.' },
+                  { label: 'Use a SQL query syntax to request specific data from resources', correct: false, feedback: 'Resources use URI-based addressing (resource://path), not SQL queries. The server handles data retrieval internally.' },
+                  { label: 'Claude directly reads resources from the MCP server during its response', correct: false, feedback: 'Claude can\'t access MCP servers. The client fetches resources and includes them in Claude\'s prompt context.' },
+                ]},
+              {
+                id: 'api-l26-s2-q5', question: 'How do MCP prompts work from the client side?', codeBlock: null, options: [
+                  { label: 'Call prompts/list to discover templates, prompts/get with arguments to render a specific template, then use the rendered prompt text in your Messages API call', correct: true, feedback: 'Correct. The client: (1) prompts/list → discover available templates with their parameter schemas, (2) prompts/get(name, args) → server renders the template with your arguments, (3) use the rendered text as the user message or system prompt in your API call.' },
+                  { label: 'MCP prompts are sent directly to Claude through a special API parameter', correct: false, feedback: 'MCP prompts produce text that you include in standard API calls. There\'s no special MCP prompt parameter in the Messages API.' },
+                  { label: 'The server executes the prompt against Claude and returns the result', correct: false, feedback: 'The server renders the prompt template — it doesn\'t call Claude. Your client takes the rendered text and sends it to Claude via the Messages API.' },
+                  { label: 'Prompts are only used for testing in the MCP inspector', correct: false, feedback: 'Prompts are a core MCP feature for production use, not just testing. They standardize prompt templates across applications.' },
+                ]},
+            ]},
+        ]
+      },
+      {
+        id: 'api-l27',
+        title: 'Agents & Workflows',
+        slug: 'api/agents',
+        cardSets: [
+          {
+            id: 'api-l27-s1',
+            title: 'Set 1 — Workflow Patterns',
+            cards: [
+              {
+                id: 'api-l27-s1-q1', question: 'What is the fundamental difference between workflows and agents?', codeBlock: null, options: [
+                  { label: 'Workflows are predefined sequences where code orchestrates LLM calls in a fixed pattern; agents give the LLM autonomy to decide which tools to call and when, dynamically', correct: true, feedback: 'Correct. Workflows = deterministic orchestration (your code controls the flow). Agents = autonomous decision-making (Claude decides what to do next). Workflows are more predictable and debuggable; agents are more flexible but harder to control.' },
+                  { label: 'Agents are just workflows with more steps', correct: false, feedback: 'The distinction isn\'t about step count — it\'s about who decides the next step. In workflows, your code decides. In agents, Claude decides.' },
+                  { label: 'Workflows use the Messages API; agents use a different API', correct: false, feedback: 'Both use the same Messages API. The difference is architectural — who controls the execution flow.' },
+                  { label: 'Agents replace workflows in all cases because they\'re more powerful', correct: false, feedback: 'Workflows are preferred for well-defined, predictable tasks. Agents are for open-ended tasks where the path isn\'t predetermined. Use the simplest approach that works.' },
+                ]},
+              {
+                id: 'api-l27-s1-q2', question: 'What is the parallelization workflow pattern?', codeBlock: 'import asyncio\n\nasync def analyze_document(doc):\n    tasks = [\n        summarize(doc),\n        extract_entities(doc),\n        classify_sentiment(doc)\n    ]\n    results = await asyncio.gather(*tasks)\n    return combine_results(results)', options: [
+                  { label: 'Run multiple independent LLM calls simultaneously and combine the results — useful when sub-tasks don\'t depend on each other, significantly reducing total latency', correct: true, feedback: 'Correct. Parallelization works when tasks are independent: analyze sentiment AND extract entities AND summarize — all at once. Total time = slowest single task, not sum of all tasks. Combine results with a final aggregation step.' },
+                  { label: 'Running the same prompt multiple times in parallel and picking the best result', correct: false, feedback: 'That\'s best-of-N sampling. Parallelization runs different tasks simultaneously, not the same task repeatedly.' },
+                  { label: 'Splitting a long document into chunks and processing them concurrently', correct: false, feedback: 'That\'s parallel processing of data, but parallelization as a workflow pattern means running different analytical tasks simultaneously on the same input.' },
+                  { label: 'A multi-threaded approach that only works with Claude Opus', correct: false, feedback: 'Parallelization is an architectural pattern that works with any model. It\'s about concurrent API calls, not model-specific features.' },
+                ]},
+              {
+                id: 'api-l27-s1-q3', question: 'What is the chaining workflow pattern?', codeBlock: 'def process_support_ticket(ticket):\n    # Step 1: Classify the issue\n    category = classify(ticket)\n    \n    # Step 2: Extract key details\n    details = extract_details(ticket, category)\n    \n    # Step 3: Generate response\n    response = generate_response(details, category)\n    \n    # Step 4: Quality check\n    return quality_check(response)', options: [
+                  { label: 'Sequential LLM calls where each step\'s output feeds the next — each call can use a different prompt optimized for its specific sub-task', correct: true, feedback: 'Correct. Chaining decomposes complex tasks into focused steps. Each step has a specialized prompt and can validate/transform the output before passing it forward. This improves accuracy because each LLM call has a simpler, more focused job.' },
+                  { label: 'The same as a single prompt with multiple instructions', correct: false, feedback: 'Chaining uses separate API calls, giving each step full attention and the ability to validate intermediate results. A single prompt can\'t do this.' },
+                  { label: 'Connecting multiple Claude models in sequence (Haiku → Sonnet → Opus)', correct: false, feedback: 'While you could use different models per step, chaining is about sequential task decomposition, not specifically about mixing models.' },
+                  { label: 'A deprecated pattern replaced by agents', correct: false, feedback: 'Chaining is actively recommended for well-defined sequential tasks. It\'s simpler and more predictable than agents for structured workflows.' },
+                ]},
+              {
+                id: 'api-l27-s1-q4', question: 'What is the routing workflow pattern?', codeBlock: 'def handle_query(query):\n    # Step 1: Classify the query type\n    query_type = classify_query(query)\n    \n    # Step 2: Route to specialized handler\n    if query_type == "technical":\n        return technical_handler(query)\n    elif query_type == "billing":\n        return billing_handler(query)\n    elif query_type == "general":\n        return general_handler(query)', options: [
+                  { label: 'A classification step that routes inputs to specialized sub-prompts based on the input type — each handler can use a different system prompt, model, or tool set optimized for that category', correct: true, feedback: 'Correct. Routing uses a fast classifier (often Haiku) to categorize the input, then routes to a specialized handler. Technical queries go to a code-focused prompt with debugging tools; billing queries go to a policy-focused prompt with account tools. Each path is optimized for its domain.' },
+                  { label: 'Load balancing API calls across multiple Anthropic endpoints', correct: false, feedback: 'Routing is about directing different types of queries to specialized handlers, not load balancing across endpoints.' },
+                  { label: 'Sending the same query to multiple models and returning the best response', correct: false, feedback: 'That\'s ensemble/consensus. Routing classifies the input first and sends it to ONE specialized handler based on its category.' },
+                  { label: 'A network routing protocol for MCP server communication', correct: false, feedback: 'It\'s an LLM workflow pattern for directing queries to specialized handlers, not a network protocol.' },
+                ]},
+              {
+                id: 'api-l27-s1-q5', question: 'When should you use a workflow vs. an agent?', codeBlock: null, options: [
+                  { label: 'Use workflows when the task is well-defined and steps are predictable; use agents when the task is open-ended and the path depends on intermediate results that can\'t be predetermined', correct: true, feedback: 'Correct. Workflows: data pipelines, content moderation, structured extraction — you know the steps upfront. Agents: coding tasks, research, customer support — Claude needs autonomy to investigate, try approaches, and adapt based on what it finds.' },
+                  { label: 'Always prefer agents because they\'re more intelligent', correct: false, feedback: 'Agents add complexity, cost, and unpredictability. For well-defined tasks, workflows are faster, cheaper, and easier to debug. Anthropic recommends starting simple.' },
+                  { label: 'Use workflows for simple tasks and agents for complex tasks', correct: false, feedback: 'Complexity alone doesn\'t determine the choice. A complex but well-defined pipeline (10-step data processing) is better as a workflow. A simple but open-ended task (debug this error) is better as an agent.' },
+                  { label: 'Agents are only for multi-user applications', correct: false, feedback: 'Agents vs. workflows is about task structure, not user count. A single-user coding assistant is an agent; a batch processing system for millions of users might be a workflow.' },
+                ]},
+            ]},
+          {
+            id: 'api-l27-s2',
+            title: 'Set 2 — Agents & Anthropic Apps',
+            cards: [
+              {
+                id: 'api-l27-s2-q1', question: 'How do you build an agent with the Messages API?', codeBlock: 'def agent_loop(user_task, tools):\n    messages = [{"role": "user", "content": user_task}]\n    \n    while True:\n        response = client.messages.create(\n            model="claude-sonnet-4-20250514",\n            max_tokens=4096,\n            tools=tools,\n            messages=messages\n        )\n        \n        if response.stop_reason == "end_turn":\n            return response.content[0].text\n        \n        # Process tool calls and continue\n        messages.append({"role": "assistant", "content": response.content})\n        tool_results = execute_tools(response)\n        messages.append({"role": "user", "content": tool_results})', options: [
+                  { label: 'A loop that sends messages to Claude, checks if it wants to use tools (stop_reason "tool_use"), executes them, feeds results back, and repeats until Claude gives a final text response', correct: true, feedback: 'Correct. The agent loop is the same tool use loop from L23, but the key difference is intent: you give Claude an open-ended task and let it autonomously decide which tools to call, how many times, and in what order until it determines the task is complete.' },
+                  { label: 'Use the /v1/agents endpoint which handles the loop internally', correct: false, feedback: 'No agents endpoint in the base API. You implement the loop yourself. The Agent SDK can help abstract this, but it still uses the Messages API underneath.' },
+                  { label: 'Deploy a pre-built agent template from Anthropic\'s marketplace', correct: false, feedback: 'No marketplace exists. You build agents by implementing the tool use loop with your specific tools and system prompt.' },
+                  { label: 'Set agent_mode=true in the API request to enable autonomous behavior', correct: false, feedback: 'No such parameter. Agent behavior comes from the loop architecture: giving Claude tools and letting it decide the execution path.' },
+                ]},
+              {
+                id: 'api-l27-s2-q2', question: 'What is environment inspection in the context of agents?', codeBlock: null, options: [
+                  { label: 'Giving the agent tools to observe its environment (read files, list directories, check system state) so it can make informed decisions about what to do next', correct: true, feedback: 'Correct. An effective agent needs to "look before it leaps." Environment inspection tools let Claude: read existing code before editing, check build output after changes, list available files, query database state — gathering information to make better decisions at each step.' },
+                  { label: 'A debugging mode that logs all agent decisions for review', correct: false, feedback: 'While logging is important, environment inspection means giving the agent read-only tools to understand its current state — file contents, system status, etc.' },
+                  { label: 'Running the agent in a sandboxed environment for security', correct: false, feedback: 'Sandboxing is a security practice. Environment inspection is about giving the agent information-gathering capabilities to make better decisions.' },
+                  { label: 'Checking the API rate limits before making a request', correct: false, feedback: 'That\'s operational concern, not environment inspection. The concept refers to tools that let the agent observe and understand its working context.' },
+                ]},
+              {
+                id: 'api-l27-s2-q3', question: 'What is Claude Code and how does it use the API concepts from this course?', codeBlock: null, options: [
+                  { label: 'An agentic coding tool built on Claude that implements the agent loop pattern with tools for reading/editing files, running commands, and searching code — it\'s the API concepts materialized into a product', correct: true, feedback: 'Correct. Claude Code is essentially an agent loop (Messages API) + tools (Read, Edit, Bash, Grep) + system prompt (CLAUDE.md) + MCP servers (extensibility). It demonstrates every concept in this course working together: tool use, multi-turn conversations, environment inspection, and autonomous decision-making.' },
+                  { label: 'A separate product that doesn\'t use the Messages API', correct: false, feedback: 'Claude Code is built on the Messages API. It uses tool use, multi-turn conversations, and all the patterns covered in this course.' },
+                  { label: 'A VS Code extension that only provides code completion', correct: false, feedback: 'Claude Code is a CLI agentic tool that can read/edit files, run commands, and work autonomously on complex coding tasks — far beyond code completion.' },
+                  { label: 'A no-code platform for building agents without API knowledge', correct: false, feedback: 'Claude Code is a developer tool, not a no-code platform. Understanding the underlying API concepts helps you use it more effectively.' },
+                ]},
+              {
+                id: 'api-l27-s2-q4', question: 'What is computer use and how does it extend Claude\'s capabilities?', codeBlock: null, options: [
+                  { label: 'A capability where Claude can view screenshots and control a computer via mouse clicks, keyboard input, and scrolling — enabling automation of GUI-based tasks that can\'t be done through APIs alone', correct: true, feedback: 'Correct. Computer use gives Claude "eyes and hands" for a desktop: take screenshots (vision), click buttons, type text, scroll. This enables automating tasks in applications that don\'t have APIs — filling forms, navigating UIs, testing web apps.' },
+                  { label: 'Remote desktop access to Anthropic\'s servers', correct: false, feedback: 'Computer use controls YOUR computer (or a VM you provide), not Anthropic\'s servers. Claude observes screenshots and sends input commands.' },
+                  { label: 'A feature that lets Claude write and execute code on your machine', correct: false, feedback: 'That\'s code execution. Computer use is about GUI interaction — seeing the screen and controlling mouse/keyboard.' },
+                  { label: 'An API that converts voice commands into computer actions', correct: false, feedback: 'Computer use is text-based (Claude reads screenshots and outputs commands), not voice-based.' },
+                ]},
+              {
+                id: 'api-l27-s2-q5', question: 'What is Anthropic\'s recommended approach when building AI systems: start with workflows or agents?', codeBlock: null, options: [
+                  { label: 'Start with the simplest workflow that solves the problem — only add agent autonomy when the task genuinely requires dynamic decision-making that can\'t be predetermined', correct: true, feedback: 'Correct. Anthropic recommends: start simple (single prompt), add complexity only when needed (chaining, routing), and use agents only when the task demands autonomy. More complexity = more cost, latency, and debugging difficulty. "The best system is the simplest one that works."' },
+                  { label: 'Always start with agents because they\'re the most flexible', correct: false, feedback: 'Agents add unnecessary complexity for well-defined tasks. A classification pipeline doesn\'t need agent autonomy — a chaining workflow is simpler and more reliable.' },
+                  { label: 'Build a comprehensive agent framework first, then add workflows as optimizations', correct: false, feedback: 'This is backwards. Start simple, add complexity incrementally. Building a framework first is over-engineering.' },
+                  { label: 'Use agents for prototyping, then convert to workflows for production', correct: false, feedback: 'Sometimes agents ARE the right production architecture (e.g., coding assistants). The choice depends on task structure, not development phase.' },
+                ]},
+            ]},
+        ]
+      },
+    ]
+  },
 ]
 
 // Flat list of all cards (computed from modules)

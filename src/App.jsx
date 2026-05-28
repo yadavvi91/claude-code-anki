@@ -92,6 +92,17 @@ export default function App() {
                 <Link to="/ai-fluency/discernment-diligence" style={styles.sitemapLink}>L19: Discernment & Diligence</Link>
               </div>
               <div style={styles.sitemapCol}>
+                <div style={{ ...styles.sitemapModTitle, color: '#e11d48' }}>Module 8 — Anthropic API</div>
+                <Link to="/api/fundamentals" style={styles.sitemapLink}>L20: API Fundamentals</Link>
+                <Link to="/api/prompt-eval" style={styles.sitemapLink}>L21: Prompt Evaluation</Link>
+                <Link to="/api/prompt-engineering" style={styles.sitemapLink}>L22: Prompt Engineering</Link>
+                <Link to="/api/tool-use" style={styles.sitemapLink}>L23: Tool Use</Link>
+                <Link to="/api/rag" style={styles.sitemapLink}>L24: RAG & Agentic Search</Link>
+                <Link to="/api/features" style={styles.sitemapLink}>L25: Claude Features</Link>
+                <Link to="/api/mcp" style={styles.sitemapLink}>L26: MCP with the API</Link>
+                <Link to="/api/agents" style={styles.sitemapLink}>L27: Agents & Workflows</Link>
+              </div>
+              <div style={styles.sitemapCol}>
                 <div style={{ ...styles.sitemapModTitle, color: T.color.ink3 }}>Reference</div>
                 <Link to="/comparison" style={styles.sitemapLink}>Claude Code vs GitHub Copilot</Link>
                 <Link to="/review" style={styles.sitemapLink}>Review & Practice</Link>

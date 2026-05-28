@@ -29,7 +29,7 @@ const NAV_SECTIONS = [
 
 export default function Lesson19() {
   return (
-    <div style={styles.page}><NavSidebar sections={NAV_SECTIONS} /><LessonNav moduleTitle="AI Fluency (4D Framework)" moduleColor={mod.color} prevLink="/ai-fluency/delegation-description" prevLabel="L18: Delegation & Description" nextLink="/" nextLabel="Home" />
+    <div style={styles.page}><NavSidebar sections={NAV_SECTIONS} /><LessonNav moduleTitle="AI Fluency (4D Framework)" moduleColor={mod.color} prevLink="/ai-fluency/delegation-description" prevLabel="L18: Delegation & Description" nextLink="/api/fundamentals" nextLabel="L20: API Fundamentals" />
       <main style={styles.main}>
         <Reveal><div style={styles.lessonLabel}>Lesson 19</div><h1 style={styles.h1}>Discernment & Diligence</h1>
           <p style={styles.subtitle}>Evaluating AI outputs critically and ensuring responsible, ethical use</p></Reveal>
@@ -72,7 +72,7 @@ export default function Lesson19() {
         <div style={styles.divider}>· · ·</div>
         <Reveal id="summary"><div style={styles.endSection}><div style={styles.endLabel}>End of Lesson 19</div>
           <p style={styles.endProse}>You've completed the AI Fluency module. You now understand all four competencies: Delegation (strategic task assignment), Description (clear communication), Discernment (critical evaluation), and Diligence (ethical responsibility). The Description-Discernment loop is the core workflow — use it every time you collaborate with AI. Remember: effective, efficient, ethical, and safe.</p>
-          <a href="/claude-code-anki/" style={styles.nextBtn}>← Back to Home</a></div></Reveal>
+          <a href="/claude-code-anki/api/fundamentals" style={styles.nextBtn}>Next → Lesson 20: API Fundamentals</a></div></Reveal>
       </main>
     </div>
   )

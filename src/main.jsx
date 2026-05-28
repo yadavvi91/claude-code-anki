@@ -22,6 +22,14 @@ import Lesson16 from './pages/lessons/Lesson16'
 import Lesson17 from './pages/lessons/Lesson17'
 import Lesson18 from './pages/lessons/Lesson18'
 import Lesson19 from './pages/lessons/Lesson19'
+import Lesson20 from './pages/lessons/Lesson20'
+import Lesson21 from './pages/lessons/Lesson21'
+import Lesson22 from './pages/lessons/Lesson22'
+import Lesson23 from './pages/lessons/Lesson23'
+import Lesson24 from './pages/lessons/Lesson24'
+import Lesson25 from './pages/lessons/Lesson25'
+import Lesson26 from './pages/lessons/Lesson26'
+import Lesson27 from './pages/lessons/Lesson27'
 import Interlude01 from './pages/interludes/Interlude01'
 import Interlude02 from './pages/interludes/Interlude02'
 import Interlude03 from './pages/interludes/Interlude03'
@@ -88,6 +96,16 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/ai-fluency/framework" element={<Lesson17 />} />
         <Route path="/ai-fluency/delegation-description" element={<Lesson18 />} />
         <Route path="/ai-fluency/discernment-diligence" element={<Lesson19 />} />
+
+        {/* Module 8: Anthropic API */}
+        <Route path="/api/fundamentals" element={<Lesson20 />} />
+        <Route path="/api/prompt-eval" element={<Lesson21 />} />
+        <Route path="/api/prompt-engineering" element={<Lesson22 />} />
+        <Route path="/api/tool-use" element={<Lesson23 />} />
+        <Route path="/api/rag" element={<Lesson24 />} />
+        <Route path="/api/features" element={<Lesson25 />} />
+        <Route path="/api/mcp" element={<Lesson26 />} />
+        <Route path="/api/agents" element={<Lesson27 />} />
 
         {/* Reference */}
         <Route path="/comparison" element={<Comparison />} />

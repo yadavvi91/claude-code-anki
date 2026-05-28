@@ -25,10 +25,10 @@ export function ProblemSection() {
 
 // ─── THE INSIGHT ───
 const stats = [
-  { value: '6', label: 'Courses', desc: 'Anthropic SkillJar courses distilled into cards' },
-  { value: '7', label: 'Modules', desc: 'Claude Code, MCP, Skills, Subagents, Copilot, AI Fluency' },
-  { value: '19', label: 'Lessons', desc: 'Each a Quantum Country-style essay with embedded cards' },
-  { value: '280+', label: 'Cards', desc: 'MCQ cards with detailed feedback, tracked by SM-2 SRS' },
+  { value: '7', label: 'Courses', desc: 'Anthropic SkillJar courses distilled into cards' },
+  { value: '8', label: 'Modules', desc: 'Claude Code, MCP, Skills, Subagents, Copilot, AI Fluency, API' },
+  { value: '27', label: 'Lessons', desc: 'Each a Quantum Country-style essay with embedded cards' },
+  { value: '360+', label: 'Cards', desc: 'MCQ cards with detailed feedback, tracked by SM-2 SRS' },
 ]
 
 export function InsightSection() {
